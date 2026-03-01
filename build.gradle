@@ -24,6 +24,7 @@ repositories {
         url = 'https://maven.gtceu.com'
         content {
             includeGroup 'com.gregtechceu.gtceu'
+            includeGroup 'appeng'
         }
     }
 }
@@ -148,6 +149,8 @@ dependencies {
     // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
     // http://www.gradle.org/docs/current/userguide/dependency_management.html
     modImplementation "com.gregtechceu.gtceu:gtceu-${minecraft_version}:${gtm_version}"
+    modImplementation jarJar("appeng:appliedenergistics2-forge:$ae2cosmolite_version")
+    modLocalRuntime "org.appliedenergistics:guideme:$guideme_version"
 }
 
 // Uncomment the lines below if you wish to configure mixin. The mixin file should be named modid.mixins.json.
@@ -184,7 +187,9 @@ var generateModMetadata = tasks.register("generateModMetadata", ProcessResources
             mod_authors              : mod_authors,
             mod_description          : mod_description,
             gtm_version              : gtm_version,
-            gtm_version_range        : gtm_version_range
+            gtm_version_range        : gtm_version_range,
+            ae2cosmolite_version     : ae2cosmolite_version,
+            guideme_version          : guideme_version
     ]
     inputs.properties replaceProperties
     expand replaceProperties
