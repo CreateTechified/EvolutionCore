@@ -2,12 +2,17 @@
   "item.evolutioncore.universal_circuit_mainframe_ev": "Mainframe Universal Circuit (EV)",
   "item.evolutioncore.universal_circuit_mainframe_hv": "Mainframe Universal Circuit (HV)",
   "item.evolutioncore.universal_circuit_mainframe_iv": "Mainframe Universal Circuit (IV)",
-  "item.evolutioncore.universal_circuit_mainframe_luv": "Mainframe Universal Circuit (LUV)",
+  "item.evolutioncore.universal_circuit_mainframe_luv": "Mainframe Universal Circuit (LuV)",
   "item.evolutioncore.universal_circuit_mainframe_lv": "Mainframe Universal Circuit (LV)",
+  "item.evolutioncore.universal_circuit_mainframe_max": "Mainframe Universal Circuit (MAX)",
   "item.evolutioncore.universal_circuit_mainframe_mv": "Mainframe Universal Circuit (MV)",
+  "item.evolutioncore.universal_circuit_mainframe_opv": "Mainframe Universal Circuit (OpV)",
+  "item.evolutioncore.universal_circuit_mainframe_uev": "Mainframe Universal Circuit (UEV)",
   "item.evolutioncore.universal_circuit_mainframe_uhv": "Mainframe Universal Circuit (UHV)",
+  "item.evolutioncore.universal_circuit_mainframe_uiv": "Mainframe Universal Circuit (UIV)",
   "item.evolutioncore.universal_circuit_mainframe_ulv": "Mainframe Universal Circuit (ULV)",
   "item.evolutioncore.universal_circuit_mainframe_uv": "Mainframe Universal Circuit (UV)",
+  "item.evolutioncore.universal_circuit_mainframe_uxv": "Mainframe Universal Circuit (UXV)",
   "item.evolutioncore.universal_circuit_mainframe_zpm": "Mainframe Universal Circuit (ZPM)",
   "itemGroup.evolutioncore.main": "Project Evolution Core"
 }
