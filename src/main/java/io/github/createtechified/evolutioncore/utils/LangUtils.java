@@ -2,6 +2,9 @@ package io.github.createtechified.evolutioncore.utils;
 
 import org.apache.commons.lang3.text.WordUtils;
 
+import java.util.Arrays;
+import java.util.stream.Collectors;
+
 public class LangUtils {
     public static String circuitName(String id) {
         String[] parts = id.split("_");
@@ -14,5 +17,9 @@ public class LangUtils {
         };
 
         return String.format("%s Universal Circuit (%s)", type, tierF);
+    }
+
+    public static String regularName(String id) {
+        return Arrays.stream(id.split("_")).map(s -> s.substring(0,1).toUpperCase() + s.substring(1)).collect(Collectors.joining(" "));
     }
 }

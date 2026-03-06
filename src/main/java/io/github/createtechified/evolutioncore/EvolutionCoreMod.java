@@ -7,6 +7,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 @Mod(Reference.MODID)
+@SuppressWarnings("removal")
 public class EvolutionCoreMod {
     public EvolutionCoreMod() {
         IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();

@@ -12,6 +12,7 @@ import net.minecraftforge.common.TierSortingRegistry;
 
 import java.util.List;
 
+@SuppressWarnings("removal")
 public class ModToolTiers {
     public static final Tier FLINT = TierSortingRegistry.registerTier(new ForgeTier(1, 191, 2.5f, 0.5f, 13, ModTags.Blocks.NEEDS_FLINT_TOOL, () -> Ingredient.of(Items.FLINT)), new ResourceLocation(Reference.MODID, "flint"), List.of(Tiers.WOOD), List.of(Tiers.GOLD));
     public static final Tier COPPER = TierSortingRegistry.registerTier(new ForgeTier((int) 1.5, 191, 2.5f, 0.5f, 13, ModTags.Blocks.NEEDS_COPPER_TOOL, () -> Ingredient.of(Tags.Items.INGOTS_COPPER)), new ResourceLocation(Reference.MODID, "copper"), List.of(Tiers.STONE), List.of());

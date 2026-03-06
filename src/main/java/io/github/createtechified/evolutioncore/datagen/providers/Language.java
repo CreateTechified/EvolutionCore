@@ -18,6 +18,10 @@ public class Language extends LanguageProvider {
             String id = item.getId().getPath();
             if (id.startsWith("universal_circuit_")) {
                 add(item.get(), LangUtils.circuitName(id));
+            } else if (id.endsWith("_dont_use")) {
+                return;
+            } else {
+                add(item.get(), LangUtils.regularName(id));
             }
         });
     }
