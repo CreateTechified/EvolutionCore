@@ -1,7 +1,7 @@
 package io.github.createtechified.evolutioncore.datagen.providers;
 
 import io.github.createtechified.evolutioncore.Reference;
-import io.github.createtechified.evolutioncore.registry.Items;
+import io.github.createtechified.evolutioncore.registry.ModItems;
 import net.minecraft.data.PackOutput;
 import net.minecraft.server.packs.PackType;
 import net.minecraft.world.item.BlockItem;
@@ -16,7 +16,7 @@ public class ItemModels extends ItemModelProvider {
 
     @Override
     protected void registerModels() {
-        Items.ITEMS.getEntries().forEach(entry -> {
+        ModItems.ITEMS.getEntries().forEach(entry -> {
             Item item = entry.get();
             if (!(item instanceof BlockItem)) {
                 boolean exists = existingFileHelper.exists(modLoc("item/" + item), PackType.CLIENT_RESOURCES, ".png", "textures");

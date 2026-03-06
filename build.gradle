@@ -20,6 +20,10 @@ group = mod_group_id
 repositories {
     mavenLocal()
     maven {
+        name 'DVS1 Maven FS'
+        url 'https://dvs1.progwml6.com/files/maven'
+    }
+    maven {
         name = 'GTCEu Maven'
         url = 'https://maven.gtceu.com'
         content {
@@ -151,6 +155,7 @@ dependencies {
     modImplementation "com.gregtechceu.gtceu:gtceu-${minecraft_version}:${gtm_version}"
     modImplementation jarJar("appeng:appliedenergistics2-forge:$ae2cosmolite_version")
     modLocalRuntime "org.appliedenergistics:guideme:$guideme_version"
+    modLocalRuntime "slimeknights.mantle:Mantle:${minecraft_version}-${mantle_version}"
 }
 
 // Uncomment the lines below if you wish to configure mixin. The mixin file should be named modid.mixins.json.
@@ -189,7 +194,8 @@ var generateModMetadata = tasks.register("generateModMetadata", ProcessResources
             gtm_version              : gtm_version,
             gtm_version_range        : gtm_version_range,
             ae2cosmolite_version     : ae2cosmolite_version,
-            guideme_version          : guideme_version
+            guideme_version          : guideme_version,
+            mantle_version           : mantle_version
     ]
     inputs.properties replaceProperties
     expand replaceProperties
