@@ -25,7 +25,7 @@ public class ModItems {
             registerGTTier(tierName, tierColor);
         }
         for (Tier tier : ModToolTiers.TIERS) {
-            registerToolTier(tier);
+            registerDebugForToolTier(tier);
         }
 
         registerStaticItems();
@@ -46,11 +46,12 @@ public class ModItems {
                 else return Component.translatable(this.getDescriptionId()).withStyle(style -> style.withColor(tierColor));
             }
         });
+
     }
 
-    private static void registerToolTier(Tier tier) {
+    private static void registerDebugForToolTier(Tier tier) {
         String tierName = TierSortingRegistry.getName(tier).getPath();
-        String name = tierName + "_pickaxe_dont_use";
+        String name = tierName + "_pickaxe_debug";
         ITEMS.register(name, () -> new PickaxeItem(tier, 0, 0f, new Item.Properties()));
     }
 

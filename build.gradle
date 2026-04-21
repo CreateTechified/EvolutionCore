@@ -31,6 +31,10 @@ repositories {
             includeGroup 'appeng'
         }
     }
+    maven {
+        name 'BlameJared Maven'
+        url = 'https://maven.blamejared.com'
+    }
 }
 
 base {
@@ -154,8 +158,11 @@ dependencies {
     // http://www.gradle.org/docs/current/userguide/dependency_management.html
     modImplementation "com.gregtechceu.gtceu:gtceu-${minecraft_version}:${gtm_version}"
     modImplementation jarJar("appeng:appliedenergistics2-forge:$ae2cosmolite_version")
+    modCompileOnly "vazkii.patchouli:Patchouli:${patchouli_version}:api"
+    modLocalRuntime "vazkii.patchouli:Patchouli:${patchouli_version}"
     modLocalRuntime "org.appliedenergistics:guideme:$guideme_version"
     modLocalRuntime "slimeknights.mantle:Mantle:${minecraft_version}-${mantle_version}"
+    compileOnly 'org.jetbrains:annotations:26.0.2'
 }
 
 // Uncomment the lines below if you wish to configure mixin. The mixin file should be named modid.mixins.json.
@@ -195,7 +202,8 @@ var generateModMetadata = tasks.register("generateModMetadata", ProcessResources
             gtm_version_range        : gtm_version_range,
             ae2cosmolite_version     : ae2cosmolite_version,
             guideme_version          : guideme_version,
-            mantle_version           : mantle_version
+            mantle_version           : mantle_version,
+            patchouli_version        : patchouli_version
     ]
     inputs.properties replaceProperties
     expand replaceProperties

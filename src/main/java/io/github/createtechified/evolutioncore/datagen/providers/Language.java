@@ -14,11 +14,14 @@ public class Language extends LanguageProvider {
     @Override
     protected void addTranslations() {
         add("itemGroup.evolutioncore.main", "Project Evolution Core");
+        add("book.pjevo.qb", "Questbook Wiki");
+        add("book.pjevo.qb.land", "Welcome to Project Evolution");
+        add("evo.condition.vac.tooltip", "Something like this...");
         ModItems.ITEMS.getEntries().forEach(item -> {
             String id = item.getId().getPath();
             if (id.startsWith("universal_circuit_")) {
                 add(item.get(), LangUtils.circuitName(id));
-            } else if (id.endsWith("_dont_use")) {
+            } else if (id.endsWith("_debug")) {
                 return;
             } else {
                 add(item.get(), LangUtils.regularName(id));
