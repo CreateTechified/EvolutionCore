@@ -1,4 +1,4 @@
-package io.github.createtechified.evolutioncore.overhaul;
+package io.github.createtechified.evolutioncore.common.overhaul;
 
 import com.mojang.serialization.Codec;
 import io.github.createtechified.evolutioncore.EvolutionCoreMod;

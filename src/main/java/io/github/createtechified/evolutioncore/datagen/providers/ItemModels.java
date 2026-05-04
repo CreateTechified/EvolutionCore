@@ -1,7 +1,7 @@
 package io.github.createtechified.evolutioncore.datagen.providers;
 
 import io.github.createtechified.evolutioncore.Reference;
-import io.github.createtechified.evolutioncore.registry.ModItems;
+import io.github.createtechified.evolutioncore.common.registry.ModItems;
 import net.minecraft.data.PackOutput;
 import net.minecraft.server.packs.PackType;
 import net.minecraft.world.item.BlockItem;

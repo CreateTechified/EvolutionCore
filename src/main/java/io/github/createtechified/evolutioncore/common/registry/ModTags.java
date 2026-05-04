@@ -1,4 +1,4 @@
-package io.github.createtechified.evolutioncore.registry;
+package io.github.createtechified.evolutioncore.common.registry;
 
 import io.github.createtechified.evolutioncore.Reference;
 import net.minecraft.resources.ResourceLocation;

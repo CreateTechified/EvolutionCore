@@ -1,4 +1,4 @@
-package io.github.createtechified.evolutioncore.overhaul;
+package io.github.createtechified.evolutioncore.common.overhaul;
 
 import io.github.createtechified.evolutioncore.Reference;
 import net.minecraft.tags.BlockTags;

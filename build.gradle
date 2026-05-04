@@ -22,6 +22,9 @@ repositories {
     maven {
         name 'DVS1 Maven FS'
         url 'https://dvs1.progwml6.com/files/maven'
+        content {
+            includeGroup 'slimeknights'
+        }
     }
     maven {
         name = 'GTCEu Maven'
@@ -34,6 +37,14 @@ repositories {
     maven {
         name 'BlameJared Maven'
         url = 'https://maven.blamejared.com'
+    }
+    maven {
+        name = 'FirstDarkDev Maven'
+        url = 'https://maven.firstdark.dev/snapshots'
+    }
+    maven {
+        name = 'TTerraG Maven'
+        url = 'https://maven.tterrag.com'
     }
 }
 
@@ -158,10 +169,12 @@ dependencies {
     // http://www.gradle.org/docs/current/userguide/dependency_management.html
     modImplementation "com.gregtechceu.gtceu:gtceu-${minecraft_version}:${gtm_version}"
     modImplementation jarJar("appeng:appliedenergistics2-forge:$ae2cosmolite_version")
+    modImplementation "com.lowdragmc.ldlib:ldlib-forge-${minecraft_version}:${ldlib_version}"
+    modImplementation "com.tterrag.registrate:Registrate:${registrate_version}"
     modCompileOnly "vazkii.patchouli:Patchouli:${patchouli_version}:api"
     modLocalRuntime "vazkii.patchouli:Patchouli:${patchouli_version}"
     modLocalRuntime "org.appliedenergistics:guideme:$guideme_version"
-    modLocalRuntime "slimeknights.mantle:Mantle:${minecraft_version}-${mantle_version}"
+    // Maven's down, temp - modLocalRuntime "slimeknights.mantle:Mantle:${minecraft_version}-${mantle_version}"
     compileOnly 'org.jetbrains:annotations:26.0.2'
 }
 
@@ -203,7 +216,9 @@ var generateModMetadata = tasks.register("generateModMetadata", ProcessResources
             ae2cosmolite_version     : ae2cosmolite_version,
             guideme_version          : guideme_version,
             mantle_version           : mantle_version,
-            patchouli_version        : patchouli_version
+            patchouli_version        : patchouli_version,
+            ldlib_version            : ldlib_version,
+            registrate_version       : registrate_version
     ]
     inputs.properties replaceProperties
     expand replaceProperties
