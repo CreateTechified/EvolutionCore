@@ -1,4 +1,9 @@
 {
+  "block.evolutioncore.hp_steam_vacuum_pump": "High Pressure Steam Vacuum Pump",
+  "block.evolutioncore.lp_steam_vacuum_pump": "Low Pressure Steam Vacuum Pump",
+  "book.pjevo.qb": "Questbook Wiki",
+  "book.pjevo.qb.land": "Welcome to Project Evolution",
+  "evo.vac.tier": "Vacuum Tier: %s",
   "item.evolutioncore.flint_hatchet": "Flint Hatchet",
   "item.evolutioncore.universal_circuit_mainframe_ev": "Mainframe Universal Circuit (EV)",
   "item.evolutioncore.universal_circuit_mainframe_hv": "Mainframe Universal Circuit (HV)",
@@ -15,5 +20,6 @@
   "item.evolutioncore.universal_circuit_mainframe_uv": "Mainframe Universal Circuit (UV)",
   "item.evolutioncore.universal_circuit_mainframe_uxv": "Mainframe Universal Circuit (UXV)",
   "item.evolutioncore.universal_circuit_mainframe_zpm": "Mainframe Universal Circuit (ZPM)",
-  "itemGroup.evolutioncore.main": "Project Evolution Core"
+  "itemGroup.evolutioncore.gt": "EvolutionCore - GregTech",
+  "itemGroup.evolutioncore.main": "EvolutionCore - Main"
 }

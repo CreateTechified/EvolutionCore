@@ -9,5 +9,8 @@ import com.lowdragmc.lowdraglib.gui.texture.ProgressTexture;
 import static com.gregtechceu.gtceu.api.capability.recipe.IO.IN;
 
 public class ModRecipeTypes {
+    public static void init() {
+    }
+
     public static final GTRecipeType VACUUM_PUMP_RECIPES = GTRecipeTypes.register("vacuum_pump", "electric").setEUIO(IN).setMaxIOSize(1,0,0,0).setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressTexture.FillDirection.LEFT_TO_RIGHT).setSound(GTSoundEntries.BOILER);
 }

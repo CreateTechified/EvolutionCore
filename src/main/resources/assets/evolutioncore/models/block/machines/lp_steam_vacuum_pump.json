@@ -1,0 +1,65 @@
+{
+  "parent": "minecraft:block/block",
+  "loader": "gtceu:machine",
+  "machine": "evolutioncore:lp_steam_vacuum_pump",
+  "multipart": [
+    {
+      "apply": {
+        "model": {
+          "parent": "gtceu:block/casings/steam/bricked_bronze",
+          "textures": {
+            "overlay_front": "evolutioncore:block/machines/vacuum_pump/overlay_top",
+            "overlay_top": "evolutioncore:block/machines/vacuum_pump/overlay_top"
+          }
+        }
+      },
+      "when": {
+        "recipe_logic_status": "idle"
+      }
+    },
+    {
+      "apply": {
+        "model": {
+          "parent": "gtceu:block/casings/steam/bricked_bronze",
+          "textures": {
+            "overlay_front": "evolutioncore:block/machines/vacuum_pump/overlay_front_active",
+            "overlay_top": "evolutioncore:block/machines/vacuum_pump/overlay_top_active",
+            "overlay_top_emissive": "evolutioncore:block/machines/vacuum_pump/overlay_top_active_emissive"
+          }
+        }
+      },
+      "when": {
+        "recipe_logic_status": "working"
+      }
+    },
+    {
+      "apply": {
+        "model": {
+          "parent": "gtceu:block/casings/steam/bricked_bronze",
+          "textures": {
+            "overlay_front": "evolutioncore:block/machines/vacuum_pump/overlay_front_active",
+            "overlay_top": "evolutioncore:block/machines/vacuum_pump/overlay_top_active",
+            "overlay_top_emissive": "evolutioncore:block/machines/vacuum_pump/overlay_top_active_emissive"
+          }
+        }
+      },
+      "when": {
+        "recipe_logic_status": "waiting"
+      }
+    },
+    {
+      "apply": {
+        "model": {
+          "parent": "gtceu:block/casings/steam/bricked_bronze",
+          "textures": {
+            "overlay_front": "evolutioncore:block/machines/vacuum_pump/overlay_front",
+            "overlay_top": "evolutioncore:block/machines/vacuum_pump/overlay_top"
+          }
+        }
+      },
+      "when": {
+        "recipe_logic_status": "suspend"
+      }
+    }
+  ]
+}

@@ -19,7 +19,7 @@ public class SteamVacuumPump extends SimpleSteamMachine implements IVacuumMachin
     public void onLoad() {
         super.onLoad();
         if (!isRemote()) {
-            tickSubs = subscribeServerTick(tickSubs, this::serverTick);
+            tickSubs = subscribeServerTick(tickSubs, this::tick);
         }
     }
 

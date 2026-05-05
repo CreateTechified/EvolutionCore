@@ -2,13 +2,16 @@ package io.github.createtechified.evolutioncore;
 
 import com.gregtechceu.gtceu.api.addon.IGTAddon;
 import com.gregtechceu.gtceu.api.registry.registrate.GTRegistrate;
-import io.github.createtechified.evolutioncore.common.registry.GTEvoRegistry;
+import io.github.createtechified.evolutioncore.common.registry.ModRecipeTypes;
+import net.minecraft.data.recipes.FinishedRecipe;
+
+import java.util.function.Consumer;
 
 @com.gregtechceu.gtceu.api.addon.GTAddon
 public class EvolutionCoreAddon implements IGTAddon {
     @Override
     public GTRegistrate getRegistrate() {
-        return GTEvoRegistry.REGISTRATE;
+        return Reference.REGISTRATE;
     }
 
     @Override
@@ -18,6 +21,11 @@ public class EvolutionCoreAddon implements IGTAddon {
 
     @Override
     public String addonModId() {
-        return "";
+        return Reference.MODID;
+    }
+
+    @Override
+    public void addRecipes(Consumer<FinishedRecipe> provider) {
+        ModRecipeTypes.init();
     }
 }
