@@ -46,6 +46,20 @@ repositories {
         name = 'TTerraG Maven'
         url = 'https://maven.tterrag.com'
     }
+    maven {
+        name = 'Architectury Maven'
+        url = 'https://maven.architectury.dev'
+        content {
+            includeGroup "dev.architectury"
+        }
+    }
+    maven {
+        name = 'LatvianDev Maven'
+        url = 'https://maven.latvian.dev/releases'
+        content {
+            includeGroup 'dev.latvian.mods'
+        }
+    }
 }
 
 base {
@@ -168,6 +182,9 @@ dependencies {
     modImplementation jarJar("appeng:appliedenergistics2-forge:$ae2cosmolite_version")
     modImplementation "com.lowdragmc.ldlib:ldlib-forge-${minecraft_version}:${ldlib_version}"
     modImplementation "com.tterrag.registrate:Registrate:${registrate_version}"
+    modImplementation "dev.architectury:architectury-forge:${architectury_version}"
+    modImplementation "dev.latvian.mods:rhino-forge:${rhino_version}"
+    modImplementation "dev.latvian.mods:kubejs-forge:${kubejs_version}"
     modCompileOnly "vazkii.patchouli:Patchouli:${patchouli_version}:api"
     modLocalRuntime "vazkii.patchouli:Patchouli:${patchouli_version}"
     modLocalRuntime "org.appliedenergistics:guideme:$guideme_version"
@@ -215,7 +232,11 @@ var generateModMetadata = tasks.register("generateModMetadata", ProcessResources
             mantle_version           : mantle_version,
             patchouli_version        : patchouli_version,
             ldlib_version            : ldlib_version,
-            registrate_version       : registrate_version
+            registrate_version       : registrate_version,
+            architectury_version     : architectury_version,
+            rhino_version            : rhino_version,
+            kubejs_version           : kubejs_version,
+            kjs_version_range        : kjs_version_range
     ]
     inputs.properties replaceProperties
     expand replaceProperties
