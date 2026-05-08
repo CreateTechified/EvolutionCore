@@ -2,7 +2,6 @@ package io.github.createtechified.evolutioncore.datagen.providers;
 
 import io.github.createtechified.evolutioncore.Reference;
 import io.github.createtechified.evolutioncore.common.registry.ModItems;
-import io.github.createtechified.evolutioncore.common.registry.ModMachines;
 import io.github.createtechified.evolutioncore.utils.LangUtils;
 import net.minecraft.data.PackOutput;
 import net.minecraftforge.common.data.LanguageProvider;

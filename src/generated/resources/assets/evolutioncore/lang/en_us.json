@@ -5,6 +5,8 @@
   "book.pjevo.qb.land": "Welcome to Project Evolution",
   "evo.vac.tier": "Vacuum Tier: %s",
   "item.evolutioncore.flint_hatchet": "Flint Hatchet",
+  "item.evolutioncore.flint_shard": "Flint Shard",
+  "item.evolutioncore.plant_fiber": "Plant Fiber",
   "item.evolutioncore.universal_circuit_mainframe_ev": "Mainframe Universal Circuit (EV)",
   "item.evolutioncore.universal_circuit_mainframe_hv": "Mainframe Universal Circuit (HV)",
   "item.evolutioncore.universal_circuit_mainframe_iv": "Mainframe Universal Circuit (IV)",

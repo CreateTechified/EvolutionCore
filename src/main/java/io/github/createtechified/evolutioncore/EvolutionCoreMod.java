@@ -12,7 +12,7 @@ import io.github.createtechified.evolutioncore.common.overhaul.RemoveAllOresBiom
 import io.github.createtechified.evolutioncore.common.recipe.conditions.VacuumCondition;
 import io.github.createtechified.evolutioncore.common.registry.CreativeTabs;
 import io.github.createtechified.evolutioncore.common.registry.ModItems;
-import io.github.createtechified.evolutioncore.common.registry.ModMachines;
+import io.github.createtechified.evolutioncore.common.registry.machines.ModMachines;
 import io.github.createtechified.evolutioncore.common.registry.ModRecipeTypes;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.biome.Biome;

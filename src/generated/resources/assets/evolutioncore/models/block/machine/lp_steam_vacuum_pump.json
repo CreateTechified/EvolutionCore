@@ -1,0 +1,118 @@
+{
+  "parent": "minecraft:block/block",
+  "loader": "gtceu:machine",
+  "machine": "evolutioncore:lp_steam_vacuum_pump",
+  "multipart": [
+    {
+      "apply": {
+        "model": {
+          "parent": "gtceu:block/casings/steam/bricked_bronze",
+          "textures": {
+            "overlay_front": "evolutioncore:block/machines/vacuum_pump/overlay_front",
+            "overlay_top": "evolutioncore:block/machines/vacuum_pump/overlay_top"
+          }
+        }
+      },
+      "when": {
+        "recipe_logic_status": "idle"
+      }
+    },
+    {
+      "apply": {
+        "model": {
+          "parent": "gtceu:block/casings/steam/bricked_bronze",
+          "textures": {
+            "overlay_front": "evolutioncore:block/machines/vacuum_pump/overlay_front_active",
+            "overlay_top": "evolutioncore:block/machines/vacuum_pump/overlay_top_active",
+            "overlay_top_emissive": "evolutioncore:block/machines/vacuum_pump/overlay_top_active_emissive"
+          }
+        }
+      },
+      "when": {
+        "recipe_logic_status": "working"
+      }
+    },
+    {
+      "apply": {
+        "model": {
+          "parent": "gtceu:block/casings/steam/bricked_bronze",
+          "textures": {
+            "overlay_front": "evolutioncore:block/machines/vacuum_pump/overlay_front_active",
+            "overlay_top": "evolutioncore:block/machines/vacuum_pump/overlay_top_active",
+            "overlay_top_emissive": "evolutioncore:block/machines/vacuum_pump/overlay_top_active_emissive"
+          }
+        }
+      },
+      "when": {
+        "recipe_logic_status": "waiting"
+      }
+    },
+    {
+      "apply": {
+        "model": {
+          "parent": "gtceu:block/casings/steam/bricked_bronze",
+          "textures": {
+            "overlay_front": "evolutioncore:block/machines/vacuum_pump/overlay_front",
+            "overlay_top": "evolutioncore:block/machines/vacuum_pump/overlay_top"
+          }
+        }
+      },
+      "when": {
+        "recipe_logic_status": "suspend"
+      }
+    },
+    {
+      "apply": {
+        "model": "gtceu:block/overlay/machine/overlay_steam_vent",
+        "x": 270
+      },
+      "when": {
+        "steam_vent": "up"
+      }
+    },
+    {
+      "apply": {
+        "model": "gtceu:block/overlay/machine/overlay_steam_vent",
+        "x": 90
+      },
+      "when": {
+        "steam_vent": "down"
+      }
+    },
+    {
+      "apply": {
+        "model": "gtceu:block/overlay/machine/overlay_steam_vent",
+        "y": 270
+      },
+      "when": {
+        "steam_vent": "left"
+      }
+    },
+    {
+      "apply": {
+        "model": "gtceu:block/overlay/machine/overlay_steam_vent",
+        "y": 90
+      },
+      "when": {
+        "steam_vent": "right"
+      }
+    },
+    {
+      "apply": {
+        "model": "gtceu:block/overlay/machine/overlay_steam_vent"
+      },
+      "when": {
+        "steam_vent": "front"
+      }
+    },
+    {
+      "apply": {
+        "model": "gtceu:block/overlay/machine/overlay_steam_vent",
+        "y": 180
+      },
+      "when": {
+        "steam_vent": "back"
+      }
+    }
+  ]
+}

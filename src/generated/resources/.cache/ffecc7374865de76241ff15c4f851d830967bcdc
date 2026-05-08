@@ -1,0 +1,9 @@
+// 1.20.1	2026-05-05T06:38:53.470916592	Registrate Provider for evolutioncore [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), generic_server_provider, Blockstates, Item models, Lang (en_us/en_ud), generic_client_provider]
+663e2db69bb34c3e5eca2a164c4cd27330a45b4f assets/evolutioncore/blockstates/hp_steam_vacuum_pump.json
+e33cdd5d27a7c40e90a876ecf3d3307d0fd903bb assets/evolutioncore/blockstates/lp_steam_vacuum_pump.json
+499f4502df2e66fc175800cbd81ac21b77ef5965 assets/evolutioncore/lang/en_ud.json
+2cb7f403d23a59abf7ffd5f1c35cd2d321aed773 assets/evolutioncore/lang/en_us.json
+69f67248604cfbb3a8b74554322386ad8d78d570 assets/evolutioncore/models/block/machine/hp_steam_vacuum_pump.json
+d999cd77b904d1e1a081d3c2a0afb173ac922b45 assets/evolutioncore/models/block/machine/lp_steam_vacuum_pump.json
+5666145372004bdee0a63b188b1c70ca30ba45da assets/evolutioncore/models/item/hp_steam_vacuum_pump.json
+bcc53906447cc582eba5ea64d287076628c5ec3f assets/evolutioncore/models/item/lp_steam_vacuum_pump.json

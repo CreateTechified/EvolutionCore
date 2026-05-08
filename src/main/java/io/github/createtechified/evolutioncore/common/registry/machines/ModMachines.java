@@ -1,6 +1,5 @@
-package io.github.createtechified.evolutioncore.common.registry;
+package io.github.createtechified.evolutioncore.common.registry.machines;
 
-import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.data.RotationState;
 import com.gregtechceu.gtceu.api.machine.MachineDefinition;
 import com.gregtechceu.gtceu.api.machine.property.GTMachineModelProperties;
@@ -11,6 +10,7 @@ import com.gregtechceu.gtceu.common.data.machines.GTMachineUtils;
 import io.github.createtechified.evolutioncore.EvolutionCoreMod;
 import io.github.createtechified.evolutioncore.Reference;
 import io.github.createtechified.evolutioncore.common.machines.steam.SteamVacuumPump;
+import io.github.createtechified.evolutioncore.common.registry.ModRecipeTypes;
 import it.unimi.dsi.fastutil.Pair;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
@@ -18,6 +18,7 @@ import net.minecraft.network.chat.Component;
 public class ModMachines {
     public static void init() {
         Reference.REGISTRATE.creativeModeTab(GTCreativeModeTabs.MACHINE);
+        GTPrimitiveMultiblocks.init();
     }
 
     public static final Pair<MachineDefinition, MachineDefinition> STEAM_VACUUM_PUMP = GTMachineUtils.registerSteamMachines(Reference.REGISTRATE, "steam_vacuum_pump",

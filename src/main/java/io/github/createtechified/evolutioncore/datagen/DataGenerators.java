@@ -1,5 +1,6 @@
 package io.github.createtechified.evolutioncore.datagen;
 
+import io.github.createtechified.evolutioncore.datagen.providers.EvoRecipes;
 import io.github.createtechified.evolutioncore.datagen.providers.ItemModels;
 import io.github.createtechified.evolutioncore.datagen.providers.Language;
 import net.minecraft.core.HolderLookup;
@@ -21,6 +22,9 @@ public class DataGenerators {
         ExistingFileHelper efh = event.getExistingFileHelper();
         CompletableFuture<HolderLookup.Provider> lookup = event.getLookupProvider();
 
+        if (event.includeServer()) {
+            gen.addProvider(true, new EvoRecipes(out));
+        }
         if (event.includeClient()) {
             gen.addProvider(true, new ItemModels(out, efh));
             gen.addProvider(true, new Language(out, "en_us"));

@@ -1,6 +1,7 @@
 package io.github.createtechified.evolutioncore.common.registry;
 
 import io.github.createtechified.evolutioncore.Reference;
+import io.github.createtechified.evolutioncore.common.registry.machines.ModMachines;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
