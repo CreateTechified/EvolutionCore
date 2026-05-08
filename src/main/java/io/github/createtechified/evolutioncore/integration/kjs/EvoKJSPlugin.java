@@ -2,6 +2,7 @@ package io.github.createtechified.evolutioncore.integration.kjs;
 
 import dev.latvian.mods.kubejs.KubeJSPlugin;
 
+@SuppressWarnings("unused")
 public class EvoKJSPlugin extends KubeJSPlugin {
     @Override
     public void initStartup() {
