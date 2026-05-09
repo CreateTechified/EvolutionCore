@@ -45,7 +45,7 @@ public class VacuumCondition extends RecipeCondition<VacuumCondition> {
 
     @Override
     public Component getTooltips() {
-        return Component.translatable("evo.vac.tier" + tier);
+        return Component.translatable("evolutioncore.tooltip.vacuum_pump" + tier);
     }
 
     @Override
