@@ -13,6 +13,7 @@ import io.github.createtechified.evolutioncore.common.recipe.conditions.VacuumCo
 import io.github.createtechified.evolutioncore.common.registry.CreativeTabs;
 import io.github.createtechified.evolutioncore.common.registry.ModItems;
 import io.github.createtechified.evolutioncore.common.registry.machines.ModMachines;
+import io.github.createtechified.evolutioncore.common.registry.recipes.ModBlocks;
 import io.github.createtechified.evolutioncore.common.registry.recipes.ModRecipeTypes;
 import io.github.createtechified.evolutioncore.datagen.EvoDatagen;
 import net.minecraft.resources.ResourceLocation;
@@ -50,6 +51,7 @@ public class EvolutionCoreMod {
         eventBus.addGenericListener(MachineDefinition.class, this::registerMachines);
         BIOME_MODIFIER_SERIALIZERS.register(eventBus);
         ModItems.init();
+        ModBlocks.init();
         CreativeTabs.init();
         Reference.REGISTRATE.registerRegistrate();
         EvoDatagen.init();

@@ -10,21 +10,15 @@ import io.github.createtechified.evolutioncore.Reference;
 import io.github.createtechified.evolutioncore.common.tools.HammerItem;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
-import net.minecraft.nbt.Tag;
-import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.AxeItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.PickaxeItem;
 
-import javax.swing.text.html.HTML;
 import java.util.function.Consumer;
 
 @SuppressWarnings("unused")
 public class ModItems {
-    public static void init() {
-        // i cast exist
-    }
+    public static void init() {}
 
     static {
         Reference.REGISTRATE.creativeModeTab(() -> CreativeTabs.EVOLUTIONCORE_MAIN);
@@ -80,7 +74,7 @@ public class ModItems {
                     .save(prov)));
     public static ItemEntry<HammerItem> FLINT_HAMMER = constructItem("flint_hammer",
             p -> new HammerItem(3, -3.2f, ModToolTiers.FLINT, p));
-    // Universal circuits (1-Mainframe)
+    // Universal circuits
     public static ItemEntry<Item> ULV_UNIVERSAL_1 = constructUniversalCircuit("universal_circuit_ulv", 0);
     public static ItemEntry<Item> LV_UNIVERSAL_1 = constructUniversalCircuit("universal_circuit_lv", 1);
     public static ItemEntry<Item> MV_UNIVERSAL_1 = constructUniversalCircuit("universal_circuit_mv", 2);
