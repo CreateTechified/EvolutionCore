@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:item/generated",
-  "textures": {
-    "layer0": "evolutioncore:item/universal_circuit_mainframe_lv"
-  }
-}

@@ -1,74 +1,82 @@
 package io.github.createtechified.evolutioncore.common.registry;
 
+import com.gregtechceu.gtceu.api.GTValues;
+import com.simibubi.create.content.processing.sequenced.SequencedAssemblyItem;
+import com.tterrag.registrate.builders.ItemBuilder;
+import com.tterrag.registrate.providers.RegistrateRecipeProvider;
+import com.tterrag.registrate.util.entry.ItemEntry;
+import com.tterrag.registrate.util.nullness.NonNullFunction;
 import io.github.createtechified.evolutioncore.Reference;
-import net.minecraft.network.chat.Component;
+import net.minecraft.data.recipes.RecipeCategory;
+import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.world.item.AxeItem;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.PickaxeItem;
-import net.minecraft.world.item.Tier;
-import net.minecraftforge.common.TierSortingRegistry;
-import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
-import com.gregtechceu.gtceu.api.GTValues;
-import net.minecraftforge.registries.RegistryObject;
+import net.minecraft.world.item.Items;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
+import java.util.function.Consumer;
 
+@SuppressWarnings("unused")
 public class ModItems {
-    public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, Reference.MODID);
-    public static final Map<String, RegistryObject<Item>> ITEM_MAP = new HashMap<>();
-
-    public static void register(IEventBus eventBus) {
-        for (int tier = GTValues.ULV; tier <= GTValues.MAX; tier++) {
-            String tierName = GTValues.VN[tier].toLowerCase();
-            int tierColor = GTValues.VCM[tier];
-            registerGTTier(tierName, tierColor);
-        }
-        for (Tier tier : ModToolTiers.TIERS) {
-            registerDebugForToolTier(tier);
-        }
-
-        registerStaticItems();
-        ITEMS.register(eventBus);
+    public static void init() {
+        // i cast exist
     }
 
-    public static Item getItem(String name) {
-        return ITEM_MAP.get(name).get();
+    static {
+        Reference.REGISTRATE.creativeModeTab(() -> CreativeTabs.EVOLUTIONCORE_MAIN);
     }
 
-    private static void registerGTTier(String tierName, int tierColor) {
-        registerUniversalCircuit(tierName, tierColor, "mainframe");
+    public static <T extends Item> ItemEntry<T> constructItem(String name, NonNullFunction<Item.Properties, T> factory, Consumer<ItemBuilder<T, ?>> customizer) {
+        return Reference.REGISTRATE.item(name, factory).transform(b -> { customizer.accept(b); return b; }).register();
+    }
+    public static <T extends Item> ItemEntry<T> constructItem(String name, NonNullFunction<Item.Properties, T> factory) {
+        return constructItem(name, factory, b -> {});
     }
 
-    private static void registerUniversalCircuit(String tierName, int tierColor, String circuitType) {
-        String name = "universal_circuit_" + circuitType + "_" + tierName;
-        ITEM_MAP.put(name, ITEMS.register(name, () -> new Item(new Item.Properties()) {
-            @Override
-            public Component getName(ItemStack stack) {
-                if (Objects.equals(tierName, "max")) return Component.translatable(this.getDescriptionId()).withStyle(style -> style.withColor(tierColor).withBold(true));
-                if (Objects.equals(tierName, "opv")) return Component.translatable(this.getDescriptionId()).withStyle(style -> style.withColor(tierColor).withBold(true));
-                else return Component.translatable(this.getDescriptionId()).withStyle(style -> style.withColor(tierColor));
-            }
-        }));
+    public static ItemEntry<Item> constructUniversalCircuit(String name, int tier) {
+        return constructItem(name, Item::new,
+                b -> b.lang("%s Universal Circuit".formatted(GTValues.VNF[tier])).tag(Reference.CIRCUIT_TAGS[tier]));
     }
 
-    private static void registerDebugForToolTier(Tier tier) {
-        String tierName = TierSortingRegistry.getName(tier).getPath();
-        String name = tierName + "_pickaxe_debug";
-        ITEM_MAP.put(name, ITEMS.register(name, () -> new PickaxeItem(tier, 0, 0f, new Item.Properties())));
+    public static ItemEntry<Item> constructBasicItem(String name) {
+        return constructItem(name, Item::new);
     }
 
-    private static void constructBasicItem(String name) {
-        ITEM_MAP.put(name, ITEMS.register(name, () -> new Item(new Item.Properties())));
-    }
-
-    private static void registerStaticItems() {
-        ITEM_MAP.put("flint_hatchet", ITEMS.register("flint_hatchet", () -> new AxeItem(ModToolTiers.FLINT, 3, -3.2f, new Item.Properties())));
-        constructBasicItem("plant_fiber");
-        constructBasicItem("flint_shard");
-    }
+    // Misc Items
+    public static ItemEntry<Item> PLANT_FIBER = constructBasicItem("plant_fiber");
+    public static ItemEntry<Item> FLINT_SHARD = constructBasicItem("flint_shard");
+    // Vacuum Tube Parts (ULV/Steam)
+    public static ItemEntry<Item> CARBON_FILAMENT = constructBasicItem("carbon_filament");
+    public static ItemEntry<Item> GRAPHITE_ELECTRODE = constructBasicItem("graphite_electrode");
+    public static ItemEntry<Item> INCOMPLETE_VACUUM_TUBE_BASE = constructItem("incomplete_vacuum_tube_base", SequencedAssemblyItem::new);
+    public static ItemEntry<Item> VACUUM_TUBE_BASE = constructBasicItem("vacuum_tube_base");
+    public static ItemEntry<Item> INCOMPLETE_UNSEALED_VACUUM_TUBE = constructItem("incomplete_unsealed_vacuum_tube", SequencedAssemblyItem::new);
+    public static ItemEntry<Item> UNSEALED_VACUUM_TUBE = constructBasicItem("unsealed_vacuum_tube");
+    public static ItemEntry<Item> FAILED_VACUUM_TUBE_PARTS = constructBasicItem("failed_vacuum_tube_parts");
+    // Tools
+    public static ItemEntry<AxeItem> FLINT_HATCHET = constructItem("flint_hatchet",
+            p -> new AxeItem(ModToolTiers.FLINT, 3, -3.2f, p),
+            b -> b.recipe((ctx, prov) -> ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, ctx.get())
+                    .pattern("PF")
+                    .pattern("SP")
+                    .define('S', Items.STICK)
+                    .define('P', ModItems.PLANT_FIBER)
+                    .define('F', ModItems.FLINT_SHARD)
+                    .unlockedBy("has_flint", RegistrateRecipeProvider.has(Items.FLINT))
+                    .save(prov)));
+    // Universal circuits (1-Mainframe)
+    public static ItemEntry<Item> ULV_UNIVERSAL_1 = constructUniversalCircuit("universal_circuit_ulv", 0);
+    public static ItemEntry<Item> LV_UNIVERSAL_1 = constructUniversalCircuit("universal_circuit_lv", 1);
+    public static ItemEntry<Item> MV_UNIVERSAL_1 = constructUniversalCircuit("universal_circuit_mv", 2);
+    public static ItemEntry<Item> HV_UNIVERSAL_1 = constructUniversalCircuit("universal_circuit_hv", 3);
+    public static ItemEntry<Item> EV_UNIVERSAL_1 = constructUniversalCircuit("universal_circuit_ev", 4);
+    public static ItemEntry<Item> IV_UNIVERSAL_1 = constructUniversalCircuit("universal_circuit_iv", 5);
+    public static ItemEntry<Item> LUV_UNIVERSAL_1 = constructUniversalCircuit("universal_circuit_luv", 6);
+    public static ItemEntry<Item> ZPM_UNIVERSAL_1 = constructUniversalCircuit("universal_circuit_zpm", 7);
+    public static ItemEntry<Item> UV_UNIVERSAL_1 = constructUniversalCircuit("universal_circuit_uv", 8);
+    public static ItemEntry<Item> UHV_UNIVERSAL_1 = constructUniversalCircuit("universal_circuit_uhv", 9);
+    public static ItemEntry<Item> UEV_UNIVERSAL_1 = constructUniversalCircuit("universal_circuit_uev", 10);
+    public static ItemEntry<Item> UIV_UNIVERSAL_1 = constructUniversalCircuit("universal_circuit_uiv", 11);
+    public static ItemEntry<Item> UXV_UNIVERSAL_1 = constructUniversalCircuit("universal_circuit_uxv", 12);
+    public static ItemEntry<Item> OPV_UNIVERSAL_1 = constructUniversalCircuit("universal_circuit_opv", 13);
+    public static ItemEntry<Item> MAX_UNIVERSAL_1 = constructUniversalCircuit("universal_circuit_max", 14);
 }

@@ -1,27 +1,20 @@
 package io.github.createtechified.evolutioncore.common.registry;
 
+import com.gregtechceu.gtceu.common.data.GTCreativeModeTabs;
+import com.tterrag.registrate.util.entry.RegistryEntry;
+import io.github.createtechified.evolutioncore.EvolutionCoreMod;
 import io.github.createtechified.evolutioncore.Reference;
-import io.github.createtechified.evolutioncore.common.registry.machines.ModMachines;
-import net.minecraft.core.registries.Registries;
-import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
-import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.RegistryObject;
 
 public class CreativeTabs {
-    public static final DeferredRegister<CreativeModeTab> CREATIVE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, Reference.MODID);
-    public static final RegistryObject<CreativeModeTab> EVOLUTIONCORE_MAIN = CREATIVE_TABS.register("main", () -> CreativeModeTab.builder()
-            .title(Component.translatable("itemGroup.evolutioncore.main"))
-            .icon(() -> ModMachines.STEAM_VACUUM_PUMP.first().asStack())
-            .displayItems(((itemDisplayParameters, output) -> {
-                ModItems.ITEMS.getEntries().forEach(item -> output.accept(item.get()));
-                output.accept(ModMachines.STEAM_VACUUM_PUMP.first().asStack());
-                output.accept(ModMachines.STEAM_VACUUM_PUMP.second().asStack());
-            }))
-            .build());
-
-    public static void register(IEventBus eventBus) {
-        CREATIVE_TABS.register(eventBus);
+    public static void init() {
+        // i cast exist
     }
+
+    public static final RegistryEntry<CreativeModeTab> EVOLUTIONCORE_MAIN = Reference.REGISTRATE.defaultCreativeTab("main",
+            builder -> builder.displayItems(new GTCreativeModeTabs.RegistrateDisplayItemsGenerator("main", Reference.REGISTRATE))
+                    .icon(() -> ModItems.FLINT_HATCHET.asStack())
+                    .title(Reference.REGISTRATE.addLang("itemGroup", EvolutionCoreMod.id("main"), "EvolutionCore - Main"))
+                    .build())
+            .register();
 }

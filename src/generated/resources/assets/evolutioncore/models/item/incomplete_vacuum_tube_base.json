@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "evolutioncore:item/incomplete_vacuum_tube_base"
+  }
+}

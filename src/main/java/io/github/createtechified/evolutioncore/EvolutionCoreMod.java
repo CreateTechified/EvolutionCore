@@ -13,7 +13,8 @@ import io.github.createtechified.evolutioncore.common.recipe.conditions.VacuumCo
 import io.github.createtechified.evolutioncore.common.registry.CreativeTabs;
 import io.github.createtechified.evolutioncore.common.registry.ModItems;
 import io.github.createtechified.evolutioncore.common.registry.machines.ModMachines;
-import io.github.createtechified.evolutioncore.common.registry.ModRecipeTypes;
+import io.github.createtechified.evolutioncore.common.registry.recipes.ModRecipeTypes;
+import io.github.createtechified.evolutioncore.datagen.EvoDatagen;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraftforge.common.world.BiomeModifier;
@@ -48,9 +49,10 @@ public class EvolutionCoreMod {
         eventBus.addGenericListener(RecipeConditionType.class, this::registerConditions);
         eventBus.addGenericListener(MachineDefinition.class, this::registerMachines);
         BIOME_MODIFIER_SERIALIZERS.register(eventBus);
-        ModItems.register(eventBus);
-        CreativeTabs.register(eventBus);
+        ModItems.init();
+        CreativeTabs.init();
         Reference.REGISTRATE.registerRegistrate();
+        EvoDatagen.init();
     }
 
     public void registerConditions(GTCEuAPI.RegisterEvent<String, RecipeConditionType<?>> event) {
