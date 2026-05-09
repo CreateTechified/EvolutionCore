@@ -14,6 +14,7 @@ public class ModTags {
         public static final TagKey<Block> NEEDS_FLINT_TOOL = BlockTag("needs_flint_tool");
         public static final TagKey<Block> NEEDS_COPPER_TOOL = BlockTag("needs_copper_tool");
         public static final TagKey<Block> NEEDS_BRONZE_TOOL = BlockTag("needs_bronze_tool");
+        public static final TagKey<Block> MINEABLE_WITH_HAMMER = BlockTag("mineable_with_hammer");
 
         private static TagKey<Block> BlockTag(String name) {
             return BlockTags.create(new ResourceLocation(Reference.MODID, name));

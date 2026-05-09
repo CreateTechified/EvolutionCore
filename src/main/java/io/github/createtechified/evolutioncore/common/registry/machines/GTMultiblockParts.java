@@ -1,5 +1,5 @@
 package io.github.createtechified.evolutioncore.common.registry.machines;
 
-public class GTPrimitiveMultiblocks {
+public class GTMultiblockParts {
     public static void init() {}
 }
