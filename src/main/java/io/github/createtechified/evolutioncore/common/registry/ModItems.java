@@ -52,6 +52,16 @@ public class ModItems {
     public static ItemEntry<Item> INCOMPLETE_UNSEALED_VACUUM_TUBE = constructItem("incomplete_unsealed_vacuum_tube", SequencedAssemblyItem::new);
     public static ItemEntry<Item> UNSEALED_VACUUM_TUBE = constructBasicItem("unsealed_vacuum_tube");
     public static ItemEntry<Item> FAILED_VACUUM_TUBE_PARTS = constructBasicItem("failed_vacuum_tube_parts");
+    // MAX Components
+    public static ItemEntry<Item> MAX_ELECTRIC_MOTOR = constructBasicItem("max_electric_motor");
+    public static ItemEntry<Item> MAX_ELECTRIC_PUMP = constructBasicItem("max_electric_pump");
+    public static ItemEntry<Item> MAX_FLUID_REGULATOR = constructBasicItem("max_fluid_regulator");
+    public static ItemEntry<Item> MAX_CONVEYOR_MODULE = constructBasicItem("max_conveyor_module");
+    public static ItemEntry<Item> MAX_ELECTRIC_PISTON = constructBasicItem("max_electric_piston");
+    public static ItemEntry<Item> MAX_ROBOT_ARM = constructBasicItem("max_robot_arm");
+    public static ItemEntry<Item> MAX_FIELD_GENERATOR = constructBasicItem("max_field_generator");
+    public static ItemEntry<Item> MAX_EMITTER = constructBasicItem("max_emitter");
+    public static ItemEntry<Item> MAX_SENSOR = constructBasicItem("max_sensor");
     // Tools
     public static ItemEntry<AxeItem> FLINT_HATCHET = constructItem("flint_hatchet",
             p -> new AxeItem(ModToolTiers.FLINT, 3, -3.2f, p),

@@ -32,5 +32,14 @@
   "item.evolutioncore.universal_circuit_zpm": "§cZPM Universal Circuit",
   "item.evolutioncore.unsealed_vacuum_tube": "Unsealed Vacuum Tube",
   "item.evolutioncore.vacuum_tube_base": "Vacuum Tube Base",
-  "itemGroup.evolutioncore.main": "EvolutionCore - Main"
+  "itemGroup.evolutioncore.main": "EvolutionCore - Main",
+  "item.evolutioncore.max_electric_motor": "MAX Electric Motor",
+  "item.evolutioncore.max_electric_pump": "MAX Electric Pump",
+  "item.evolutioncore.max_fluid_regulator": "MAX Fluid Regulator",
+  "item.evolutioncore.max_conveyor_module": "MAX Conveyor Module",
+  "item.evolutioncore.max_electric_piston": "MAX Electric Piston",
+  "item.evolutioncore.max_robot_arm": "MAX Robot Arm",
+  "item.evolutioncore.max_field_generator": "MAX Field Generator",
+  "item.evolutioncore.max_emitter": "MAX Emitter",
+  "item.evolutioncore.max_sensor": "MAX Sensor"
 }
