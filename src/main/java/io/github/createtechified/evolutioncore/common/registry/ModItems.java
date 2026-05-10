@@ -43,6 +43,7 @@ public class ModItems {
     // Misc Items
     public static ItemEntry<Item> PLANT_FIBER = constructBasicItem("plant_fiber");
     public static ItemEntry<Item> FLINT_SHARD = constructBasicItem("flint_shard");
+    public static ItemEntry<Item> GPS_DEVICE = constructBasicItem("gps_device");
     // Vacuum Tube Parts (ULV/Steam)
     public static ItemEntry<Item> CARBON_FILAMENT = constructBasicItem("carbon_filament");
     public static ItemEntry<Item> GRAPHITE_ELECTRODE = constructBasicItem("graphite_electrode");

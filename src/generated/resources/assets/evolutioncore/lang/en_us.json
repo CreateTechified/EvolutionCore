@@ -41,5 +41,7 @@
   "item.evolutioncore.max_robot_arm": "MAX Robot Arm",
   "item.evolutioncore.max_field_generator": "MAX Field Generator",
   "item.evolutioncore.max_emitter": "MAX Emitter",
-  "item.evolutioncore.max_sensor": "MAX Sensor"
+  "item.evolutioncore.max_sensor": "MAX Sensor",
+  "item.evolutioncore.flint_hammer": "Flint Hammer",
+  "item.evolutioncore.gps_device": "GPS Device"
 }

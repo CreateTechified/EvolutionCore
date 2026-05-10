@@ -32,5 +32,16 @@
   "item.evolutioncore.universal_circuit_zpm": "ʇınɔɹıƆ ןɐsɹǝʌıu∩ WԀZɔ§",
   "item.evolutioncore.unsealed_vacuum_tube": "ǝqn⟘ ɯnnɔɐΛ pǝןɐǝsu∩",
   "item.evolutioncore.vacuum_tube_base": "ǝsɐᗺ ǝqn⟘ ɯnnɔɐΛ",
-  "itemGroup.evolutioncore.main": "uıɐW - ǝɹoƆuoıʇnןoʌƎ"
+  "itemGroup.evolutioncore.main": "uıɐW - ǝɹoƆuoıʇnןoʌƎ",
+  "item.evolutioncore.max_electric_motor": "ɹoʇoW ɔᴉɹʇɔǝlƎ X∀W",
+  "item.evolutioncore.max_electric_pump": "dɯnԀ ɔᴉɹʇɔǝlƎ X∀W",
+  "item.evolutioncore.max_fluid_regulator": "ɹoʇɐlnƃǝɹ pᴉnlℲ X∀W",
+  "item.evolutioncore.max_conveyor_module": "ǝlnpoW ɹoʎǝʌuoƆ X∀W",
+  "item.evolutioncore.max_electric_piston": "uoʇsᴉԀ ɔᴉɹʇɔǝlƎ X∀W",
+  "item.evolutioncore.max_robot_arm": "ɯɹ∀ ʇoqoɹ X∀W",
+  "item.evolutioncore.max_field_generator": "ɹoʇɐɹǝuǝפ plǝᴉℲ X∀W",
+  "item.evolutioncore.max_emitter": "ɹǝʇʇᴉɯƎ X∀W",
+  "item.evolutioncore.max_sensor": "ɹosuǝS X∀W",
+  "item.evolutioncore.flint_hammer": "ɹǝɯɯɐH ʇuᴉlℲ",
+  "item.evolutioncore.gps_device": "ǝɔᴉʌǝp SԀפ"
 }
