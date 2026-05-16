@@ -9,7 +9,7 @@ import com.gregtechceu.gtceu.common.data.GTRecipeTypes;
 import com.gregtechceu.gtceu.common.data.machines.GTMachineUtils;
 import io.github.createtechified.evolutioncore.EvolutionCoreMod;
 import io.github.createtechified.evolutioncore.Reference;
-import io.github.createtechified.evolutioncore.common.machines.steam.SteamVacuumPump;
+import io.github.createtechified.evolutioncore.common.machine.steam.SteamVacuumPump;
 import io.github.createtechified.evolutioncore.common.registry.machines.utils.MachineUtils;
 import io.github.createtechified.evolutioncore.common.registry.recipes.ModRecipeTypes;
 import it.unimi.dsi.fastutil.Pair;

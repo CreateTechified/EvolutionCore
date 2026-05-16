@@ -162,6 +162,8 @@ obfuscation {
 }
 
 dependencies {
+    implementation 'org.projectlombok:lombok:1.18.42'
+
     // If you wish to declare dependencies against mods, make sure to use the 'mod*' configurations so that they're remapped.
 	// See https://github.com/neoforged/ModDevGradle/blob/main/LEGACY.md#remapping-mod-dependencies for more information.
 	

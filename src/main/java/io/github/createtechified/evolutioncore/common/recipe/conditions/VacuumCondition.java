@@ -11,7 +11,7 @@ import com.gregtechceu.gtceu.utils.GTUtil;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import io.github.createtechified.evolutioncore.EvolutionCoreMod;
-import io.github.createtechified.evolutioncore.common.machines.utilities.IVacuumMachine;
+import io.github.createtechified.evolutioncore.common.machine.utilities.IVacuumMachine;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
 import org.jetbrains.annotations.NotNull;

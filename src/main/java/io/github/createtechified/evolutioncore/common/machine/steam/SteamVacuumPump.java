@@ -1,10 +1,10 @@
-package io.github.createtechified.evolutioncore.common.machines.steam;
+package io.github.createtechified.evolutioncore.common.machine.steam;
 
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.TickableSubscription;
 import com.gregtechceu.gtceu.api.machine.steam.SimpleSteamMachine;
 import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
-import io.github.createtechified.evolutioncore.common.machines.utilities.IVacuumMachine;
+import io.github.createtechified.evolutioncore.common.machine.utilities.IVacuumMachine;
 
 public class SteamVacuumPump extends SimpleSteamMachine implements IVacuumMachine {
     @Persisted

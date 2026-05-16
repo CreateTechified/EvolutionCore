@@ -1,4 +1,4 @@
-package io.github.createtechified.evolutioncore.common.machines.utilities;
+package io.github.createtechified.evolutioncore.common.machine.utilities;
 
 import com.gregtechceu.gtceu.api.machine.feature.IMachineFeature;
 
