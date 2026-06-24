@@ -8,6 +8,7 @@ import com.gregtechceu.gtceu.client.renderer.machine.DynamicRenderHelper;
 import com.gregtechceu.gtceu.common.data.*;
 import com.gregtechceu.gtceu.common.machine.multiblock.steam.SteamParallelMultiblockMachine;
 import com.gregtechceu.gtceu.utils.GTUtil;
+import io.github.createtechified.evolutioncore.common.registry.recipes.ModRecipeTypes;
 
 import static com.gregtechceu.gtceu.api.pattern.Predicates.*;
 import static com.gregtechceu.gtceu.common.data.GTBlocks.*;
@@ -15,11 +16,10 @@ import static com.gregtechceu.gtceu.common.data.models.GTMachineModels.*;
 import static com.gregtechceu.gtceu.common.registry.GTRegistration.REGISTRATE;
 
 public class PJEVOMultiMachines {
-    private static Object RecipeTypes;
     public static final MultiblockMachineDefinition PRIMITIVE_ALLOY_KILN = REGISTRATE
             .multiblock("primitive_alloy_kiln", (holder) -> new SteamParallelMultiblockMachine(holder, 4))
             .rotationState(RotationState.ALL)
-            .recipeType(RecipeTypes.PRIMITIVE_ALLOY_KILN_RECIPES)
+            .recipeType(ModRecipeTypes.PRIMITIVE_ALLOY_SMELTER)
             .model(createWorkableCasingMachineModel(GTCEu.id("block/casings/solid/machine_primitive_bricks"),
                     GTCEu.id("block/machines/alloy_smelter"))
                     .andThen(b -> b.addDynamicRenderer(DynamicRenderHelper::createPBFLavaRender)))

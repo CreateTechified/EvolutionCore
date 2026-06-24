@@ -45,7 +45,7 @@ public class ModItems {
     public static ItemEntry<Item> MAX_SENSOR = constructSensor(14);
     // Tools
     public static ItemEntry<AxeItem> FLINT_HATCHET = constructItem("flint_hatchet",
-            p -> new AxeItem(ModToolTiers.FLINT, 3, -3.2f, p),
+            p -> new AxeItem(ModToolTiers.COPPER, 3, -3.2f, p),
             b -> b.recipe((ctx, prov) -> ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, ctx.get())
                     .pattern("PF")
                     .pattern("SP")
@@ -55,7 +55,7 @@ public class ModItems {
                     .unlockedBy("has_flint", RegistrateRecipeProvider.has(Items.FLINT))
                     .save(prov)));
     public static ItemEntry<HammerItem> FLINT_HAMMER = constructItem("flint_hammer",
-            p -> new HammerItem(3, -3.2f, ModToolTiers.FLINT, p));
+            p -> new HammerItem(3, -3.2f, ModToolTiers.COPPER, p));
     // Universal circuits
     public static ItemEntry<Item> ULV_UNIVERSAL_1 = constructUniversalCircuit(0);
     public static ItemEntry<Item> LV_UNIVERSAL_1 = constructUniversalCircuit(1);
