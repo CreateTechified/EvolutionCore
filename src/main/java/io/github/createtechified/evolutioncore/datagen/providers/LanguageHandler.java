@@ -8,5 +8,9 @@ public class LanguageHandler {
         provider.add("book.pjevo.qb.land", "Welcome to Project Evolution");
         provider.add("evolutioncore.tooltip.steam_assembler", "Assembling with Steam!");
         provider.add("evolutioncore.tooltip.vacuum_pump", "Vacuum Tier: %s");
+        provider.add("modifier.evolutioncore.mathematical", "Mathematical!");
+        provider.add("modifier.evolutioncore.modifiable", "Modifiable");
+        provider.add("material.evolutioncore.unstable", "Unstable Induced");
+        provider.add("material.evolutioncore.magical_wood", "Magical Wooden");
     }
 }

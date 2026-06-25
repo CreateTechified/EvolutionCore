@@ -15,7 +15,7 @@ import net.minecraft.world.item.Item;
 
 import java.util.function.Consumer;
 
-import static io.github.createtechified.evolutioncore.utils.EvoValues.*;
+import static io.github.createtechified.evolutioncore.Reference.CIRCUIT_TAGS;
 
 @SuppressWarnings("unused")
 public class ItemConstructs {

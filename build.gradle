@@ -195,6 +195,8 @@ dependencies {
     modImplementation "dev.architectury:architectury-forge:${architectury_version}"
     modImplementation "dev.latvian.mods:rhino-forge:${rhino_version}"
     modImplementation "dev.latvian.mods:kubejs-forge:${kubejs_version}"
+    modImplementation "curse.maven:mantle-74924:7563777"
+    modImplementation "curse.maven:tinkers-construct-74072:7449219"
     modImplementation("com.simibubi.create:create-${minecraft_version}:${create_version}:slim") { transitive = false }
     modCompileOnly "vazkii.patchouli:Patchouli:${patchouli_version}:api"
     modLocalRuntime "vazkii.patchouli:Patchouli:${patchouli_version}"
@@ -202,7 +204,6 @@ dependencies {
     modLocalRuntime "net.createmod.ponder:Ponder-Forge-${minecraft_version}:${ponder_version}"
     modLocalRuntime "dev.engine-room.flywheel:flywheel-forge-${minecraft_version}:${flywheel_version}"
     modLocalRuntime "dev.emi:emi-forge:${emi_version}+${minecraft_version}"
-    modLocalRuntime "curse.maven:mantle-74924:7563777"
     compileOnly 'org.jetbrains:annotations:26.0.2'
 }
 
@@ -241,7 +242,8 @@ var generateModMetadata = tasks.register("generateModMetadata", ProcessResources
             mod_description          : mod_description,
             gtm_version_range        : gtm_version_range,
             kjs_version_range        : kjs_version_range,
-            create_version_range     : create_version_range
+            create_version_range     : create_version_range,
+            tinkers_version_range    : tinkers_version_range
     ] // guys i might've made it a bit longer than necessary
     inputs.properties replaceProperties
     expand replaceProperties

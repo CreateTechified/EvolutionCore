@@ -1,0 +1,14 @@
+{
+  "perStat": {
+    "tconstruct:melee_harvest": [
+      {
+        "level": 5,
+        "name": "tconstruct:reinforced"
+      },
+      {
+        "level": 1,
+        "name": "evolutioncore:mathematical"
+      }
+    ]
+  }
+}

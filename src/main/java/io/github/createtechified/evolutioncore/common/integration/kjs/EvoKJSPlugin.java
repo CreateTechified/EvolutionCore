@@ -1,4 +1,4 @@
-package io.github.createtechified.evolutioncore.integration.kjs;
+package io.github.createtechified.evolutioncore.common.integration.kjs;
 
 import dev.latvian.mods.kubejs.KubeJSPlugin;
 
