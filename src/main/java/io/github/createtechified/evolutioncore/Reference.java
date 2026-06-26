@@ -15,7 +15,7 @@ public class Reference {
     public static final String MODID = "evolutioncore";
     public static final Logger LOGGER = LogManager.getLogger();
     public static final GTRegistrate REGISTRATE = GTRegistrate.create(Reference.MODID);
-    public static final Tier[] TIERS = { Tiers.WOOD, Tiers.STONE, ModToolTiers.COPPER, Tiers.IRON, ModToolTiers.BRONZE, Tiers.DIAMOND, ModToolTiers.UNSTABLE, Tiers.NETHERITE, ModToolTiers.getGTNeutroniumTier() };
+    public static final Tier[] TIERS = { Tiers.WOOD, Tiers.STONE, ModToolTiers.COPPER, Tiers.IRON, ModToolTiers.BRONZE, Tiers.DIAMOND, ModToolTiers.UNSTABLE, Tiers.NETHERITE, Tiers.GOLD, ModToolTiers.MANYULLYN };
     public static final TagKey<Item>[] CIRCUIT_TAGS = new TagKey[] {
             CustomTags.ULV_CIRCUITS,
             CustomTags.LV_CIRCUITS,
