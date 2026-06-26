@@ -40,6 +40,9 @@ public class ItemConstructs {
     public static ItemEntry<Item> constructBasicItem(String name) {
         return constructItem(name, Item::new);
     }
+    public static ItemEntry<Item> constructBasicItem(String name, String lang) {
+        return constructItem(name, Item::new, b -> b.lang(lang));
+    }
 
     public static ItemEntry<Item> constructElectricMotor(int tier) {
         String name = GTValues.VN[tier].toLowerCase() + "_electric_motor";

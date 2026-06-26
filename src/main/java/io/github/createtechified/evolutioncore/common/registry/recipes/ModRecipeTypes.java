@@ -13,5 +13,5 @@ public class ModRecipeTypes {
     }
 
     public static final GTRecipeType VACUUM_PUMP_RECIPES = GTRecipeTypes.register("vacuum_pump", "electric").setEUIO(IN).setMaxIOSize(1,0,0,0).setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressTexture.FillDirection.LEFT_TO_RIGHT).setSound(GTSoundEntries.BOILER);
-    public static final GTRecipeType PRIMITIVE_ALLOY_SMELTER = GTRecipeTypes.register("primitive_alloy_smelter", "primitive").setMaxIOSize(3,1,0,0).setSound(GTSoundEntries.FURNACE);
+    public static final GTRecipeType PRIMITIVE_ALLOY_SMELTER = GTRecipeTypes.register("primitive_alloy_smelter", "primitive").setMaxIOSize(3,2,0,0).setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressTexture.FillDirection.LEFT_TO_RIGHT).setSound(GTSoundEntries.FURNACE);
 }
