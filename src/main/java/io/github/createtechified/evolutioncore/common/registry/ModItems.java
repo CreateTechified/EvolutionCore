@@ -48,17 +48,18 @@ public class ModItems {
     public static ItemEntry<AxeItem> FLINT_HATCHET = constructItem("flint_hatchet",
             p -> new AxeItem(ModToolTiers.COPPER, 3, -3.2f, p),
             b -> b.recipe((ctx, prov) -> ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, ctx.get())
-                    .pattern("PF")
-                    .pattern("SP")
-                    .define('S', Items.STICK)
-                    .define('P', ModItems.PLANT_FIBER)
-                    .define('F', ModItems.FLINT_SHARD)
-                    .unlockedBy("has_flint", RegistrateRecipeProvider.has(Items.FLINT))
-                    .save(prov)));
+                            .pattern("PF")
+                            .pattern("SP")
+                            .define('S', Items.STICK)
+                            .define('P', ModItems.PLANT_FIBER)
+                            .define('F', ModItems.FLINT_SHARD)
+                            .unlockedBy("has_flint", RegistrateRecipeProvider.has(Items.FLINT))
+                            .save(prov))
+                    .model((ctx, prov) -> prov.handheld(ctx)));
     public static ItemEntry<HammerItem> FLINT_HAMMER = constructItem("flint_hammer",
             p -> new HammerItem(3, -3.2f, ModToolTiers.COPPER, p));
     public static ItemEntry<HealingAxe> HEALING_AXE = constructItem("healing_axe",
-            p -> new HealingAxe(ModToolTiers.UNSTABLE, 1, -3, p));
+            p -> new HealingAxe(ModToolTiers.UNSTABLE, 1, -3, p), b -> b.model((ctx, prov) -> prov.handheld(ctx)));
     // Universal circuits
     public static ItemEntry<Item> ULV_UNIVERSAL_1 = constructUniversalCircuit(0);
     public static ItemEntry<Item> LV_UNIVERSAL_1 = constructUniversalCircuit(1);
