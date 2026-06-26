@@ -14,6 +14,7 @@ import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import slimeknights.tconstruct.library.client.data.material.MaterialPartTextureGenerator;
+import slimeknights.tconstruct.tools.data.sprite.TinkerPartSpriteProvider;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -25,6 +26,7 @@ public class EvoLegacyDatagen {
         PackOutput out = gen.getPackOutput();
         ExistingFileHelper efh = event.getExistingFileHelper();
         CompletableFuture<HolderLookup.Provider> lookup = event.getLookupProvider();
+        TinkerPartSpriteProvider partspr = new TinkerPartSpriteProvider();
         MaterialDefinitionProvider matdef = new MaterialDefinitionProvider(out);
         MaterialSpriteProvider sprpv = new MaterialSpriteProvider();
         boolean s = event.includeServer();
@@ -34,6 +36,6 @@ public class EvoLegacyDatagen {
         gen.addProvider(s, new MaterialTraitsProvider(out, matdef));
         gen.addProvider(s, new ModifierProvider(out));
         gen.addProvider(c, new MaterialRenderInfoProvider(out, sprpv, efh));
-        MaterialPartTextureGenerator.runCallbacks(efh, null);
+        gen.addProvider(c, new MaterialPartTextureGenerator(out, efh, partspr, sprpv));
     }
 }

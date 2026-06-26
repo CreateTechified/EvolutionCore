@@ -16,15 +16,15 @@
         "type": "tconstruct:grey_to_color",
         "palette": [
           {
-            "color": "00000000",
+            "color": "FF000000",
             "grey": 0
           },
           {
-            "color": "FF7BAEB7",
+            "color": "FFFFFFFF",
             "grey": 63
           },
           {
-            "color": "FFA8D0D9",
+            "color": "FFFFFFFF",
             "grey": 102
           },
           {
@@ -40,7 +40,7 @@
             "grey": 216
           },
           {
-            "color": "FFD0EAE9",
+            "color": "FFFFFFFF",
             "grey": 255
           }
         ]

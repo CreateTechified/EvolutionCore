@@ -117,7 +117,7 @@ legacyForge {
             data()
 
             programArguments.addAll '--mod', project.mod_id, '--all', '--output', file('src/generated/resources/').getAbsolutePath(),
-                    '--existing', file('src/main/resources/').getAbsolutePath(), '--existing-mod', 'gtceu'
+                    '--existing', file('src/main/resources/').getAbsolutePath(), '--existing-mod', 'gtceu', '--existing-mod', 'tconstruct'
         }
 
         // applies to all the run configs above

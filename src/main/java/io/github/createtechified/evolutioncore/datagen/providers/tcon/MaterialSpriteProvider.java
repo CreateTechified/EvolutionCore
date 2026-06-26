@@ -23,13 +23,13 @@ public class MaterialSpriteProvider extends AbstractMaterialSpriteProvider {
                 .addARGB(255, 0xFFFFF176)
                 .build());
         buildMaterial(EvoMaterials.UNSTABLE).meleeHarvest().fallbacks("crystal").colorMapper(GreyToColorMapping.builder()
-                .addARGB(0,  0x00000000)
-                .addARGB(63, 0xFF7BAEB7)
-                .addARGB(102,0xFFA8D0D9)
-                .addARGB(140,0x00000000)
-                .addARGB(178,0x00000000)
-                .addARGB(216,0x00000000)
-                .addARGB(255,0xFFD0EAE9)
+                .addABGR(0,   0xFF000000)
+                .addABGR(63,  0xFFFFFFFF)
+                .addABGR(102, 0xFFFFFFFF)
+                .addABGR(140, 0x00000000)
+                .addABGR(178, 0x00000000)
+                .addABGR(216, 0x00000000)
+                .addABGR(255, 0xFFFFFFFF)
                 .build());
     }
 }
