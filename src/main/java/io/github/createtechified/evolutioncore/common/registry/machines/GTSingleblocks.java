@@ -17,7 +17,7 @@ import it.unimi.dsi.fastutil.Pair;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 
-public class GTSteamSingleblocks {
+public class GTSingleblocks {
     public static void init() {}
 
     static {
