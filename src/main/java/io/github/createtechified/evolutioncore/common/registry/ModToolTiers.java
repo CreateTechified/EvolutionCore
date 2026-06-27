@@ -10,7 +10,6 @@ import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.TierSortingRegistry;
 
 import java.util.List;
-import java.util.Optional;
 
 @SuppressWarnings("removal")
 public class ModToolTiers {

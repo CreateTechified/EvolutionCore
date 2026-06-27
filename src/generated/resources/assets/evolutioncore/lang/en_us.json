@@ -3,6 +3,7 @@
   "block.evolutioncore.hp_steam_vacuum_pump": "High Pressure Steam Vacuum Pump",
   "block.evolutioncore.lp_steam_assembler": "Low Pressure Steam Assembler",
   "block.evolutioncore.lp_steam_vacuum_pump": "Low Pressure Steam Vacuum Pump",
+  "block.evolutioncore.primitive_alloy_kiln": "Primitive Alloy Kiln",
   "book.pjevo.qb": "Questbook Wiki",
   "book.pjevo.qb.land": "Welcome to Project Evolution",
   "evolutioncore.tooltip.steam_assembler": "Assembling with Steam!",

@@ -1,12 +1,14 @@
 package io.github.createtechified.evolutioncore.common.registry.machines;
 
-import com.gregtechceu.gtceu.common.data.GTCreativeModeTabs;
 import io.github.createtechified.evolutioncore.Reference;
+import io.github.createtechified.evolutioncore.common.registry.CreativeTabs;
 
-@SuppressWarnings("unused")
 public class ModMachines {
+    static {
+        Reference.REGISTRATE.creativeModeTab(() -> CreativeTabs.EVOLUTIONCORE_MAIN);
+    }
+
     public static void init() {
-        Reference.REGISTRATE.creativeModeTab(GTCreativeModeTabs.MACHINE);
         GTPrimitiveMultiblocks.init();
         GTSteamSingleblocks.init();
     }

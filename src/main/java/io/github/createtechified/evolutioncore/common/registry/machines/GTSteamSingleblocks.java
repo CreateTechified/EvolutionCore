@@ -10,6 +10,7 @@ import com.gregtechceu.gtceu.common.data.machines.GTMachineUtils;
 import io.github.createtechified.evolutioncore.EvolutionCoreMod;
 import io.github.createtechified.evolutioncore.Reference;
 import io.github.createtechified.evolutioncore.common.machine.steam.SteamVacuumPump;
+import io.github.createtechified.evolutioncore.common.registry.CreativeTabs;
 import io.github.createtechified.evolutioncore.common.registry.machines.utils.MachineUtils;
 import io.github.createtechified.evolutioncore.common.registry.recipes.ModRecipeTypes;
 import it.unimi.dsi.fastutil.Pair;
@@ -18,6 +19,10 @@ import net.minecraft.network.chat.Component;
 
 public class GTSteamSingleblocks {
     public static void init() {}
+
+    static {
+        Reference.REGISTRATE.creativeModeTab(() -> CreativeTabs.EVOLUTIONCORE_MAIN);
+    }
 
     public static final Pair<MachineDefinition, MachineDefinition> STEAM_VACUUM_PUMP = GTMachineUtils.registerSteamMachines(Reference.REGISTRATE, "steam_vacuum_pump",
             SteamVacuumPump::new, (pressure, builder) -> builder

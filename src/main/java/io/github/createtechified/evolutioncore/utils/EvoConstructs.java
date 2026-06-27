@@ -6,19 +6,24 @@ import com.gregtechceu.gtceu.common.data.GTCovers;
 import com.gregtechceu.gtceu.common.item.CoverPlaceBehavior;
 import com.gregtechceu.gtceu.common.item.TooltipBehavior;
 import com.gregtechceu.gtceu.data.recipe.CustomTags;
+import com.tterrag.registrate.builders.BlockBuilder;
 import com.tterrag.registrate.builders.ItemBuilder;
+import com.tterrag.registrate.util.entry.BlockEntry;
 import com.tterrag.registrate.util.entry.ItemEntry;
 import com.tterrag.registrate.util.nullness.NonNullFunction;
 import io.github.createtechified.evolutioncore.Reference;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 
 import java.util.function.Consumer;
 
 import static io.github.createtechified.evolutioncore.Reference.CIRCUIT_TAGS;
 
 @SuppressWarnings("unused")
-public class ItemConstructs {
+public class EvoConstructs {
+    // items
     public static <T extends Item> ItemEntry<T> constructItem(String name, NonNullFunction<Item.Properties, T> factory, Consumer<ItemBuilder<T, ?>> customizer) {
         return Reference.REGISTRATE.item(name, factory).transform(b -> {
             customizer.accept(b);
@@ -44,6 +49,7 @@ public class ItemConstructs {
         return constructItem(name, Item::new, b -> b.lang(lang));
     }
 
+    // gt covers
     public static ItemEntry<Item> constructElectricMotor(int tier) {
         String name = GTValues.VN[tier].toLowerCase() + "_electric_motor";
         return constructItem(name, Item::new,
@@ -148,5 +154,16 @@ public class ItemConstructs {
         String name = GTValues.VN[tier].toLowerCase() + "_sensor";
         return constructItem(name, Item::new,
                 b -> b.lang("%s Sensor".formatted(GTValues.VN[tier])).tag(CustomTags.SENSORS));
+    }
+
+    // blocks
+    public static <T extends Block> BlockEntry<T> constructBlock(String name, NonNullFunction<BlockBehaviour.Properties, T> factory, Consumer<BlockBuilder<T, ?>> customizer) {
+        return Reference.REGISTRATE.block(name, factory).transform(b -> { customizer.accept(b); return b; }).register();
+    }
+    public static <T extends Block> BlockEntry<T> constructBlock(String name, NonNullFunction<BlockBehaviour.Properties, T> factory) {
+        return constructBlock(name, factory, b -> {});
+    }
+    public static BlockEntry<Block> constructBasicBlock(String name) {
+        return constructBlock(name, Block::new);
     }
 }

@@ -12,7 +12,7 @@ import net.minecraft.world.item.AxeItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 
-import static io.github.createtechified.evolutioncore.utils.ItemConstructs.*;
+import static io.github.createtechified.evolutioncore.utils.EvoConstructs.*;
 
 @SuppressWarnings("unused")
 public class ModItems {
