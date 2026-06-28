@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "active=false": {
+      "model": "evolutioncore:block/high_steam_firebox_casing"
+    },
+    "active=true": {
+      "model": "evolutioncore:block/high_steam_firebox_casing_active"
+    }
+  }
+}

@@ -7,9 +7,8 @@ public class LanguageHandler {
         provider.add("book.pjevo.qb", "Questbook Wiki");
         provider.add("book.pjevo.qb.land", "Welcome to Project Evolution");
         provider.add("evolutioncore.tooltip.steam_assembler", "Assembling with Steam!");
-        provider.add("evolutioncore.tooltip.vacuum_pump", "Vacuum Tier: %s");
         provider.add("evolutioncore.tooltip.primitive_alloy_kiln", "Alloying with Fire(bricks)!");
-        provider.add("evolutioncore.tooltip.steam_alloy_kiln", "Steam-charged Parallelized Alloying Machine");
+        provider.add("evolutioncore.tooltip.steam_alloy_kiln.l", "Steam-charged Parallelized Alloying Machine");
         provider.add("modifier.evolutioncore.mathematical", "Mathematical!");
         provider.add("modifier.evolutioncore.modifiable", "Modifiable");
         provider.add("material.evolutioncore.unstable", "Unstable Induced");

@@ -1,21 +1,29 @@
 package io.github.createtechified.evolutioncore.common.registry.machines;
 
 import com.gregtechceu.gtceu.GTCEu;
+import com.gregtechceu.gtceu.api.capability.recipe.ItemRecipeCapability;
 import com.gregtechceu.gtceu.api.data.RotationState;
 import com.gregtechceu.gtceu.api.machine.MultiblockMachineDefinition;
 import com.gregtechceu.gtceu.api.machine.multiblock.PartAbility;
 import com.gregtechceu.gtceu.api.pattern.FactoryBlockPattern;
 import com.gregtechceu.gtceu.api.pattern.Predicates;
 import com.gregtechceu.gtceu.common.data.GTBlocks;
+import com.gregtechceu.gtceu.common.data.GTMaterials;
 import com.gregtechceu.gtceu.common.data.GTRecipeTypes;
 import com.gregtechceu.gtceu.common.machine.multiblock.steam.SteamParallelMultiblockMachine;
 import com.gregtechceu.gtceu.utils.GTUtil;
+import io.github.createtechified.evolutioncore.EvolutionCoreMod;
 import io.github.createtechified.evolutioncore.Reference;
 import io.github.createtechified.evolutioncore.common.machine.primitive.PrimitiveAlloyKilnMachine;
+import io.github.createtechified.evolutioncore.common.machine.steam.HPSteamParallelMultiblockMachine;
 import io.github.createtechified.evolutioncore.common.registry.CreativeTabs;
+import io.github.createtechified.evolutioncore.common.registry.ModBlocks;
 import io.github.createtechified.evolutioncore.common.registry.recipes.ModRecipeTypes;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraftforge.registries.ForgeRegistries;
+
 
 public class GTMultiblocks {
     public static void init() {}
@@ -25,7 +33,7 @@ public class GTMultiblocks {
     }
 
     public static final MultiblockMachineDefinition PRIMITIVE_ALLOY_KILN = Reference.REGISTRATE
-            .multiblock("primitive_alloy_kiln", PrimitiveAlloyKilnMachine::new) //This probably shouldn't be the solution, but it works.
+            .multiblock("primitive_alloy_kiln", PrimitiveAlloyKilnMachine::new) // This probably shouldn't be the solution, but it works.
             .rotationState(RotationState.ALL)
             .recipeType(ModRecipeTypes.PRIMITIVE_ALLOY_SMELTER)
             .appearanceBlock(GTBlocks.CASING_PRIMITIVE_BRICKS)
@@ -47,8 +55,8 @@ public class GTMultiblocks {
             .tooltips(Component.translatable("evolutioncore.tooltip.primitive_alloy_kiln").withStyle(ChatFormatting.GRAY))
             .register();
 
-    public static final MultiblockMachineDefinition STEAM_ALLOY_KILN = Reference.REGISTRATE
-            .multiblock("steam_alloy_kiln", (holder) -> new SteamParallelMultiblockMachine(holder, 4))
+    public static final MultiblockMachineDefinition LP_STEAM_ALLOY_KILN = Reference.REGISTRATE
+            .multiblock("lp_steam_alloy_kiln", SteamParallelMultiblockMachine::new)
             .rotationState(RotationState.ALL)
             .recipeType(GTRecipeTypes.ALLOY_SMELTER_RECIPES)
             .recipeModifier(SteamParallelMultiblockMachine::recipeModifier, true)
@@ -72,6 +80,183 @@ public class GTMultiblocks {
                     .where(' ', Predicates.any())
                     .build())
             .workableCasingModel(GTCEu.id("block/casings/solid/machine_casing_bronze_plated_bricks"), GTCEu.id("block/machines/alloy_smelter"))
-            .tooltips(Component.translatable("evolutioncore.tooltip.steam_alloy_kiln").withStyle(ChatFormatting.GRAY))
+            .langValue("Low Pressure Steam Alloy Kiln")
+            .tooltips(Component.translatable("evolutioncore.tooltip.steam_alloy_kiln.l").withStyle(ChatFormatting.GRAY))
+            .register();
+
+    public static final MultiblockMachineDefinition HP_STEAM_ALLOY_KILN = Reference.REGISTRATE
+            .multiblock("hp_steam_alloy_kiln", HPSteamParallelMultiblockMachine::new)
+            .rotationState(RotationState.ALL)
+            .recipeType(GTRecipeTypes.ALLOY_SMELTER_RECIPES)
+            .recipeModifier(HPSteamParallelMultiblockMachine::recipeModifier, true)
+            .appearanceBlock(ModBlocks.HIGH_STEAM_MACHINE_CASING)
+            .pattern(definition -> FactoryBlockPattern.start()
+                    .aisle(" FFF ", " MMM ", " MMM ", " MMM ", "  M  ", "     ", "     ")
+                    .aisle("FMMMF", "MG#GM", "M###M", "M###M", " M#M ", " MMM ", " BBB ")
+                    .aisle("FMMMF", "M#P#M", "M#P#M", "M#P#M", "M#P#M", " M M ", " B B ")
+                    .aisle("FMMMF", "MG#GM", "M###M", "M###M", " M#M ", " MMM ", " BBB ")
+                    .aisle(" FFF ", " MCM ", " MMM ", " MMM ", "  M  ", "     ", "     ")
+                    .where('C', Predicates.controller(Predicates.blocks(definition.get())))
+                    .where('#', Predicates.air())
+                    .where('M', Predicates.blocks(ModBlocks.HIGH_STEAM_MACHINE_CASING.get()).setMinGlobalLimited(30)
+                            .or(Predicates.abilities(PartAbility.STEAM_IMPORT_ITEMS).setPreviewCount(1).setMaxGlobalLimited(2))
+                            .or(Predicates.abilities(PartAbility.STEAM).setExactLimit(1))
+                            .or(Predicates.abilities(PartAbility.STEAM_EXPORT_ITEMS).setPreviewCount(1).setMaxGlobalLimited(2)))
+                    .where('P', Predicates.blocks(GTBlocks.CASING_STEEL_PIPE.get()))
+                    .where('G', Predicates.blocks(GTBlocks.CASING_STEEL_GEARBOX.get()))
+                    .where('F', Predicates.blocks(ModBlocks.HIGH_STEAM_FIREBOX_CASING.get()))
+                    .where('B', Predicates.blocks(GTBlocks.STEEL_HULL.get()))
+                    .where(' ', Predicates.any())
+                    .build())
+            .workableCasingModel(EvolutionCoreMod.id("block/high_steam_machine_casing"), GTCEu.id("block/machines/alloy_smelter"))
+            .langValue("High Pressure Steam Alloy Kiln")
+            .tooltips(Component.translatable("evolutioncore.tooltip.steam_alloy_kiln.h").withStyle(ChatFormatting.GRAY))
+            .register();
+
+    public static final MultiblockMachineDefinition LP_STEAM_GRINDER = Reference.REGISTRATE
+            .multiblock("lp_steam_grinder", SteamParallelMultiblockMachine::new)
+            .rotationState(RotationState.NON_Y_AXIS)
+            .appearanceBlock(GTBlocks.CASING_BRONZE_BRICKS)
+            .recipeType(GTRecipeTypes.MACERATOR_RECIPES)
+            .recipeModifier(SteamParallelMultiblockMachine::recipeModifier, true)
+            .addOutputLimit(ItemRecipeCapability.CAP, 1)
+            .pattern(definition -> FactoryBlockPattern.start()
+                    .aisle("WBBBW", "WBBBW", "WBBBW")
+                    .aisle("BBBBB", "BG#GB", "B#F#B")
+                    .aisle("BBBBB", "B###B", "BFFFB")
+                    .aisle("BBBBB", "BG#GB", "B#F#B")
+                    .aisle("WBBBW", "WBCBW", "WBBBW")
+                    .where('C', Predicates.controller(Predicates.blocks(definition.getBlock())))
+                    .where('#', Predicates.air())
+                    .where('B', Predicates.blocks(GTBlocks.CASING_BRONZE_BRICKS.get())
+                            .or(Predicates.abilities(PartAbility.STEAM_IMPORT_ITEMS).setExactLimit(1))
+                            .or(Predicates.abilities(PartAbility.STEAM_EXPORT_ITEMS).setExactLimit(1))
+                            .or(Predicates.abilities(PartAbility.STEAM).setExactLimit(1)))
+                    .where('G', Predicates.blocks(GTBlocks.CASING_BRONZE_GEARBOX.get()))
+                    .where('F', Predicates.frames(GTMaterials.Bronze))
+                    .where('W', Predicates.blocks(ForgeRegistries.BLOCKS.getValue(ResourceLocation.fromNamespaceAndPath("create", "cut_ochrum_wall"))))
+                    .build()) // ^ We force Create, so this should be fine. If anything breaks it's your fault.
+            .workableCasingModel(GTCEu.id("block/casings/solid/machine_casing_bronze_plated_bricks"), GTCEu.id("block/multiblock/steam_grinder"))
+            .langValue("Low Pressure Steam Grinder")
+            .tooltips(Component.translatable("evolutioncore.tooltip.steam_grinder.l").withStyle(ChatFormatting.GRAY))
+            .register();
+
+    public static final MultiblockMachineDefinition HP_STEAM_GRINDER = Reference.REGISTRATE
+            .multiblock("hp_steam_grinder", HPSteamParallelMultiblockMachine::new)
+            .rotationState(RotationState.NON_Y_AXIS)
+            .appearanceBlock(ModBlocks.HIGH_STEAM_MACHINE_CASING)
+            .recipeType(GTRecipeTypes.MACERATOR_RECIPES)
+            .recipeModifier(HPSteamParallelMultiblockMachine::recipeModifier, true)
+            .addOutputLimit(ItemRecipeCapability.CAP, 1)
+            .pattern(definition -> FactoryBlockPattern.start()
+                    .aisle("WBBBW", "WBBBW", "WBBBW")
+                    .aisle("BBBBB", "BG#GB", "B#F#B")
+                    .aisle("BBBBB", "B###B", "BFFFB")
+                    .aisle("BBBBB", "BG#GB", "B#F#B")
+                    .aisle("WBBBW", "WBCBW", "WBBBW")
+                    .where('C', Predicates.controller(Predicates.blocks(definition.getBlock())))
+                    .where('#', Predicates.air())
+                    .where('B', Predicates.blocks(ModBlocks.HIGH_STEAM_MACHINE_CASING.get())
+                            .or(Predicates.abilities(PartAbility.STEAM_IMPORT_ITEMS).setExactLimit(1))
+                            .or(Predicates.abilities(PartAbility.STEAM_EXPORT_ITEMS).setExactLimit(1))
+                            .or(Predicates.abilities(PartAbility.STEAM).setExactLimit(1)))
+                    .where('G', Predicates.blocks(GTBlocks.CASING_STEEL_GEARBOX.get()))
+                    .where('F', Predicates.frames(GTMaterials.Steel))
+                    .where('W', Predicates.blocks(ForgeRegistries.BLOCKS.getValue(ResourceLocation.fromNamespaceAndPath("create", "cut_deepslate_wall"))))
+                    .build()) // ^ We force Create, so this should be fine. If anything breaks it's your fault.
+            .workableCasingModel(EvolutionCoreMod.id("block/high_steam_machine_casing"), GTCEu.id("block/multiblock/steam_grinder"))
+            .langValue("High Pressure Steam Grinder")
+            .tooltips(Component.translatable("evolutioncore.tooltip.steam_grinder.h").withStyle(ChatFormatting.GRAY))
+            .register();
+
+    public static final MultiblockMachineDefinition LP_STEAM_OVEN = Reference.REGISTRATE
+            .multiblock("lp_steam_oven", SteamParallelMultiblockMachine::new)
+            .rotationState(RotationState.NON_Y_AXIS)
+            .appearanceBlock(GTBlocks.CASING_BRONZE_BRICKS)
+            .recipeType(GTRecipeTypes.FURNACE_RECIPES)
+            .recipeModifier(SteamParallelMultiblockMachine::recipeModifier, true)
+            .pattern(definition -> FactoryBlockPattern.start()
+                    .aisle(" FFF ", " W W ", " HHH ", "     ")
+                    .aisle("FBBBF", "WBBBW", "HBBBH", " VQV ")
+                    .aisle("FBBBF", " H#H ", "HBMBH", " Q#Q ")
+                    .aisle("FBBBF", "WBCBW", "HBBBH", " VQV ")
+                    .aisle(" FFF ", " W W ", " HHH ", "     ")
+                    .where('C', Predicates.controller(Predicates.blocks(definition.getBlock())))
+                    .where('#', Predicates.air())
+                    .where(' ', Predicates.any())
+                    .where('B', Predicates.blocks(GTBlocks.CASING_BRONZE_BRICKS.get()))
+                    .where('H', Predicates.blocks(GTBlocks.CASING_BRONZE_BRICKS.get())
+                            .or(Predicates.abilities(PartAbility.STEAM_IMPORT_ITEMS).setExactLimit(1))
+                            .or(Predicates.abilities(PartAbility.STEAM_EXPORT_ITEMS).setExactLimit(1))
+                            .or(Predicates.abilities(PartAbility.STEAM).setExactLimit(1)))
+                    .where('M', Predicates.ability(PartAbility.MUFFLER).setExactLimit(1))
+                    .where('F', Predicates.blocks(GTBlocks.FIREBOX_BRONZE.get()))
+                    .where('W', Predicates.blocks(ForgeRegistries.BLOCKS.getValue(ResourceLocation.fromNamespaceAndPath("create", "cut_ochrum_wall"))))
+                    .where('V', Predicates.blocks(ForgeRegistries.BLOCKS.getValue(ResourceLocation.fromNamespaceAndPath("create", "cut_ochrum_brick_wall"))))
+                    .where('Q', Predicates.blocks(ForgeRegistries.BLOCKS.getValue(ResourceLocation.fromNamespaceAndPath("create", "cut_ochrum_bricks"))))
+                    .build())
+            .workableCasingModel(GTCEu.id("block/casings/solid/machine_casing_bronze_plated_bricks"), GTCEu.id("block/multiblock/steam_grinder"))
+            .langValue("Low Pressure Steam Oven")
+            .tooltips(Component.translatable("evolutioncore.tooltip.steam_oven.l").withStyle(ChatFormatting.GRAY))
+            .register();
+
+    public static final MultiblockMachineDefinition HP_STEAM_OVEN = Reference.REGISTRATE
+            .multiblock("hp_steam_oven", HPSteamParallelMultiblockMachine::new)
+            .rotationState(RotationState.NON_Y_AXIS)
+            .appearanceBlock(ModBlocks.HIGH_STEAM_MACHINE_CASING)
+            .recipeType(GTRecipeTypes.FURNACE_RECIPES)
+            .recipeModifier(HPSteamParallelMultiblockMachine::recipeModifier, true)
+            .pattern(definition -> FactoryBlockPattern.start()
+                    .aisle(" FFF ", " W W ", " HHH ", "     ")
+                    .aisle("FBBBF", "WBBBW", "HBBBH", " VQV ")
+                    .aisle("FBBBF", " H#H ", "HBMBH", " Q#Q ")
+                    .aisle("FBBBF", "WBCBW", "HBBBH", " VQV ")
+                    .aisle(" FFF ", " W W ", " HHH ", "     ")
+                    .where('C', Predicates.controller(Predicates.blocks(definition.getBlock())))
+                    .where('#', Predicates.air())
+                    .where(' ', Predicates.any())
+                    .where('B', Predicates.blocks(ModBlocks.HIGH_STEAM_MACHINE_CASING.get()))
+                    .where('H', Predicates.blocks(ModBlocks.HIGH_STEAM_MACHINE_CASING.get())
+                            .or(Predicates.abilities(PartAbility.STEAM_IMPORT_ITEMS).setExactLimit(1))
+                            .or(Predicates.abilities(PartAbility.STEAM_EXPORT_ITEMS).setExactLimit(1))
+                            .or(Predicates.abilities(PartAbility.STEAM).setExactLimit(1)))
+                    .where('M', Predicates.ability(PartAbility.MUFFLER).setExactLimit(1))
+                    .where('F', Predicates.blocks(ModBlocks.HIGH_STEAM_FIREBOX_CASING.get()))
+                    .where('W', Predicates.blocks(ForgeRegistries.BLOCKS.getValue(ResourceLocation.fromNamespaceAndPath("create", "cut_deepslate_wall"))))
+                    .where('V', Predicates.blocks(ForgeRegistries.BLOCKS.getValue(ResourceLocation.fromNamespaceAndPath("create", "cut_deepslate_brick_wall"))))
+                    .where('Q', Predicates.blocks(ForgeRegistries.BLOCKS.getValue(ResourceLocation.fromNamespaceAndPath("create", "cut_deepslate_bricks"))))
+                    .build())
+            .workableCasingModel(EvolutionCoreMod.id("block/high_steam_machine_casing"), GTCEu.id("block/multiblock/steam_grinder"))
+            .langValue("High Pressure Steam Oven")
+            .tooltips(Component.translatable("evolutioncore.tooltip.steam_oven.h").withStyle(ChatFormatting.GRAY))
+            .register();
+
+    public static final MultiblockMachineDefinition HP_STEAM_BLAST_FURNACE = Reference.REGISTRATE
+            .multiblock("hp_steam_blast_furnace", HPSteamParallelMultiblockMachine::new)
+            .rotationState(RotationState.NON_Y_AXIS)
+            .appearanceBlock(ModBlocks.HIGH_STEAM_MACHINE_CASING)
+            .recipeType(ModRecipeTypes.STEAM_BLAST_FURNACE)
+            .recipeModifier(HPSteamParallelMultiblockMachine::recipeModifier, true)
+            .pattern(definition -> FactoryBlockPattern.start()
+                    .aisle("    WFFFW    ", "    WBBBW    ", "    WBBBW    ", "     BBB     ", "      B      ", "             ")
+                    .aisle("WFW FBBBF WFW", "WSW B###B WSW", "WBW B###B WBW", " B  B###B  B ", "     B#B     ", "     BBB     ")
+                    .aisle("FPPPPPPPPPPPW", "BPB B#P#B BPB", "BPB B#P#B BPB", "B B B#P#B B B", "    B#M#B    ", "     B#B     ")
+                    .aisle("WFW FBBBF WFW", "WBW B###B WBW", "WBW B###B WBW", " B  B###B  B ", "     B#B     ", "     BBB     ")
+                    .aisle("    WFFFW    ", "    WBCBW    ", "    WBBBW    ", "     BBB     ", "      B      ", "             ")
+                    .where('C', Predicates.controller(Predicates.blocks(definition.getBlock())))
+                    .where('#', Predicates.air())
+                    .where(' ', Predicates.any())
+                    .where('B', Predicates.blocks(ModBlocks.HIGH_STEAM_MACHINE_CASING.get())
+                            .or(Predicates.abilities(PartAbility.STEAM_IMPORT_ITEMS).setExactLimit(1))
+                            .or(Predicates.abilities(PartAbility.STEAM_EXPORT_ITEMS).setExactLimit(1)))
+                    .where('F', Predicates.blocks(ModBlocks.HIGH_STEAM_FIREBOX_CASING.get()))
+                    .where('P', Predicates.blocks(GTBlocks.CASING_STEEL_PIPE.get()))
+                    .where('S', Predicates.ability(PartAbility.STEAM).setExactLimit(2))
+                    .where('W', Predicates.blocks(ForgeRegistries.BLOCKS.getValue(ResourceLocation.fromNamespaceAndPath("create", "cut_deepslate_wall"))))
+                    .where('M', Predicates.ability(PartAbility.MUFFLER))
+                    .build())
+            .workableCasingModel(EvolutionCoreMod.id("block/high_steam_machine_casing"), GTCEu.id("block/multiblock/primitive_blast_furnace"))
+            .langValue("High Pressure Steam Blast Furnace")
+            .tooltips(Component.translatable("evolutioncore.tooltip.steam_blast_furnace.h").withStyle(ChatFormatting.GRAY))
             .register();
 }

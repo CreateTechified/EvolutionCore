@@ -1,6 +1,8 @@
 package io.github.createtechified.evolutioncore.utils;
 
 import com.gregtechceu.gtceu.api.GTValues;
+import com.gregtechceu.gtceu.api.block.ActiveBlock;
+import com.gregtechceu.gtceu.api.block.property.GTBlockStateProperties;
 import com.gregtechceu.gtceu.api.item.ComponentItem;
 import com.gregtechceu.gtceu.common.data.GTCovers;
 import com.gregtechceu.gtceu.common.item.CoverPlaceBehavior;
@@ -11,17 +13,21 @@ import com.tterrag.registrate.builders.ItemBuilder;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import com.tterrag.registrate.util.entry.ItemEntry;
 import com.tterrag.registrate.util.nullness.NonNullFunction;
+import io.github.createtechified.evolutioncore.EvolutionCoreMod;
 import io.github.createtechified.evolutioncore.Reference;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraftforge.client.model.generators.ModelFile;
 
 import java.util.function.Consumer;
 
-import static io.github.createtechified.evolutioncore.Reference.CIRCUIT_TAGS;
-
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "removal"})
 public class EvoConstructs {
     // items
     public static <T extends Item> ItemEntry<T> constructItem(String name, NonNullFunction<Item.Properties, T> factory, Consumer<ItemBuilder<T, ?>> customizer) {
@@ -39,7 +45,7 @@ public class EvoConstructs {
     public static ItemEntry<Item> constructUniversalCircuit(int tier) {
         String name = "universal_circuit_" + GTValues.VN[tier].toLowerCase();
         return constructItem(name, Item::new,
-                b -> b.lang("%s Universal Circuit".formatted(GTValues.VNF[tier])).tag(CIRCUIT_TAGS[tier]));
+                b -> b.lang("%s Universal Circuit".formatted(GTValues.VNF[tier])).tag(Reference.CIRCUIT_TAGS[tier]));
     }
 
     public static ItemEntry<Item> constructBasicItem(String name) {
@@ -158,12 +164,41 @@ public class EvoConstructs {
 
     // blocks
     public static <T extends Block> BlockEntry<T> constructBlock(String name, NonNullFunction<BlockBehaviour.Properties, T> factory, Consumer<BlockBuilder<T, ?>> customizer) {
-        return Reference.REGISTRATE.block(name, factory).transform(b -> { customizer.accept(b); return b; }).register();
+        ResourceLocation texture = EvolutionCoreMod.id("block/" + name);
+        return Reference.REGISTRATE.block(name, factory).transform(b -> { customizer.accept(b); return b; }).blockstate((ctx, prov) -> prov.simpleBlock(ctx.getEntry(), prov.models().cubeAll(ctx.getName(), texture))).defaultLoot().simpleItem().register();
     }
     public static <T extends Block> BlockEntry<T> constructBlock(String name, NonNullFunction<BlockBehaviour.Properties, T> factory) {
         return constructBlock(name, factory, b -> {});
     }
     public static BlockEntry<Block> constructBasicBlock(String name) {
         return constructBlock(name, Block::new);
+    }
+    public static BlockEntry<Block> constructBasicBlock(String name, String lang) {
+        return constructBlock(name, Block::new, b -> b.lang(lang));
+    }
+
+    // modified from astrocore by hazevista
+    public record FireboxInfo(String name, ResourceLocation top, ResourceLocation bottom, ResourceLocation side) {}
+
+    public static BlockEntry<ActiveBlock> constructFirebox(FireboxInfo info, String lang) {
+        return Reference.REGISTRATE.block(info.name + "_casing", ActiveBlock::new)
+                .initialProperties(() -> Blocks.STONE)
+                .addLayer(() -> RenderType::cutoutMipped)
+                .addLayer(() -> RenderType::translucent)
+                .blockstate((ctx, prov) -> {
+                    ModelFile inactive = prov.models().cubeBottomTop(ctx.getName(), info.side, info.bottom, info.top);
+                    ModelFile active = prov.models()
+                            .withExistingParent(ctx.getName() + "_active",
+                                    new ResourceLocation("gtceu", "block/fire_box_active"))
+                            .texture("side", info.side).texture("bottom", info.bottom).texture("top", info.top);
+                    prov.getVariantBuilder(ctx.getEntry())
+                            .partialState().with(GTBlockStateProperties.ACTIVE, false).modelForState()
+                            .modelFile(inactive).addModel()
+                            .partialState().with(GTBlockStateProperties.ACTIVE, true).modelForState().modelFile(active)
+                            .addModel();
+                })
+                .lang(lang)
+                .tag(CustomTags.MINEABLE_WITH_CONFIG_VALID_PICKAXE_WRENCH)
+                .item(BlockItem::new).build().register();
     }
 }

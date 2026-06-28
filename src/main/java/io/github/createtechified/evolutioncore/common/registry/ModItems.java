@@ -25,7 +25,7 @@ public class ModItems {
     // Misc Items
     public static ItemEntry<Item> PLANT_FIBER = constructBasicItem("plant_fiber");
     public static ItemEntry<Item> FLINT_SHARD = constructBasicItem("flint_shard");
-    public static ItemEntry<Item> GPS_DEVICE = constructBasicItem("gps_device", "GPS Device");
+    public static ItemEntry<Item> GPS_DEVICE = constructItem("gps_device", Item::new, b -> b.lang("GPS Device").properties(p -> p.stacksTo(1)));
     // Vacuum Tube Parts (ULV/Steam)
     public static ItemEntry<Item> CARBON_FILAMENT = constructBasicItem("carbon_filament");
     public static ItemEntry<Item> GRAPHITE_ELECTRODE = constructBasicItem("graphite_electrode");
@@ -57,7 +57,7 @@ public class ModItems {
                             .save(prov))
                     .model((ctx, prov) -> prov.handheld(ctx)));
     public static ItemEntry<HammerItem> FLINT_HAMMER = constructItem("flint_hammer",
-            p -> new HammerItem(3, -3.2f, ModToolTiers.COPPER, p));
+            p -> new HammerItem(3, -3.2f, ModToolTiers.COPPER, p), b -> b.model((ctx, prov) -> prov.handheld(ctx)));
     public static ItemEntry<HealingAxe> HEALING_AXE = constructItem("healing_axe",
             p -> new HealingAxe(ModToolTiers.UNSTABLE, 1, -3, p), b -> b.model((ctx, prov) -> prov.handheld(ctx)));
     // Universal circuits

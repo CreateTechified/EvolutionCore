@@ -3,13 +3,10 @@ package io.github.createtechified.evolutioncore;
 import com.gregtechceu.gtceu.api.GTCEuAPI;
 import com.gregtechceu.gtceu.api.machine.MachineDefinition;
 import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
-import com.gregtechceu.gtceu.api.recipe.condition.RecipeConditionType;
-import com.gregtechceu.gtceu.api.registry.GTRegistries;
 import com.gregtechceu.gtceu.utils.FormattingUtil;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import io.github.createtechified.evolutioncore.common.overhaul.RemoveAllOresBiomeModifier;
-import io.github.createtechified.evolutioncore.common.recipe.conditions.VacuumCondition;
 import io.github.createtechified.evolutioncore.common.registry.CreativeTabs;
 import io.github.createtechified.evolutioncore.common.registry.ModItems;
 import io.github.createtechified.evolutioncore.common.registry.machines.ModMachines;
@@ -42,12 +39,9 @@ public class EvolutionCoreMod {
                     ).codec()
             );
 
-    public static RecipeConditionType<VacuumCondition> VACUUM;
-
     public EvolutionCoreMod() {
         IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
         eventBus.addGenericListener(GTRecipeType.class, this::registerRecipeTypes);
-        eventBus.addGenericListener(RecipeConditionType.class, this::registerConditions);
         eventBus.addGenericListener(MachineDefinition.class, this::registerMachines);
         BIOME_MODIFIER_SERIALIZERS.register(eventBus);
         ModItems.init();
@@ -55,11 +49,6 @@ public class EvolutionCoreMod {
         CreativeTabs.init();
         Reference.REGISTRATE.registerRegistrate();
         EvoDatagen.init();
-    }
-
-    public void registerConditions(GTCEuAPI.RegisterEvent<String, RecipeConditionType<?>> event) {
-        VACUUM = GTRegistries.RECIPE_CONDITIONS.register("vacuum", //
-                new RecipeConditionType<>(VacuumCondition::new, VacuumCondition.CODEC));
     }
 
     public void registerRecipeTypes(GTCEuAPI.RegisterEvent<ResourceLocation, GTRecipeType> event) {
