@@ -18,4 +18,8 @@ public class GTSingleblocks {
 
     public static final Pair<MachineDefinition, MachineDefinition> STEAM_ASSEMBLER = MachineUtils
             .registerSimpleSteamMachines("assembler", GTRecipeTypes.ASSEMBLER_RECIPES, Component.translatable("evolutioncore.tooltip.steam_assembler").withStyle(ChatFormatting.GRAY));
+    public static final Pair<MachineDefinition, MachineDefinition> STEAM_CENTRIFUGE = MachineUtils
+            .registerSimpleSteamMachines("centrifuge", GTRecipeTypes.CENTRIFUGE_RECIPES, Component.translatable("evolutioncore.tooltip.steam_centrifuge").withStyle(ChatFormatting.GRAY));
+    public static final Pair<MachineDefinition, MachineDefinition> STEAM_ORE_WASHER = MachineUtils
+            .registerSimpleSteamMachines("ore_washer", GTRecipeTypes.ORE_WASHER_RECIPES, Component.translatable("evolutioncore.tooltip.steam_ore_washer").withStyle(ChatFormatting.GRAY));
 }
