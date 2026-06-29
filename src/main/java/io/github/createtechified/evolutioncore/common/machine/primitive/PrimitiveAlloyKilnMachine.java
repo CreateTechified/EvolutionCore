@@ -26,13 +26,13 @@ public class PrimitiveAlloyKilnMachine extends PrimitiveBlastFurnaceMachine {
         return new ModularUI(176, 166, this, entityPlayer)
                 .background(GuiTextures.PRIMITIVE_BACKGROUND)
                 .widget(new LabelWidget(5, 5, getBlockState().getBlock().getDescriptionId()))
-                .widget(new SlotWidget(importItems.storage, 0, 52, 20, true, true)
+                .widget(new SlotWidget(importItems.storage, 0, 34, 29, true, true)
                         .setBackgroundTexture(
-                                new GuiTextureGroup(GuiTextures.PRIMITIVE_SLOT, GuiTextures.PRIMITIVE_DUST_OVERLAY)))
-                .widget(new SlotWidget(importItems.storage, 1, 52, 38, true, true)
+                                new GuiTextureGroup(GuiTextures.PRIMITIVE_SLOT, GuiTextures.PRIMITIVE_INGOT_OVERLAY)))
+                .widget(new SlotWidget(importItems.storage, 1, 52, 29, true, true)
                         .setBackgroundTexture(
-                                new GuiTextureGroup(GuiTextures.PRIMITIVE_SLOT, GuiTextures.PRIMITIVE_DUST_OVERLAY)))
-                .widget(new SlotWidget(importItems.storage, 2, 52, 56, true, true)
+                                new GuiTextureGroup(GuiTextures.PRIMITIVE_SLOT, GuiTextures.PRIMITIVE_INGOT_OVERLAY)))
+                .widget(new SlotWidget(importItems.storage, 2, 43, 47, true, true)
                         .setBackgroundTexture(
                                 new GuiTextureGroup(GuiTextures.PRIMITIVE_SLOT, GuiTextures.PRIMITIVE_FURNACE_OVERLAY)))
                 .widget(new ProgressWidget(recipeLogic::getProgressPercent, 77, 39, 20, 15,
@@ -40,9 +40,6 @@ public class PrimitiveAlloyKilnMachine extends PrimitiveBlastFurnaceMachine {
                 .widget(new SlotWidget(exportItems.storage, 0, 104, 38, true, false)
                         .setBackgroundTexture(
                                 new GuiTextureGroup(GuiTextures.PRIMITIVE_SLOT, GuiTextures.PRIMITIVE_INGOT_OVERLAY)))
-                .widget(new SlotWidget(exportItems.storage, 1, 122, 38, true, false)
-                        .setBackgroundTexture(
-                                new GuiTextureGroup(GuiTextures.PRIMITIVE_SLOT, GuiTextures.PRIMITIVE_DUST_OVERLAY)))
                 .widget(UITemplate.bindPlayerInventory(entityPlayer.getInventory(),
                         GuiTextures.PRIMITIVE_SLOT, 7, 84, true));
     }

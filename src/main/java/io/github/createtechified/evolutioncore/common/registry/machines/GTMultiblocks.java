@@ -55,7 +55,7 @@ public class GTMultiblocks {
                     .where('&', Predicates.air()
                             .or(Predicates.custom(bws -> GTUtil.isBlockSnow(bws.getBlockState()), null)))
                     .build())
-            .workableCasingModel(GTCEu.id("block/casings/solid/machine_primitive_bricks"), GTCEu.id("block/machines/alloy_smelter"))
+            .workableCasingModel(GTCEu.id("block/casings/solid/machine_primitive_bricks"), EvolutionCoreMod.id("block/machines/primitive_alloy_kiln"))
             .tooltips(Component.translatable("evolutioncore.tooltip.primitive_alloy_kiln").withStyle(ChatFormatting.GRAY))
             .register();
 
@@ -83,7 +83,7 @@ public class GTMultiblocks {
                     .where('B', Predicates.blocks(GTBlocks.BRONZE_HULL.get()))
                     .where(' ', Predicates.any())
                     .build())
-            .workableCasingModel(GTCEu.id("block/casings/solid/machine_casing_bronze_plated_bricks"), GTCEu.id("block/machines/alloy_smelter"))
+            .workableCasingModel(GTCEu.id("block/casings/solid/machine_casing_bronze_plated_bricks"), EvolutionCoreMod.id("block/machines/steam_alloy_kiln"))
             .langValue("Low Pressure Steam Alloy Kiln")
             .tooltips(Component.translatable("evolutioncore.tooltip.steam_alloy_kiln.l").withStyle(ChatFormatting.GRAY))
             .register();
@@ -112,7 +112,7 @@ public class GTMultiblocks {
                     .where('B', Predicates.blocks(GTBlocks.STEEL_HULL.get()))
                     .where(' ', Predicates.any())
                     .build())
-            .workableCasingModel(EvolutionCoreMod.id("block/high_steam_machine_casing"), GTCEu.id("block/machines/alloy_smelter"))
+            .workableCasingModel(EvolutionCoreMod.id("block/high_steam_machine_casing"), EvolutionCoreMod.id("block/machines/hp_steam_alloy_kiln"))
             .langValue("High Pressure Steam Alloy Kiln")
             .tooltips(Component.translatable("evolutioncore.tooltip.steam_alloy_kiln.h").withStyle(ChatFormatting.GRAY))
             .register();
@@ -265,7 +265,7 @@ public class GTMultiblocks {
                     .where('M', Predicates.ability(PartAbility.MUFFLER))
                     .where('W', Predicates.blocks(ForgeRegistries.BLOCKS.getValue(ResourceLocation.fromNamespaceAndPath("create", "cut_ochrum_wall"))))
                     .build())
-            .workableCasingModel(GTCEu.id("block/casings/solid/machine_casing_bronze_plated_bricks"), GTCEu.id("block/machines/centrifuge"))
+            .workableCasingModel(GTCEu.id("block/casings/solid/machine_casing_bronze_plated_bricks"), EvolutionCoreMod.id("block/machines/steam_separator"))
             .langValue("Low Pressure Steam Separator")
             .tooltips(Component.translatable("evolutioncore.tooltip.steam_separator.l").withStyle(ChatFormatting.GRAY))
             .register();
@@ -300,7 +300,7 @@ public class GTMultiblocks {
                     .where('M', Predicates.ability(PartAbility.MUFFLER))
                     .where('W', Predicates.blocks(ForgeRegistries.BLOCKS.getValue(ResourceLocation.fromNamespaceAndPath("create", "cut_deepslate_wall"))))
                     .build())
-            .workableCasingModel(EvolutionCoreMod.id("block/high_steam_machine_casing"), GTCEu.id("block/machines/centrifuge"))
+            .workableCasingModel(EvolutionCoreMod.id("block/high_steam_machine_casing"), EvolutionCoreMod.id("block/machines/hp_steam_separator"))
             .langValue("High Pressure Steam Separator")
             .tooltips(Component.translatable("evolutioncore.tooltip.steam_separator.h").withStyle(ChatFormatting.GRAY), Component.translatable("evolutioncore.tooltip.steam_separator.h.apology").withStyle(ChatFormatting.GRAY))
             .register();
@@ -314,7 +314,7 @@ public class GTMultiblocks {
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("    WFFFW    ", "    WBBBW    ", "    WBBBW    ", "     BBB     ", "      B      ", "             ")
                     .aisle("WFW FBBBF WFW", "WSW B###B WSW", "WBW B###B WBW", " B  B###B  B ", "     B#B     ", "     BBB     ")
-                    .aisle("FPPPPPPPPPPPW", "BPB B#P#B BPB", "BPB B#P#B BPB", "B B B#P#B B B", "    B#M#B    ", "     B#B     ")
+                    .aisle("FPPPPPPPPPPPF", "BPB B#P#B BPB", "BPB B#P#B BPB", "B B B#P#B B B", "    B#M#B    ", "     B#B     ")
                     .aisle("WFW FBBBF WFW", "WBW B###B WBW", "WBW B###B WBW", " B  B###B  B ", "     B#B     ", "     BBB     ")
                     .aisle("    WFFFW    ", "    WBCBW    ", "    WBBBW    ", "     BBB     ", "      B      ", "             ")
                     .where('C', Predicates.controller(Predicates.blocks(definition.getBlock())))

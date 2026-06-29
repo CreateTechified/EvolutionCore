@@ -11,10 +11,10 @@
         "parent": "gtceu:block/machine/template/cube_all/sided",
         "textures": {
           "all": "evolutioncore:block/high_steam_machine_casing",
-          "overlay_back": "gtceu:block/machines/centrifuge/overlay_back",
-          "overlay_front": "gtceu:block/machines/centrifuge/overlay_front",
-          "overlay_side": "gtceu:block/machines/centrifuge/overlay_side",
-          "overlay_top": "gtceu:block/machines/centrifuge/overlay_top"
+          "overlay_back": "evolutioncore:block/machines/hp_steam_separator/overlay_back",
+          "overlay_front": "evolutioncore:block/machines/hp_steam_separator/overlay_front",
+          "overlay_side": "evolutioncore:block/machines/hp_steam_separator/overlay_side",
+          "overlay_top": "evolutioncore:block/machines/hp_steam_separator/overlay_top"
         }
       }
     },
@@ -23,10 +23,10 @@
         "parent": "gtceu:block/machine/template/cube_all/sided",
         "textures": {
           "all": "evolutioncore:block/high_steam_machine_casing",
-          "overlay_back": "gtceu:block/machines/centrifuge/overlay_back",
-          "overlay_front": "gtceu:block/machines/centrifuge/overlay_front",
-          "overlay_side": "gtceu:block/machines/centrifuge/overlay_side",
-          "overlay_top": "gtceu:block/machines/centrifuge/overlay_top"
+          "overlay_back": "evolutioncore:block/machines/hp_steam_separator/overlay_back",
+          "overlay_front": "evolutioncore:block/machines/hp_steam_separator/overlay_front",
+          "overlay_side": "evolutioncore:block/machines/hp_steam_separator/overlay_side",
+          "overlay_top": "evolutioncore:block/machines/hp_steam_separator/overlay_top"
         }
       }
     },
@@ -35,10 +35,10 @@
         "parent": "gtceu:block/machine/template/cube_all/sided",
         "textures": {
           "all": "evolutioncore:block/high_steam_machine_casing",
-          "overlay_back": "gtceu:block/machines/centrifuge/overlay_back_active",
-          "overlay_front": "gtceu:block/machines/centrifuge/overlay_front_active",
-          "overlay_side": "gtceu:block/machines/centrifuge/overlay_side_active",
-          "overlay_top": "gtceu:block/machines/centrifuge/overlay_top_active"
+          "overlay_back": "evolutioncore:block/machines/hp_steam_separator/overlay_back_active",
+          "overlay_front": "evolutioncore:block/machines/hp_steam_separator/overlay_front_active",
+          "overlay_side": "evolutioncore:block/machines/hp_steam_separator/overlay_side_active",
+          "overlay_top": "evolutioncore:block/machines/hp_steam_separator/overlay_top_active"
         }
       }
     },
@@ -47,10 +47,10 @@
         "parent": "gtceu:block/machine/template/cube_all/sided",
         "textures": {
           "all": "evolutioncore:block/high_steam_machine_casing",
-          "overlay_back": "gtceu:block/machines/centrifuge/overlay_back_active",
-          "overlay_front": "gtceu:block/machines/centrifuge/overlay_front_active",
-          "overlay_side": "gtceu:block/machines/centrifuge/overlay_side_active",
-          "overlay_top": "gtceu:block/machines/centrifuge/overlay_top_active"
+          "overlay_back": "evolutioncore:block/machines/hp_steam_separator/overlay_back_active",
+          "overlay_front": "evolutioncore:block/machines/hp_steam_separator/overlay_front_active",
+          "overlay_side": "evolutioncore:block/machines/hp_steam_separator/overlay_side_active",
+          "overlay_top": "evolutioncore:block/machines/hp_steam_separator/overlay_top_active"
         }
       }
     },
@@ -59,10 +59,10 @@
         "parent": "gtceu:block/machine/template/cube_all/sided",
         "textures": {
           "all": "evolutioncore:block/high_steam_machine_casing",
-          "overlay_back": "gtceu:block/machines/centrifuge/overlay_back",
-          "overlay_front": "gtceu:block/machines/centrifuge/overlay_front",
-          "overlay_side": "gtceu:block/machines/centrifuge/overlay_side",
-          "overlay_top": "gtceu:block/machines/centrifuge/overlay_top"
+          "overlay_back": "evolutioncore:block/machines/hp_steam_separator/overlay_back",
+          "overlay_front": "evolutioncore:block/machines/hp_steam_separator/overlay_front",
+          "overlay_side": "evolutioncore:block/machines/hp_steam_separator/overlay_side",
+          "overlay_top": "evolutioncore:block/machines/hp_steam_separator/overlay_top"
         }
       }
     },
@@ -71,10 +71,10 @@
         "parent": "gtceu:block/machine/template/cube_all/sided",
         "textures": {
           "all": "evolutioncore:block/high_steam_machine_casing",
-          "overlay_back": "gtceu:block/machines/centrifuge/overlay_back",
-          "overlay_front": "gtceu:block/machines/centrifuge/overlay_front",
-          "overlay_side": "gtceu:block/machines/centrifuge/overlay_side",
-          "overlay_top": "gtceu:block/machines/centrifuge/overlay_top"
+          "overlay_back": "evolutioncore:block/machines/hp_steam_separator/overlay_back",
+          "overlay_front": "evolutioncore:block/machines/hp_steam_separator/overlay_front",
+          "overlay_side": "evolutioncore:block/machines/hp_steam_separator/overlay_side",
+          "overlay_top": "evolutioncore:block/machines/hp_steam_separator/overlay_top"
         }
       }
     },
@@ -83,10 +83,10 @@
         "parent": "gtceu:block/machine/template/cube_all/sided",
         "textures": {
           "all": "evolutioncore:block/high_steam_machine_casing",
-          "overlay_back": "gtceu:block/machines/centrifuge/overlay_back_active",
-          "overlay_front": "gtceu:block/machines/centrifuge/overlay_front_active",
-          "overlay_side": "gtceu:block/machines/centrifuge/overlay_side_active",
-          "overlay_top": "gtceu:block/machines/centrifuge/overlay_top_active"
+          "overlay_back": "evolutioncore:block/machines/hp_steam_separator/overlay_back_active",
+          "overlay_front": "evolutioncore:block/machines/hp_steam_separator/overlay_front_active",
+          "overlay_side": "evolutioncore:block/machines/hp_steam_separator/overlay_side_active",
+          "overlay_top": "evolutioncore:block/machines/hp_steam_separator/overlay_top_active"
         }
       }
     },
@@ -95,10 +95,10 @@
         "parent": "gtceu:block/machine/template/cube_all/sided",
         "textures": {
           "all": "evolutioncore:block/high_steam_machine_casing",
-          "overlay_back": "gtceu:block/machines/centrifuge/overlay_back_active",
-          "overlay_front": "gtceu:block/machines/centrifuge/overlay_front_active",
-          "overlay_side": "gtceu:block/machines/centrifuge/overlay_side_active",
-          "overlay_top": "gtceu:block/machines/centrifuge/overlay_top_active"
+          "overlay_back": "evolutioncore:block/machines/hp_steam_separator/overlay_back_active",
+          "overlay_front": "evolutioncore:block/machines/hp_steam_separator/overlay_front_active",
+          "overlay_side": "evolutioncore:block/machines/hp_steam_separator/overlay_side_active",
+          "overlay_top": "evolutioncore:block/machines/hp_steam_separator/overlay_top_active"
         }
       }
     }
