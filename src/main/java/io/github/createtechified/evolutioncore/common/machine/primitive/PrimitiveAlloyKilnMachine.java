@@ -40,6 +40,9 @@ public class PrimitiveAlloyKilnMachine extends PrimitiveBlastFurnaceMachine {
                 .widget(new SlotWidget(exportItems.storage, 0, 104, 38, true, false)
                         .setBackgroundTexture(
                                 new GuiTextureGroup(GuiTextures.PRIMITIVE_SLOT, GuiTextures.PRIMITIVE_INGOT_OVERLAY)))
+                .widget(new SlotWidget(exportItems.storage, 0, 122, 38, true, false)
+                        .setBackgroundTexture(
+                                new GuiTextureGroup(GuiTextures.PRIMITIVE_SLOT, GuiTextures.PRIMITIVE_INGOT_OVERLAY)))
                 .widget(UITemplate.bindPlayerInventory(entityPlayer.getInventory(),
                         GuiTextures.PRIMITIVE_SLOT, 7, 84, true));
     }

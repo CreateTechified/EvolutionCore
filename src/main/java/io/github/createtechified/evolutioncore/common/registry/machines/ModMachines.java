@@ -9,6 +9,7 @@ public class ModMachines {
     }
 
     public static void init() {
+        GTMultiblockParts.init();
         GTMultiblocks.init();
         GTSingleblocks.init();
     }
