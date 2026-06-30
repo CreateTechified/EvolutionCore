@@ -1,5 +1,5 @@
 {
-    "ldlib": {
-        "connection": "evolutioncore:block/high_steam_machine_casing_ctm"
+    "gtceu": {
+        "connection_texture": "evolutioncore:block/high_steam_machine_casing_ctm"
     }
 }

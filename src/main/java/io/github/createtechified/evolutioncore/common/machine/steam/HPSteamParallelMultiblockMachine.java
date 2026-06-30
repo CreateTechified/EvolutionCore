@@ -1,45 +1,54 @@
 package io.github.createtechified.evolutioncore.common.machine.steam;
 
+import brachy.modularui.drawable.GuiTextures;
+import brachy.modularui.drawable.Icon;
+import brachy.modularui.factory.PosGuiData;
+import brachy.modularui.screen.UISettings;
+import brachy.modularui.utils.Alignment;
+import brachy.modularui.value.sync.PanelSyncManager;
+import brachy.modularui.widget.ParentWidget;
+import brachy.modularui.widgets.ListWidget;
 import com.gregtechceu.gtceu.api.GTValues;
-import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
+import com.gregtechceu.gtceu.api.blockentity.BlockEntityCreationInfo;
+import com.gregtechceu.gtceu.api.capability.recipe.FluidRecipeCapability;
+import com.gregtechceu.gtceu.api.capability.recipe.IO;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
-import com.gregtechceu.gtceu.api.machine.feature.multiblock.IMultiPart;
+import com.gregtechceu.gtceu.api.machine.multiblock.PartAbility;
 import com.gregtechceu.gtceu.api.machine.steam.SteamEnergyRecipeHandler;
+import com.gregtechceu.gtceu.api.machine.trait.NotifiableFluidTank;
+import com.gregtechceu.gtceu.api.machine.trait.RecipeHandlerList;
+import com.gregtechceu.gtceu.api.multiblock.error.PatternStringError;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.api.recipe.RecipeHelper;
 import com.gregtechceu.gtceu.api.recipe.content.ContentModifier;
 import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
 import com.gregtechceu.gtceu.api.recipe.modifier.ParallelLogic;
 import com.gregtechceu.gtceu.api.recipe.modifier.RecipeModifier;
+import com.gregtechceu.gtceu.api.sync_system.annotations.SyncToClient;
+import com.gregtechceu.gtceu.common.data.GTMaterials;
 import com.gregtechceu.gtceu.common.machine.multiblock.steam.SteamParallelMultiblockMachine;
+import com.gregtechceu.gtceu.common.mui.GTMultiblockTextUtil;
 import com.gregtechceu.gtceu.config.ConfigHolder;
 import lombok.Getter;
 import lombok.Setter;
-import net.minecraft.ChatFormatting;
-import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.Style;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.List;
-
-@MethodsReturnNonnullByDefault
 public class HPSteamParallelMultiblockMachine extends SteamParallelMultiblockMachine {
     @Getter
     @Setter
-    private int maxParallels = ConfigHolder.INSTANCE.machines.steamMultiParallelAmount * 4;
+    private int maxParallels;
+
     @Nullable
+    @SyncToClient
     private SteamEnergyRecipeHandler steamEnergy = null;
 
-    public HPSteamParallelMultiblockMachine(IMachineBlockEntity holder, Object... args) {
-        super(holder);
-        if (args.length > 0 && args[0] instanceof Integer i) {
-            this.maxParallels = i;
-        }
+    public HPSteamParallelMultiblockMachine(BlockEntityCreationInfo info) {
+        super(info, ConfigHolder.INSTANCE.machines.steamMultiParallelAmount * 4);
     }
 
-    public static ModifierFunction recipeModifier(@NotNull MetaMachine machine, @NotNull GTRecipe recipe) {
+    public static ModifierFunction recipeModifier(MetaMachine machine, GTRecipe recipe) {
         if (!(machine instanceof HPSteamParallelMultiblockMachine steamMachine)) {
             return RecipeModifier.nullWrongType(HPSteamParallelMultiblockMachine.class, machine);
         }
@@ -58,35 +67,52 @@ public class HPSteamParallelMultiblockMachine extends SteamParallelMultiblockMac
     }
 
     @Override
-    public void addDisplayText(List<Component> textList) {
-        for(IMultiPart part : this.getParts()) { part.addMultiText(textList); }
-        if (isFormed()) {
-            if (steamEnergy != null && steamEnergy.getCapacity() > 0) {
-                long steamStored = steamEnergy.getStored();
-                textList.add(Component.translatable("gtceu.multiblock.steam.steam_stored", steamStored,
-                        steamEnergy.getCapacity()));
-            }
-
-            if (!isWorkingEnabled()) {
-                textList.add(Component.translatable("gtceu.multiblock.work_paused"));
-
-            } else if (isActive()) {
-                textList.add(Component.translatable("gtceu.multiblock.running"));
-                if (maxParallels > 1) textList.add(Component.translatable("gtceu.multiblock.parallel", maxParallels));
-                int currentProgress = (int) (recipeLogic.getProgressPercent() * 100);
-                double maxInSec = (float) recipeLogic.getDuration() / 20.0f;
-                double currentInSec = (float) recipeLogic.getProgress() / 20.0f;
-                textList.add(
-                        Component.translatable("gtceu.multiblock.progress", String.format("%.2f", (float) currentInSec),
-                                String.format("%.2f", (float) maxInSec), currentProgress));
-            } else {
-                textList.add(Component.translatable("gtceu.multiblock.idling"));
-            }
-
-            if (recipeLogic.isWaiting()) {
-                textList.add(Component.translatable("gtceu.multiblock.steam.low_steam")
-                        .setStyle(Style.EMPTY.withColor(ChatFormatting.RED)));
+    public void formStructure(@NotNull String substructureName) {
+        super.formStructure(substructureName);
+        var pState = patternStates.get(substructureName);
+        for (var part : getParts()) {
+            if (!PartAbility.STEAM.isApplicable(part.self().getDefinition().getBlock())) continue;
+            var handlers = part.getRecipeHandlers();
+            for (var hl : handlers) {
+                if (!hl.isValid(IO.IN)) continue;
+                for (var fluidHandler : hl.getCapability(FluidRecipeCapability.CAP)) {
+                    if (!(fluidHandler instanceof NotifiableFluidTank nft)) continue;
+                    if (nft.isFluidValid(0, GTMaterials.Steam.getFluid(1))) {
+                        steamEnergy = new SteamEnergyRecipeHandler(nft, getConversionRate());
+                        syncDataHolder.markClientSyncFieldDirty("steamEnergy");
+                        addHandlerList(RecipeHandlerList.of(IO.IN, steamEnergy));
+                        return;
+                    }
+                }
             }
         }
+        if (steamEnergy == null) { // No steam hatch found
+            pState.setError(
+                    new PatternStringError(Component.translatable("gtceu.predicate_error.steam.missing_steam_hatch")));
+            invalidateStructure(substructureName);
+        }
+    }
+
+    @Override
+    public void buildMainUI(ParentWidget<?> mainWidget, PosGuiData guiData, PanelSyncManager syncManager,
+                            UISettings settings) {
+        mainWidget.size(170, 76).background(GuiTextures.DISPLAY);
+
+        var listWidget = new ListWidget<>()
+                .width(170 - 6)
+                .height(76)
+                .childSeparator(Icon.EMPTY_2PX)
+                .crossAxisAlignment(Alignment.CrossAxis.START)
+                .posRel(Alignment.CenterLeft);
+
+        listWidget
+                .child(GTMultiblockTextUtil.addUnformedWarning(this, syncManager))
+                .child(GTMultiblockTextUtil.addSteamUsageLine(this.steamEnergy, syncManager))
+                .child(GTMultiblockTextUtil.addWorkingStatusLine(this, syncManager))
+                .child(GTMultiblockTextUtil.addProgressLine(this, syncManager))
+                .child(GTMultiblockTextUtil.addParallelLine(this, syncManager))
+                .child(GTMultiblockTextUtil.addOutputLines(this, syncManager));
+
+        mainWidget.child(listWidget.left(3).top(3));
     }
 }

@@ -47,7 +47,7 @@ public class EvolutionCoreMod {
         ModItems.init();
         ModBlocks.init();
         CreativeTabs.init();
-        Reference.REGISTRATE.registerRegistrate();
+        Reference.REGISTRATE.registerEventListeners(eventBus);
         EvoDatagen.init();
     }
 
