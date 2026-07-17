@@ -1,3 +1,4 @@
 EvolutionCore
 =============
-###### A terrible mod because I needed AE2 and Universal Circuits in my GregTech pack...
+###### What was once a simple addon devolved into something that could probably have been done with KubeJS.
+Now available on GregTechCEu Modern's 8.0.x version tree!
