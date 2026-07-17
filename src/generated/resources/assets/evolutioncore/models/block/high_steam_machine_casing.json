@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:block/cube_all",
-  "textures": {
-    "all": "evolutioncore:block/high_steam_machine_casing"
-  }
-}

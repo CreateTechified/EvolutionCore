@@ -15,9 +15,9 @@ public class ModBlocks {
         Reference.REGISTRATE.creativeModeTab(() -> CreativeTabs.EVOLUTIONCORE_MAIN);
     }
 
-    public static BlockEntry<Block> HIGH_STEAM_MACHINE_CASING = EvoConstructs.constructBasicBlock("high_steam_machine_casing", "High Pressure Steam Machine Casing");
-    public static BlockEntry<ActiveBlock> HIGH_STEAM_FIREBOX_CASING = EvoConstructs.constructFirebox(new EvoConstructs.FireboxInfo("high_steam_firebox",
-            EvolutionCoreMod.id("block/high_steam_machine_casing"),
-            EvolutionCoreMod.id("block/high_steam_machine_casing"),
+    public static BlockEntry<Block> HP_STEAM_MACHINE_CASING = EvoConstructs.constructBasicBlock("hp_steam_machine_casing", EvolutionCoreMod.id("block/casings/steam/hp_steam_machine_casing"), "High Pressure Steam Machine Casing");
+    public static BlockEntry<ActiveBlock> HP_STEAM_FIREBOX_CASING = EvoConstructs.constructFirebox(new EvoConstructs.FireboxInfo("hp_steam_firebox",
+            EvolutionCoreMod.id("block/casings/steam/hp_steam_machine_casing"),
+            EvolutionCoreMod.id("block/casings/steam/hp_steam_machine_casing"),
             GTCEu.id("block/casings/firebox/machine_casing_firebox_steel")), "High Pressure Steam Firebox Casing");
 }

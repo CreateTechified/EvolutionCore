@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "evolutioncore:item/max_fluid_regulator"
+    "layer0": "evolutioncore:item/covers/max_fluid_regulator"
   }
 }

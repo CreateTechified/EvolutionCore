@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "evolutioncore:item/graphite_electrode"
+    "layer0": "evolutioncore:item/vactube/graphite_electrode"
   }
 }

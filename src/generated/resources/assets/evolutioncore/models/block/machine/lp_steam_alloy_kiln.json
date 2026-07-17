@@ -11,8 +11,8 @@
         "parent": "gtceu:block/machine/template/cube_all/sided",
         "textures": {
           "all": "gtceu:block/casings/solid/machine_casing_bronze_plated_bricks",
-          "overlay_front": "evolutioncore:block/machines/steam_alloy_kiln/overlay_front",
-          "overlay_front_emissive": "evolutioncore:block/machines/steam_alloy_kiln/overlay_front_emissive"
+          "overlay_front": "evolutioncore:block/machines/lp_steam_alloy_kiln/overlay_front",
+          "overlay_front_emissive": "evolutioncore:block/machines/lp_steam_alloy_kiln/overlay_front_emissive"
         }
       }
     },
@@ -21,8 +21,8 @@
         "parent": "gtceu:block/machine/template/cube_all/sided",
         "textures": {
           "all": "gtceu:block/casings/solid/machine_casing_bronze_plated_bricks",
-          "overlay_front": "evolutioncore:block/machines/steam_alloy_kiln/overlay_front",
-          "overlay_front_emissive": "evolutioncore:block/machines/steam_alloy_kiln/overlay_front_emissive"
+          "overlay_front": "evolutioncore:block/machines/lp_steam_alloy_kiln/overlay_front",
+          "overlay_front_emissive": "evolutioncore:block/machines/lp_steam_alloy_kiln/overlay_front_emissive"
         }
       }
     },
@@ -31,8 +31,8 @@
         "parent": "gtceu:block/machine/template/cube_all/sided",
         "textures": {
           "all": "gtceu:block/casings/solid/machine_casing_bronze_plated_bricks",
-          "overlay_front": "evolutioncore:block/machines/steam_alloy_kiln/overlay_front_active",
-          "overlay_front_emissive": "evolutioncore:block/machines/steam_alloy_kiln/overlay_front_active_emissive"
+          "overlay_front": "evolutioncore:block/machines/lp_steam_alloy_kiln/overlay_front_active",
+          "overlay_front_emissive": "evolutioncore:block/machines/lp_steam_alloy_kiln/overlay_front_active_emissive"
         }
       }
     },
@@ -41,8 +41,8 @@
         "parent": "gtceu:block/machine/template/cube_all/sided",
         "textures": {
           "all": "gtceu:block/casings/solid/machine_casing_bronze_plated_bricks",
-          "overlay_front": "evolutioncore:block/machines/steam_alloy_kiln/overlay_front_active",
-          "overlay_front_emissive": "evolutioncore:block/machines/steam_alloy_kiln/overlay_front_active_emissive"
+          "overlay_front": "evolutioncore:block/machines/lp_steam_alloy_kiln/overlay_front_active",
+          "overlay_front_emissive": "evolutioncore:block/machines/lp_steam_alloy_kiln/overlay_front_active_emissive"
         }
       }
     }

@@ -11,11 +11,11 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "evolutioncore:high_steam_firebox_casing"
+          "name": "evolutioncore:hp_steam_firebox_casing"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "evolutioncore:blocks/high_steam_firebox_casing"
+  "random_sequence": "evolutioncore:blocks/hp_steam_firebox_casing"
 }

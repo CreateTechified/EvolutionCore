@@ -3,14 +3,14 @@
   "loader": "gtceu:machine",
   "machine": "evolutioncore:hp_steam_separator",
   "texture_overrides": {
-    "all": "evolutioncore:block/high_steam_machine_casing"
+    "all": "evolutioncore:block/casings/steam/hp_steam_machine_casing"
   },
   "variants": {
     "recipe_logic_status=idle": {
       "model": {
         "parent": "gtceu:block/machine/template/cube_all/sided",
         "textures": {
-          "all": "evolutioncore:block/high_steam_machine_casing",
+          "all": "evolutioncore:block/casings/steam/hp_steam_machine_casing",
           "overlay_back": "evolutioncore:block/machines/hp_steam_separator/overlay_back",
           "overlay_front": "evolutioncore:block/machines/hp_steam_separator/overlay_front",
           "overlay_side": "evolutioncore:block/machines/hp_steam_separator/overlay_side",
@@ -22,7 +22,7 @@
       "model": {
         "parent": "gtceu:block/machine/template/cube_all/sided",
         "textures": {
-          "all": "evolutioncore:block/high_steam_machine_casing",
+          "all": "evolutioncore:block/casings/steam/hp_steam_machine_casing",
           "overlay_back": "evolutioncore:block/machines/hp_steam_separator/overlay_back",
           "overlay_front": "evolutioncore:block/machines/hp_steam_separator/overlay_front",
           "overlay_side": "evolutioncore:block/machines/hp_steam_separator/overlay_side",
@@ -34,7 +34,7 @@
       "model": {
         "parent": "gtceu:block/machine/template/cube_all/sided",
         "textures": {
-          "all": "evolutioncore:block/high_steam_machine_casing",
+          "all": "evolutioncore:block/casings/steam/hp_steam_machine_casing",
           "overlay_back": "evolutioncore:block/machines/hp_steam_separator/overlay_back_active",
           "overlay_front": "evolutioncore:block/machines/hp_steam_separator/overlay_front_active",
           "overlay_side": "evolutioncore:block/machines/hp_steam_separator/overlay_side_active",
@@ -46,7 +46,7 @@
       "model": {
         "parent": "gtceu:block/machine/template/cube_all/sided",
         "textures": {
-          "all": "evolutioncore:block/high_steam_machine_casing",
+          "all": "evolutioncore:block/casings/steam/hp_steam_machine_casing",
           "overlay_back": "evolutioncore:block/machines/hp_steam_separator/overlay_back_active",
           "overlay_front": "evolutioncore:block/machines/hp_steam_separator/overlay_front_active",
           "overlay_side": "evolutioncore:block/machines/hp_steam_separator/overlay_side_active",

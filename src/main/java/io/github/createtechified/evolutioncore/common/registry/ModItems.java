@@ -3,6 +3,7 @@ package io.github.createtechified.evolutioncore.common.registry;
 import com.simibubi.create.content.processing.sequenced.SequencedAssemblyItem;
 import com.tterrag.registrate.providers.RegistrateRecipeProvider;
 import com.tterrag.registrate.util.entry.ItemEntry;
+import io.github.createtechified.evolutioncore.EvolutionCoreMod;
 import io.github.createtechified.evolutioncore.Reference;
 import io.github.createtechified.evolutioncore.common.registry.tools.HealingAxe;
 import io.github.createtechified.evolutioncore.common.tools.HammerItem;
@@ -23,17 +24,17 @@ public class ModItems {
     }
 
     // Misc Items
-    public static ItemEntry<Item> PLANT_FIBER = constructBasicItem("plant_fiber");
-    public static ItemEntry<Item> FLINT_SHARD = constructBasicItem("flint_shard");
-    public static ItemEntry<Item> GPS_DEVICE = constructItem("gps_device", Item::new, b -> b.lang("GPS Device").properties(p -> p.stacksTo(1)));
+    public static ItemEntry<Item> PLANT_FIBER = constructBasicItem("plant_fiber", EvolutionCoreMod.id("item/early/plant_fiber"));
+    public static ItemEntry<Item> FLINT_SHARD = constructBasicItem("flint_shard", EvolutionCoreMod.id("item/early/flint_shard"));
+    public static ItemEntry<Item> GPS_DEVICE = constructItem("gps_device", EvolutionCoreMod.id("item/tools/gps_device"), Item::new, b -> b.lang("GPS Device").properties(p -> p.stacksTo(1)));
     // Vacuum Tube Parts (ULV/Steam)
-    public static ItemEntry<Item> CARBON_FILAMENT = constructBasicItem("carbon_filament");
-    public static ItemEntry<Item> GRAPHITE_ELECTRODE = constructBasicItem("graphite_electrode");
-    public static ItemEntry<Item> INCOMPLETE_VACUUM_TUBE_BASE = constructItem("incomplete_vacuum_tube_base", SequencedAssemblyItem::new);
-    public static ItemEntry<Item> VACUUM_TUBE_BASE = constructBasicItem("vacuum_tube_base");
-    public static ItemEntry<Item> INCOMPLETE_UNSEALED_VACUUM_TUBE = constructItem("incomplete_unsealed_vacuum_tube", SequencedAssemblyItem::new);
-    public static ItemEntry<Item> UNSEALED_VACUUM_TUBE = constructBasicItem("unsealed_vacuum_tube");
-    public static ItemEntry<Item> FAILED_VACUUM_TUBE_PARTS = constructBasicItem("failed_vacuum_tube_parts");
+    public static ItemEntry<Item> CARBON_FILAMENT = constructBasicItem("carbon_filament", EvolutionCoreMod.id("item/vactube/carbon_filament"));
+    public static ItemEntry<Item> GRAPHITE_ELECTRODE = constructBasicItem("graphite_electrode", EvolutionCoreMod.id("item/vactube/graphite_electrode"));
+    public static ItemEntry<Item> INCOMPLETE_VACUUM_TUBE_BASE = constructItem("incomplete_vacuum_tube_base", EvolutionCoreMod.id("item/vactube/incomplete_base"), SequencedAssemblyItem::new);
+    public static ItemEntry<Item> VACUUM_TUBE_BASE = constructBasicItem("vacuum_tube_base", EvolutionCoreMod.id("item/vactube/base"));
+    public static ItemEntry<Item> INCOMPLETE_UNSEALED_VACUUM_TUBE = constructItem("incomplete_unsealed_vacuum_tube", EvolutionCoreMod.id("item/vactube/incomplete_unsealed"), SequencedAssemblyItem::new);
+    public static ItemEntry<Item> UNSEALED_VACUUM_TUBE = constructBasicItem("unsealed_vacuum_tube", EvolutionCoreMod.id("item/vactube/unsealed"));
+    public static ItemEntry<Item> FAILED_VACUUM_TUBE_PARTS = constructBasicItem("failed_vacuum_tube_parts", EvolutionCoreMod.id("item/vactube/failed"));
     // MAX Components
     public static ItemEntry<Item> MAX_ELECTRIC_MOTOR = constructElectricMotor(14);
     public static ItemEntry<Item> MAX_ELECTRIC_PUMP = constructElectricPump(14);
@@ -45,7 +46,7 @@ public class ModItems {
     public static ItemEntry<Item> MAX_EMITTER = constructEmitter(14);
     public static ItemEntry<Item> MAX_SENSOR = constructSensor(14);
     // Tools
-    public static ItemEntry<AxeItem> FLINT_HATCHET = constructItem("flint_hatchet",
+    public static ItemEntry<AxeItem> FLINT_HATCHET = constructHandheldItem("flint_hatchet", EvolutionCoreMod.id("item/tools/flint_hatchet"),
             p -> new AxeItem(ModToolTiers.COPPER, 3, -3.2f, p),
             b -> b.recipe((ctx, prov) -> ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, ctx.get())
                             .pattern("PF")
@@ -54,12 +55,11 @@ public class ModItems {
                             .define('P', ModItems.PLANT_FIBER)
                             .define('F', ModItems.FLINT_SHARD)
                             .unlockedBy("has_flint", RegistrateRecipeProvider.has(Items.FLINT))
-                            .save(prov))
-                    .model((ctx, prov) -> prov.handheld(ctx)));
-    public static ItemEntry<HammerItem> FLINT_HAMMER = constructItem("flint_hammer",
-            p -> new HammerItem(3, -3.2f, ModToolTiers.COPPER, p), b -> b.model((ctx, prov) -> prov.handheld(ctx)));
-    public static ItemEntry<HealingAxe> HEALING_AXE = constructItem("healing_axe",
-            p -> new HealingAxe(ModToolTiers.UNSTABLE, 1, -3, p), b -> b.model((ctx, prov) -> prov.handheld(ctx)));
+                            .save(prov)));
+    public static ItemEntry<HammerItem> FLINT_HAMMER = constructHandheldItem("flint_hammer", EvolutionCoreMod.id("item/tools/flint_hammer"),
+            p -> new HammerItem(3, -3.2f, ModToolTiers.COPPER, p), b -> {});
+    public static ItemEntry<HealingAxe> HEALING_AXE = constructHandheldItem("healing_axe", EvolutionCoreMod.id("item/tools/healing_axe"),
+            p -> new HealingAxe(ModToolTiers.UNSTABLE, 1, -3, p), b -> {});
     // Universal circuits
     public static ItemEntry<Item> ULV_UNIVERSAL_1 = constructUniversalCircuit(0);
     public static ItemEntry<Item> LV_UNIVERSAL_1 = constructUniversalCircuit(1);

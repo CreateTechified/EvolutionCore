@@ -8,6 +8,8 @@ import com.gregtechceu.gtceu.api.machine.steam.SimpleSteamMachine;
 import com.gregtechceu.gtceu.api.multiblock.util.RelativeDirection;
 import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
 import com.gregtechceu.gtceu.common.data.machines.GTMachineUtils;
+import com.gregtechceu.gtceu.common.mui.GTGuiTheme;
+import com.gregtechceu.gtceu.common.mui.GTSingleblockMachinePanels;
 import io.github.createtechified.evolutioncore.Reference;
 import it.unimi.dsi.fastutil.Pair;
 import net.minecraft.network.chat.Component;
@@ -19,9 +21,11 @@ public class MachineUtils {
                         .rotationState(RotationState.ALL)
                         .recipeType(recipeType)
                         .recipeModifier(SimpleSteamMachine::recipeModifier)
+                        .themeId((i) -> i > 0 ? GTGuiTheme.STEEL.getId() : GTGuiTheme.BRONZE.getId())
+                        .ui(GTSingleblockMachinePanels.GENERAL_MACHINE)
                         .modelProperty(GTMachineModelProperties.VENT_DIRECTION, RelativeDirection.BACK)
-                        .tooltips(tooltips)
                         .workableSteamHullModel(pressure, GTCEu.id("block/machines/" + name))
+                        .tooltips(tooltips)
                         .register());
     }
 }

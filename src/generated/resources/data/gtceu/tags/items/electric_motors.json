@@ -1,6 +1,5 @@
 {
   "values": [
-    "evolutioncore:max_electric_motor",
-    "evolutioncore:max_electric_piston"
+    "evolutioncore:max_electric_motor"
   ]
 }

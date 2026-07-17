@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "evolutioncore:item/failed_vacuum_tube_parts"
+    "layer0": "evolutioncore:item/vactube/failed"
   }
 }
