@@ -339,7 +339,7 @@ public class GTMultiblocks {
                     .where('V', Predicates.ability(GTMultiblockParts.STEAM_VENT).setExactLimit(1))
                     .where('W', Predicates.blocks(ForgeRegistries.BLOCKS.getValue(ResourceLocation.fromNamespaceAndPath("create", "cut_ochrum_wall"))))
                     .build())
-            .workableCasingModel(GTCEu.id("block/casings/solid/machine_casing_bronze_plated_bricks"), GTCEu.id("block/machines/ore_washer"))
+            .workableCasingModel(GTCEu.id("block/casings/solid/machine_casing_bronze_plated_bricks"), EvolutionCoreMod.id("block/machines/steam_purifier"))
             .langValue("Low Pressure Steam Purifier")
             .tooltips(Component.translatable("evolutioncore.tooltip.steam_purifier.l").withStyle(ChatFormatting.GRAY))
             .register();
@@ -377,7 +377,7 @@ public class GTMultiblocks {
                     .where('V', Predicates.ability(GTMultiblockParts.STEAM_VENT).setExactLimit(1))
                     .where('W', Predicates.blocks(ForgeRegistries.BLOCKS.getValue(ResourceLocation.fromNamespaceAndPath("create", "cut_deepslate_wall"))))
                     .build())
-            .workableCasingModel(EvolutionCoreMod.id("block/high_steam_machine_casing"), GTCEu.id("block/machines/ore_washer"))
+            .workableCasingModel(EvolutionCoreMod.id("block/high_steam_machine_casing"), EvolutionCoreMod.id("block/machines/hp_steam_purifier"))
             .langValue("High Pressure Steam Purifier")
             .tooltips(Component.translatable("evolutioncore.tooltip.steam_purifier.h").withStyle(ChatFormatting.GRAY))
             .register();

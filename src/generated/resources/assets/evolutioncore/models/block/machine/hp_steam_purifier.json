@@ -11,10 +11,8 @@
         "parent": "gtceu:block/machine/template/cube_all/sided",
         "textures": {
           "all": "evolutioncore:block/high_steam_machine_casing",
-          "overlay_front": "gtceu:block/machines/ore_washer/overlay_front",
-          "overlay_front_emissive": "gtceu:block/machines/ore_washer/overlay_front_emissive",
-          "overlay_side": "gtceu:block/machines/ore_washer/overlay_side",
-          "overlay_side_emissive": "gtceu:block/machines/ore_washer/overlay_side_emissive"
+          "overlay_front": "evolutioncore:block/machines/hp_steam_purifier/overlay_front",
+          "overlay_front_emissive": "evolutioncore:block/machines/hp_steam_purifier/overlay_front_emissive"
         }
       }
     },
@@ -23,10 +21,8 @@
         "parent": "gtceu:block/machine/template/cube_all/sided",
         "textures": {
           "all": "evolutioncore:block/high_steam_machine_casing",
-          "overlay_front": "gtceu:block/machines/ore_washer/overlay_front",
-          "overlay_front_emissive": "gtceu:block/machines/ore_washer/overlay_front_emissive",
-          "overlay_side": "gtceu:block/machines/ore_washer/overlay_side",
-          "overlay_side_emissive": "gtceu:block/machines/ore_washer/overlay_side_emissive"
+          "overlay_front": "evolutioncore:block/machines/hp_steam_purifier/overlay_front",
+          "overlay_front_emissive": "evolutioncore:block/machines/hp_steam_purifier/overlay_front_emissive"
         }
       }
     },
@@ -35,10 +31,8 @@
         "parent": "gtceu:block/machine/template/cube_all/sided",
         "textures": {
           "all": "evolutioncore:block/high_steam_machine_casing",
-          "overlay_front": "gtceu:block/machines/ore_washer/overlay_front_active",
-          "overlay_front_emissive": "gtceu:block/machines/ore_washer/overlay_front_active_emissive",
-          "overlay_side": "gtceu:block/machines/ore_washer/overlay_side_active",
-          "overlay_side_emissive": "gtceu:block/machines/ore_washer/overlay_side_active_emissive"
+          "overlay_front": "evolutioncore:block/machines/hp_steam_purifier/overlay_front_active",
+          "overlay_front_emissive": "evolutioncore:block/machines/hp_steam_purifier/overlay_front_active_emissive"
         }
       }
     },
@@ -47,10 +41,8 @@
         "parent": "gtceu:block/machine/template/cube_all/sided",
         "textures": {
           "all": "evolutioncore:block/high_steam_machine_casing",
-          "overlay_front": "gtceu:block/machines/ore_washer/overlay_front_active",
-          "overlay_front_emissive": "gtceu:block/machines/ore_washer/overlay_front_active_emissive",
-          "overlay_side": "gtceu:block/machines/ore_washer/overlay_side_active",
-          "overlay_side_emissive": "gtceu:block/machines/ore_washer/overlay_side_active_emissive"
+          "overlay_front": "evolutioncore:block/machines/hp_steam_purifier/overlay_front_active",
+          "overlay_front_emissive": "evolutioncore:block/machines/hp_steam_purifier/overlay_front_active_emissive"
         }
       }
     },
@@ -59,10 +51,8 @@
         "parent": "gtceu:block/machine/template/cube_all/sided",
         "textures": {
           "all": "evolutioncore:block/high_steam_machine_casing",
-          "overlay_front": "gtceu:block/machines/ore_washer/overlay_front",
-          "overlay_front_emissive": "gtceu:block/machines/ore_washer/overlay_front_emissive",
-          "overlay_side": "gtceu:block/machines/ore_washer/overlay_side",
-          "overlay_side_emissive": "gtceu:block/machines/ore_washer/overlay_side_emissive"
+          "overlay_front": "evolutioncore:block/machines/hp_steam_purifier/overlay_front",
+          "overlay_front_emissive": "evolutioncore:block/machines/hp_steam_purifier/overlay_front_emissive"
         }
       }
     },
@@ -71,10 +61,8 @@
         "parent": "gtceu:block/machine/template/cube_all/sided",
         "textures": {
           "all": "evolutioncore:block/high_steam_machine_casing",
-          "overlay_front": "gtceu:block/machines/ore_washer/overlay_front",
-          "overlay_front_emissive": "gtceu:block/machines/ore_washer/overlay_front_emissive",
-          "overlay_side": "gtceu:block/machines/ore_washer/overlay_side",
-          "overlay_side_emissive": "gtceu:block/machines/ore_washer/overlay_side_emissive"
+          "overlay_front": "evolutioncore:block/machines/hp_steam_purifier/overlay_front",
+          "overlay_front_emissive": "evolutioncore:block/machines/hp_steam_purifier/overlay_front_emissive"
         }
       }
     },
@@ -83,10 +71,8 @@
         "parent": "gtceu:block/machine/template/cube_all/sided",
         "textures": {
           "all": "evolutioncore:block/high_steam_machine_casing",
-          "overlay_front": "gtceu:block/machines/ore_washer/overlay_front_active",
-          "overlay_front_emissive": "gtceu:block/machines/ore_washer/overlay_front_active_emissive",
-          "overlay_side": "gtceu:block/machines/ore_washer/overlay_side_active",
-          "overlay_side_emissive": "gtceu:block/machines/ore_washer/overlay_side_active_emissive"
+          "overlay_front": "evolutioncore:block/machines/hp_steam_purifier/overlay_front_active",
+          "overlay_front_emissive": "evolutioncore:block/machines/hp_steam_purifier/overlay_front_active_emissive"
         }
       }
     },
@@ -95,10 +81,8 @@
         "parent": "gtceu:block/machine/template/cube_all/sided",
         "textures": {
           "all": "evolutioncore:block/high_steam_machine_casing",
-          "overlay_front": "gtceu:block/machines/ore_washer/overlay_front_active",
-          "overlay_front_emissive": "gtceu:block/machines/ore_washer/overlay_front_active_emissive",
-          "overlay_side": "gtceu:block/machines/ore_washer/overlay_side_active",
-          "overlay_side_emissive": "gtceu:block/machines/ore_washer/overlay_side_active_emissive"
+          "overlay_front": "evolutioncore:block/machines/hp_steam_purifier/overlay_front_active",
+          "overlay_front_emissive": "evolutioncore:block/machines/hp_steam_purifier/overlay_front_active_emissive"
         }
       }
     }
