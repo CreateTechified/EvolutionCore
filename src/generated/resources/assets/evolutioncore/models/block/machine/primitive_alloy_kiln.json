@@ -1,5 +1,15 @@
 {
   "parent": "minecraft:block/block",
+  "dynamic_renders": [
+    {
+      "type": "gtceu:fluid_area",
+      "block_light": 15,
+      "fixed_fluid": "minecraft:lava",
+      "offset_face": -0.125,
+      "overwrite_light": true,
+      "sky_light": 15
+    }
+  ],
   "loader": "gtceu:machine",
   "machine": "evolutioncore:primitive_alloy_kiln",
   "texture_overrides": {

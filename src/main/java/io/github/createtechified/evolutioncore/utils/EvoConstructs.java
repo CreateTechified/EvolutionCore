@@ -136,7 +136,7 @@ public class EvoConstructs {
         return constructBlock(name, texture, Block::new, b -> b.lang(lang).initialProperties(() -> ref));
     }
     public static BlockEntry<Block> constructCasingBlock(String name, String type, String lang) {
-        return constructBlock(name, EvolutionCoreMod.id("block/casings" + type + name), Block::new,
+        return constructBlock(name, EvolutionCoreMod.id("block/casings/" + type + "/" + name), Block::new,
                 b -> b.lang(lang).initialProperties(() -> Blocks.IRON_BLOCK));
     }
 

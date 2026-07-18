@@ -1,5 +1,34 @@
 package io.github.createtechified.evolutioncore.common.machine.primitive;
 
+import com.gregtechceu.gtceu.api.GTValues;
+import com.gregtechceu.gtceu.api.blockentity.BlockEntityCreationInfo;
+import com.gregtechceu.gtceu.api.machine.TickableSubscription;
+import com.gregtechceu.gtceu.api.machine.feature.IMuiMachine;
+import com.gregtechceu.gtceu.api.machine.mui.MachineUIPanelBuilder;
+import com.gregtechceu.gtceu.api.machine.trait.recipe.RecipeLogic;
+import com.gregtechceu.gtceu.api.multiblock.util.RelativeDirection;
+import com.gregtechceu.gtceu.api.sync_system.annotations.RerenderOnChanged;
+import com.gregtechceu.gtceu.api.sync_system.annotations.SyncToClient;
+import com.gregtechceu.gtceu.common.machine.multiblock.primitive.PrimitiveWorkableMachine;
+import com.gregtechceu.gtceu.common.machine.trait.multiblock.MultiblockFluidRendererTrait;
+import com.gregtechceu.gtceu.common.mui.GTGuiTextures;
+import com.gregtechceu.gtceu.config.ConfigHolder;
+import com.gregtechceu.gtceu.utils.GTUtil;
+
+import io.github.createtechified.evolutioncore.common.registry.recipes.EvoRecipeTypes;
+import net.minecraft.MethodsReturnNonnullByDefault;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.network.chat.Component;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.AABB;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
+
 import brachy.modularui.api.ITheme;
 import brachy.modularui.api.drawable.Text;
 import brachy.modularui.api.widget.IGuiAction;
@@ -17,22 +46,111 @@ import brachy.modularui.widgets.layout.Flow;
 import brachy.modularui.widgets.slot.ItemSlot;
 import brachy.modularui.widgets.slot.ModularSlot;
 import brachy.modularui.widgets.slot.SlotGroup;
-import com.gregtechceu.gtceu.api.blockentity.BlockEntityCreationInfo;
-import com.gregtechceu.gtceu.common.data.GTRecipeTypes;
-import com.gregtechceu.gtceu.common.machine.multiblock.primitive.PrimitiveBlastFurnaceMachine;
-import com.gregtechceu.gtceu.common.mui.GTGuiTextures;
-import com.gregtechceu.gtceu.utils.GTUtil;
-import net.minecraft.MethodsReturnNonnullByDefault;
-import net.minecraft.network.chat.Component;
+import lombok.Getter;
 
-import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.annotation.Nullable;
+import javax.annotation.ParametersAreNonnullByDefault;
 
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
-public class PrimitiveAlloyKilnMachine extends PrimitiveBlastFurnaceMachine {
+public class PrimitiveAlloyKilnMachine extends PrimitiveWorkableMachine implements IMuiMachine {
+    private @Nullable TickableSubscription hurtSubscription;
+
+    @Getter
+    @SyncToClient
+    @RerenderOnChanged
+    private final MultiblockFluidRendererTrait fluidRendererTrait;
+
     public PrimitiveAlloyKilnMachine(BlockEntityCreationInfo info) {
         super(info);
+        fluidRendererTrait = attachTrait(new MultiblockFluidRendererTrait(this::saveOffsets));
+    }
+
+    @Override
+    public void onUnload() {
+        super.onUnload();
+        unsubscribe(hurtSubscription);
+        hurtSubscription = null;
+    }
+
+    @Override
+    public void recipeLogicStatusChanged(RecipeLogic.Status oldStatus, RecipeLogic.Status newStatus) {
+        super.recipeLogicStatusChanged(oldStatus, newStatus);
+        if (newStatus == RecipeLogic.Status.WORKING) {
+            this.hurtSubscription = subscribeServerTick(this.hurtSubscription, this::hurtEntitiesAndBreakSnow);
+        } else if (oldStatus == RecipeLogic.Status.WORKING && hurtSubscription != null) {
+            unsubscribe(hurtSubscription);
+            hurtSubscription = null;
+        }
+    }
+
+    public Set<BlockPos> saveOffsets() {
+        var machine = this;
+
+        var frontFace = machine.getFrontFacing();
+        var upwardFace = machine.getUpwardsFacing();
+        var flipped = machine.isFlipped();
+        Direction up = RelativeDirection.UP.getRelativeFacing(frontFace, upwardFace, flipped); // Keeping for reference.
+        Direction back = frontFace.getOpposite();
+        Direction clockWise = RelativeDirection.RIGHT.getRelativeFacing(frontFace, upwardFace, flipped);
+        Direction counterClockWise = RelativeDirection.LEFT.getRelativeFacing(frontFace, upwardFace, flipped);
+        BlockPos pos = this.getBlockPos();
+        BlockPos center = pos.relative(up, 3);
+
+        Set<BlockPos> offsets = new HashSet<>();
+
+        for (int i = 0; i < 3; i++) {
+            center = center.relative(back);
+            offsets.add(center.subtract(pos));
+            if (i % 2 == 1) {
+                offsets.add(center.relative(clockWise).subtract(pos));
+                offsets.add(center.relative(counterClockWise).subtract(pos));
+            }
+        }
+        return offsets;
+    }
+
+    @Override
+    @OnlyIn(Dist.CLIENT)
+    public void clientTick() {
+        super.clientTick();
+        if (isFormed) {
+            var pos = this.getBlockPos();
+            var facing = this.getFrontFacing().getOpposite();
+            float xPos = facing.getStepX() * 0.76F + pos.getX() - 0.5F;
+            float yPos = facing.getStepY() * 0.76F + pos.getY() + 4.25F;
+            float zPos = facing.getStepZ() * 0.76F + pos.getZ() + 0.5F;
+
+            var up = RelativeDirection.UP.getRelativeFacing(getFrontFacing(), getUpwardsFacing(), isFlipped());
+            var sign = up.getAxisDirection().getStep();
+            var shouldX = up.getAxis() == Direction.Axis.X;
+            var shouldY = up.getAxis() == Direction.Axis.Y;
+            var shouldZ = up.getAxis() == Direction.Axis.Z;
+            var speed = ((shouldY ? facing.getStepY() : shouldX ? facing.getStepX() : facing.getStepZ()) * 0.1F + 0.2F +
+                    0.1F * GTValues.RNG.nextFloat()) * sign;
+            if (getOffsetTimer() % 20 == 0) {
+                getLevel().addParticle(ParticleTypes.LAVA, xPos, yPos, zPos,
+                        shouldX ? speed * 2 : 0,
+                        shouldY ? speed * 2 : 0,
+                        shouldZ ? speed * 2 : 0);
+            }
+            if (isActive()) {
+                getLevel().addParticle(ParticleTypes.LARGE_SMOKE, xPos, yPos, zPos,
+                        shouldX ? speed : 0,
+                        shouldY ? speed : 0,
+                        shouldZ ? speed : 0);
+            }
+        }
+    }
+
+    @Override
+    public MachineUIPanelBuilder getPanelBuilder(PosGuiData data, PanelSyncManager syncManager, UISettings settings) {
+        return MachineUIPanelBuilder.panelBuilder(this).addTraitConfigurators(false)
+                .addDefaultConfigurators(false);
     }
 
     @Override
@@ -57,8 +175,8 @@ public class PrimitiveAlloyKilnMachine extends PrimitiveBlastFurnaceMachine {
 
         progressWidget.listenGuiAction((IGuiAction.MousePressed) (guiContext, i) -> {
             if (!guiContext.isMouseAbove(progressWidget)) return false;
-            if (!GTRecipeTypes.PRIMITIVE_BLAST_FURNACE_RECIPES.getCategory().isXEIVisible()) return false;
-            GTUtil.openRecipeViewerCategory(GTRecipeTypes.PRIMITIVE_BLAST_FURNACE_RECIPES.getCategory());
+            if (!EvoRecipeTypes.PRIMITIVE_ALLOY_SMELTER.getCategory().isXEIVisible()) return false;
+            GTUtil.openRecipeViewerCategory(EvoRecipeTypes.PRIMITIVE_ALLOY_SMELTER.getCategory());
             return true;
         });
 
@@ -111,5 +229,44 @@ public class PrimitiveAlloyKilnMachine extends PrimitiveBlastFurnaceMachine {
                                             GTGuiTextures.PRIMITIVE_DUST_OVERLAY);
                 })
                 .build();
+    }
+
+    @Override
+    public void animateTick(RandomSource random) {
+        if (this.isActive()) {
+            final BlockPos pos = getBlockPos();
+            float x = pos.getX() + 0.5F;
+            float z = pos.getZ() + 0.5F;
+
+            final var facing = getFrontFacing();
+            final float horizontalOffset = GTValues.RNG.nextFloat() * 0.6F - 0.3F;
+            final float y = pos.getY() + GTValues.RNG.nextFloat() * 0.375F + 0.3F;
+
+            if (facing.getAxis() == Direction.Axis.X) {
+                if (facing.getAxisDirection() == Direction.AxisDirection.POSITIVE) x += 0.52F;
+                else x -= 0.52F;
+                z += horizontalOffset;
+            } else if (facing.getAxis() == Direction.Axis.Z) {
+                if (facing.getAxisDirection() == Direction.AxisDirection.POSITIVE) z += 0.52F;
+                else z -= 0.52F;
+                x += horizontalOffset;
+            }
+            if (ConfigHolder.INSTANCE.machines.machineSounds && GTValues.RNG.nextDouble() < 0.1) {
+                getLevel().playLocalSound(x, y, z, SoundEvents.FURNACE_FIRE_CRACKLE,
+                        SoundSource.BLOCKS, 1.0F, 1.0F, false);
+            }
+            getLevel().addParticle(ParticleTypes.LARGE_SMOKE, x, y, z, 0, 0, 0);
+            getLevel().addParticle(ParticleTypes.FLAME, x, y, z, 0, 0, 0);
+        }
+    }
+
+    private void hurtEntitiesAndBreakSnow() {
+        BlockPos middlePos = getBlockPos().offset(getFrontFacing().getOpposite().getNormal());
+        getLevel().getEntities(null, new AABB(middlePos)).forEach(e -> e.hurt(e.damageSources().lava(), 3.0f));
+
+        if (getOffsetTimer() % 10 == 0) {
+            BlockState state = getLevel().getBlockState(middlePos);
+            GTUtil.tryBreakSnow(getLevel(), middlePos, state, true);
+        }
     }
 }

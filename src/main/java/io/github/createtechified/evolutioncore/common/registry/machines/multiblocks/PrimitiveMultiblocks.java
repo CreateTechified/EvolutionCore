@@ -5,7 +5,9 @@ import com.gregtechceu.gtceu.api.data.RotationState;
 import com.gregtechceu.gtceu.api.machine.MultiblockMachineDefinition;
 import com.gregtechceu.gtceu.api.multiblock.Predicates;
 import com.gregtechceu.gtceu.api.multiblock.pattern.MultiblockPatternBuilder;
+import com.gregtechceu.gtceu.client.renderer.machine.DynamicRenderHelper;
 import com.gregtechceu.gtceu.common.data.GTBlocks;
+import com.gregtechceu.gtceu.common.data.models.GTMachineModels;
 import com.gregtechceu.gtceu.common.mui.GTGuiTheme;
 import com.gregtechceu.gtceu.utils.GTUtil;
 import io.github.createtechified.evolutioncore.EvolutionCoreMod;
@@ -27,7 +29,7 @@ public class PrimitiveMultiblocks {
     }
 
     public static final MultiblockMachineDefinition PRIMITIVE_ALLOY_KILN = Reference.REGISTRATE
-            .multiblock("primitive_alloy_kiln", PrimitiveAlloyKilnMachine::new) // This probably shouldn't be the solution, but it works.
+            .multiblock("primitive_alloy_kiln", PrimitiveAlloyKilnMachine::new) // It's a thing and I'm pissed about it. Works though.
             .rotationState(RotationState.ALL)
             .recipeType(EvoRecipeTypes.PRIMITIVE_ALLOY_SMELTER)
             .appearanceBlock(GTBlocks.CASING_PRIMITIVE_BRICKS)
@@ -35,7 +37,7 @@ public class PrimitiveMultiblocks {
             .pattern(definition -> MultiblockPatternBuilder.start(FRONT, UP, RIGHT)
                     .slice(" BBB ", " BBB ", " BBB ", " BBB ", "  B  ", "     ", "     ")
                     .slice("BBBBB", "BB#BB", "BB#BB", "BB#BB", " B#B ", " BBB ", " BBB ")
-                    .slice("BBBBB", "B###B", "B###B", "B###B", "B#B#B", " B&B ", " B#B ")
+                    .slice("BBBBB", "B#&#B", "B###B", "B###B", "B###B", " B#B ", " B#B ")
                     .slice("BBBBB", "BB#BB", "BB#BB", "BB#BB", " B#B ", " BBB ", " BBB ")
                     .slice(" BBB ", " BCB ", " BBB ", " BBB ", "  B  ", "     ", "     ")
                     .where('C', Predicates.controller(Predicates.blocks(definition.getBlock())))
@@ -45,7 +47,9 @@ public class PrimitiveMultiblocks {
                     .where('&', Predicates.air()
                             .or(Predicates.custom(bws -> GTUtil.isBlockSnow(bws.retrieveCurrentBlockState()) ? null : Predicates.PLACEHOLDER, null)))
                     .build())
-            .workableCasingModel(GTCEu.id("block/casings/solid/machine_primitive_bricks"), EvolutionCoreMod.id("block/machines/primitive_alloy_kiln"))
+            .model(GTMachineModels.createWorkableCasingMachineModel(GTCEu.id("block/casings/solid/machine_primitive_bricks"),
+                            EvolutionCoreMod.id("block/machines/primitive_alloy_kiln"))
+                    .andThen(b -> b.addDynamicRenderer(DynamicRenderHelper::createPBFLavaRender)))
             .tooltips(Component.translatable("evolutioncore.tooltip.primitive_alloy_kiln").withStyle(ChatFormatting.GRAY))
             .themeId(GTGuiTheme.PRIMITIVE.getId())
             .register();
