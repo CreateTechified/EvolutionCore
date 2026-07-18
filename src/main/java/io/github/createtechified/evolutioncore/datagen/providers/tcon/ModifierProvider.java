@@ -1,6 +1,7 @@
 package io.github.createtechified.evolutioncore.datagen.providers.tcon;
 
 import io.github.createtechified.evolutioncore.common.integration.tcon.EvoModifiers;
+import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.data.PackOutput;
 import slimeknights.tconstruct.library.data.tinkering.AbstractModifierProvider;
 import slimeknights.tconstruct.library.modifiers.impl.BasicModifier;
@@ -8,6 +9,7 @@ import slimeknights.tconstruct.library.modifiers.modules.build.ModifierSlotModul
 import slimeknights.tconstruct.library.modifiers.util.ModifierLevelDisplay;
 import slimeknights.tconstruct.library.tools.SlotType;
 
+@MethodsReturnNonnullByDefault
 public class ModifierProvider extends AbstractModifierProvider {
     public ModifierProvider(PackOutput packOutput) {
         super(packOutput);

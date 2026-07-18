@@ -1,10 +1,12 @@
 package io.github.createtechified.evolutioncore.datagen.providers.tcon;
 
 import io.github.createtechified.evolutioncore.common.integration.tcon.EvoMaterials;
+import net.minecraft.MethodsReturnNonnullByDefault;
 import slimeknights.tconstruct.library.client.data.material.AbstractMaterialSpriteProvider;
 import slimeknights.tconstruct.library.client.data.spritetransformer.GreyToColorMapping;
 import slimeknights.tconstruct.library.client.data.spritetransformer.GreyToSpriteTransformer;
 
+@MethodsReturnNonnullByDefault
 public class MaterialSpriteProvider extends AbstractMaterialSpriteProvider {
     @Override
     public String getName() {

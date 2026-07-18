@@ -7,7 +7,7 @@ import net.minecraft.world.item.Item;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "unchecked"})
 public class Reference {
     public static final String MODID = "evolutioncore";
     public static final Logger LOGGER = LogManager.getLogger();

@@ -6,6 +6,6 @@ import java.util.function.Consumer;
 
 public class RecipeInitializer {
     public static void init(Consumer<FinishedRecipe> consumer) {
-        ULVSingleblockRecipes.init(consumer);
+        // Add them here!
     }
 }

@@ -15,8 +15,6 @@ public record RemoveAllOresBiomeModifier(HolderSet<Biome> biomes) implements Bio
         if (phase == Phase.REMOVE && biomes.contains(biome)) {
             builder.getGenerationSettings()
                     .getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).clear();
-            /*builder.getGenerationSettings()
-                    .getFeatures(GenerationStep.Decoration.UNDERGROUND_DECORATION).clear();*/
         }
     }
 

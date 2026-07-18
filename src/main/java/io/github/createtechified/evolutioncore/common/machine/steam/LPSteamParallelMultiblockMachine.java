@@ -152,7 +152,7 @@ public class LPSteamParallelMultiblockMachine extends WorkableMultiblockMachine 
                                 FormattingUtil.formatNumbers(steamCapacity.getIntValue())))))
                 .child(new SteamDialWidget(steamProgress)
                         .setMinAngle((float) Math.PI)
-                        .setMaxAngle((float) 0.0f)
+                        .setMaxAngle(0.0f)
                         .setColor(Color.BLACK.brighterSafe(4))
                         .asWidget().decoration()
 

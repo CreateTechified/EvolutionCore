@@ -114,19 +114,38 @@ public class EvoConstructs {
     public static BlockEntry<Block> constructBasicBlock(String name) {
         return constructBlock(name, EvolutionCoreMod.id("block/" + name), Block::new);
     }
+    public static BlockEntry<Block> constructBasicBlock(String name, String lang) {
+        return constructBlock(name, EvolutionCoreMod.id("block/" + name), Block::new, b -> b.lang(lang));
+    }
+    public static BlockEntry<Block> constructBasicBlock(String name, Block ref) {
+        return constructBlock(name, EvolutionCoreMod.id("block/" + name), Block::new, b -> b.initialProperties(() -> ref));
+    }
+    public static BlockEntry<Block> constructBasicBlock(String name, String lang, Block ref) {
+        return constructBlock(name, EvolutionCoreMod.id("block/" + name), Block::new, b -> b.lang(lang).initialProperties(() -> ref));
+    }
     public static BlockEntry<Block> constructBasicBlock(String name, ResourceLocation texture) {
         return constructBlock(name, texture, Block::new);
     }
     public static BlockEntry<Block> constructBasicBlock(String name, ResourceLocation texture, String lang) {
         return constructBlock(name, texture, Block::new, b -> b.lang(lang));
     }
+    public static BlockEntry<Block> constructBasicBlock(String name, ResourceLocation texture, Block ref) {
+        return constructBlock(name, texture, Block::new, b -> b.initialProperties(() -> ref));
+    }
+    public static BlockEntry<Block> constructBasicBlock(String name, ResourceLocation texture, String lang, Block ref) {
+        return constructBlock(name, texture, Block::new, b -> b.lang(lang).initialProperties(() -> ref));
+    }
+    public static BlockEntry<Block> constructCasingBlock(String name, String type, String lang) {
+        return constructBlock(name, EvolutionCoreMod.id("block/casings" + type + name), Block::new,
+                b -> b.lang(lang).initialProperties(() -> Blocks.IRON_BLOCK));
+    }
 
     // modified from astrocore by hazevista
     public record FireboxInfo(String name, ResourceLocation top, ResourceLocation bottom, ResourceLocation side) {}
 
     public static BlockEntry<ActiveBlock> constructFirebox(FireboxInfo info, String lang) {
-        return Reference.REGISTRATE.block(info.name + "_casing", ActiveBlock::new)
-                .initialProperties(() -> Blocks.STONE)
+        return Reference.REGISTRATE.block(info.name, ActiveBlock::new)
+                .initialProperties(() -> Blocks.IRON_BLOCK)
                 .addLayer(() -> RenderType::cutoutMipped)
                 .addLayer(() -> RenderType::translucent)
                 .blockstate((ctx, prov) -> {

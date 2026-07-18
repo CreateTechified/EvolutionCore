@@ -8,11 +8,14 @@ import com.gregtechceu.gtceu.api.machine.property.GTMachineModelProperties;
 import io.github.createtechified.evolutioncore.Reference;
 import io.github.createtechified.evolutioncore.common.machine.steam.SteamMufflerPartMachine;
 
-public class GTMultiblockParts {
+@SuppressWarnings("unused")
+public class EvoMultiParts {
     public static void init() {}
 
+    // PartAbilities
     public static final PartAbility STEAM_VENT = new PartAbility("steam_vent");
 
+    // Parts
     public static final MachineDefinition STEAM_VENTING_HATCH = Reference.REGISTRATE
             .machine("steam_venting_hatch", SteamMufflerPartMachine::new)
             .rotationState(RotationState.ALL)

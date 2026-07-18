@@ -1,9 +1,11 @@
 package io.github.createtechified.evolutioncore.datagen.providers.tcon;
 
 import io.github.createtechified.evolutioncore.common.integration.tcon.EvoMaterials;
+import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.data.PackOutput;
 import slimeknights.tconstruct.library.data.material.AbstractMaterialDataProvider;
 
+@MethodsReturnNonnullByDefault
 public class MaterialDefinitionProvider extends AbstractMaterialDataProvider {
     public MaterialDefinitionProvider(PackOutput packOutput) {
         super(packOutput);

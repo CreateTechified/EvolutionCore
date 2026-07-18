@@ -18,6 +18,7 @@ import slimeknights.tconstruct.tools.data.sprite.TinkerPartSpriteProvider;
 
 import java.util.concurrent.CompletableFuture;
 
+@SuppressWarnings("unused")
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
 public class EvoLegacyDatagen {
     @SubscribeEvent

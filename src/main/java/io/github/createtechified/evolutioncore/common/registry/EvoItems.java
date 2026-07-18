@@ -16,11 +16,11 @@ import net.minecraft.world.item.Items;
 import static io.github.createtechified.evolutioncore.utils.EvoConstructs.*;
 
 @SuppressWarnings("unused")
-public class ModItems {
+public class EvoItems {
     public static void init() {}
 
     static {
-        Reference.REGISTRATE.creativeModeTab(() -> CreativeTabs.EVOLUTIONCORE_MAIN);
+        Reference.REGISTRATE.creativeModeTab(() -> EvoTabs.EVOLUTIONCORE_MAIN);
     }
 
     // Misc Items
@@ -47,19 +47,19 @@ public class ModItems {
     public static ItemEntry<Item> MAX_SENSOR = constructSensor(14);
     // Tools
     public static ItemEntry<AxeItem> FLINT_HATCHET = constructHandheldItem("flint_hatchet", EvolutionCoreMod.id("item/tools/flint_hatchet"),
-            p -> new AxeItem(ModToolTiers.COPPER, 3, -3.2f, p),
+            p -> new AxeItem(EvoTiers.COPPER, 3, -3.2f, p),
             b -> b.recipe((ctx, prov) -> ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, ctx.get())
                             .pattern("PF")
                             .pattern("SP")
                             .define('S', Items.STICK)
-                            .define('P', ModItems.PLANT_FIBER)
-                            .define('F', ModItems.FLINT_SHARD)
+                            .define('P', EvoItems.PLANT_FIBER)
+                            .define('F', EvoItems.FLINT_SHARD)
                             .unlockedBy("has_flint", RegistrateRecipeProvider.has(Items.FLINT))
                             .save(prov)));
     public static ItemEntry<HammerItem> FLINT_HAMMER = constructHandheldItem("flint_hammer", EvolutionCoreMod.id("item/tools/flint_hammer"),
-            p -> new HammerItem(3, -3.2f, ModToolTiers.COPPER, p), b -> {});
+            p -> new HammerItem(3, -3.2f, EvoTiers.COPPER, p), b -> {});
     public static ItemEntry<HealingAxe> HEALING_AXE = constructHandheldItem("healing_axe", EvolutionCoreMod.id("item/tools/healing_axe"),
-            p -> new HealingAxe(ModToolTiers.UNSTABLE, 1, -3, p), b -> {});
+            p -> new HealingAxe(EvoTiers.UNSTABLE, 1, -3, p), b -> {});
     // Universal circuits
     public static ItemEntry<Item> ULV_UNIVERSAL_1 = constructUniversalCircuit(0);
     public static ItemEntry<Item> LV_UNIVERSAL_1 = constructUniversalCircuit(1);

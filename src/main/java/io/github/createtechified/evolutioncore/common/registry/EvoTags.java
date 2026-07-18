@@ -9,7 +9,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 
 @SuppressWarnings("removal")
-public class ModTags {
+public class EvoTags {
     public static class Blocks {
         public static final TagKey<Block> NEEDS_COPPER_TOOL = BlockTag("needs_copper_tool");
         public static final TagKey<Block> NEEDS_BRONZE_TOOL = BlockTag("needs_bronze_tool");

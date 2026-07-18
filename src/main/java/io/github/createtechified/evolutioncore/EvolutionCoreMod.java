@@ -7,11 +7,11 @@ import com.gregtechceu.gtceu.utils.FormattingUtil;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import io.github.createtechified.evolutioncore.common.overhaul.RemoveAllOresBiomeModifier;
-import io.github.createtechified.evolutioncore.common.registry.CreativeTabs;
-import io.github.createtechified.evolutioncore.common.registry.ModItems;
-import io.github.createtechified.evolutioncore.common.registry.machines.ModMachines;
-import io.github.createtechified.evolutioncore.common.registry.ModBlocks;
-import io.github.createtechified.evolutioncore.common.registry.recipes.ModRecipeTypes;
+import io.github.createtechified.evolutioncore.common.registry.EvoTabs;
+import io.github.createtechified.evolutioncore.common.registry.EvoItems;
+import io.github.createtechified.evolutioncore.common.registry.machines.EvoMachineLoader;
+import io.github.createtechified.evolutioncore.common.registry.EvoBlocks;
+import io.github.createtechified.evolutioncore.common.registry.recipes.EvoRecipeTypes;
 import io.github.createtechified.evolutioncore.datagen.EvoDatagen;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.biome.Biome;
@@ -24,7 +24,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
 @Mod(Reference.MODID)
-@SuppressWarnings("removal") // Fuck right off removal warning ITS FOR 1.20.6 YOU DINGUS
+@SuppressWarnings("removal") // I don't really care about future deprecation. Thanks, Gradle.
 public class EvolutionCoreMod {
     private static final ResourceLocation TEMPLATE_LOCATION = new ResourceLocation(Reference.MODID, "");
     public static final DeferredRegister<Codec<? extends BiomeModifier>> BIOME_MODIFIER_SERIALIZERS =
@@ -44,19 +44,19 @@ public class EvolutionCoreMod {
         eventBus.addGenericListener(GTRecipeType.class, this::registerRecipeTypes);
         eventBus.addGenericListener(MachineDefinition.class, this::registerMachines);
         BIOME_MODIFIER_SERIALIZERS.register(eventBus);
-        ModItems.init();
-        ModBlocks.init();
-        CreativeTabs.init();
+        EvoItems.init();
+        EvoBlocks.init();
+        EvoTabs.init();
         Reference.REGISTRATE.registerEventListeners(eventBus);
         EvoDatagen.init();
     }
 
     public void registerRecipeTypes(GTCEuAPI.RegisterEvent<ResourceLocation, GTRecipeType> event) {
-        ModRecipeTypes.init();
+        EvoRecipeTypes.init();
     }
 
     public void registerMachines(GTCEuAPI.RegisterEvent<ResourceLocation, MachineDefinition> event) {
-        ModMachines.init();
+        EvoMachineLoader.init();
     }
 
     public static ResourceLocation id(String path) {
