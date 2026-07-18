@@ -79,7 +79,6 @@ public class LPSteamParallelMultiblockMachine extends WorkableMultiblockMachine 
                     if (!(fluidHandler instanceof NotifiableFluidTank nft)) continue;
                     if (nft.isFluidValid(0, GTMaterials.Steam.getFluid(1))) {
                         steamEnergy = new SteamEnergyRecipeHandler(nft, getConversionRate());
-                        syncDataHolder.markClientSyncFieldDirty("steamEnergy");
                         addHandlerList(RecipeHandlerList.of(IO.IN, steamEnergy));
                         return;
                     }
