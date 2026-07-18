@@ -1,5 +1,4 @@
 # EvolutionCore
-===
 Overly complicated and mildly cluttered addon for GregTechCEu Modern.
 
 ### Features
