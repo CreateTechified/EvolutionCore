@@ -18,6 +18,7 @@ import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.WallBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraftforge.client.model.generators.ModelFile;
 
@@ -137,6 +138,19 @@ public class EvoConstructs {
     }
     public static BlockEntry<Block> constructCasingBlock(String name, String type, String lang) {
         return constructBlock(name, EvolutionCoreMod.id("block/casings/" + type + "/" + name), Block::new,
+                b -> b.lang(lang).initialProperties(() -> Blocks.IRON_BLOCK));
+    }
+
+    public static <T extends WallBlock> BlockEntry<T> constructWallBlock(String name, ResourceLocation texture, NonNullFunction<BlockBehaviour.Properties, T> factory, Consumer<BlockBuilder<T, ?>> customizer) {
+        return Reference.REGISTRATE.block(name, factory).transform(b -> { customizer.accept(b); return b; })
+                .blockstate((ctx, prov) -> prov.wallBlock(ctx.getEntry(), texture)).defaultLoot().item()
+                .model((ctx, prov) -> prov.wallInventory(ctx.getName(), texture)).build().register();
+    }
+    public static <T extends WallBlock> BlockEntry<T> constructWallBlock(String name, ResourceLocation texture, NonNullFunction<BlockBehaviour.Properties, T> factory) {
+        return constructWallBlock(name, texture, factory, b -> {});
+    }
+    public static BlockEntry<WallBlock> constructCasingWallBlock(String name, ResourceLocation texture, String lang) {
+        return constructWallBlock(name, texture, WallBlock::new,
                 b -> b.lang(lang).initialProperties(() -> Blocks.IRON_BLOCK));
     }
 
