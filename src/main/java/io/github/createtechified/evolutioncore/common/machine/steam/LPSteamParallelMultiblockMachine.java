@@ -20,6 +20,7 @@ import com.gregtechceu.gtceu.api.machine.feature.IMuiMachine;
 import com.gregtechceu.gtceu.api.machine.multiblock.PartAbility;
 import com.gregtechceu.gtceu.api.machine.multiblock.WorkableMultiblockMachine;
 import com.gregtechceu.gtceu.api.machine.steam.SteamEnergyRecipeHandler;
+import com.gregtechceu.gtceu.api.machine.trait.MachineTraitType;
 import com.gregtechceu.gtceu.api.machine.trait.notifiable.NotifiableFluidTank;
 import com.gregtechceu.gtceu.api.machine.trait.recipe.RecipeHandlerList;
 import com.gregtechceu.gtceu.api.multiblock.error.PatternStringError;
@@ -30,9 +31,11 @@ import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
 import com.gregtechceu.gtceu.api.recipe.modifier.ParallelLogic;
 import com.gregtechceu.gtceu.api.recipe.modifier.RecipeModifier;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
+import com.gregtechceu.gtceu.common.machine.trait.ExhaustVentMachineTrait;
 import com.gregtechceu.gtceu.common.mui.GTGuiTextures;
 import com.gregtechceu.gtceu.common.mui.GTMultiblockTextUtil;
 import com.gregtechceu.gtceu.common.mui.widgets.SteamDialWidget;
+import com.gregtechceu.gtceu.common.recipe.condition.VentCondition;
 import com.gregtechceu.gtceu.config.ConfigHolder;
 import lombok.Getter;
 import lombok.Setter;
@@ -108,7 +111,7 @@ public class LPSteamParallelMultiblockMachine extends WorkableMultiblockMachine 
         return ModifierFunction.builder()
                 .inputModifier(ContentModifier.multiplier(parallelAmount))
                 .outputModifier(ContentModifier.multiplier(parallelAmount))
-                .durationMultiplier(1.5)
+                .durationMultiplier(3)
                 .eutMultiplier(eutMultiplier)
                 .parallels(parallelAmount)
                 .build();
