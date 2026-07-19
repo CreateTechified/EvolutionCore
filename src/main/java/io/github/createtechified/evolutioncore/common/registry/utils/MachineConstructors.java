@@ -1,4 +1,4 @@
-package io.github.createtechified.evolutioncore.common.registry.machines.utils;
+package io.github.createtechified.evolutioncore.common.registry.utils;
 
 import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.data.RotationState;
@@ -14,7 +14,7 @@ import io.github.createtechified.evolutioncore.Reference;
 import it.unimi.dsi.fastutil.Pair;
 import net.minecraft.network.chat.Component;
 
-public class MachineUtils {
+public class MachineConstructors {
     public static Pair<MachineDefinition, MachineDefinition> registerSimpleSteamMachines(String name, GTRecipeType recipeType, Component... tooltips) {
         return GTMachineUtils.registerSteamMachines(Reference.REGISTRATE, "steam_" + name, SimpleSteamMachine::new,
                 (pressure, builder) -> builder

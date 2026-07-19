@@ -13,7 +13,8 @@ import net.minecraft.world.item.AxeItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 
-import static io.github.createtechified.evolutioncore.utils.EvoConstructs.*;
+import static io.github.createtechified.evolutioncore.common.registry.utils.ItemConstructors.*;
+import static io.github.createtechified.evolutioncore.common.registry.utils.GTItemConstructors.*;
 
 @SuppressWarnings("unused")
 public class EvoItems {
