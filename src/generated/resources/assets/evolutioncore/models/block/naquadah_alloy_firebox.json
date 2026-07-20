@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "bottom": "evolutioncore:block/casings/naquadah_alloy/casing",
+    "side": "evolutioncore:block/casings/naquadah_alloy/firebox",
+    "top": "evolutioncore:block/casings/naquadah_alloy/casing"
+  }
+}

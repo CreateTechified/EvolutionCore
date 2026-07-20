@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "bottom": "evolutioncore:block/casings/tungstensteel/bottom",
+    "side": "evolutioncore:block/casings/tungstensteel/side",
+    "top": "evolutioncore:block/casings/tungstensteel/top"
+  }
+}
