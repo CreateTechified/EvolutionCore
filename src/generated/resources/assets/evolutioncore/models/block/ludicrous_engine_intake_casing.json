@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "evolutioncore:block/ludicrous_engine_intake_casing"
+  }
+}

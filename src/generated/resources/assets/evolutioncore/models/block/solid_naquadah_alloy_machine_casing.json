@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "evolutioncore:block/solid_naquadah_alloy_machine_casing"
+  }
+}

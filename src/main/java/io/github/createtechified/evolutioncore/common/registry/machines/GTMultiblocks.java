@@ -3,21 +3,26 @@ package io.github.createtechified.evolutioncore.common.registry.machines;
 import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.capability.recipe.ItemRecipeCapability;
 import com.gregtechceu.gtceu.api.data.RotationState;
+import com.gregtechceu.gtceu.api.data.chemical.ChemicalHelper;
+import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
 import com.gregtechceu.gtceu.api.machine.MultiblockMachineDefinition;
+import com.gregtechceu.gtceu.api.machine.multiblock.CoilWorkableElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.machine.multiblock.PartAbility;
+import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.machine.multiblock.part.MultiblockPartMachine;
 import com.gregtechceu.gtceu.api.pattern.FactoryBlockPattern;
 import com.gregtechceu.gtceu.api.pattern.Predicates;
-import com.gregtechceu.gtceu.common.data.GTBlocks;
-import com.gregtechceu.gtceu.common.data.GTMaterials;
-import com.gregtechceu.gtceu.common.data.GTRecipeTypes;
+import com.gregtechceu.gtceu.api.recipe.OverclockingLogic;
+import com.gregtechceu.gtceu.common.data.*;
 import com.gregtechceu.gtceu.common.machine.multiblock.steam.SteamParallelMultiblockMachine;
 import com.gregtechceu.gtceu.utils.GTUtil;
 import com.simibubi.create.AllBlocks;
 import com.simibubi.create.content.decoration.palettes.AllPaletteBlocks;
+import dev.architectury.platform.Mod;
 import io.github.createtechified.evolutioncore.EvolutionCoreMod;
 import io.github.createtechified.evolutioncore.Reference;
 import io.github.createtechified.evolutioncore.common.machine.primitive.PrimitiveAlloyKilnMachine;
+import io.github.createtechified.evolutioncore.common.machine.primitive.PrimitiveOreFactoryMachine;
 import io.github.createtechified.evolutioncore.common.machine.steam.HPSteamParallelMultiblockMachine;
 import io.github.createtechified.evolutioncore.common.registry.CreativeTabs;
 import io.github.createtechified.evolutioncore.common.registry.ModBlocks;
@@ -25,9 +30,15 @@ import io.github.createtechified.evolutioncore.common.registry.recipes.ModRecipe
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.level.material.WaterFluid;
 import net.minecraftforge.registries.ForgeRegistries;
+
+import static com.gregtechceu.gtceu.api.GTValues.IV;
+import static com.gregtechceu.gtceu.api.GTValues.ZPM;
+import static com.gregtechceu.gtceu.common.data.GTBlocks.*;
+import static com.gregtechceu.gtceu.common.data.machines.GTMachineUtils.registerLargeCombustionEngine;
 
 
 public class GTMultiblocks {
@@ -37,6 +48,7 @@ public class GTMultiblocks {
         Reference.REGISTRATE.creativeModeTab(() -> CreativeTabs.EVOLUTIONCORE_MAIN);
     }
 
+    // Primitive Multiblocks
     public static final MultiblockMachineDefinition PRIMITIVE_ALLOY_KILN = Reference.REGISTRATE
             .multiblock("primitive_alloy_kiln", PrimitiveAlloyKilnMachine::new) // This probably shouldn't be the solution, but it works.
             .rotationState(RotationState.ALL)
@@ -60,6 +72,35 @@ public class GTMultiblocks {
             .tooltips(Component.translatable("evolutioncore.tooltip.primitive_alloy_kiln").withStyle(ChatFormatting.GRAY))
             .register();
 
+    public static final MultiblockMachineDefinition PRIMITIVE_ORE_FACTORY = Reference.REGISTRATE
+            .multiblock("primitive_ore_factory", PrimitiveOreFactoryMachine::new)
+            .rotationState(RotationState.NON_Y_AXIS)
+            .recipeType(ModRecipeTypes.PRIMITIVE_ORE_FACTORY)
+            .appearanceBlock(GTBlocks.CASING_PRIMITIVE_BRICKS)
+            .hasBER(true)
+            .pattern(definition -> FactoryBlockPattern.start()
+                    .aisle("  BBB  ", "  BBB  ", "  BGB  ", "  BGB  ", "  BGB  ", "  BBB  ", "       ", "       ", "       ", "       ")
+                    .aisle(" BBBBB ", " BBBBB ", " G   G ", " G   G ", " B   B ", " B   B ", " BBGBB ", "  BBB  ", "       ", "       ")
+                    .aisle("BBBBBBB", "BB   BB", "B     B", "B     B", "B     B", "B     B", " B   B ", " B   B ", "  BBB  ", "  BBB  ")
+                    .aisle("BBBBBBB", "BB B BB", "G  B  G", "G  B  G", "G  B  G", "B  B  B", " G B G ", " B B B ", "  B B  ", "  B B  ")
+                    .aisle("BBBBBBB", "BB   BB", "B     B", "B     B", "B     B", "B     B", " B   B ", " B   B ", "  BBB  ", "  BBB  ")
+                    .aisle(" BBBBB ", " BBBBB ", " G   G ", " G   G ", " B   B ", " B   B ", " BBGBB ", "  BBB  ", "       ", "       ")
+                    .aisle("  BBB  ", "  BCB  ", "  BGB  ", "  BGB  ", "  BGB  ", "  BBB  ", "       ", "       ", "       ", "       ")
+
+                    .where('C', Predicates.controller(Predicates.blocks(definition.getBlock())))
+                    .where('B', Predicates.blocks(GTBlocks.CASING_PRIMITIVE_BRICKS.get()))
+                    .where('G', Predicates.blocks(Blocks.GLASS))
+                    .where('#', Predicates.air())
+                    .where(' ', Predicates.any())
+                    .where('&', Predicates.air()
+                            .or(Predicates.custom(bws -> GTUtil.isBlockSnow(bws.getBlockState()), null)))
+                    .build())
+            .workableCasingModel(GTCEu.id("block/casings/solid/machine_primitive_bricks"), GTCEu.id("block/multiblock/primitive_blast_furnace"))
+            .langValue("Primitive Ore Factory")
+            .tooltips(Component.translatable("evolutioncore.tooltip.primitive_ore_factory").withStyle(ChatFormatting.GRAY))
+            .register();
+
+    // Steam Multiblocks
     public static final MultiblockMachineDefinition LP_STEAM_ALLOY_KILN = Reference.REGISTRATE
             .multiblock("lp_steam_alloy_kiln", SteamParallelMultiblockMachine::new)
             .rotationState(RotationState.ALL)
@@ -409,5 +450,339 @@ public class GTMultiblocks {
             .workableCasingModel(EvolutionCoreMod.id("block/high_steam_machine_casing"), EvolutionCoreMod.id("block/machines/steam_boosted_blast_furnace"))
             .langValue("Steam Boosted Blast Furnace")
             .tooltips(Component.translatable("evolutioncore.tooltip.steam_blast_furnace.h").withStyle(ChatFormatting.GRAY))
+            .register();
+
+    public static final MultiblockMachineDefinition LP_STEAM_ORE_FACTORY = Reference.REGISTRATE
+            .multiblock("lp_steam_ore_factory", SteamParallelMultiblockMachine::new)
+            .rotationState(RotationState.NON_Y_AXIS)
+            .appearanceBlock(GTBlocks.CASING_BRONZE_BRICKS)
+            .recipeType(ModRecipeTypes.STEAM_ORE_FACTORY)
+            .recipeModifier(SteamParallelMultiblockMachine::recipeModifier, true)
+            .pattern(definition -> FactoryBlockPattern.start()
+                    .aisle("  FFF  ", "  CCC  ", "  CVC  ", "  CVC  ", "  CVC  ", "  CCC  ", "       ", "       ", "       ", "       ")
+                    .aisle(" FCCCF ", " CGGGC ", " V###V ", " V###V ", " C###C ", " C###C ", " CCVCC ", "  CCC  ", "       ", "       ")
+                    .aisle("FCCCCCF", "CG###GC", "C#####C", "C#####C", "C#####C", "C#####C", " C###C ", " C###C ", "  CCC  ", "  BBB  ")
+                    .aisle("FCCCCCF", "CG#P#GC", "V##P##V", "V##P##V", "V##P##V", "C##P##C", " V#P#V ", " C#P#C ", "  CMC  ", "  B B  ")
+                    .aisle("FCCCCCF", "CG###GC", "C#####C", "C#####C", "C#####C", "C#####C", " C###C ", " C###C ", "  CCC  ", "  BBB  ")
+                    .aisle(" FCCCF ", " CGGGC ", " V###V ", " V###V ", " C###C ", " C###C ", " CCVCC ", "  CCC  ", "       ", "       ")
+                    .aisle("  FFF  ", "  C@C  ", "  CVC  ", "  CVC  ", "  CVC  ", "  CCC  ", "       ", "       ", "       ", "       ")
+
+                    .where('@', Predicates.controller(Predicates.blocks(definition.get())))
+                    .where('#', Predicates.air())
+                    .where('C', Predicates.blocks(GTBlocks.CASING_BRONZE_BRICKS.get())
+                            .or(Predicates.abilities(PartAbility.STEAM_IMPORT_ITEMS).setPreviewCount(1).setMaxGlobalLimited(2))
+                            .or(Predicates.abilities(PartAbility.STEAM).setExactLimit(1))
+                            .or(Predicates.abilities(PartAbility.STEAM_EXPORT_ITEMS).setPreviewCount(1).setMaxGlobalLimited(2)))
+                    .where('M', Predicates.ability(GTMultiblockParts.STEAM_VENT).setExactLimit(1))
+                    .where('P', Predicates.blocks(GTBlocks.CASING_BRONZE_PIPE.get()))
+                    .where('G', Predicates.blocks(GTBlocks.CASING_BRONZE_GEARBOX.get()))
+                    .where('F', Predicates.blocks(GTBlocks.FIREBOX_BRONZE.get()))
+                    .where('V', Predicates.blocks(AllPaletteBlocks.FRAMED_GLASS.get()))
+                    .where('B', Predicates.blocks(GTBlocks.BRONZE_HULL.get()))
+                    .where(' ', Predicates.any())
+                    .build())
+            .workableCasingModel(GTCEu.id("block/casings/solid/machine_casing_bronze_plated_bricks"), EvolutionCoreMod.id("block/machines/ore_processing_factory"))
+            .langValue("Low Pressure Steam Ore Factory")
+            .tooltips(Component.translatable("evolutioncore.tooltip.steam_ore_factory.l").withStyle(ChatFormatting.GRAY))
+            .register();
+
+    public static final MultiblockMachineDefinition HP_STEAM_ORE_FACTORY = Reference.REGISTRATE
+            .multiblock("hp_steam_ore_factory", HPSteamParallelMultiblockMachine::new)
+            .rotationState(RotationState.NON_Y_AXIS)
+            .appearanceBlock(ModBlocks.HIGH_STEAM_MACHINE_CASING)
+            .recipeType(ModRecipeTypes.STEAM_ORE_FACTORY)
+            .recipeModifier(HPSteamParallelMultiblockMachine::recipeModifier, true)
+            .pattern(definition -> FactoryBlockPattern.start()
+                    .aisle("  FFF  ", "  CCC  ", "  CVC  ", "  CVC  ", "  CVC  ", "  CCC  ", "       ", "       ", "       ", "       ")
+                    .aisle(" FCCCF ", " CGGGC ", " V###V ", " V###V ", " C###C ", " C###C ", " CCVCC ", "  CCC  ", "       ", "       ")
+                    .aisle("FCCCCCF", "CG###GC", "C#####C", "C#####C", "C#####C", "C#####C", " C###C ", " C###C ", "  CCC  ", "  BBB  ")
+                    .aisle("FCCCCCF", "CG#P#GC", "V##P##V", "V##P##V", "V##P##V", "C##P##C", " V#P#V ", " C#P#C ", "  CMC  ", "  B B  ")
+                    .aisle("FCCCCCF", "CG###GC", "C#####C", "C#####C", "C#####C", "C#####C", " C###C ", " C###C ", "  CCC  ", "  BBB  ")
+                    .aisle(" FCCCF ", " CGGGC ", " V###V ", " V###V ", " C###C ", " C###C ", " CCVCC ", "  CCC  ", "       ", "       ")
+                    .aisle("  FFF  ", "  C@C  ", "  CVC  ", "  CVC  ", "  CVC  ", "  CCC  ", "       ", "       ", "       ", "       ")
+
+                    .where('@', Predicates.controller(Predicates.blocks(definition.get())))
+                    .where('#', Predicates.air())
+                    .where('C', Predicates.blocks(ModBlocks.HIGH_STEAM_MACHINE_CASING.get())
+                            .or(Predicates.abilities(PartAbility.STEAM_IMPORT_ITEMS).setPreviewCount(1).setMaxGlobalLimited(2))
+                            .or(Predicates.abilities(PartAbility.STEAM).setExactLimit(1))
+                            .or(Predicates.abilities(PartAbility.STEAM_EXPORT_ITEMS).setPreviewCount(1).setMaxGlobalLimited(2)))
+                    .where('M', Predicates.ability(GTMultiblockParts.STEAM_VENT).setExactLimit(1))
+                    .where('P', Predicates.blocks(GTBlocks.CASING_STEEL_PIPE.get()))
+                    .where('G', Predicates.blocks(GTBlocks.CASING_STEEL_GEARBOX.get()))
+                    .where('F', Predicates.blocks(ModBlocks.HIGH_STEAM_FIREBOX_CASING.get()))
+                    .where('V', Predicates.blocks(AllPaletteBlocks.FRAMED_GLASS.get()))
+                    .where('B', Predicates.blocks(GTBlocks.STEEL_HULL.get()))
+                    .where(' ', Predicates.any())
+                    .build())
+            .workableCasingModel(EvolutionCoreMod.id("block/high_steam_machine_casing"), EvolutionCoreMod.id("block/machines/ore_processing_factory"))
+            .langValue("High Pressure Steam Ore Factory")
+            .tooltips(Component.translatable("evolutioncore.tooltip.steam_ore_factory.h").withStyle(ChatFormatting.GRAY))
+            .register();
+
+   // General Electric Multiblocks
+    public static final MultiblockMachineDefinition STEEL_GREENHOUSE = Reference.REGISTRATE
+            .multiblock("steel_greenhouse", WorkableElectricMultiblockMachine::new)
+            .rotationState(RotationState.NON_Y_AXIS)
+            .appearanceBlock(GTBlocks.CASING_STEEL_SOLID)
+            .recipeType(ModRecipeTypes.STEEL_GREENHOUSE)
+            .pattern(definition -> FactoryBlockPattern.start()
+                    .aisle(" MMMMM ", " MHHHM ", "  MMM  ", "  GGG  ", "  GGG  ", "  GGG  ", "  GGG  ", "       ", "       ")
+                    .aisle("MMHHHMM", "MMMMMMM", " M   M ", " M   M ", " M   M ", " G   G ", " G   G ", "  GGG  ", "       ")
+                    .aisle("MHDDDHM", "HM   MH", "M     M", "G     G", "G     G", "G  L  G", "G     G", " G   G ", "  GGG  ")
+                    .aisle("MHDDDHM", "HM W MH", "M  W  M", "G  W  G", "G  W  G", "G LWL G", "G  L  G", " G   G ", "  GGG  ")
+                    .aisle("MHDDDHM", "HM   MH", "M     M", "G     G", "G     G", "G  L  G", "G     G", " G   G ", "  GGG  ")
+                    .aisle("MMHHHMM", "MMMMMMM", " M   M ", " M   M ", " M   M ", " G   G ", " G   G ", "  GGG  ", "       ")
+                    .aisle(" MMMMM ", " MHCHM ", "  MMM  ", "  GGG  ", "  GGG  ", "  GGG  ", "  GGG  ", "       ", "       ")
+                    .where('C', Predicates.controller(Predicates.blocks(definition.get())))
+                    .where('M', Predicates.blocks(GTBlocks.CASING_STEEL_SOLID.get()))
+                    .where('G', Predicates.blocks(AllPaletteBlocks.FRAMED_GLASS.get()))
+                    .where('L', Predicates.blocks(Blocks.OAK_LEAVES))
+                    .where('W', Predicates.blocks(Blocks.OAK_LOG))
+                    .where('D', Predicates.blocks(ModBlocks.ORGANIC_PLANT_MATTER.get()))
+                    .where('H', Predicates.blocks(GTBlocks.CASING_STEEL_SOLID.get())
+                            .or(Predicates.autoAbilities(definition.getRecipeTypes()))
+                    )
+                    .where(' ', Predicates.any())
+                    .build())
+            .workableCasingModel(GTCEu.id("block/casings/solid/machine_casing_solid_steel"), GTCEu.id("block/multiblock/implosion_compressor"))
+            .langValue("Steel Greenhouse")
+            .tooltips(Component.translatable("evolutioncore.tooltip.steam_greenhouse").withStyle(ChatFormatting.GRAY))
+            .register();
+
+    public static final MultiblockMachineDefinition ELECTRIC_ORE_FACTIRY = Reference.REGISTRATE
+            .multiblock("electric_ore_factory", WorkableElectricMultiblockMachine::new)
+            .rotationState(RotationState.NON_Y_AXIS)
+            .appearanceBlock(GTBlocks.CASING_STEEL_SOLID)
+            .recipeType(ModRecipeTypes.ELECTRIC_ORE_FACTORY)
+            .pattern(definition -> FactoryBlockPattern.start()
+                    .aisle("  FFF  ", "  CCC  ", "  CVC  ", "  CVC  ", "  CVC  ", "  CCC  ", "       ", "       ", "       ", "       ")
+                    .aisle(" FCCCF ", " CGGGC ", " V###V ", " V###V ", " C###C ", " C###C ", " CCVCC ", "  CCC  ", "       ", "       ")
+                    .aisle("FCCCCCF", "CG###GC", "C#####C", "C#####C", "C#####C", "C#####C", " C###C ", " C###C ", "  CCC  ", "  BBB  ")
+                    .aisle("FCCCCCF", "CG#P#GC", "V##P##V", "V##P##V", "V##P##V", "C##P##C", " V#P#V ", " C#P#C ", "  CMC  ", "  B B  ")
+                    .aisle("FCCCCCF", "CG###GC", "C#####C", "C#####C", "C#####C", "C#####C", " C###C ", " C###C ", "  CCC  ", "  BBB  ")
+                    .aisle(" FCCCF ", " CGGGC ", " V###V ", " V###V ", " C###C ", " C###C ", " CCVCC ", "  CCC  ", "       ", "       ")
+                    .aisle("  FFF  ", "  C@C  ", "  CVC  ", "  CVC  ", "  CVC  ", "  CCC  ", "       ", "       ", "       ", "       ")
+
+                    .where('@', Predicates.controller(Predicates.blocks(definition.get())))
+                    .where('#', Predicates.air())
+                    .where('C', Predicates.blocks(GTBlocks.CASING_STEEL_SOLID.get())
+                            .or(Predicates.autoAbilities(definition.getRecipeTypes()))
+                            .or(Predicates.abilities(PartAbility.MAINTENANCE).setExactLimit(1)))
+                    .where('M', Predicates.abilities(PartAbility.MUFFLER))
+                    .where('P', Predicates.blocks(GTBlocks.CASING_STEEL_PIPE.get()))
+                    .where('G', Predicates.blocks(GTBlocks.CASING_STEEL_GEARBOX.get()))
+                    .where('F', Predicates.blocks(GTBlocks.FIREBOX_STEEL.get()))
+                    .where('V', Predicates.blocks(GTBlocks.CASING_TEMPERED_GLASS.get()))
+                    .where('B', Predicates.blocks(GTBlocks.STEEL_HULL.get()))
+                    .where(' ', Predicates.any())
+                    .build())
+            .workableCasingModel(GTCEu.id("block/casings/solid/machine_casing_solid_steel"), EvolutionCoreMod.id("block/machines/ore_processing_factory"))
+            .langValue("Electric Ore Factory")
+            .tooltips(Component.translatable("evolutioncore.tooltip.electric_ore_factory").withStyle(ChatFormatting.GRAY))
+            .register();
+
+    public static final MultiblockMachineDefinition ORE_PROCESSING_FACTORY = Reference.REGISTRATE
+            .multiblock("ore_processing_factory", WorkableElectricMultiblockMachine::new)
+            .rotationState(RotationState.NON_Y_AXIS)
+            .appearanceBlock(GTBlocks.CASING_STAINLESS_CLEAN)
+            .recipeType(ModRecipeTypes.ELECTRIC_ORE_FACTORY)
+            .recipeModifiers(GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.PERFECT_OVERCLOCK))
+            .pattern(definition -> FactoryBlockPattern.start()
+                    .aisle("  FFF  ", "  CCC  ", "  CVC  ", "  CVC  ", "  CVC  ", "  CCC  ", "       ", "       ", "       ", "       ")
+                    .aisle(" FCCCF ", " CGGGC ", " V###V ", " V###V ", " C###C ", " C###C ", " CCVCC ", "  CCC  ", "       ", "       ")
+                    .aisle("FCCCCCF", "CG###GC", "C#####C", "C#####C", "C#####C", "C#####C", " C###C ", " C###C ", "  CCC  ", "  BBB  ")
+                    .aisle("FCCCCCF", "CG#P#GC", "V##P##V", "V##P##V", "V##P##V", "C##P##C", " V#P#V ", " C#P#C ", "  CMC  ", "  B B  ")
+                    .aisle("FCCCCCF", "CG###GC", "C#####C", "C#####C", "C#####C", "C#####C", " C###C ", " C###C ", "  CCC  ", "  BBB  ")
+                    .aisle(" FCCCF ", " CGGGC ", " V###V ", " V###V ", " C###C ", " C###C ", " CCVCC ", "  CCC  ", "       ", "       ")
+                    .aisle("  FFF  ", "  C@C  ", "  CVC  ", "  CVC  ", "  CVC  ", "  CCC  ", "       ", "       ", "       ", "       ")
+
+                    .where('@', Predicates.controller(Predicates.blocks(definition.get())))
+                    .where('#', Predicates.air())
+                    .where('C', Predicates.blocks(GTBlocks.CASING_STAINLESS_CLEAN.get())
+                            .or(Predicates.autoAbilities(definition.getRecipeTypes()))
+                            .or(Predicates.abilities(PartAbility.MAINTENANCE).setExactLimit(1)))
+                    .where('M', Predicates.abilities(PartAbility.MUFFLER))
+                    .where('P', Predicates.blocks(ModBlocks.STAINLESS_STEEL_PIPE_CASING.get()))
+                    .where('G', Predicates.blocks(GTBlocks.CASING_STAINLESS_STEEL_GEARBOX.get()))
+                    .where('F', Predicates.blocks(ModBlocks.STAINLESS_STEEL_FIREBOX_CASING.get()))
+                    .where('V', Predicates.blocks(GTBlocks.CASING_LAMINATED_GLASS.get()))
+                    .where('B', Predicates.blocks(ModBlocks.STAINLESS_STEEL_HULL.get()))
+                    .where(' ', Predicates.any())
+                    .build())
+            .workableCasingModel(GTCEu.id("block/casings/solid/machine_casing_clean_stainless_steel"), EvolutionCoreMod.id("block/machines/ore_processing_factory"))
+            .langValue("Ore Processing Factory")
+            .tooltips(Component.translatable("evolutioncore.tooltip.ore_processing_factory").withStyle(ChatFormatting.GRAY))
+            .register();
+
+    public static final MultiblockMachineDefinition ORE_PROCESSING_PLANT = Reference.REGISTRATE
+            .multiblock("ore_processing_plant", WorkableElectricMultiblockMachine::new)
+            .rotationState(RotationState.NON_Y_AXIS)
+            .appearanceBlock(GTBlocks.CASING_TUNGSTENSTEEL_ROBUST)
+            .recipeType(ModRecipeTypes.ORE_PROCESSING_PLANT)
+            .recipeModifiers(GTRecipeModifiers.PARALLEL_HATCH, GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.PERFECT_OVERCLOCK))
+            .pattern(definition -> FactoryBlockPattern.start()
+                    .aisle("  FFF  ", "  CCC  ", "  CVC  ", "  CVC  ", "  CVC  ", "  CCC  ", "       ", "       ", "       ", "       ")
+                    .aisle(" FCCCF ", " CGGGC ", " V###V ", " V###V ", " C###C ", " C###C ", " CCVCC ", "  CCC  ", "       ", "       ")
+                    .aisle("FCCCCCF", "CG###GC", "C#####C", "C#####C", "C#####C", "C#####C", " C###C ", " C###C ", "  CCC  ", "  BBB  ")
+                    .aisle("FCCCCCF", "CG#P#GC", "V##P##V", "V##P##V", "V##P##V", "C##P##C", " V#P#V ", " C#P#C ", "  CMC  ", "  B B  ")
+                    .aisle("FCCCCCF", "CG###GC", "C#####C", "C#####C", "C#####C", "C#####C", " C###C ", " C###C ", "  CCC  ", "  BBB  ")
+                    .aisle(" FCCCF ", " CGGGC ", " V###V ", " V###V ", " C###C ", " C###C ", " CCVCC ", "  CCC  ", "       ", "       ")
+                    .aisle("  FFF  ", "  C@C  ", "  CVC  ", "  CVC  ", "  CVC  ", "  CCC  ", "       ", "       ", "       ", "       ")
+
+                    .where('@', Predicates.controller(Predicates.blocks(definition.get())))
+                    .where('#', Predicates.air())
+                    .where('C', Predicates.blocks(GTBlocks.CASING_TUNGSTENSTEEL_ROBUST.get())
+                            .or(Predicates.autoAbilities(definition.getRecipeTypes()))
+                            .or(Predicates.abilities(PartAbility.MAINTENANCE).setExactLimit(1))
+                            .or(Predicates.abilities(PartAbility.PARALLEL_HATCH).setMaxGlobalLimited(1)))
+                    .where('M', Predicates.abilities(PartAbility.MUFFLER))
+                    .where('P', Predicates.blocks(GTBlocks.CASING_TUNGSTENSTEEL_PIPE.get()))
+                    .where('G', Predicates.blocks(GTBlocks.CASING_TUNGSTENSTEEL_GEARBOX.get()))
+                    .where('F', Predicates.blocks(GTBlocks.FIREBOX_TUNGSTENSTEEL.get()))
+                    .where('V', Predicates.blocks(GTBlocks.CASING_LAMINATED_GLASS.get()))
+                    .where('B', Predicates.blocks(ModBlocks.TUNGSTENSTEEL_HULL.get()))
+                    .where(' ', Predicates.any())
+                    .build())
+            .workableCasingModel(GTCEu.id("block/casings/solid/machine_casing_robust_tungstensteel"), EvolutionCoreMod.id("block/machines/ore_processing_factory"))
+            .langValue("Ore Processing Plant")
+            .tooltips(Component.translatable("evolutioncore.tooltip.ore_processing_plant").withStyle(ChatFormatting.GRAY))
+            .register();
+
+    public static final MultiblockMachineDefinition BULK_ORE_PROCESSING_PLANT = Reference.REGISTRATE
+            .multiblock("bulk_ore_processing_plant", WorkableElectricMultiblockMachine::new)
+            .rotationState(RotationState.NON_Y_AXIS)
+            .appearanceBlock((ModBlocks.NAQUADAH_ALLOY_CASING))
+            .recipeType(ModRecipeTypes.BULK_ORE_PROCESSING_PLANT)
+            .recipeModifiers(GTRecipeModifiers.PARALLEL_HATCH, GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.PERFECT_OVERCLOCK))
+            .pattern(definition -> FactoryBlockPattern.start()
+                    .aisle("  FFF  ", "  CCC  ", "  CVC  ", "  CVC  ", "  CVC  ", "  CCC  ", "       ", "       ", "       ", "       ")
+                    .aisle(" FCCCF ", " CGGGC ", " V###V ", " V###V ", " C###C ", " C###C ", " CCVCC ", "  CCC  ", "       ", "       ")
+                    .aisle("FCCCCCF", "CG###GC", "C#####C", "C#####C", "C#####C", "C#####C", " C###C ", " C###C ", "  CCC  ", "  BBB  ")
+                    .aisle("FCCCCCF", "CG#P#GC", "V##P##V", "V##P##V", "V##P##V", "C##P##C", " V#P#V ", " C#P#C ", "  CMC  ", "  B B  ")
+                    .aisle("FCCCCCF", "CG###GC", "C#####C", "C#####C", "C#####C", "C#####C", " C###C ", " C###C ", "  CCC  ", "  BBB  ")
+                    .aisle(" FCCCF ", " CGGGC ", " V###V ", " V###V ", " C###C ", " C###C ", " CCVCC ", "  CCC  ", "       ", "       ")
+                    .aisle("  FFF  ", "  C@C  ", "  CVC  ", "  CVC  ", "  CVC  ", "  CCC  ", "       ", "       ", "       ", "       ")
+
+                    .where('@', Predicates.controller(Predicates.blocks(definition.get())))
+                    .where('#', Predicates.air())
+                    .where('C', Predicates.blocks(ModBlocks.NAQUADAH_ALLOY_CASING.get())
+                            .or(Predicates.autoAbilities(definition.getRecipeTypes()))
+                            .or(Predicates.abilities(PartAbility.MAINTENANCE).setExactLimit(1))
+                            .or(Predicates.abilities(PartAbility.PARALLEL_HATCH).setMaxGlobalLimited(1)))
+                    .where('M', Predicates.abilities(PartAbility.MUFFLER))
+                    .where('P', Predicates.blocks(ModBlocks.NAQUADAH_ALLOY_PIPE_CASING.get()))
+                    .where('G', Predicates.blocks(ModBlocks.NAQUADAH_ALLOY_GEARBOX_CASING.get()))
+                    .where('F', Predicates.blocks(ModBlocks.NAQUADAH_ALLOY_FIREBOX_CASING.get()))
+                    .where('V', Predicates.blocks(GTBlocks.FUSION_GLASS.get()))
+                    .where('B', Predicates.blocks(ModBlocks.NAQUADAH_ALLOY_HULL.get()))
+                    .where(' ', Predicates.any())
+                    .build())
+            .workableCasingModel(EvolutionCoreMod.id("block/naquadah_alloy_machine_casing"), EvolutionCoreMod.id("block/machines/ore_processing_factory"))
+            .langValue("Bulk Ore Processing Plant")
+            .tooltips(Component.translatable("evolutioncore.tooltip.bulk_ore_processing_plant").withStyle(ChatFormatting.GRAY))
+            .register();
+
+    public static final MultiblockMachineDefinition FUSION_ALLOYING_CHAMBER = Reference.REGISTRATE
+            .multiblock("fusion_alloying_chamber", CoilWorkableElectricMultiblockMachine::new)
+            .rotationState(RotationState.NON_Y_AXIS)
+            .appearanceBlock(GCYMBlocks.CASING_HIGH_TEMPERATURE_SMELTING)
+            .recipeType(GTRecipeTypes.ALLOY_SMELTER_RECIPES)
+            .recipeModifiers(GTRecipeModifiers.PARALLEL_HATCH, GTRecipeModifiers::ebfOverclock)
+            .pattern(definition -> FactoryBlockPattern.start()
+                    .aisle(" CCCCC ", " FCCCF ", " F C F ", " F   F ", "       ", "       ", "       ", " F   F ", " F C F ", " FCCCF ", " CCCCC ")
+                    .aisle("CCCCCCC", "FCCCCCF", "FHHHHHF", "FHHHHHF", " F H F ", " F   F ", " F H F ", "FHHHHHF", "FHHHHHF", "FCCCCCF", "CCCCCCC")
+                    .aisle("CCIIICC", "CCCCCCC", " H###H ", " H###H ", "  V#V  ", "  VVV  ", "  V#V  ", " H###H ", " H###H ", "CCCCCCC", "CCIIICC")
+                    .aisle("CCIIICC", "CCCCCCC", "CH###HC", " H###H ", " H###H ", "  V#V  ", " H###H ", " H###H ", "CH###HC", "CCCCCCC", "CCIMICC")
+                    .aisle("CCIIICC", "CCCCCCC", " H###H ", " H###H ", "  V#V  ", "  VVV  ", "  V#V  ", " H###H ", " H###H ", "CCCCCCC", "CCIIICC")
+                    .aisle("CCCCCCC", "FCCCCCF", "FHHHHHF", "FHHHHHF", " F H F ", " F   F ", " F H F ", "FHHHHHF", "FHHHHHF", "FCCCCCF", "CCCCCCC")
+                    .aisle(" CCCCC ", " FC@CF ", " F C F ", " F   F ", "       ", "       ", "       ", " F   F ", " F C F ", " FCCCF ", " CCCCC ")
+
+                    .where('@', Predicates.controller(Predicates.blocks(definition.get())))
+                    .where('#', Predicates.air())
+                    .where('C', Predicates.blocks(GCYMBlocks.CASING_HIGH_TEMPERATURE_SMELTING.get()).setMinGlobalLimited(130)
+                            .or(Predicates.abilities(PartAbility.MAINTENANCE).setExactLimit(1))
+                            .or(Predicates.abilities(PartAbility.PARALLEL_HATCH).setMaxGlobalLimited(1))
+                            .or(Predicates.autoAbilities(definition.getRecipeTypes())))
+                    .where('V', Predicates.blocks(GCYMBlocks.HEAT_VENT.get()))
+                    .where('F', Predicates.frames(GTMaterials.NaquadahAlloy))
+                    .where('I', Predicates.blocks(ModBlocks.CASING_LUDICROUS_ENGINE_INTAKE.get()))
+                    .where('H', Predicates.heatingCoils())
+                    .where('M', Predicates.abilities(PartAbility.MUFFLER).setExactLimit(1))
+                    .where(' ', Predicates.any())
+                    .build())
+            .workableCasingModel(GTCEu.id("block/casings/gcym/high_temperature_smelting_casing"), GTCEu.id("block/multiblock/gcym/blast_alloy_smelter"))
+            .langValue("Fusion Alloying Chamber")
+            .tooltips(Component.translatable("evolutioncore.tooltip.fusion_alloying_chamber").withStyle(ChatFormatting.WHITE))
+            .register();
+
+    public static final MultiblockMachineDefinition LARGE_CHEMICAL_PLANT = Reference.REGISTRATE
+            .multiblock("large_chemical_plant", WorkableElectricMultiblockMachine::new)
+            .rotationState(RotationState.NON_Y_AXIS)
+            .appearanceBlock(GCYMBlocks.CASING_HIGH_TEMPERATURE_SMELTING)
+            .recipeTypes(GTRecipeTypes.CHEMICAL_RECIPES, GTRecipeTypes.LARGE_CHEMICAL_RECIPES, ModRecipeTypes.LARGE_CHEMICAL_PLANT, ModRecipeTypes.CHEMICAL_LINE_REDUCTION)
+            .recipeModifiers(GTRecipeModifiers.PARALLEL_HATCH, GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.PERFECT_OVERCLOCK))
+            .pattern(definition -> FactoryBlockPattern.start()
+                    .aisle("CCCCCCCCCCCCCCC", " CVVVCVVVCVVVC ", "               ", "               ", "               ", "               ", "               ", "               ")
+                    .aisle("CCCCCCCCCCCCCCC", "CTTTTTTTTTTTTTC", "  TTT TTT TTT  ", "               ", "               ", "               ", "               ", "               ")
+                    .aisle("CCCCCCCCCCCCCCC", "VTPPPTPPPTPPPTV", " TPPPTPPPTPPPT ", "  PPP PPP PPP  ", "  PPP PPP PPP  ", "  PPP PPP PPP  ", "  PPP PPP PPP  ", "  PPP PPP PPP  ")
+                    .aisle("CCCCCCCCCCCCCCC", "VTPPPTPPPTPPPTV", " TP#PTP#PTP#PT ", "  P#P P#P P#P  ", "  P#P P#P P#P  ", "  P#P P#P P#P  ", "  P#P P#P P#P  ", "  PMP PMP PMP  ")
+                    .aisle("CCCCCCCCCCCCCCC", "VTPPPTPPPTPPPTV", " TPPPTPPPTPPPT ", "  PPP PPP PPP  ", "  PPP PPP PPP  ", "  PPP PPP PPP  ", "  PPP PPP PPP  ", "  PPP PPP PPP  ")
+                    .aisle("CCCCCCCCCCCCCCC", "CTTTTTTTTTTTTTC", "  TTT TTT TTT  ", "               ", "               ", "               ", "               ", "               ")
+                    .aisle("CCCCCCCCCCCCCCC", " CVVVVC@CVVVVC ", "               ", "               ", "               ", "               ", "               ", "               ")
+
+                    .where('@', Predicates.controller(Predicates.blocks(definition.get())))
+                    .where('#', Predicates.air())
+                    .where('C', Predicates.blocks(GCYMBlocks.CASING_HIGH_TEMPERATURE_SMELTING.get()).setMinGlobalLimited(92)
+                            .or(Predicates.abilities(PartAbility.MAINTENANCE).setExactLimit(1))
+                            .or(Predicates.abilities(PartAbility.PARALLEL_HATCH).setMaxGlobalLimited(1))
+                            .or(Predicates.autoAbilities(definition.getRecipeTypes())))
+                    .where("V", Predicates.blocks(GCYMBlocks.HEAT_VENT.get()))
+                    .where("P", Predicates.blocks(GCYMBlocks.CASING_CORROSION_PROOF.get()))
+                    .where('M', Predicates.abilities(PartAbility.MUFFLER).setExactLimit(3))
+                    .where("T", Predicates.blocks(GCYMBlocks.CASING_HIGH_TEMPERATURE_SMELTING.get()))
+                    .where(' ', Predicates.any())
+                    .build())
+            .workableCasingModel(GTCEu.id("block/casings/gcym/high_temperature_smelting_casing"), GTCEu.id("block/multiblock/large_chemical_reactor"))
+            .langValue("Large Chemical Plant")
+            .tooltips(Component.translatable("evolutioncore.tooltip.large_chemical_plant").withStyle(ChatFormatting.WHITE))
+            .register();
+
+    public static final MultiblockMachineDefinition LUDICROUS_COMBUSTION_ENGINE = registerLargeCombustionEngine(
+            "ludicrous_combustion_engine", ZPM,
+            ModBlocks.NAQUADAH_ALLOY_CASING, ModBlocks.NAQUADAH_ALLOY_GEARBOX_CASING, ModBlocks.CASING_LUDICROUS_ENGINE_INTAKE,
+            EvolutionCoreMod.id("block/naquadah_alloy_machine_casing"),
+            GTCEu.id("block/multiblock/generator/extreme_combustion_engine"));
+
+    public static final MultiblockMachineDefinition SIMPLE_FISSION_REACTOR = Reference.REGISTRATE
+            .multiblock("simple_fission_reactor", WorkableElectricMultiblockMachine::new)
+            .rotationState(RotationState.NON_Y_AXIS)
+            .appearanceBlock(GCYMBlocks.CASING_HIGH_TEMPERATURE_SMELTING)
+            .recipeType(ModRecipeTypes.FISSION_REACTOR_FUELS)
+            .recipeModifiers(GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.PERFECT_OVERCLOCK))
+            .generator(true)
+            .pattern(definition -> FactoryBlockPattern.start()
+                    .aisle(" VCV ", " CCC ", " CGC ", " CGC ", " CGC ", " CCC ", " VCV ")
+                    .aisle("VCCCV", "CMMMC", "CH#HC", "CH#HC", "CH#HC", "CMMMC", "VCCCV")
+                    .aisle("CCCCC", "CMMMC", "G#W#G", "G#W#G", "G#W#G", "CMMMC", "CCCCC")
+                    .aisle("VCCCV", "CMMMC", "CH#HC", "CH#HC", "CH#HC", "CMMMC", "VCCCV")
+                    .aisle(" VCV ", " C@C ", " CGC ", " CGC ", " CGC ", " CCC ", " VCV ")
+
+                    .where('@', Predicates.controller(Predicates.blocks(definition.get())))
+                    .where('#', Predicates.air())
+                    .where("V", Predicates.blocks(GCYMBlocks.HEAT_VENT.get()))
+                    .where('C', Predicates.blocks(GCYMBlocks.CASING_HIGH_TEMPERATURE_SMELTING.get()).setMinGlobalLimited(64)
+                            .or(Predicates.abilities(PartAbility.MAINTENANCE).setExactLimit(1))
+                            .or(Predicates.abilities(PartAbility.PARALLEL_HATCH).setMaxGlobalLimited(1))
+                            .or(Predicates.autoAbilities(definition.getRecipeTypes())))
+                    .where("G", Predicates.blocks(GTBlocks.CASING_LAMINATED_GLASS.get()))
+                    .where("H", Predicates.blocks(GTBlocks.COIL_RTMALLOY.get()))
+                    .where("M", Predicates.blocks(GCYMBlocks.CASING_HIGH_TEMPERATURE_SMELTING.get()))
+                    .where(' ', Predicates.any())
+                    .where("W", Predicates.blocks(ForgeRegistries.BLOCKS.getValue(ResourceLocation.fromNamespaceAndPath("create", "cut_deepslate_wall"))))
+                    .build()) // ^ We force Create, so this should be fine. If anything breaks it's your fault.
+            .workableCasingModel(GTCEu.id("block/casings/gcym/high_temperature_smelting_casing"), EvolutionCoreMod.id("block/machines/simple_fission_reactor"))
+            .langValue("Simple Fission Reactor")
+            .tooltips(Component.translatable("evolutioncore.tooltip.simple_fission_reactor").withStyle(ChatFormatting.WHITE))
             .register();
 }

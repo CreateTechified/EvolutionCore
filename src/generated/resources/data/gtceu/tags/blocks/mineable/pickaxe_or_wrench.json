@@ -1,5 +1,7 @@
 {
   "values": [
-    "evolutioncore:high_steam_firebox_casing"
+    "evolutioncore:high_steam_firebox_casing",
+    "evolutioncore:stainless_steel_firebox_casing",
+    "evolutioncore:naquadah_alloy_firebox_casing"
   ]
 }

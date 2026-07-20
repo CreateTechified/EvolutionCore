@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "active=false": {
+      "model": "evolutioncore:block/naquadah_alloy_firebox_casing"
+    },
+    "active=true": {
+      "model": "evolutioncore:block/naquadah_alloy_firebox_casing_active"
+    }
+  }
+}
