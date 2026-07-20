@@ -10,6 +10,7 @@ import com.gregtechceu.gtceu.api.multiblock.pattern.MultiblockPatternBuilder;
 import com.gregtechceu.gtceu.common.data.GTBlocks;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
 import com.gregtechceu.gtceu.common.data.GTRecipeTypes;
+import com.gregtechceu.gtceu.common.machine.multiblock.steam.SteamParallelMultiblockMachine;
 import com.gregtechceu.gtceu.common.mui.GTGuiTheme;
 import com.simibubi.create.content.decoration.palettes.AllPaletteBlocks;
 import io.github.createtechified.evolutioncore.EvolutionCoreMod;
@@ -17,6 +18,7 @@ import io.github.createtechified.evolutioncore.Reference;
 import io.github.createtechified.evolutioncore.common.machine.steam.LPSteamParallelMultiblockMachine;
 import io.github.createtechified.evolutioncore.common.registry.EvoTabs;
 import io.github.createtechified.evolutioncore.common.registry.machines.EvoMultiParts;
+import io.github.createtechified.evolutioncore.common.registry.recipes.EvoRecipeTypes;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -198,6 +200,40 @@ public class SteamMultiblocksLP {
             .workableCasingModel(GTCEu.id("block/casings/solid/machine_casing_bronze_plated_bricks"), EvolutionCoreMod.id("block/machines/lp_steam_purifier"))
             .langValue("Low Pressure Steam Purifier")
             .tooltips(Component.translatable("evolutioncore.tooltip.steam_purifier.l").withStyle(ChatFormatting.GRAY))
+            .themeId(GTGuiTheme.BRONZE.getId())
+            .register();
+
+    public static final MultiblockMachineDefinition LP_STEAM_ORE_FACTORY = Reference.REGISTRATE
+            .multiblock("lp_steam_ore_factory", LPSteamParallelMultiblockMachine::new)
+            .rotationState(RotationState.NON_Y_AXIS)
+            .appearanceBlock(GTBlocks.CASING_BRONZE_BRICKS)
+            .recipeType(EvoRecipeTypes.STEAM_ORE_FACTORY)
+            .recipeModifier(LPSteamParallelMultiblockMachine::recipeModifier, true)
+            .pattern(definition -> MultiblockPatternBuilder.start(FRONT, UP, RIGHT)
+                    .slice("  FFF  ", "  CCC  ", "  CVC  ", "  CVC  ", "  CVC  ", "  CCC  ", "       ", "       ", "       ", "       ")
+                    .slice(" FCCCF ", " CGGGC ", " V###V ", " V###V ", " C###C ", " C###C ", " CCVCC ", "  CCC  ", "       ", "       ")
+                    .slice("FCCCCCF", "CG###GC", "C#####C", "C#####C", "C#####C", "C#####C", " C###C ", " C###C ", "  CCC  ", "  BBB  ")
+                    .slice("FCCCCCF", "CG#P#GC", "V##P##V", "V##P##V", "V##P##V", "C##P##C", " V#P#V ", " C#P#C ", "  CMC  ", "  B B  ")
+                    .slice("FCCCCCF", "CG###GC", "C#####C", "C#####C", "C#####C", "C#####C", " C###C ", " C###C ", "  CCC  ", "  BBB  ")
+                    .slice(" FCCCF ", " CGGGC ", " V###V ", " V###V ", " C###C ", " C###C ", " CCVCC ", "  CCC  ", "       ", "       ")
+                    .slice("  FFF  ", "  C@C  ", "  CVC  ", "  CVC  ", "  CVC  ", "  CCC  ", "       ", "       ", "       ", "       ")
+                    .where('@', Predicates.controller(Predicates.blocks(definition.get())))
+                    .where('#', Predicates.air())
+                    .where('C', Predicates.blocks(GTBlocks.CASING_BRONZE_BRICKS.get())
+                            .or(Predicates.abilities(PartAbility.STEAM_IMPORT_ITEMS).setPreviewCount(1).setMaxGlobalLimited(2))
+                            .or(Predicates.abilities(PartAbility.STEAM).setExactLimit(1))
+                            .or(Predicates.abilities(PartAbility.STEAM_EXPORT_ITEMS).setPreviewCount(1).setMaxGlobalLimited(2)))
+                    .where('M', Predicates.ability(EvoMultiParts.STEAM_VENT).setExactLimit(1))
+                    .where('P', Predicates.blocks(GTBlocks.CASING_BRONZE_PIPE.get()))
+                    .where('G', Predicates.blocks(GTBlocks.CASING_BRONZE_GEARBOX.get()))
+                    .where('F', Predicates.blocks(GTBlocks.FIREBOX_BRONZE.get()))
+                    .where('V', Predicates.blocks(AllPaletteBlocks.FRAMED_GLASS.get()))
+                    .where('B', Predicates.blocks(GTBlocks.BRONZE_HULL.get()))
+                    .where(' ', Predicates.any())
+                    .build())
+            .workableCasingModel(GTCEu.id("block/casings/solid/machine_casing_bronze_plated_bricks"), EvolutionCoreMod.id("block/machines/ore_processing_factory"))
+            .langValue("Low Pressure Steam Ore Factory")
+            .tooltips(Component.translatable("evolutioncore.tooltip.steam_ore_factory.l").withStyle(ChatFormatting.GRAY))
             .themeId(GTGuiTheme.BRONZE.getId())
             .register();
 }

@@ -4,6 +4,7 @@ import com.gregtechceu.gtceu.api.block.ActiveBlock;
 import com.gregtechceu.gtceu.api.block.property.GTBlockStateProperties;
 import com.gregtechceu.gtceu.data.recipe.CustomTags;
 import com.tterrag.registrate.util.entry.BlockEntry;
+import io.github.createtechified.evolutioncore.EvolutionCoreMod;
 import io.github.createtechified.evolutioncore.Reference;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.resources.ResourceLocation;
@@ -13,6 +14,10 @@ import net.minecraftforge.client.model.generators.ModelFile;
 
 @SuppressWarnings("removal")
 public class ActiveBlockConstructors {
+    public static BlockEntry<ActiveBlock> constructIntakeCasingBlock(String name, String type, String lang) {
+        return BlockConstructors.constructBlock(name, EvolutionCoreMod.id("block/casings/" + type + "/intake"), ActiveBlock::new, b -> b.lang(lang));
+    }
+
     // modified from astrocore by hazevista
     public record FireboxInfo(String name, ResourceLocation top, ResourceLocation bottom, ResourceLocation side) {}
 

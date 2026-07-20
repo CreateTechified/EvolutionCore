@@ -57,15 +57,31 @@ public class BlockConstructors {
     public static BlockEntry<Block> constructBasicBlock(String name, ResourceLocation texture, String lang, Block ref) {
         return constructBlock(name, texture, Block::new, b -> b.lang(lang).initialProperties(() -> ref));
     }
-    public static BlockEntry<Block> constructCasingBlock(String name, String type, String lang) {
-        return constructBlock(name, EvolutionCoreMod.id("block/casings/" + type + "/" + name), Block::new,
+    public static BlockEntry<Block> constructSteamCasingBlock(String name, String lang) {
+        return constructBlock(name, EvolutionCoreMod.id("block/casings/steam/" + name), Block::new,
                 b -> b.lang(lang).initialProperties(() -> Blocks.IRON_BLOCK));
     }
-    public static BlockEntry<Block> constructSidedCasingBlock(String name, String type, String lang) {
-        ResourceLocation side = EvolutionCoreMod.id("block/casings/" + type + "/" + name + "/side");
-        ResourceLocation bottom = EvolutionCoreMod.id("block/casings/" + type + "/" + name + "/bottom");
-        ResourceLocation top = EvolutionCoreMod.id("block/casings/" + type + "/" + name + "/top");
+    public static BlockEntry<Block> constructCasingBlock(String name, String type, String lang) {
+        return constructBlock(name, EvolutionCoreMod.id("block/casings/" + type + "/casing"), Block::new,
+                b -> b.lang(lang).initialProperties(() -> Blocks.IRON_BLOCK));
+    }
+    public static BlockEntry<Block> constructSolidCasingBlock(String name, String type, String lang) {
+        ResourceLocation side = EvolutionCoreMod.id("block/casings/" + type + "/side");
+        ResourceLocation bottom = EvolutionCoreMod.id("block/casings/" + type + "/bottom");
+        ResourceLocation top = EvolutionCoreMod.id("block/casings/" + type + "/top");
         return constructSidedBlock(name, side, bottom, top, Block::new,
+                b -> b.lang(lang).initialProperties(() -> Blocks.IRON_BLOCK));
+    }
+    public static BlockEntry<Block> constructPipeCasingBlock(String name, String type, String lang) {
+        return constructBlock(name, EvolutionCoreMod.id("block/casings/" + type + "/pipe"), Block::new,
+                b -> b.lang(lang).initialProperties(() -> Blocks.IRON_BLOCK));
+    }
+    public static BlockEntry<Block> constructGearboxCasingBlock(String name, String type, String lang) {
+        return constructBlock(name, EvolutionCoreMod.id("block/casings/" + type + "/gearbox"), Block::new,
+                b -> b.lang(lang).initialProperties(() -> Blocks.IRON_BLOCK));
+    }
+    public static BlockEntry<Block> constructTurbineCasingBlock(String name, String type, String lang) {
+        return constructBlock(name, EvolutionCoreMod.id("block/casings/" + type + "/turbine"), Block::new,
                 b -> b.lang(lang).initialProperties(() -> Blocks.IRON_BLOCK));
     }
 

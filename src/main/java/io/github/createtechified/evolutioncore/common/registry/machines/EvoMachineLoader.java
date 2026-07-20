@@ -5,6 +5,7 @@ import io.github.createtechified.evolutioncore.common.registry.EvoTabs;
 import io.github.createtechified.evolutioncore.common.registry.machines.multiblocks.PrimitiveMultiblocks;
 import io.github.createtechified.evolutioncore.common.registry.machines.multiblocks.SteamMultiblocksHP;
 import io.github.createtechified.evolutioncore.common.registry.machines.multiblocks.SteamMultiblocksLP;
+import io.github.createtechified.evolutioncore.common.registry.machines.multiblocks.electric.*;
 
 public class EvoMachineLoader {
     static {
@@ -17,5 +18,10 @@ public class EvoMachineLoader {
         PrimitiveMultiblocks.init();
         SteamMultiblocksLP.init();
         SteamMultiblocksHP.init();
+        OreProcessingMultiblocks.init();
+        GeneratorMultiblocks.init();
+        ResourceGenerationMultiblocks.init();
+        FusionMultiblocks.init();
+        UpgradeMultiblocks.init();
     }
 }
