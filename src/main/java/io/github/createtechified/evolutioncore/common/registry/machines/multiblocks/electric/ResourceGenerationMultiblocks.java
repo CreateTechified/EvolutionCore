@@ -3,6 +3,7 @@ package io.github.createtechified.evolutioncore.common.registry.machines.multibl
 import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.data.RotationState;
 import com.gregtechceu.gtceu.api.machine.MultiblockMachineDefinition;
+import com.gregtechceu.gtceu.api.machine.multiblock.PartAbility;
 import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.multiblock.Predicates;
 import com.gregtechceu.gtceu.api.multiblock.pattern.MultiblockPatternBuilder;
@@ -45,7 +46,10 @@ public class ResourceGenerationMultiblocks {
                     .where('W', Predicates.blocks(Blocks.OAK_LOG))
                     .where('D', Predicates.blocks(EvoBlocks.ORGANIC_PLANT_MATTER.get()))
                     .where('H', Predicates.blocks(GTBlocks.CASING_STEEL_SOLID.get())
-                            .or(Predicates.autoAbilities(definition.getRecipeTypes()))
+                            .or(Predicates.abilities(PartAbility.IMPORT_ITEMS).setExactLimit(1))
+                            .or(Predicates.abilities(PartAbility.IMPORT_FLUIDS).setExactLimit(1))
+                            .or(Predicates.abilities(PartAbility.INPUT_ENERGY).setExactLimit(2))
+                            .or(Predicates.abilities(PartAbility.EXPORT_ITEMS).setExactLimit(1))
                     )
                     .where(' ', Predicates.any())
                     .build())
