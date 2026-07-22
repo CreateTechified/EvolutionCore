@@ -48,7 +48,7 @@ public class ResourceGenerationMultiblocks {
                     .where('H', Predicates.blocks(GTBlocks.CASING_STEEL_SOLID.get())
                             .or(Predicates.abilities(PartAbility.IMPORT_ITEMS).setExactLimit(1))
                             .or(Predicates.abilities(PartAbility.IMPORT_FLUIDS).setExactLimit(1))
-                            .or(Predicates.abilities(PartAbility.INPUT_ENERGY).setExactLimit(2))
+                            .or(Predicates.abilities(PartAbility.INPUT_ENERGY).setMinGlobalLimited(1).setMaxGlobalLimited(2))
                             .or(Predicates.abilities(PartAbility.EXPORT_ITEMS).setExactLimit(1))
                     )
                     .where(' ', Predicates.any())
