@@ -5,6 +5,8 @@ import com.tterrag.registrate.providers.RegistrateLangProvider;
 public class LanguageHandler {
     public static void init(RegistrateLangProvider provider) {
         // TODO: make these better
+        provider.add("evolutioncore.tooltip.steam_vent", "Exhausts Steam from Multiblocks");
+        provider.add("evolutioncore.tooltip.steam_vent.warn", "⚠ | Obstruction of output prevents the machine from running more recipes.");
         provider.add("evolutioncore.tooltip.steam_assembler", "Assembling with Steam!");
         provider.add("evolutioncore.tooltip.steam_centrifuge", "Centrifuging your Resin, among many others.");
         provider.add("evolutioncore.tooltip.steam_ore_washer", "Washing your Ores!");
@@ -30,7 +32,7 @@ public class LanguageHandler {
         provider.add("evolutioncore.tooltip.bulk_ore_processing_plant", "A beast which can process large amounts of ore in seconds.\nCan Parallelize with Parallel Control Hatchs.");
         provider.add("evolutioncore.tooltip.fusion_alloying_chamber", "Can Parallelize with Parallel Control Hatchs.\nAvailable Recipe Types: Alloy Blast Smelter.\nFor every 900K §7above the recipe temperature, a multiplicative §r95% §7energy multiplier is applied pre-overclocking.§r\nFor every 1800K §7above the recipe temperature, one overclock becomes §r100% efficient §7(perfect overclock).§r\nFor every voltage tier above §bMV§7, temperature is increased by §r100K"); // This line proves why I need an ultrawide... lol
         provider.add("evolutioncore.tooltip.large_chemical_plant", "An Advanced Chemical Reactor.\nCan Parallelize with Parallel Control Hatchs.\nAvailable Recipe Types: Chemical Reactor, Large Chemical Reactor, Large Chemical Plant, Chemical Line Reduction.");
-        provider.add("evolutioncore.tooltip.simple_fission_reactor", "A simple fission reactor, utilizes fuel rods to generate energy.\n§cSafety has not been proven. Meltdowns may occur.");
+        provider.add("evolutioncore.tooltip.simple_fission_reactor", "A simple fission reactor, utilizes fuel rods to generate energy.\n§c⚠ | Safety has not been proven. Meltdowns may occur.");
         provider.add("modifier.evolutioncore.mathematical", "Mathematical!");
         provider.add("modifier.evolutioncore.modifiable", "Modifiable");
         provider.add("material.evolutioncore.unstable", "Unstable Induced");
