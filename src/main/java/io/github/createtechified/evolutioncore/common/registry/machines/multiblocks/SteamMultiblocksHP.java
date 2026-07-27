@@ -38,7 +38,7 @@ public class SteamMultiblocksHP {
 
     public static final MultiblockMachineDefinition HP_STEAM_ALLOY_KILN = Reference.REGISTRATE
             .multiblock("hp_steam_alloy_kiln", HPSteamParallelMultiblockMachine::new)
-            .rotationState(RotationState.ALL)
+            .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(GTRecipeTypes.ALLOY_SMELTER_RECIPES)
             .recipeModifier(HPSteamParallelMultiblockMachine::recipeModifier, true)
             .appearanceBlock(EvoBlocks.HP_STEAM_MACHINE_CASING)
@@ -249,10 +249,10 @@ public class SteamMultiblocksHP {
                     .where('@', Predicates.controller(Predicates.blocks(definition.get())))
                     .where('#', Predicates.air())
                     .where('C', Predicates.blocks(EvoBlocks.HP_STEAM_MACHINE_CASING.get())
-                            .or(Predicates.abilities(PartAbility.STEAM_IMPORT_ITEMS).setPreviewCount(1).setMaxGlobalLimited(2))
+                            .or(Predicates.abilities(PartAbility.STEAM_IMPORT_ITEMS).setExactLimit(1))
                             .or(Predicates.abilities(PartAbility.STEAM).setExactLimit(1))
-                            .or(Predicates.abilities(PartAbility.STEAM_EXPORT_ITEMS).setPreviewCount(1).setMaxGlobalLimited(2)))
-                    .where('M', Predicates.ability(EvoMultiParts.STEAM_VENT).setExactLimit(1))
+                            .or(Predicates.abilities(PartAbility.STEAM_EXPORT_ITEMS).setExactLimit(2)))
+                    .where('M', Predicates.abilities(EvoMultiParts.STEAM_VENT).setExactLimit(1))
                     .where('P', Predicates.blocks(GTBlocks.CASING_STEEL_PIPE.get()))
                     .where('G', Predicates.blocks(GTBlocks.CASING_STEEL_GEARBOX.get()))
                     .where('F', Predicates.blocks(EvoBlocks.HP_STEAM_FIREBOX_CASING.get()))
@@ -265,5 +265,4 @@ public class SteamMultiblocksHP {
             .tooltips(Component.translatable("evolutioncore.tooltip.steam_ore_factory.h").withStyle(ChatFormatting.GRAY))
             .themeId(GTGuiTheme.STEEL.getId())
             .register();
-
 }

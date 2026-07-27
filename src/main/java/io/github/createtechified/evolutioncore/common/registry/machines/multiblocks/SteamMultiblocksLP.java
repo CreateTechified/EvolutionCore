@@ -39,7 +39,7 @@ public class SteamMultiblocksLP {
 
     public static final MultiblockMachineDefinition LP_STEAM_ALLOY_KILN = Reference.REGISTRATE
             .multiblock("lp_steam_alloy_kiln", LPSteamParallelMultiblockMachine::new)
-            .rotationState(RotationState.ALL)
+            .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(GTRecipeTypes.ALLOY_SMELTER_RECIPES)
             .recipeModifier(LPSteamParallelMultiblockMachine::recipeModifier, true)
             .appearanceBlock(GTBlocks.CASING_BRONZE_BRICKS)
@@ -220,10 +220,10 @@ public class SteamMultiblocksLP {
                     .where('@', Predicates.controller(Predicates.blocks(definition.get())))
                     .where('#', Predicates.air())
                     .where('C', Predicates.blocks(GTBlocks.CASING_BRONZE_BRICKS.get())
-                            .or(Predicates.abilities(PartAbility.STEAM_IMPORT_ITEMS).setPreviewCount(1).setMaxGlobalLimited(2))
+                            .or(Predicates.abilities(PartAbility.STEAM_IMPORT_ITEMS).setExactLimit(1))
                             .or(Predicates.abilities(PartAbility.STEAM).setExactLimit(1))
-                            .or(Predicates.abilities(PartAbility.STEAM_EXPORT_ITEMS).setPreviewCount(1).setMaxGlobalLimited(2)))
-                    .where('M', Predicates.ability(EvoMultiParts.STEAM_VENT).setExactLimit(1))
+                            .or(Predicates.abilities(PartAbility.STEAM_EXPORT_ITEMS).setExactLimit(2)))
+                    .where('M', Predicates.abilities(EvoMultiParts.STEAM_VENT).setExactLimit(1))
                     .where('P', Predicates.blocks(GTBlocks.CASING_BRONZE_PIPE.get()))
                     .where('G', Predicates.blocks(GTBlocks.CASING_BRONZE_GEARBOX.get()))
                     .where('F', Predicates.blocks(GTBlocks.FIREBOX_BRONZE.get()))

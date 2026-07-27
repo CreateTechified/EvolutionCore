@@ -9,10 +9,7 @@ import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMa
 import com.gregtechceu.gtceu.api.multiblock.Predicates;
 import com.gregtechceu.gtceu.api.multiblock.pattern.MultiblockPatternBuilder;
 import com.gregtechceu.gtceu.api.recipe.OverclockingLogic;
-import com.gregtechceu.gtceu.common.data.GCYMBlocks;
-import com.gregtechceu.gtceu.common.data.GTMaterials;
-import com.gregtechceu.gtceu.common.data.GTRecipeModifiers;
-import com.gregtechceu.gtceu.common.data.GTRecipeTypes;
+import com.gregtechceu.gtceu.common.data.*;
 import io.github.createtechified.evolutioncore.Reference;
 import io.github.createtechified.evolutioncore.common.registry.EvoBlocks;
 import io.github.createtechified.evolutioncore.common.registry.EvoTabs;
@@ -45,10 +42,13 @@ public class UpgradeMultiblocks {
                     .slice("CCCCCCCCCCCCCCC", " CVVVVC@CVVVVC ", "               ", "               ", "               ", "               ", "               ", "               ")
                     .where('@', Predicates.controller(Predicates.blocks(definition.get())))
                     .where('#', Predicates.air())
-                    .where('C', Predicates.blocks(GCYMBlocks.CASING_HIGH_TEMPERATURE_SMELTING.get()).setMinGlobalLimited(92)
+                    .where('C', Predicates.blocks(GCYMBlocks.CASING_HIGH_TEMPERATURE_SMELTING.get())
                             .or(Predicates.abilities(PartAbility.MAINTENANCE).setExactLimit(1))
-                            .or(Predicates.abilities(PartAbility.PARALLEL_HATCH).setMaxGlobalLimited(1))
-                            .or(Predicates.autoAbilities(definition.getRecipeTypes())))
+                            .or(Predicates.abilities(PartAbility.PARALLEL_HATCH).setMaxGlobalLimited(1).setPreviewCount(1))
+                            .or(Predicates.abilities(PartAbility.IMPORT_ITEMS).setMaxGlobalLimited(6).setPreviewCount(1))
+                            .or(Predicates.abilities(PartAbility.EXPORT_ITEMS).setMaxGlobalLimited(6).setPreviewCount(1))
+                            .or(Predicates.abilities(PartAbility.IMPORT_FLUIDS).setMaxGlobalLimited(6).setPreviewCount(1))
+                            .or(Predicates.abilities(PartAbility.EXPORT_FLUIDS).setMaxGlobalLimited(6).setPreviewCount(1)))
                     .where('V', Predicates.blocks(GCYMBlocks.HEAT_VENT.get()))
                     .where('P', Predicates.blocks(GCYMBlocks.CASING_CORROSION_PROOF.get()))
                     .where('M', Predicates.abilities(PartAbility.MUFFLER).setExactLimit(3))
@@ -64,7 +64,7 @@ public class UpgradeMultiblocks {
             .multiblock("fusion_alloying_chamber", CoilWorkableElectricMultiblockMachine::new)
             .rotationState(RotationState.NON_Y_AXIS)
             .appearanceBlock(GCYMBlocks.CASING_HIGH_TEMPERATURE_SMELTING)
-            .recipeType(GTRecipeTypes.ALLOY_SMELTER_RECIPES)
+            .recipeType(GCYMRecipeTypes.ALLOY_BLAST_RECIPES)
             .recipeModifiers(GTRecipeModifiers.PARALLEL_HATCH, GTRecipeModifiers::ebfOverclock)
             .pattern(definition -> MultiblockPatternBuilder.start(FRONT, UP, RIGHT)
                     .slice(" CCCCC ", " FCCCF ", " F C F ", " F   F ", "       ", "       ", "       ", " F   F ", " F C F ", " FCCCF ", " CCCCC ")
@@ -76,10 +76,12 @@ public class UpgradeMultiblocks {
                     .slice(" CCCCC ", " FC@CF ", " F C F ", " F   F ", "       ", "       ", "       ", " F   F ", " F C F ", " FCCCF ", " CCCCC ")
                     .where('@', Predicates.controller(Predicates.blocks(definition.get())))
                     .where('#', Predicates.air())
-                    .where('C', Predicates.blocks(GCYMBlocks.CASING_HIGH_TEMPERATURE_SMELTING.get()).setMinGlobalLimited(130)
+                    .where('C', Predicates.blocks(GCYMBlocks.CASING_HIGH_TEMPERATURE_SMELTING.get())
                             .or(Predicates.abilities(PartAbility.MAINTENANCE).setExactLimit(1))
                             .or(Predicates.abilities(PartAbility.PARALLEL_HATCH).setMaxGlobalLimited(1))
-                            .or(Predicates.autoAbilities(definition.getRecipeTypes())))
+                            .or(Predicates.abilities(PartAbility.IMPORT_ITEMS).setMaxGlobalLimited(9))
+                            .or(Predicates.abilities(PartAbility.IMPORT_FLUIDS).setMaxGlobalLimited(3))
+                            .or(Predicates.abilities(PartAbility.EXPORT_FLUIDS).setExactLimit(1)))
                     .where('V', Predicates.blocks(GCYMBlocks.HEAT_VENT.get()))
                     .where('F', Predicates.frames(GTMaterials.NaquadahAlloy))
                     .where('I', Predicates.blocks(EvoBlocks.LUDICROUS_ENGINE_INTAKE_CASING.get()))
