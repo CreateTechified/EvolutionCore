@@ -40,14 +40,17 @@ import net.minecraft.network.chat.Component;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class HPSteamParallelMultiblockMachine extends WorkableMultiblockMachine implements IMuiMachine {
 
     @Getter
     @Setter
     private int maxParallels;
 
-    @Nullable
-    private SteamEnergyRecipeHandler steamEnergy = null;
+    @Getter
+    private final List<SteamEnergyRecipeHandler> steamEnergyHandlers = new ArrayList<>();
 
     public static final double CONVERSION_RATE = 2.0;
 
@@ -63,13 +66,14 @@ public class HPSteamParallelMultiblockMachine extends WorkableMultiblockMachine 
     @Override
     public void invalidateStructure(@NotNull String name) {
         super.invalidateStructure(name);
-        this.steamEnergy = null;
+        this.steamEnergyHandlers.clear();
     }
 
     @Override
     public void formStructure(@NotNull String substructureName) {
         super.formStructure(substructureName);
         var pState = patternStates.get(substructureName);
+
         for (var part : getParts()) {
             if (!PartAbility.STEAM.isApplicable(part.getDefinition().getBlock())) continue;
             var handlers = part.getRecipeHandlers();
@@ -78,16 +82,15 @@ public class HPSteamParallelMultiblockMachine extends WorkableMultiblockMachine 
                 for (var fluidHandler : hl.getCapability(FluidRecipeCapability.CAP)) {
                     if (!(fluidHandler instanceof NotifiableFluidTank nft)) continue;
                     if (nft.isFluidValid(0, GTMaterials.Steam.getFluid(1))) {
-                        steamEnergy = new SteamEnergyRecipeHandler(nft, getConversionRate());
-                        addHandlerList(RecipeHandlerList.of(IO.IN, steamEnergy));
-                        return;
+                        SteamEnergyRecipeHandler handler = new SteamEnergyRecipeHandler(nft, getConversionRate());
+                        this.steamEnergyHandlers.add(handler);
+                        addHandlerList(RecipeHandlerList.of(IO.IN, handler));
                     }
                 }
             }
         }
-        if (steamEnergy == null) { // No steam hatch found
-            pState.setError(
-                    new PatternStringError(Component.translatable("gtceu.predicate_error.steam.missing_steam_hatch")));
+        if (steamEnergyHandlers.isEmpty()) {
+            pState.setError(new PatternStringError(Component.translatable("gtceu.predicate_error.steam.missing_steam_hatch")));
             invalidateStructure(substructureName);
         }
     }
@@ -114,17 +117,34 @@ public class HPSteamParallelMultiblockMachine extends WorkableMultiblockMachine 
                 .build();
     }
 
+    public int getTotalSteamAmount() {
+        int total = 0;
+        for (SteamEnergyRecipeHandler handler : steamEnergyHandlers) {
+            total += handler.getSteamTank().getFluidInTank(0).getAmount();
+        }
+        return total;
+    }
+
+    public int getTotalSteamCapacity() {
+        int total = 0;
+        for (SteamEnergyRecipeHandler handler : steamEnergyHandlers) {
+            total += handler.getSteamTank().getTankCapacity(0);
+        }
+        return total;
+    }
+
     @Override
     public void buildMainUI(ParentWidget<?> mainWidget, PosGuiData guiData, PanelSyncManager syncManager,
                             UISettings settings) {
         mainWidget.size(170, 76).background(GTGuiTextures.DISPLAY_STEEL);
         IntSyncValue steamAmount = syncManager.getOrCreateSyncHandler("steamAmount", IntSyncValue.class,
-                () -> new IntSyncValue(() -> steamEnergy == null ? 0 : steamEnergy.getSteamTank().getFluidInTank(0).getAmount()));
+                () -> new IntSyncValue(this::getTotalSteamAmount));
         IntSyncValue steamCapacity = syncManager.getOrCreateSyncHandler("steamCapacity", IntSyncValue.class,
-                () -> new IntSyncValue(() -> steamEnergy == null ? 0 : steamEnergy.getSteamTank().getTankCapacity(0)));
+                () -> new IntSyncValue(this::getTotalSteamCapacity));
         DoubleSyncValue steamProgress = syncManager.getOrCreateSyncHandler("steamProgress", DoubleSyncValue.class,
-                () -> new DoubleSyncValue(() -> steamEnergy == null ? 0 : steamEnergy.getSteamTank().getFluidInTank(0).getAmount() /
-                                                                          (float) steamEnergy.getSteamTank().getTankCapacity(0)));
+                () -> new DoubleSyncValue(() -> {
+                    int cap = getTotalSteamCapacity();
+                    return cap == 0 ? 0.0 : (double) getTotalSteamAmount() / cap;}));
 
         var listWidget = new ListWidget<>()
                 .width(170 - 6)
@@ -135,7 +155,7 @@ public class HPSteamParallelMultiblockMachine extends WorkableMultiblockMachine 
 
         listWidget
                 .child(GTMultiblockTextUtil.addUnformedWarning(this, syncManager))
-                .child(GTMultiblockTextUtil.addSteamUsageLine(this.steamEnergy, syncManager))
+                .child(GTMultiblockTextUtil.addSteamUsageLine(this.steamEnergyHandlers.isEmpty() ? null : this.steamEnergyHandlers.get(0), syncManager))
                 .child(GTMultiblockTextUtil.addWorkingStatusLine(this, syncManager))
                 .child(GTMultiblockTextUtil.addProgressLine(this, syncManager))
                 .child(GTMultiblockTextUtil.addParallelLine(this, syncManager))

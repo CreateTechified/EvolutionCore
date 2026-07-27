@@ -44,7 +44,7 @@ public class EvoMultiParts {
             .rotationState(RotationState.ALL)
             .abilities(STEAM_IMPORT_FLUIDS)
             .modelProperty(GTMachineModelProperties.IS_FORMED, false)
-            .colorOverlaySteamHullModel(GTCEu.id("block/overlay/machine/overlay_fluid_hatch_input"))
+            .colorOverlaySteamHullModel(GTCEu.id("block/overlay/machine/overlay_fluid_hatch_input"), GTCEu.id("block/overlay/machine/overlay_pipe"), GTCEu.id("block/overlay/machine/overlay_pipe_in_emissive"))
             .themeId(GTGuiTheme.BRONZE.getId())
             .langValue("Steam Input Hatch")
             .tooltips(Component.translatable("gtceu.machine.fluid_hatch.import.tooltip"),
@@ -58,7 +58,7 @@ public class EvoMultiParts {
             .rotationState(RotationState.ALL)
             .abilities(STEAM_EXPORT_FLUIDS)
             .modelProperty(GTMachineModelProperties.IS_FORMED, false)
-            .colorOverlaySteamHullModel(GTCEu.id("block/overlay/machine/overlay_fluid_hatch_output"))
+            .colorOverlaySteamHullModel(GTCEu.id("block/overlay/machine/overlay_fluid_hatch_output"), GTCEu.id("block/overlay/machine/overlay_pipe"), GTCEu.id("block/overlay/machine/overlay_pipe_out_emissive"))
             .themeId(GTGuiTheme.BRONZE.getId())
             .langValue("Steam Output Hatch")
             .tooltips(Component.translatable("gtceu.machine.fluid_hatch.export.tooltip"),
