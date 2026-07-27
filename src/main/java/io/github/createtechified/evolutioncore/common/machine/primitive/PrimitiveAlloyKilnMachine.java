@@ -89,29 +89,12 @@ public class PrimitiveAlloyKilnMachine extends PrimitiveWorkableMachine implemen
     }
 
     public Set<BlockPos> saveOffsets() {
-        var machine = this;
-
-        var frontFace = machine.getFrontFacing();
-        var upwardFace = machine.getUpwardsFacing();
-        var flipped = machine.isFlipped();
-        Direction up = RelativeDirection.UP.getRelativeFacing(frontFace, upwardFace, flipped); // Keeping for reference.
-        Direction back = frontFace.getOpposite();
-        Direction clockWise = RelativeDirection.RIGHT.getRelativeFacing(frontFace, upwardFace, flipped);
-        Direction counterClockWise = RelativeDirection.LEFT.getRelativeFacing(frontFace, upwardFace, flipped);
-        BlockPos pos = this.getBlockPos();
-        BlockPos center = pos.relative(up, 3);
-
-        Set<BlockPos> offsets = new HashSet<>();
-
-        for (int i = 0; i < 3; i++) {
-            center = center.relative(back);
-            offsets.add(center.subtract(pos));
-            if (i % 2 == 1) {
-                offsets.add(center.relative(clockWise).subtract(pos));
-                offsets.add(center.relative(counterClockWise).subtract(pos));
-            }
-        }
-        return offsets;
+        Direction back = getFrontFacing().getOpposite();
+        Direction up = RelativeDirection.UP.getRelativeFacing(getFrontFacing(), getUpwardsFacing(), isFlipped());
+        BlockPos targetPos = getBlockPos()
+                .relative(up, 4)
+                .relative(back, 2);
+        return Set.of(targetPos.subtract(getBlockPos()));
     }
 
     @Override
@@ -122,7 +105,7 @@ public class PrimitiveAlloyKilnMachine extends PrimitiveWorkableMachine implemen
             var pos = this.getBlockPos();
             var facing = this.getFrontFacing().getOpposite();
             float xPos = facing.getStepX() * 0.76F + pos.getX() - 0.5F;
-            float yPos = facing.getStepY() * 0.76F + pos.getY() + 4.25F;
+            float yPos = facing.getStepY() * 0.76F + pos.getY() + 5.25F;
             float zPos = facing.getStepZ() * 0.76F + pos.getZ() + 0.5F;
 
             var up = RelativeDirection.UP.getRelativeFacing(getFrontFacing(), getUpwardsFacing(), isFlipped());
@@ -261,9 +244,12 @@ public class PrimitiveAlloyKilnMachine extends PrimitiveWorkableMachine implemen
     }
 
     private void hurtEntitiesAndBreakSnow() {
-        BlockPos middlePos = getBlockPos().offset(getFrontFacing().getOpposite().getNormal());
+        Direction back = getFrontFacing().getOpposite();
+        Direction up = RelativeDirection.UP.getRelativeFacing(getFrontFacing(), getUpwardsFacing(), isFlipped());
+        BlockPos middlePos = getBlockPos()
+                .relative(up, 4)
+                .relative(back, 2);
         getLevel().getEntities(null, new AABB(middlePos)).forEach(e -> e.hurt(e.damageSources().lava(), 3.0f));
-
         if (getOffsetTimer() % 10 == 0) {
             BlockState state = getLevel().getBlockState(middlePos);
             GTUtil.tryBreakSnow(getLevel(), middlePos, state, true);

@@ -1,5 +1,6 @@
 package io.github.createtechified.evolutioncore.common.machine.steam;
 
+import brachy.modularui.api.drawable.Text;
 import brachy.modularui.drawable.Icon;
 import brachy.modularui.factory.PosGuiData;
 import brachy.modularui.screen.UISettings;
@@ -39,6 +40,7 @@ import com.gregtechceu.gtceu.common.recipe.condition.VentCondition;
 import com.gregtechceu.gtceu.config.ConfigHolder;
 import lombok.Getter;
 import lombok.Setter;
+import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -74,6 +76,7 @@ public class LPSteamParallelMultiblockMachine extends WorkableMultiblockMachine 
 
     @Override
     public void formStructure(@NotNull String substructureName) {
+        this.steamEnergyHandlers.clear();
         super.formStructure(substructureName);
         var pState = patternStates.get(substructureName);
 
@@ -87,7 +90,7 @@ public class LPSteamParallelMultiblockMachine extends WorkableMultiblockMachine 
                     if (nft.isFluidValid(0, GTMaterials.Steam.getFluid(1))) {
                         SteamEnergyRecipeHandler handler = new SteamEnergyRecipeHandler(nft, getConversionRate());
                         this.steamEnergyHandlers.add(handler);
-                        addHandlerList(RecipeHandlerList.of(IO.IN, handler));
+                        //addHandlerList(RecipeHandlerList.of(IO.IN, handler));
                     }
                 }
             }
@@ -158,7 +161,7 @@ public class LPSteamParallelMultiblockMachine extends WorkableMultiblockMachine 
 
         listWidget
                 .child(GTMultiblockTextUtil.addUnformedWarning(this, syncManager))
-                .child(GTMultiblockTextUtil.addSteamUsageLine(this.steamEnergyHandlers.isEmpty() ? null : this.steamEnergyHandlers.get(0), syncManager))
+                .child(Text.dynamic(() -> Component.translatable("gtceu.multiblock.steam.steam_stored", FormattingUtil.formatNumbers(steamAmount.getIntValue()), FormattingUtil.formatNumbers(steamCapacity.getIntValue())).withStyle(ChatFormatting.WHITE)).asWidget().setEnabledIf((w) -> isFormed))
                 .child(GTMultiblockTextUtil.addWorkingStatusLine(this, syncManager))
                 .child(GTMultiblockTextUtil.addProgressLine(this, syncManager))
                 .child(GTMultiblockTextUtil.addParallelLine(this, syncManager))

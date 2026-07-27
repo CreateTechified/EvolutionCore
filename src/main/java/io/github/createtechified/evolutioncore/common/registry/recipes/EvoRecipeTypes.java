@@ -23,7 +23,7 @@ public class EvoRecipeTypes {
     }
 
     public static final GTRecipeType PRIMITIVE_ALLOY_SMELTER = register("primitive_alloy_smelter", GTRecipeTypes.MULTIBLOCK).setMaxIOSize(3,2,0,0).UI(builder -> builder.setProgressBar(GTGuiTextures.PROGRESS_ARROW)).setSound(GTSoundEntries.FURNACE);
-    public static final GTRecipeType PRIMITIVE_ORE_FACTORY = register("primitive_ore_factory", GTRecipeTypes.MULTIBLOCK).setMaxIOSize(2,6,0, 0).UI(builder -> builder.setProgressBar(GTGuiTextures.PROGRESS_MACERATE)).setSound(GTSoundEntries.BOILER);
+    public static final GTRecipeType PRIMITIVE_ORE_FACTORY = register("primitive_ore_factory", GTRecipeTypes.MULTIBLOCK).setMaxIOSize(2,6,1, 0).UI(builder -> builder.setProgressBar(GTGuiTextures.PROGRESS_MACERATE)).setSound(GTSoundEntries.BOILER);
     public static final GTRecipeType STEAM_BLAST_FURNACE = register("steam_blast_furnace", GTRecipeTypes.MULTIBLOCK).setMaxIOSize(2, 2, 0, 0).setEUIO(IO.IN).UI(builder -> builder.setProgressBar(GTGuiTextures.PROGRESS_ARROW)).setSound(GTSoundEntries.FURNACE);
     public static final GTRecipeType STEAM_ORE_FACTORY = register("steam_ore_factory", GTRecipeTypes.MULTIBLOCK).setMaxIOSize(1, 6, 1, 0).setEUIO(IO.IN).UI(builder -> builder.setProgressBar(GTGuiTextures.PROGRESS_MACERATE)).setSound(GTSoundEntries.BOILER);
     public static final GTRecipeType STEEL_GREENHOUSE = register("steel_greenhouse", GTRecipeTypes.MULTIBLOCK).setMaxIOSize(2, 1, 1, 0).setEUIO(IO.IN).UI(builder -> builder.setProgressBar(GTGuiTextures.PROGRESS_ARROW)).setSound(GTSoundEntries.BATH);
