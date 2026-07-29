@@ -8,14 +8,12 @@ import com.gregtechceu.gtceu.api.sync_system.annotations.SaveField;
 import com.gregtechceu.gtceu.api.sync_system.annotations.SyncToClient;
 import com.gregtechceu.gtceu.integration.ae2.machine.feature.IGridConnectedMachine;
 import com.gregtechceu.gtceu.integration.ae2.machine.trait.GridNodeHolder;
-import lombok.Getter;
 
 public class MENetworkingHatchPartMachine extends MultiblockPartMachine implements IGridConnectedMachine {
     @SaveField
     protected final GridNodeHolder nodeHolder;
 
     @SyncToClient
-    @Getter
     protected boolean isOnline;
 
     protected final IActionSource actionSource;
