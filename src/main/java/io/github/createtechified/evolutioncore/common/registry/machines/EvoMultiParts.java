@@ -2,6 +2,7 @@ package io.github.createtechified.evolutioncore.common.registry.machines;
 
 import brachy.modularui.utils.FormattingUtil;
 import com.gregtechceu.gtceu.GTCEu;
+import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.capability.recipe.IO;
 import com.gregtechceu.gtceu.api.data.RotationState;
 import com.gregtechceu.gtceu.api.machine.MachineDefinition;
@@ -11,6 +12,7 @@ import com.gregtechceu.gtceu.common.data.models.GTMachineModels;
 import com.gregtechceu.gtceu.common.mui.GTGuiTheme;
 import com.gregtechceu.gtceu.data.lang.LangHandler;
 import io.github.createtechified.evolutioncore.Reference;
+import io.github.createtechified.evolutioncore.common.machine.electric.MENetworkingHatchPartMachine;
 import io.github.createtechified.evolutioncore.common.machine.steam.SteamFluidHatchPartMachine;
 import io.github.createtechified.evolutioncore.common.machine.steam.SteamMufflerPartMachine;
 import net.minecraft.ChatFormatting;
@@ -24,6 +26,7 @@ public class EvoMultiParts {
     public static final PartAbility STEAM_VENT = new PartAbility("steam_vent");
     public static final PartAbility STEAM_IMPORT_FLUIDS = new PartAbility("steam_import_fluids");
     public static final PartAbility STEAM_EXPORT_FLUIDS = new PartAbility("steam_export_fluids");
+    public static final PartAbility NETWORKING_HATCH = new PartAbility("networking_hatch");
 
     // Parts
     public static final MachineDefinition STEAM_VENTING_HATCH = Reference.REGISTRATE
@@ -65,5 +68,16 @@ public class EvoMultiParts {
                     Component.translatable("gtceu.machine.steam_bus.tooltip"),
                     Component.translatable("gtceu.universal.tooltip.fluid_storage_capacity", FormattingUtil.formatNumbers(SteamFluidHatchPartMachine.getTankCapacity(16000, 0))))
             .allowCoverOnFront(true)
+            .register();
+
+    public static final MachineDefinition ME_NETWORKING_HATCH = Reference.REGISTRATE
+            .machine("me_networking_hatch", MENetworkingHatchPartMachine::new)
+            .tier(GTValues.LuV)
+            .rotationState(RotationState.ALL)
+            .abilities(NETWORKING_HATCH)
+            .modelProperty(GTMachineModelProperties.IS_FORMED, false)
+            .colorOverlayTieredHullModel(GTCEu.id("block/overlay/appeng/me_buffer_hatch"))
+            .langValue("ME Networking Hatch")
+            .allowCoverOnFront(false)
             .register();
 }

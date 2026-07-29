@@ -46,10 +46,3 @@ description='''${mod_description}'''
     versionRange = "${create_version_range}"
     ordering = "NONE"
     side = "BOTH"
-
-[[dependencies.${mod_id}]]
-    modId="tconstruct"
-    mandatory = true
-    versionRange = "${tinkers_version_range}"
-    ordering = "NONE"
-    side = "BOTH"
