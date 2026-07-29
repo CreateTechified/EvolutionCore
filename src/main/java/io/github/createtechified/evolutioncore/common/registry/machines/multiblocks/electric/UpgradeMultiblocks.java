@@ -57,7 +57,7 @@ public class UpgradeMultiblocks {
                     .build())
             .workableCasingModel(GTCEu.id("block/casings/gcym/high_temperature_smelting_casing"), GTCEu.id("block/multiblock/large_chemical_reactor"))
             .langValue("Large Chemical Plant")
-            .tooltips(Component.translatable("evolutioncore.tooltip.large_chemical_plant").withStyle(ChatFormatting.WHITE))
+            .tooltips(Component.translatable("evolutioncore.tooltip.large_chemical_plant").withStyle(ChatFormatting.GRAY))
             .register();
 
     public static final MultiblockMachineDefinition FUSION_ALLOYING_CHAMBER = Reference.REGISTRATE

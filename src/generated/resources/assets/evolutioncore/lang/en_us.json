@@ -49,8 +49,8 @@
   "block.evolutioncore.steel_greenhouse": "Steel Greenhouse",
   "evolutioncore.tooltip.bulk_ore_processing_plant": "A beast which can process large amounts of ore in seconds.\nCan Parallelize with Parallel Control Hatchs.",
   "evolutioncore.tooltip.electric_ore_factory": "An Electric-Powered Ore Factory to process all your ores.",
-  "evolutioncore.tooltip.fusion_alloying_chamber": "Can Parallelize with Parallel Control Hatchs.\nAvailable Recipe Types: Alloy Blast Smelter.\nFor every 900K §7above the recipe temperature, a multiplicative §r95% §7energy multiplier is applied pre-overclocking.§r\nFor every 1800K §7above the recipe temperature, one overclock becomes §r100% efficient §7(perfect overclock).§r\nFor every voltage tier above §bMV§7, temperature is increased by §r100K",
-  "evolutioncore.tooltip.large_chemical_plant": "An Advanced Chemical Reactor.\nCan Parallelize with Parallel Control Hatchs.\nAvailable Recipe Types: Chemical Reactor, Large Chemical Reactor, Large Chemical Plant, Chemical Line Reduction.",
+  "evolutioncore.tooltip.fusion_alloying_chamber": "Can Parallelize with Parallel Control Hatches.\nFor every 900K §7above the recipe temperature, a multiplicative §r95% §7energy multiplier is applied pre-overclocking.§r\nFor every 1800K §7above the recipe temperature, one overclock becomes §r100% efficient §7(perfect overclock).§r\nFor every voltage tier above §bMV§7, temperature is increased by §r100K",
+  "evolutioncore.tooltip.large_chemical_plant": "An Advanced Chemical Reactor.\nCan Parallelize with Parallel Control Hatches.",
   "evolutioncore.tooltip.ore_processing_factory": "A mid-tier Ore Processing Factory to process all your ores.\nHas Perfect Overclocking, but no Parallelization.",
   "evolutioncore.tooltip.ore_processing_plant": "A high-tier Ore Processing Plant to process all your ores.\nCan Parallelize with Parallel Control Hatchs.",
   "evolutioncore.tooltip.primitive_alloy_kiln": "Alloying with Fire(bricks)!",
@@ -75,6 +75,7 @@
   "evolutioncore.tooltip.steam_separator.l": "Seperating.. with Steam?",
   "evolutioncore.tooltip.steam_vent": "Exhausts Steam from Multiblocks",
   "evolutioncore.tooltip.steam_vent.warn": "⚠ | Obstruction of output prevents the machine from running more recipes.",
+  "evolutioncore.tooltip.steel_greenhouse": "A simple Greenhouse to make Wood!",
   "item.evolutioncore.carbon_filament": "Carbon Filament",
   "item.evolutioncore.failed_vacuum_tube_parts": "Failed Vacuum Tube Parts",
   "item.evolutioncore.flint_hammer": "Flint Hammer",
@@ -112,9 +113,5 @@
   "item.evolutioncore.universal_circuit_zpm": "§cZPM Universal Circuit",
   "item.evolutioncore.unsealed_vacuum_tube": "Unsealed Vacuum Tube",
   "item.evolutioncore.vacuum_tube_base": "Vacuum Tube Base",
-  "itemGroup.evolutioncore.main": "EvolutionCore - Main",
-  "material.evolutioncore.magical_wood": "Magical Wooden",
-  "material.evolutioncore.unstable": "Unstable Induced",
-  "modifier.evolutioncore.mathematical": "Mathematical!",
-  "modifier.evolutioncore.modifiable": "Modifiable"
+  "itemGroup.evolutioncore.main": "EvolutionCore - Main"
 }

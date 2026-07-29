@@ -55,6 +55,6 @@ public class ResourceGenerationMultiblocks {
                     .build())
             .workableCasingModel(GTCEu.id("block/casings/solid/machine_casing_solid_steel"), GTCEu.id("block/multiblock/implosion_compressor"))
             .langValue("Steel Greenhouse")
-            .tooltips(Component.translatable("evolutioncore.tooltip.steam_greenhouse").withStyle(ChatFormatting.GRAY))
+            .tooltips(Component.translatable("evolutioncore.tooltip.steel_greenhouse").withStyle(ChatFormatting.GRAY))
             .register();
 }

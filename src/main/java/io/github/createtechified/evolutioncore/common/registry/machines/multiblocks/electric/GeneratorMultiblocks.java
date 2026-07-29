@@ -71,6 +71,6 @@ public class GeneratorMultiblocks {
                     .build()) // ^ We force Create, so this should be fine. If anything breaks it's your fault.
             .workableCasingModel(GTCEu.id("block/casings/gcym/high_temperature_smelting_casing"), EvolutionCoreMod.id("block/machines/simple_fission_reactor"))
             .langValue("Simple Fission Reactor")
-            .tooltips(Component.translatable("evolutioncore.tooltip.simple_fission_reactor").withStyle(ChatFormatting.WHITE))
+            .tooltips(Component.translatable("evolutioncore.tooltip.simple_fission_reactor").withStyle(ChatFormatting.GRAY))
             .register();
 }
