@@ -1,4 +1,4 @@
-package io.github.createtechified.evolutioncore.common.tools;
+package io.github.createtechified.evolutioncore.common.registry.tools;
 
 import io.github.createtechified.evolutioncore.common.registry.EvoTags;
 import net.minecraft.world.item.DiggerItem;

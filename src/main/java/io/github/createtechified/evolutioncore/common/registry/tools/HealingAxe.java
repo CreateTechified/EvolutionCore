@@ -10,6 +10,7 @@ import net.minecraft.world.item.Tier;
 import net.minecraft.world.level.Level;
 
 import javax.annotation.ParametersAreNonnullByDefault;
+import java.util.function.Consumer;
 
 @ParametersAreNonnullByDefault
 public class HealingAxe extends AxeItem {
@@ -33,6 +34,16 @@ public class HealingAxe extends AxeItem {
                 return true;
             }
         }
+        return false;
+    }
+
+    @Override
+    public <T extends LivingEntity> int damageItem(ItemStack stack, int amount, T entity, Consumer<T> onBroken) {
+        return 0;
+    }
+
+    @Override
+    public boolean isDamageable(ItemStack stack) {
         return false;
     }
 }
