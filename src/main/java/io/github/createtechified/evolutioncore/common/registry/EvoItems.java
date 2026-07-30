@@ -12,6 +12,7 @@ import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.world.item.AxeItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.Tiers;
 
 import static io.github.createtechified.evolutioncore.common.registry.utils.ItemConstructors.*;
 import static io.github.createtechified.evolutioncore.common.registry.utils.GTItemConstructors.*;
@@ -48,7 +49,7 @@ public class EvoItems {
     public static ItemEntry<Item> MAX_SENSOR = constructSensor(14);
     // Tools
     public static ItemEntry<AxeItem> FLINT_HATCHET = constructHandheldItem("flint_hatchet", EvolutionCoreMod.id("item/tools/flint_hatchet"),
-            p -> new AxeItem(EvoTiers.COPPER, 3, -3.2f, p),
+            p -> new AxeItem(Tiers.WOOD, 3, -3.2f, p),
             b -> b.recipe((ctx, prov) -> ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, ctx.get())
                             .pattern("PF")
                             .pattern("SP")
@@ -58,9 +59,9 @@ public class EvoItems {
                             .unlockedBy("has_flint", RegistrateRecipeProvider.has(Items.FLINT))
                             .save(prov)));
     public static ItemEntry<HammerItem> FLINT_HAMMER = constructHandheldItem("flint_hammer", EvolutionCoreMod.id("item/tools/flint_hammer"),
-            p -> new HammerItem(3, -3.2f, EvoTiers.COPPER, p), b -> {});
+            p -> new HammerItem(3, -3.2f, Tiers.WOOD, p), b -> {});
     public static ItemEntry<HealingAxe> HEALING_AXE = constructHandheldItem("healing_axe", EvolutionCoreMod.id("item/tools/healing_axe"),
-            p -> new HealingAxe(EvoTiers.UNSTABLE, 1, -3, p), b -> {});
+            p -> new HealingAxe(Tiers.DIAMOND, 1, -3, p), b -> {});
     // Universal circuits
     public static ItemEntry<Item> ULV_UNIVERSAL_1 = constructUniversalCircuit(0);
     public static ItemEntry<Item> LV_UNIVERSAL_1 = constructUniversalCircuit(1);
