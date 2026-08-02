@@ -16,10 +16,9 @@ import io.github.createtechified.evolutioncore.Reference;
 import io.github.createtechified.evolutioncore.common.registry.EvoBlocks;
 import io.github.createtechified.evolutioncore.common.registry.EvoTabs;
 import io.github.createtechified.evolutioncore.common.registry.recipes.EvoRecipeTypes;
+import io.github.createtechified.evolutioncore.common.registry.utils.GeneralHelpers;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.Objects;
 
@@ -67,7 +66,7 @@ public class GeneratorMultiblocks {
                     .where('H', Predicates.blocks(GTBlocks.COIL_RTMALLOY.get()))
                     .where('M', Predicates.blocks(GCYMBlocks.CASING_HIGH_TEMPERATURE_SMELTING.get()))
                     .where(' ', Predicates.any())
-                    .where('W', Predicates.blocks(Objects.requireNonNull(ForgeRegistries.BLOCKS.getValue(ResourceLocation.fromNamespaceAndPath("create", "cut_deepslate_wall")))))
+                    .where('W', Predicates.blocks(Objects.requireNonNull(GeneralHelpers.getBlockFromNamespaceAndID("create", "cut_deepslate_wall"))))
                     .build()) // ^ We force Create, so this should be fine. If anything breaks it's your fault.
             .workableCasingModel(GTCEu.id("block/casings/gcym/high_temperature_smelting_casing"), EvolutionCoreMod.id("block/machines/simple_fission_reactor"))
             .langValue("Simple Fission Reactor")

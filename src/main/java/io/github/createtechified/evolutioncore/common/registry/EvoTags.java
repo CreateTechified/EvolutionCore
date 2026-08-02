@@ -8,7 +8,6 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 
-@SuppressWarnings("removal")
 public class EvoTags {
     public static class Blocks {
         public static final TagKey<Block> NEEDS_COPPER_TOOL = BlockTag("needs_copper_tool");
@@ -18,7 +17,7 @@ public class EvoTags {
         public static final TagKey<Block> MINEABLE_WITH_HAMMER = BlockTag("mineable_with_hammer");
 
         private static TagKey<Block> BlockTag(String name) {
-            return BlockTags.create(new ResourceLocation(Reference.MODID, name));
+            return BlockTags.create(ResourceLocation.fromNamespaceAndPath(Reference.MODID, name));
         }
     }
 
@@ -28,7 +27,7 @@ public class EvoTags {
         public static final TagKey<Item> INGOTS_MANYULLYN = ItemTag("ingots/manyullyn");
 
         private static TagKey<Item> ItemTag(String name) {
-            return ItemTags.create(new ResourceLocation(Reference.MODID, name));
+            return ItemTags.create(ResourceLocation.fromNamespaceAndPath(Reference.MODID, name));
         }
     }
 }

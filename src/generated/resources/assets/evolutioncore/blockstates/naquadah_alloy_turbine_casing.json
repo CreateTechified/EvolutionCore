@@ -1,7 +1,7 @@
 {
-  "variants": {
-    "": {
-      "model": "evolutioncore:block/naquadah_alloy_turbine_casing"
+    "variants": {
+        "": {
+            "model": "evolutioncore:block/naquadah_alloy_turbine_casing"
+        }
     }
-  }
 }

@@ -10,9 +10,8 @@ import net.minecraft.client.renderer.RenderType;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraftforge.client.model.generators.ModelFile;
+import net.neoforged.neoforge.client.model.generators.ModelFile;
 
-@SuppressWarnings("removal")
 public class ActiveBlockConstructors {
     public static BlockEntry<ActiveBlock> constructIntakeCasingBlock(String name, String type, String lang) {
         return BlockConstructors.constructBlock(name, EvolutionCoreMod.id("block/casings/" + type + "/intake"), ActiveBlock::new, b -> b.lang(lang));
@@ -30,7 +29,7 @@ public class ActiveBlockConstructors {
                     ModelFile inactive = prov.models().cubeBottomTop(ctx.getName(), info.side, info.bottom, info.top);
                     ModelFile active = prov.models()
                             .withExistingParent(ctx.getName() + "_active",
-                                    new ResourceLocation("gtceu", "block/fire_box_active"))
+                                    ResourceLocation.fromNamespaceAndPath("gtceu", "block/fire_box_active"))
                             .texture("side", info.side).texture("bottom", info.bottom).texture("top", info.top);
                     prov.getVariantBuilder(ctx.getEntry())
                             .partialState().with(GTBlockStateProperties.ACTIVE, false).modelForState()

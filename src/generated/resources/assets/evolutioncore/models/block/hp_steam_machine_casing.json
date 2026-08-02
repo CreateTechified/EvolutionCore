@@ -1,6 +1,6 @@
 {
-  "parent": "minecraft:block/cube_all",
-  "textures": {
-    "all": "evolutioncore:block/casings/steam/hp_steam_machine_casing"
-  }
+    "parent": "minecraft:block/cube_all",
+    "textures": {
+        "all": "evolutioncore:block/casings/steam/hp_steam_machine_casing"
+    }
 }

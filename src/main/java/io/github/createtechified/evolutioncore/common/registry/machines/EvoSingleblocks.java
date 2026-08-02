@@ -13,10 +13,6 @@ import net.minecraft.network.chat.Component;
 public class EvoSingleblocks {
     public static void init() {}
 
-    static {
-        Reference.REGISTRATE.creativeModeTab(() -> EvoTabs.EVOLUTIONCORE_MAIN);
-    }
-
     public static final Pair<MachineDefinition, MachineDefinition> STEAM_ASSEMBLER = MachineConstructors
             .registerSimpleSteamMachines("assembler", GTRecipeTypes.ASSEMBLER_RECIPES, Component.translatable("evolutioncore.tooltip.steam_assembler").withStyle(ChatFormatting.GRAY));
     public static final Pair<MachineDefinition, MachineDefinition> STEAM_CENTRIFUGE = MachineConstructors

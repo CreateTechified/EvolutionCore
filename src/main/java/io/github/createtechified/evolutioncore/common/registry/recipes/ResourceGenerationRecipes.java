@@ -1,12 +1,10 @@
 package io.github.createtechified.evolutioncore.common.registry.recipes;
 
 import io.github.createtechified.evolutioncore.common.registry.utils.RecipeConstructors;
-import net.minecraft.data.recipes.FinishedRecipe;
-
-import java.util.function.Consumer;
+import net.minecraft.data.recipes.RecipeOutput;
 
 public class ResourceGenerationRecipes {
-    public static void init(Consumer<FinishedRecipe> consumer) {
+    public static void init(RecipeOutput consumer) {
         RecipeConstructors.greenhouseBaseWoodRecipes(consumer,"minecraft", "oak");
         RecipeConstructors.greenhouseBaseWoodRecipes(consumer, "minecraft", "spruce");
         RecipeConstructors.greenhouseBaseWoodRecipes(consumer, "minecraft", "birch");

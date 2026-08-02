@@ -7,7 +7,7 @@ import com.gregtechceu.gtceu.common.machine.multiblock.part.FluidHatchPartMachin
 import io.github.createtechified.evolutioncore.common.registry.machines.EvoMultiParts;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.fluids.FluidType;
+import net.neoforged.neoforge.fluids.FluidType;
 
 public class SteamFluidHatchPartMachine extends FluidHatchPartMachine {
     public SteamFluidHatchPartMachine(BlockEntityCreationInfo info, IO io) {

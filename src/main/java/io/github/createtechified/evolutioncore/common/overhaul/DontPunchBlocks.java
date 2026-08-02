@@ -4,31 +4,32 @@ import io.github.createtechified.evolutioncore.Reference;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.common.Tags;
-import net.minecraftforge.common.ToolActions;
-import net.minecraftforge.event.entity.player.PlayerEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.common.ItemAbilities;
+import net.neoforged.neoforge.common.Tags;
+import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 
 // That tends to hurt...
-@Mod.EventBusSubscriber(modid = Reference.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
+@EventBusSubscriber(modid = Reference.MODID)
 public class DontPunchBlocks {
+
     @SubscribeEvent
     public static void onBreakSpeed(PlayerEvent.BreakSpeed event) {
-        if (event.getState() == null || event.getEntity() == null) return;
+        if (event.getState().isEmpty() || event.getEntity() == null) return;
 
         BlockState state = event.getState();
         ItemStack heldItem = event.getEntity().getMainHandItem();
 
         if (state.is(BlockTags.LOGS)) {
-            if (!heldItem.canPerformAction(ToolActions.AXE_DIG)) {
+            if (!heldItem.canPerformAction(ItemAbilities.AXE_DIG)) {
                 event.setCanceled(true);
                 return;
             }
         }
 
-        if (state.is(Tags.Blocks.STONE)) {
-            if (!heldItem.canPerformAction(ToolActions.PICKAXE_DIG)) {
+        if (state.is(Tags.Blocks.STONES)) {
+            if (!heldItem.canPerformAction(ItemAbilities.PICKAXE_DIG)) {
                 event.setCanceled(true);
                 return;
             }

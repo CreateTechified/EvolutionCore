@@ -18,11 +18,10 @@ import io.github.createtechified.evolutioncore.common.registry.EvoBlocks;
 import io.github.createtechified.evolutioncore.common.registry.EvoTabs;
 import io.github.createtechified.evolutioncore.common.registry.machines.EvoMultiParts;
 import io.github.createtechified.evolutioncore.common.registry.recipes.EvoRecipeTypes;
+import io.github.createtechified.evolutioncore.common.registry.utils.GeneralHelpers;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.material.Fluids;
-import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.Objects;
 
@@ -89,7 +88,7 @@ public class SteamMultiblocksHP {
                     .where('G', Predicates.blocks(GTBlocks.CASING_STEEL_GEARBOX.get()))
                     .where('F', Predicates.frames(GTMaterials.Steel))
                     .where('V', Predicates.abilities(EvoMultiParts.STEAM_VENT))
-                    .where('W', Predicates.blocks(Objects.requireNonNull(ForgeRegistries.BLOCKS.getValue(ResourceLocation.fromNamespaceAndPath("create", "cut_deepslate_wall")))))
+                    .where('W', Predicates.blocks(Objects.requireNonNull(GeneralHelpers.getBlockFromNamespaceAndID("create", "cut_deepslate_wall"))))
                     .build())
             .workableCasingModel(EvolutionCoreMod.id("block/casings/steam/hp_steam_machine_casing"), EvolutionCoreMod.id("block/machines/hp_steam_grinder"))
             .langValue("High Pressure Steam Grinder")
@@ -119,9 +118,9 @@ public class SteamMultiblocksHP {
                             .or(Predicates.abilities(PartAbility.STEAM).setExactLimit(1)))
                     .where('M', Predicates.abilities(EvoMultiParts.STEAM_VENT).setExactLimit(1))
                     .where('F', Predicates.blocks(EvoBlocks.HP_STEAM_FIREBOX_CASING.get()))
-                    .where('W', Predicates.blocks(Objects.requireNonNull(ForgeRegistries.BLOCKS.getValue(ResourceLocation.fromNamespaceAndPath("create", "cut_deepslate_wall")))))
-                    .where('V', Predicates.blocks(Objects.requireNonNull(ForgeRegistries.BLOCKS.getValue(ResourceLocation.fromNamespaceAndPath("create", "cut_deepslate_brick_wall")))))
-                    .where('Q', Predicates.blocks(Objects.requireNonNull(ForgeRegistries.BLOCKS.getValue(ResourceLocation.fromNamespaceAndPath("create", "cut_deepslate_bricks")))))
+                    .where('W', Predicates.blocks(Objects.requireNonNull(GeneralHelpers.getBlockFromNamespaceAndID("create", "cut_deepslate_wall"))))
+                    .where('V', Predicates.blocks(Objects.requireNonNull(GeneralHelpers.getBlockFromNamespaceAndID("create", "cut_deepslate_brick_wall"))))
+                    .where('Q', Predicates.blocks(Objects.requireNonNull(GeneralHelpers.getBlockFromNamespaceAndID("create", "cut_deepslate_bricks"))))
                     .build())
             .workableCasingModel(EvolutionCoreMod.id("block/casings/steam/hp_steam_machine_casing"), EvolutionCoreMod.id("block/machines/hp_steam_oven"))
             .langValue("High Pressure Steam Oven")
@@ -155,7 +154,7 @@ public class SteamMultiblocksHP {
                     .where('J', Predicates.blocks(GTBlocks.CASING_STEEL_GEARBOX.get()))
                     .where('G', Predicates.blocks(AllPaletteBlocks.FRAMED_GLASS.get()))
                     .where('M', Predicates.abilities(EvoMultiParts.STEAM_VENT).setExactLimit(2))
-                    .where('W', Predicates.blocks(Objects.requireNonNull(ForgeRegistries.BLOCKS.getValue(ResourceLocation.fromNamespaceAndPath("create", "cut_deepslate_wall")))))
+                    .where('W', Predicates.blocks(Objects.requireNonNull(GeneralHelpers.getBlockFromNamespaceAndID("create", "cut_deepslate_wall"))))
                     .build())
             .workableCasingModel(EvolutionCoreMod.id("block/casings/steam/hp_steam_machine_casing"), EvolutionCoreMod.id("block/machines/hp_steam_separator"))
             .langValue("High Pressure Steam Separator")
@@ -194,7 +193,7 @@ public class SteamMultiblocksHP {
                     .where('S', Predicates.fluids(Fluids.WATER))
                     .where('G', Predicates.blocks(AllPaletteBlocks.FRAMED_GLASS.get()))
                     .where('V', Predicates.abilities(EvoMultiParts.STEAM_VENT).setExactLimit(1))
-                    .where('W', Predicates.blocks(Objects.requireNonNull(ForgeRegistries.BLOCKS.getValue(ResourceLocation.fromNamespaceAndPath("create", "cut_deepslate_wall")))))
+                    .where('W', Predicates.blocks(Objects.requireNonNull(GeneralHelpers.getBlockFromNamespaceAndID("create", "cut_deepslate_wall"))))
                     .build())
             .workableCasingModel(EvolutionCoreMod.id("block/casings/steam/hp_steam_machine_casing"), EvolutionCoreMod.id("block/machines/hp_steam_purifier"))
             .langValue("High Pressure Steam Purifier")
@@ -223,7 +222,7 @@ public class SteamMultiblocksHP {
                     .where('F', Predicates.blocks(EvoBlocks.HP_STEAM_FIREBOX_CASING.get()))
                     .where('P', Predicates.blocks(GTBlocks.CASING_STEEL_PIPE.get()))
                     .where('S', Predicates.abilities(PartAbility.STEAM).setExactLimit(2))
-                    .where('W', Predicates.blocks(Objects.requireNonNull(ForgeRegistries.BLOCKS.getValue(ResourceLocation.fromNamespaceAndPath("create", "cut_deepslate_wall")))))
+                    .where('W', Predicates.blocks(Objects.requireNonNull(GeneralHelpers.getBlockFromNamespaceAndID("create", "cut_deepslate_wall"))))
                     .where('M', Predicates.abilities(EvoMultiParts.STEAM_VENT).setExactLimit(1))
                     .build())
             .workableCasingModel(EvolutionCoreMod.id("block/casings/steam/hp_steam_machine_casing"), EvolutionCoreMod.id("block/machines/hp_steam_blast_furnace"))

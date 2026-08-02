@@ -5,7 +5,7 @@ import net.minecraft.world.item.DiggerItem;
 import net.minecraft.world.item.Tier;
 
 public class HammerItem extends DiggerItem {
-    public HammerItem(float attackDamageModifier, float attackSpeedModifier, Tier tier, Properties properties) {
-        super(attackDamageModifier, attackSpeedModifier, tier, EvoTags.Blocks.MINEABLE_WITH_HAMMER, properties);
+    public HammerItem(Tier tier, Properties properties) {
+        super(tier, EvoTags.Blocks.MINEABLE_WITH_HAMMER, properties);
     }
 }

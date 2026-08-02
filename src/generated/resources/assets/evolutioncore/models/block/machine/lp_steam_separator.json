@@ -1,58 +1,58 @@
 {
-  "parent": "minecraft:block/block",
-  "loader": "gtceu:machine",
-  "machine": "evolutioncore:lp_steam_separator",
-  "texture_overrides": {
-    "all": "gtceu:block/casings/solid/machine_casing_bronze_plated_bricks"
-  },
-  "variants": {
-    "recipe_logic_status=idle": {
-      "model": {
-        "parent": "gtceu:block/machine/template/cube_all/sided",
-        "textures": {
-          "all": "gtceu:block/casings/solid/machine_casing_bronze_plated_bricks",
-          "overlay_back": "evolutioncore:block/machines/lp_steam_separator/overlay_back",
-          "overlay_front": "evolutioncore:block/machines/lp_steam_separator/overlay_front",
-          "overlay_side": "evolutioncore:block/machines/lp_steam_separator/overlay_side",
-          "overlay_top": "evolutioncore:block/machines/lp_steam_separator/overlay_top"
-        }
-      }
+    "parent": "minecraft:block/block",
+    "loader": "gtceu:machine",
+    "machine": "evolutioncore:lp_steam_separator",
+    "texture_overrides": {
+        "all": "gtceu:block/casings/solid/machine_casing_bronze_plated_bricks"
     },
-    "recipe_logic_status=suspend": {
-      "model": {
-        "parent": "gtceu:block/machine/template/cube_all/sided",
-        "textures": {
-          "all": "gtceu:block/casings/solid/machine_casing_bronze_plated_bricks",
-          "overlay_back": "evolutioncore:block/machines/lp_steam_separator/overlay_back",
-          "overlay_front": "evolutioncore:block/machines/lp_steam_separator/overlay_front",
-          "overlay_side": "evolutioncore:block/machines/lp_steam_separator/overlay_side",
-          "overlay_top": "evolutioncore:block/machines/lp_steam_separator/overlay_top"
+    "variants": {
+        "recipe_logic_status=idle": {
+            "model": {
+                "parent": "gtceu:block/machine/template/cube_all/sided",
+                "textures": {
+                    "all": "gtceu:block/casings/solid/machine_casing_bronze_plated_bricks",
+                    "overlay_back": "evolutioncore:block/machines/lp_steam_separator/overlay_back",
+                    "overlay_front": "evolutioncore:block/machines/lp_steam_separator/overlay_front",
+                    "overlay_side": "evolutioncore:block/machines/lp_steam_separator/overlay_side",
+                    "overlay_top": "evolutioncore:block/machines/lp_steam_separator/overlay_top"
+                }
+            }
+        },
+        "recipe_logic_status=suspend": {
+            "model": {
+                "parent": "gtceu:block/machine/template/cube_all/sided",
+                "textures": {
+                    "all": "gtceu:block/casings/solid/machine_casing_bronze_plated_bricks",
+                    "overlay_back": "evolutioncore:block/machines/lp_steam_separator/overlay_back",
+                    "overlay_front": "evolutioncore:block/machines/lp_steam_separator/overlay_front",
+                    "overlay_side": "evolutioncore:block/machines/lp_steam_separator/overlay_side",
+                    "overlay_top": "evolutioncore:block/machines/lp_steam_separator/overlay_top"
+                }
+            }
+        },
+        "recipe_logic_status=waiting": {
+            "model": {
+                "parent": "gtceu:block/machine/template/cube_all/sided",
+                "textures": {
+                    "all": "gtceu:block/casings/solid/machine_casing_bronze_plated_bricks",
+                    "overlay_back": "evolutioncore:block/machines/lp_steam_separator/overlay_back_active",
+                    "overlay_front": "evolutioncore:block/machines/lp_steam_separator/overlay_front_active",
+                    "overlay_side": "evolutioncore:block/machines/lp_steam_separator/overlay_side_active",
+                    "overlay_top": "evolutioncore:block/machines/lp_steam_separator/overlay_top_active"
+                }
+            }
+        },
+        "recipe_logic_status=working": {
+            "model": {
+                "parent": "gtceu:block/machine/template/cube_all/sided",
+                "textures": {
+                    "all": "gtceu:block/casings/solid/machine_casing_bronze_plated_bricks",
+                    "overlay_back": "evolutioncore:block/machines/lp_steam_separator/overlay_back_active",
+                    "overlay_front": "evolutioncore:block/machines/lp_steam_separator/overlay_front_active",
+                    "overlay_side": "evolutioncore:block/machines/lp_steam_separator/overlay_side_active",
+                    "overlay_top": "evolutioncore:block/machines/lp_steam_separator/overlay_top_active"
+                }
+            }
         }
-      }
-    },
-    "recipe_logic_status=waiting": {
-      "model": {
-        "parent": "gtceu:block/machine/template/cube_all/sided",
-        "textures": {
-          "all": "gtceu:block/casings/solid/machine_casing_bronze_plated_bricks",
-          "overlay_back": "evolutioncore:block/machines/lp_steam_separator/overlay_back_active",
-          "overlay_front": "evolutioncore:block/machines/lp_steam_separator/overlay_front_active",
-          "overlay_side": "evolutioncore:block/machines/lp_steam_separator/overlay_side_active",
-          "overlay_top": "evolutioncore:block/machines/lp_steam_separator/overlay_top_active"
-        }
-      }
-    },
-    "recipe_logic_status=working": {
-      "model": {
-        "parent": "gtceu:block/machine/template/cube_all/sided",
-        "textures": {
-          "all": "gtceu:block/casings/solid/machine_casing_bronze_plated_bricks",
-          "overlay_back": "evolutioncore:block/machines/lp_steam_separator/overlay_back_active",
-          "overlay_front": "evolutioncore:block/machines/lp_steam_separator/overlay_front_active",
-          "overlay_side": "evolutioncore:block/machines/lp_steam_separator/overlay_side_active",
-          "overlay_top": "evolutioncore:block/machines/lp_steam_separator/overlay_top_active"
-        }
-      }
     }
-  }
 }

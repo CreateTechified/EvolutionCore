@@ -1,14 +1,13 @@
 package io.github.createtechified.evolutioncore;
 
+import com.gregtechceu.gtceu.api.addon.GTAddon;
 import com.gregtechceu.gtceu.api.addon.IGTAddon;
 import com.gregtechceu.gtceu.api.registry.registrate.GTRegistrate;
 import io.github.createtechified.evolutioncore.common.registry.recipes.EvoRecipeTypes;
 import io.github.createtechified.evolutioncore.common.registry.recipes.ResourceGenerationRecipes;
-import net.minecraft.data.recipes.FinishedRecipe;
+import net.minecraft.data.recipes.RecipeOutput;
 
-import java.util.function.Consumer;
-
-@com.gregtechceu.gtceu.api.addon.GTAddon
+@GTAddon(Reference.MODID)
 public class EvolutionCoreAddon implements IGTAddon {
     @Override
     public GTRegistrate getRegistrate() {
@@ -16,17 +15,12 @@ public class EvolutionCoreAddon implements IGTAddon {
     }
 
     @Override
-    public void initializeAddon() {
-
+    public void gtInitComplete() {
+        Reference.LOGGER.info("EvolutionCore GT Init Complete!");
     }
 
     @Override
-    public String addonModId() {
-        return Reference.MODID;
-    }
-
-    @Override
-    public void addRecipes(Consumer<FinishedRecipe> provider) {
+    public void addRecipes(RecipeOutput provider) {
         EvoRecipeTypes.init();
         ResourceGenerationRecipes.init(provider);
     }

@@ -11,7 +11,6 @@ import com.gregtechceu.gtceu.api.machine.trait.recipe.RecipeLogic;
 import com.gregtechceu.gtceu.api.multiblock.util.RelativeDirection;
 import com.gregtechceu.gtceu.api.sync_system.annotations.RerenderOnChanged;
 import com.gregtechceu.gtceu.api.sync_system.annotations.SyncToClient;
-import com.gregtechceu.gtceu.common.data.GTRecipeTypes;
 import com.gregtechceu.gtceu.common.machine.multiblock.primitive.PrimitiveWorkableMachine;
 import com.gregtechceu.gtceu.common.machine.trait.multiblock.MultiblockFluidRendererTrait;
 import com.gregtechceu.gtceu.common.mui.GTGuiTextures;
@@ -29,8 +28,6 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 
 import brachy.modularui.api.ITheme;
 import brachy.modularui.api.drawable.Text;
@@ -50,10 +47,10 @@ import brachy.modularui.widgets.slot.ItemSlot;
 import brachy.modularui.widgets.slot.ModularSlot;
 import brachy.modularui.widgets.slot.SlotGroup;
 import lombok.Getter;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
 
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.Set;
 
 import javax.annotation.Nullable;
@@ -204,8 +201,8 @@ public class PrimitiveOreFactoryMachine extends PrimitiveWorkableMachine impleme
         String[] matrix = new String[2];
         StringBuilder row1 = new StringBuilder();
         StringBuilder row2 = new StringBuilder();
-        for (int i = 0; i < cols; i++) { row1.append(key); }
-        for (int i = cols; i < size; i++) { row2.append(key); }
+        row1.repeat(String.valueOf(key), Math.max(0, cols));
+        row2.repeat(String.valueOf(key), Math.max(0, size - cols));
         while (row2.length() < cols) { row2.append(' '); }
         matrix[0] = row1.toString();
         matrix[1] = row2.toString();

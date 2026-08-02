@@ -1,8 +1,8 @@
 plugins {
-    id 'idea'
     id 'java-library'
     id 'maven-publish'
-    id 'net.neoforged.moddev.legacyforge' version '2.0.91'
+    id 'net.neoforged.moddev' version '2.0.143'
+    id 'idea'
 }
 
 tasks.named('wrapper', Wrapper).configure {
@@ -12,12 +12,18 @@ tasks.named('wrapper', Wrapper).configure {
 version = mod_version
 group = mod_group_id
 
+sourceSets.main.resources {
+    srcDir('src/generated/resources')
+    exclude("**/*.bbmodel")
+    exclude("src/generated/**/.cache")
+}
+
 repositories {
     mavenLocal()
     mavenCentral()
     maven {
         name = 'GTCEu Maven'
-        url = 'https://maven.gtceu.com'
+        url = 'https://maven.gtceu.com/'
         content {
             includeGroup 'com.gregtechceu.gtceu'
             includeGroup 'brachy.modularui'
@@ -25,33 +31,33 @@ repositories {
     }
     maven {
         name 'BlameJared Maven'
-        url = 'https://maven.blamejared.com'
+        url = 'https://maven.blamejared.com/'
     }
     maven {
-        name = 'FirstDarkDev Maven'
-        url = 'https://maven.firstdark.dev/snapshots'
-    }
-    maven {
-        name = 'TTerraG Maven'
-        url = 'https://maven.tterrag.com'
+        name = 'Devos Snapshot Maven'
+        url = 'https://mvn.devos.one/snapshots/'
+        content {
+            includeGroup 'com.tterrag.registrate'
+        }
     }
     maven {
         name = 'Architectury Maven'
-        url = 'https://maven.architectury.dev'
+        url = 'https://maven.architectury.dev/'
         content {
             includeGroup 'dev.architectury'
         }
     }
     maven {
         name = 'LatvianDev Maven'
-        url = 'https://maven.latvian.dev/releases'
+        url = 'https://maven.latvian.dev/releases/'
         content {
             includeGroup 'dev.latvian.mods'
+            includeGroup 'dev.latvian.apps'
         }
     }
     maven {
         name = 'Create Maven'
-        url = 'https://maven.createmod.net'
+        url = 'https://maven.createmod.net/'
     }
     maven {
         name = 'TerraformersMC Maven'
@@ -65,17 +71,38 @@ repositories {
         url = 'https://maven.theillusivec4.top/'
     }
     maven {
-        name = 'ModMaven'
-        url = 'https://modmaven.dev'
+        name = 'SquidDev Maven'
+        url = 'https://maven.squiddev.cc/'
         content {
-            includeGroup 'appeng'
+            includeGroup 'cc.tweaked'
+        }
+    }
+    maven {
+        name = 'Repsy Toma Maven'
+        url = 'https://repo.repsy.io/mvn/toma/public/'
+        content {
+            includeGroup 'dev.toma.configuration'
+        }
+    }
+    maven {
+        name = 'ModMaven'
+        url = 'https://modmaven.dev/'
+        content {
+            includeGroup 'org.appliedenergistics'
         }
     }
     maven {
         name = 'CurseMaven'
-        url = 'https://cursemaven.com'
+        url = 'https://cursemaven.com/'
         content {
             includeGroup 'curse.maven'
+        }
+    }
+    maven {
+        name = 'Jitpack'
+        url = 'https://jitpack.io/'
+        content {
+            includeGroup 'com.github.rtyley'
         }
     }
 }
@@ -84,10 +111,10 @@ base {
     archivesName = mod_id
 }
 
-java.toolchain.languageVersion = JavaLanguageVersion.of(17)
+java.toolchain.languageVersion = JavaLanguageVersion.of(21)
 
-legacyForge {
-    version = project.minecraft_version + '-' + project.forge_version
+neoForge {
+    version = project.neo_version
 
     parchment {
         mappingsVersion = project.parchment_mappings_version
@@ -97,24 +124,23 @@ legacyForge {
     runs {
         client {
             client()
-            systemProperty 'forge.enabledGameTestNamespaces', project.mod_id
+            systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
         }
 
         server {
             server()
             programArgument '--nogui'
-            systemProperty 'forge.enabledGameTestNamespaces', project.mod_id
+            systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
         }
-
         gameTestServer {
-            type = 'gameTestServer'
-            systemProperty 'forge.enabledGameTestNamespaces', project.mod_id
+            type = "gameTestServer"
+            systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
         }
 
         data {
             data()
             programArguments.addAll '--mod', project.mod_id, '--all', '--output', file('src/generated/resources/').getAbsolutePath(),
-                    '--existing', file('src/main/resources/').getAbsolutePath(), '--existing-mod', 'gtceu', '--existing-mod', 'tconstruct'
+            '--existing', file('src/main/resources/').getAbsolutePath(), '--existing-mod', 'gtceu'
         }
 
         configureEach {
@@ -130,77 +156,54 @@ legacyForge {
     }
 }
 
-sourceSets.main.resources { srcDir 'src/generated/resources' }
-
 configurations {
     runtimeClasspath.extendsFrom localRuntime
-}
-obfuscation {
-    createRemappingConfiguration(configurations.localRuntime)
 }
 
 dependencies {
     implementation "org.projectlombok:lombok:1.18.42"
-    modImplementation "com.gregtechceu.gtceu:gtceu-${minecraft_version}:${gtm_version}"
-    modImplementation "appeng:appliedenergistics2-forge:${ae2_version}"
-    modImplementation "brachy.modularui:modularui-mc${minecraft_version}:${mui_version}"
-    modImplementation "com.tterrag.registrate:Registrate:${registrate_version}"
-    modImplementation "dev.architectury:architectury-forge:${architectury_version}"
-    modImplementation "dev.latvian.mods:rhino-forge:${rhino_version}"
-    modImplementation "dev.latvian.mods:kubejs-forge:${kubejs_version}"
-    modImplementation("com.simibubi.create:create-${minecraft_version}:${create_version}:slim") { transitive = false }
-    modLocalRuntime "org.appliedenergistics:guideme:${guideme_version}"
-    modLocalRuntime "net.createmod.ponder:Ponder-Forge-${minecraft_version}:${ponder_version}"
-    modLocalRuntime "dev.engine-room.flywheel:flywheel-forge-${minecraft_version}:${flywheel_version}"
-    modLocalRuntime "dev.emi:emi-forge:${emi_version}+${minecraft_version}"
-    modLocalRuntime "top.theillusivec4.curios:curios-forge:${curios_version}+${minecraft_version}"
-    modLocalRuntime "curse.maven:mantle-74924:7563777"
+    implementation "com.gregtechceu.gtceu:gtceu-${minecraft_version}:${gtm_version}"
+    implementation "org.appliedenergistics:appliedenergistics2:${ae2_version}"
+    implementation "brachy.modularui:modularui-mc${minecraft_version}:${mui_version}"
+    implementation "com.tterrag.registrate:Registrate:${registrate_version}"
+    implementation "dev.architectury:architectury-neoforge:${architectury_version}"
+    implementation "dev.latvian.mods:rhino:${rhino_version}"
+    implementation "dev.latvian.mods:kubejs-neoforge:${kubejs_version}"
+    implementation("com.simibubi.create:create-${minecraft_version}:${create_version}:slim") { transitive = false }
+    localRuntime "org.appliedenergistics:guideme:${guideme_version}"
+    localRuntime "net.createmod.ponder:ponder-neoforge:${ponder_version}+mc${minecraft_version}"
+    localRuntime "dev.engine-room.flywheel:flywheel-neoforge-${minecraft_version}:${flywheel_version}"
+    localRuntime "dev.emi:emi-neoforge:${emi_version}+${minecraft_version}"
+    localRuntime "top.theillusivec4.curios:curios-neoforge:${curios_version}+${minecraft_version}"
+    //localRuntime "curse.maven:mantle-74924:7563777" // N/A for 1.21
     compileOnly "org.jetbrains:annotations:26.0.2"
 }
 
-// Idk if we will need mixin so keeping this. evolutioncore.mixins.json!!!
-/*
-mixin {
-    add sourceSets.main, "${mod_id}.refmap.json"
-    config "${mod_id}.mixins.json"
-}
-
-dependencies {
-    annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
-}
-
-jar {
-    manifest.attributes([
-            'MixinConfigs': "${mod_id}.mixins.json"
-    ])
-}
-*/
-
-var generateModMetadata = tasks.register('generateModMetadata', ProcessResources) {
+var generateModMetadata = tasks.register("generateModMetadata", ProcessResources) {
     var replaceProperties = [
-            minecraft_version        : minecraft_version,
-            minecraft_version_range  : minecraft_version_range,
-            forge_version            : forge_version,
-            forge_version_range      : forge_version_range,
-            loader_version_range     : loader_version_range,
-            mod_id                   : mod_id,
-            mod_name                 : mod_name,
-            mod_license              : mod_license,
-            mod_version              : mod_version,
-            mod_authors              : mod_authors,
-            mod_description          : mod_description,
-            gtm_version_range        : gtm_version_range,
-            kjs_version_range        : kjs_version_range,
-            create_version_range     : create_version_range,
-            ae2_version_range        : ae2_version_range
+            minecraft_version      : minecraft_version,
+            minecraft_version_range: minecraft_version_range,
+            neo_version            : neo_version,
+            loader_version_range   : loader_version_range,
+            mod_id                 : mod_id,
+            mod_name               : mod_name,
+            mod_license            : mod_license,
+            mod_version            : mod_version,
+            mod_authors            : mod_authors,
+            mod_description        : mod_description,
+            gtm_version_range      : gtm_version_range,
+            kjs_version_range      : kjs_version_range,
+            create_version_range   : create_version_range,
+            ae2_version_range      : ae2_version_range
     ]
     inputs.properties replaceProperties
     expand replaceProperties
-    from 'src/main/templates'
-    into 'build/generated/sources/modMetadata'
+    from "src/main/templates"
+    into "build/generated/sources/modMetadata"
 }
+
 sourceSets.main.resources.srcDir generateModMetadata
-legacyForge.ideSyncTask generateModMetadata
+neoForge.ideSyncTask generateModMetadata
 
 publishing {
     publications {

@@ -1,6 +1,6 @@
 {
-  "parent": "minecraft:item/handheld",
-  "textures": {
-    "layer0": "evolutioncore:item/tools/healing_axe"
-  }
+    "parent": "minecraft:item/handheld",
+    "textures": {
+        "layer0": "evolutioncore:item/tools/healing_axe"
+    }
 }
