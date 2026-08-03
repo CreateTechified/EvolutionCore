@@ -1,0 +1,31 @@
+package io.github.createtechified.evolutioncore.common.registry;
+
+import com.gregtechceu.gtceu.api.data.chemical.Element;
+import io.github.createtechified.evolutioncore.EvolutionCoreMod;
+
+import static com.gregtechceu.gtceu.common.data.GTElements.createAndRegister;
+
+public class EvoElements {
+    public static final Element Nu = createAndRegister(
+            EvolutionCoreMod.id("neuralium"),
+            119, 126, -1, null,
+            "Neuralium", "Nu", false
+    );
+    public static final Element Nu2 = createAndRegister(
+            EvolutionCoreMod.id("quantum_infused_neuralium"),
+            119, 128, -1, null,
+            "Quantum Infused Neuralium", "Nu→", true
+    );
+
+    // Hidden Elements
+    public static final Element Energy = createAndRegister(
+            EvolutionCoreMod.id("energy"),
+            0, 0, -1, null,
+            "Energy", "⚡", false
+    );
+    public static final Element Test = createAndRegister(
+            EvolutionCoreMod.id("test_element"),
+            200, 200, -1, null,
+            "Test", "Em", false
+    );
+}
