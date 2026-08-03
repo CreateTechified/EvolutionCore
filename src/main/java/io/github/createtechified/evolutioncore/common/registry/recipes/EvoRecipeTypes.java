@@ -9,8 +9,12 @@ import com.gregtechceu.gtceu.common.data.GTSoundEntries;
 import com.gregtechceu.gtceu.common.mui.GTGuiTextures;
 import io.github.createtechified.evolutioncore.EvolutionCoreMod;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.crafting.RecipeType;
 
+import java.util.Set;
+
+@SuppressWarnings("deprecation")
 public class EvoRecipeTypes {
     public static void init() {}
 

@@ -12,8 +12,11 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 import io.github.createtechified.evolutioncore.common.overhaul.RemoveAllOresBiomeModifier;
 import io.github.createtechified.evolutioncore.common.registry.*;
 import io.github.createtechified.evolutioncore.common.registry.machines.EvoMachineLoader;
+import io.github.createtechified.evolutioncore.common.registry.recipes.EvoRecipeInitializer;
+import io.github.createtechified.evolutioncore.common.registry.recipes.EvoRecipeRemovals;
 import io.github.createtechified.evolutioncore.common.registry.recipes.EvoRecipeTypes;
 import io.github.createtechified.evolutioncore.datagen.EvoDatagen;
+import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraftforge.common.world.BiomeModifier;
@@ -23,6 +26,8 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
+
+import java.util.function.Consumer;
 
 @Mod(Reference.MODID)
 @SuppressWarnings("removal") // I don't really care about future deprecation. Thanks, Gradle.
@@ -73,6 +78,14 @@ public class EvolutionCoreMod {
 
     private void modifyMaterials(PostMaterialEvent event) {
         EvoModifications.modifyMaterials(event);
+    }
+
+    public static void addRecipes(Consumer<FinishedRecipe> provider) {
+        EvoRecipeInitializer.init(provider);
+    }
+
+    public static void removeRecipes(Consumer<ResourceLocation> provider) {
+        EvoRecipeRemovals.init(provider);
     }
 
     public static ResourceLocation id(String path) {

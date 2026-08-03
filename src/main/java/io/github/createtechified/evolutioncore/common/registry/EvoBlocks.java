@@ -9,6 +9,7 @@ import io.github.createtechified.evolutioncore.common.registry.utils.ActiveBlock
 import io.github.createtechified.evolutioncore.common.registry.utils.BlockConstructors;
 import net.minecraft.world.level.block.Block;
 
+@SuppressWarnings("unused")
 public class EvoBlocks {
     public static void init() {}
 

@@ -1,7 +1,16 @@
 {
   "values": [
+    "evolutioncore:hp_steam_machine_casing",
     "evolutioncore:hp_steam_firebox_casing",
+    "evolutioncore:solid_stainless_steel_machine_casing",
+    "evolutioncore:stainless_steel_pipe_casing",
     "evolutioncore:stainless_steel_firebox",
+    "evolutioncore:solid_tungstensteel_machine_casing",
+    "evolutioncore:naquadah_alloy_machine_casing",
+    "evolutioncore:naquadah_alloy_pipe_casing",
+    "evolutioncore:naquadah_alloy_gearbox_casing",
+    "evolutioncore:naquadah_alloy_turbine_casing",
+    "evolutioncore:solid_naquadah_alloy_machine_casing",
     "evolutioncore:naquadah_alloy_firebox"
   ]
 }
