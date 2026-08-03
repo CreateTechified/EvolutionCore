@@ -113,5 +113,7 @@
   "item.evolutioncore.universal_circuit_zpm": "§cZPM Universal Circuit",
   "item.evolutioncore.unsealed_vacuum_tube": "Unsealed Vacuum Tube",
   "item.evolutioncore.vacuum_tube_base": "Vacuum Tube Base",
-  "itemGroup.evolutioncore.main": "EvolutionCore - Main"
+  "itemGroup.evolutioncore.main": "EvolutionCore - Main",
+  "material.evolutioncore.neuralium": "Neuralium",
+  "material.evolutioncore.quantum_infused_neuralium": "Quantum-Infused Neuralium"
 }

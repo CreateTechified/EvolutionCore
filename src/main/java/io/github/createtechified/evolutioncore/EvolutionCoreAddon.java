@@ -1,14 +1,15 @@
 package io.github.createtechified.evolutioncore;
 
+import com.gregtechceu.gtceu.api.addon.GTAddon;
 import com.gregtechceu.gtceu.api.addon.IGTAddon;
 import com.gregtechceu.gtceu.api.registry.registrate.GTRegistrate;
+import io.github.createtechified.evolutioncore.common.registry.recipes.EvoRecipeInitializer;
 import io.github.createtechified.evolutioncore.common.registry.recipes.EvoRecipeTypes;
-import io.github.createtechified.evolutioncore.common.registry.recipes.ResourceGenerationRecipes;
 import net.minecraft.data.recipes.FinishedRecipe;
 
 import java.util.function.Consumer;
 
-@com.gregtechceu.gtceu.api.addon.GTAddon
+@GTAddon
 public class EvolutionCoreAddon implements IGTAddon {
     @Override
     public GTRegistrate getRegistrate() {
@@ -16,9 +17,7 @@ public class EvolutionCoreAddon implements IGTAddon {
     }
 
     @Override
-    public void initializeAddon() {
-
-    }
+    public void initializeAddon() {}
 
     @Override
     public String addonModId() {
@@ -28,6 +27,9 @@ public class EvolutionCoreAddon implements IGTAddon {
     @Override
     public void addRecipes(Consumer<FinishedRecipe> provider) {
         EvoRecipeTypes.init();
-        ResourceGenerationRecipes.init(provider);
+        EvoRecipeInitializer.init(provider);
     }
+
+    @Override
+    public boolean requiresHighTier() {return true;}
 }

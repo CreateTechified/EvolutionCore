@@ -1,16 +1,17 @@
 package io.github.createtechified.evolutioncore;
 
 import com.gregtechceu.gtceu.api.GTCEuAPI;
+import com.gregtechceu.gtceu.api.data.chemical.Element;
+import com.gregtechceu.gtceu.api.data.chemical.material.event.MaterialEvent;
+import com.gregtechceu.gtceu.api.data.chemical.material.event.PostMaterialEvent;
 import com.gregtechceu.gtceu.api.machine.MachineDefinition;
 import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
 import com.gregtechceu.gtceu.utils.FormattingUtil;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import io.github.createtechified.evolutioncore.common.overhaul.RemoveAllOresBiomeModifier;
-import io.github.createtechified.evolutioncore.common.registry.EvoTabs;
-import io.github.createtechified.evolutioncore.common.registry.EvoItems;
+import io.github.createtechified.evolutioncore.common.registry.*;
 import io.github.createtechified.evolutioncore.common.registry.machines.EvoMachineLoader;
-import io.github.createtechified.evolutioncore.common.registry.EvoBlocks;
 import io.github.createtechified.evolutioncore.common.registry.recipes.EvoRecipeTypes;
 import io.github.createtechified.evolutioncore.datagen.EvoDatagen;
 import net.minecraft.resources.ResourceLocation;
@@ -43,6 +44,9 @@ public class EvolutionCoreMod {
         IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
         eventBus.addGenericListener(GTRecipeType.class, this::registerRecipeTypes);
         eventBus.addGenericListener(MachineDefinition.class, this::registerMachines);
+        eventBus.addGenericListener(Element.class, this::registerElements);
+        eventBus.addListener(this::addMaterials);
+        eventBus.addListener(this::modifyMaterials);
         BIOME_MODIFIER_SERIALIZERS.register(eventBus);
         EvoItems.init();
         EvoBlocks.init();
@@ -57,6 +61,18 @@ public class EvolutionCoreMod {
 
     public void registerMachines(GTCEuAPI.RegisterEvent<ResourceLocation, MachineDefinition> event) {
         EvoMachineLoader.init();
+    }
+
+    public void registerElements(GTCEuAPI.RegisterEvent<ResourceLocation, Element> event) {
+        EvoElements.init();
+    }
+
+    private void addMaterials(MaterialEvent event) {
+        EvoMaterials.init();
+    }
+
+    private void modifyMaterials(PostMaterialEvent event) {
+        EvoModifications.modifyMaterials(event);
     }
 
     public static ResourceLocation id(String path) {

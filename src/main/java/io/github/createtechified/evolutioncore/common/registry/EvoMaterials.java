@@ -9,6 +9,7 @@ public class EvoMaterials {
     public static void init() {
         NEURALIUM = new Material.Builder(
                 EvolutionCoreMod.id("neuralium"))
+                .langValue("Neuralium")
                 .ingot()
                 .fluid()
                 .plasma()
@@ -35,6 +36,7 @@ public class EvoMaterials {
 
         INFUSED_NEURALIUM = new Material.Builder(
                 EvolutionCoreMod.id("quantum_infused_neuralium"))
+                .langValue("Quantum-Infused Neuralium")
                 .gem()
                 .element(EvoElements.Nu2)
                 .color(0x756587)

@@ -45,8 +45,5 @@ public class ResourceGenerationRecipes {
         //RecipeConstructors.greenhouseWoodRecipes(consumer, "biomeswevegone", "_sapling", "sakura", "_log", "air", "white_");
         //RecipeConstructors.greenhouseWoodRecipes(consumer, "biomeswevegone", "_sapling", "sakura", "_log", "air", "yellow_");
         //RecipeConstructors.greenhouseBaseWoodRecipes(consumer, "occultism", "otherworld");
-        RecipeConstructors.pakRecipes(consumer, "gtceu", "bronze", 4,
-                new RecipeConstructors.AlloyIngredient("gtceu", "copper", 3),
-                new RecipeConstructors.AlloyIngredient("gtceu", "tin", 1));
     }
 }

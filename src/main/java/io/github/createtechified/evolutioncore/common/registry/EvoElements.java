@@ -6,6 +6,8 @@ import io.github.createtechified.evolutioncore.EvolutionCoreMod;
 import static com.gregtechceu.gtceu.common.data.GTElements.createAndRegister;
 
 public class EvoElements {
+    public static void init() {}
+
     public static final Element Nu = createAndRegister(
             EvolutionCoreMod.id("neuralium"),
             119, 126, -1, null,
@@ -18,6 +20,7 @@ public class EvoElements {
     );
 
     // Hidden Elements
+    // Don't tell me they exist, but treat 'em as a picture of a coconut. I see how it is...
     public static final Element Energy = createAndRegister(
             EvolutionCoreMod.id("energy"),
             0, 0, -1, null,

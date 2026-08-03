@@ -9,15 +9,12 @@ import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.function.Supplier;
 
 public class EvoModifications {
-
-    @SubscribeEvent
-    public static void onMaterialModification(PostMaterialEvent event) {
+    public static void modifyMaterials(PostMaterialEvent event) {
         GTMaterials.NaquadahAlloy.setProperty(
                 PropertyKey.FLUID_PIPE,
                 new FluidPipeProperties(7200, 15780, true, true, false, false)
