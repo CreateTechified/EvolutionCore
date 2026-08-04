@@ -146,8 +146,6 @@ dependencies {
     modImplementation "brachy.modularui:modularui-mc${minecraft_version}:${mui_version}"
     modImplementation "com.tterrag.registrate:Registrate:${registrate_version}"
     modImplementation "dev.architectury:architectury-forge:${architectury_version}"
-    modImplementation "dev.latvian.mods:rhino-forge:${rhino_version}"
-    modImplementation "dev.latvian.mods:kubejs-forge:${kubejs_version}"
     modImplementation("com.simibubi.create:create-${minecraft_version}:${create_version}:slim") { transitive = false }
     modLocalRuntime "org.appliedenergistics:guideme:${guideme_version}"
     modLocalRuntime "net.createmod.ponder:Ponder-Forge-${minecraft_version}:${ponder_version}"
@@ -155,6 +153,8 @@ dependencies {
     modLocalRuntime "dev.emi:emi-forge:${emi_version}+${minecraft_version}"
     modLocalRuntime "top.theillusivec4.curios:curios-forge:${curios_version}+${minecraft_version}"
     modLocalRuntime "curse.maven:mantle-74924:7563777"
+    modLocalRuntime "dev.latvian.mods:rhino-forge:${rhino_version}"
+    modLocalRuntime "dev.latvian.mods:kubejs-forge:${kubejs_version}"
     compileOnly "org.jetbrains:annotations:26.0.2"
 }
 
@@ -190,7 +190,6 @@ var generateModMetadata = tasks.register('generateModMetadata', ProcessResources
             mod_authors              : mod_authors,
             mod_description          : mod_description,
             gtm_version_range        : gtm_version_range,
-            kjs_version_range        : kjs_version_range,
             create_version_range     : create_version_range,
             ae2_version_range        : ae2_version_range
     ]
