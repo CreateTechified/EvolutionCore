@@ -21,12 +21,12 @@ public class EvoElements {
 
     // Hidden Elements
     // Don't tell me they exist, but treat 'em as a picture of a coconut. I see how it is...
-    public static final Element Energy = createAndRegister(
+    public static final Element ENERGY = createAndRegister(
             EvolutionCoreMod.id("energy"),
             0, 0, -1, null,
             "Energy", "⚡", false
     );
-    public static final Element Test = createAndRegister(
+    public static final Element TEST = createAndRegister(
             EvolutionCoreMod.id("test_element"),
             200, 200, -1, null,
             "Test", "Em", false

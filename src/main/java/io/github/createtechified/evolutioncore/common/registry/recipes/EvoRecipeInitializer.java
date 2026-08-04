@@ -1,5 +1,6 @@
 package io.github.createtechified.evolutioncore.common.registry.recipes;
 
+import com.gregtechceu.gtceu.api.fluids.store.FluidStorageKeys;
 import com.gregtechceu.gtceu.data.recipe.CustomTags;
 import io.github.createtechified.evolutioncore.common.registry.utils.RecipeConstructors;
 import net.minecraft.data.recipes.FinishedRecipe;
@@ -13,7 +14,9 @@ import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.*;
 import static com.gregtechceu.gtceu.common.data.GTItems.*;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.ASSEMBLY_LINE_RECIPES;
+import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.PLASMA_GENERATOR_FUELS;
 import static com.gregtechceu.gtceu.common.data.machines.GCYMMachines.BLAST_ALLOY_SMELTER;
+import static io.github.createtechified.evolutioncore.common.registry.EvoMaterials.Neuralium;
 import static io.github.createtechified.evolutioncore.common.registry.machines.multiblocks.electric.UpgradeMultiblocks.FUSION_ALLOYING_CHAMBER;
 
 public class EvoRecipeInitializer {
@@ -25,6 +28,19 @@ public class EvoRecipeInitializer {
         RecipeConstructors.pakRecipes(provider, "gtceu", "bronze", 4,
                 new RecipeConstructors.AlloyIngredient("gtceu", "copper", 3),
                 new RecipeConstructors.AlloyIngredient("gtceu", "tin", 1));
+
+        RecipeConstructors.fusionRecipesMK3(provider, "evolutioncore",
+                new RecipeConstructors.FluidIngredient("gtceu", "darmstadtium", 144),
+                new RecipeConstructors.FluidIngredient("gtceu", "beryllium", 250),
+                new RecipeConstructors.FluidIngredient("evolutioncore", "neuralium", 144),
+                50, 420000000);
+
+        PLASMA_GENERATOR_FUELS.recipeBuilder("neuralium")
+                .inputFluids(Neuralium.getFluid(FluidStorageKeys.PLASMA, 1))
+                .outputFluids(Neuralium.getFluid(FluidStorageKeys.LIQUID, 1))
+                .duration(1280)
+                .EUt(-2048)
+                .save(provider);
 
         ASSEMBLY_LINE_RECIPES.recipeBuilder("fusion_alloying_chamber")
                 .inputItems(BLAST_ALLOY_SMELTER.asStack())

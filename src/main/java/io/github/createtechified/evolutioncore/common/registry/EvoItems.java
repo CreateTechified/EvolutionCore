@@ -78,4 +78,12 @@ public class EvoItems {
     public static ItemEntry<Item> UXV_UNIVERSAL_1 = constructUniversalCircuit(12);
     public static ItemEntry<Item> OPV_UNIVERSAL_1 = constructUniversalCircuit(13);
     public static ItemEntry<Item> MAX_UNIVERSAL_1 = constructUniversalCircuit(14);
+    public static ItemEntry<Item> THORIUM_FUEL_ROD = constructFuelRod("thorium");
+    public static ItemEntry<Item> URANIUM_238_FUEL_ROD = constructFuelRod("uranium_238");
+    public static ItemEntry<Item> URANIUM_235_FUEL_ROD = constructFuelRod("uranium_235");
+    public static ItemEntry<Item> PLUTONIUM_FUEL_ROD = constructFuelRod("plutonium");
+    public static ItemEntry<Item> DEPLETED_THORIUM_FUEL_ROD = constructDepletedFuelRod("thorium");
+    public static ItemEntry<Item> DEPLETED_URANIUM_238_FUEL_ROD = constructDepletedFuelRod("uranium_238");
+    public static ItemEntry<Item> DEPLETED_URANIUM_235_FUEL_ROD = constructDepletedFuelRod("uranium_235");
+    public static ItemEntry<Item> DEPLETED_PLUTONIUM_FUEL_ROD = constructDepletedFuelRod("plutonium");
 }

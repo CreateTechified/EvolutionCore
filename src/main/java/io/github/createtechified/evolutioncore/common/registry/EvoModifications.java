@@ -56,7 +56,7 @@ public class EvoModifications {
         );
 
         GTMaterials.Netherite.setFormula("Nr");
-        //GTMaterials.get("quantum_infusion").setFormula("⚛");
+        EvoMaterials.QuantumInfusion.setFormula("⚛");
     }
 
     private static void ingot(String material, String itemId) {

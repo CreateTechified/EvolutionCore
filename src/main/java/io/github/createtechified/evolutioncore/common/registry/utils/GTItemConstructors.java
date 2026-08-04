@@ -9,6 +9,8 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 
+import static com.gregtechceu.gtceu.utils.FormattingUtil.toEnglishName;
+
 public class GTItemConstructors {
     public static ItemEntry<Item> constructUniversalCircuit(int tier) {
         String name = "universal_circuit_" + GTValues.VN[tier].toLowerCase();
@@ -57,5 +59,19 @@ public class GTItemConstructors {
 
     public static ItemEntry<Item> constructSensor(int tier) {
         return constructCoverlessCover(tier, "sensor", "%s Sensor", CustomTags.SENSORS);
+    }
+
+    public static ItemEntry<Item> constructFuelRod(String fuelType) {
+        String name = fuelType.toLowerCase() + "_fuel_rod";
+        ResourceLocation texture = EvolutionCoreMod.id("item/fuel_rods/" + fuelType.toLowerCase() + "_fuel_rod");
+        return ItemConstructors.constructItem(name, texture, Item::new,
+                b -> b.lang(toEnglishName(name)));
+    }
+
+    public static ItemEntry<Item> constructDepletedFuelRod(String fuelType) {
+        String name = "depleted_" + fuelType.toLowerCase() + "_fuel_rod";
+        ResourceLocation texture = EvolutionCoreMod.id("item/fuel_rods/" + "depleted_" + fuelType.toLowerCase() + "_fuel_rod");
+        return ItemConstructors.constructItem(name, texture, Item::new,
+                b -> b.lang(toEnglishName(name)));
     }
 }

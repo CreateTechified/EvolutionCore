@@ -45,5 +45,17 @@ public class ResourceGenerationRecipes {
         //RecipeConstructors.greenhouseWoodRecipes(consumer, "biomeswevegone", "_sapling", "sakura", "_log", "air", "white_");
         //RecipeConstructors.greenhouseWoodRecipes(consumer, "biomeswevegone", "_sapling", "sakura", "_log", "air", "yellow_");
         //RecipeConstructors.greenhouseBaseWoodRecipes(consumer, "occultism", "otherworld");
+        RecipeConstructors.fuelRodRecipes(consumer, "gtceu", "thorium", "evolutioncore", "thorium");
+        RecipeConstructors.fuelRodRecipes(consumer, "gtceu", "uranium_238", "evolutioncore", "uranium_238");
+        RecipeConstructors.fuelRodRecipes(consumer, "gtceu", "uranium_235", "evolutioncore", "uranium_235");
+        RecipeConstructors.fuelRodRecipes(consumer, "gtceu", "plutonium", "evolutioncore", "plutonium");
+        RecipeConstructors.depletedFuelRodRecipes(consumer, "evolutioncore", "thorium", "gtceu", "uranium_235", "gtceu", "rare_earth", "gtceu", "tritium");
+        RecipeConstructors.depletedFuelRodRecipes(consumer, "evolutioncore", "uranium_238", "gtceu", "plutonium", "gtceu", "thorium");
+        RecipeConstructors.depletedFuelRodRecipes(consumer, "evolutioncore", "uranium_235", "gtceu", "plutonium_241", "gtceu", "caesium", "gtceu", "krypton", "gtceu", "xenon");
+        RecipeConstructors.depletedFuelRodRecipes(consumer, "evolutioncore", "plutonium", "gtceu", "polonium", "gtceu", "technetium");
+        RecipeConstructors.simpleFissionReactions(consumer, "evolutioncore", "thorium", "evolutioncore", "thorium", -2048);
+        RecipeConstructors.simpleFissionReactions(consumer, "evolutioncore", "uranium_238", "evolutioncore", "uranium_238", -4096);
+        RecipeConstructors.simpleFissionReactions(consumer, "evolutioncore", "uranium_235", "evolutioncore", "uranium_235",  -8192);
+        RecipeConstructors.simpleFissionReactions(consumer, "evolutioncore", "plutonium", "evolutioncore", "plutonium", -16384);
     }
 }
