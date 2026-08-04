@@ -20,16 +20,17 @@ import static io.github.createtechified.evolutioncore.common.registry.EvoMateria
 import static io.github.createtechified.evolutioncore.common.registry.machines.multiblocks.electric.UpgradeMultiblocks.FUSION_ALLOYING_CHAMBER;
 
 public class EvoRecipeInitializer {
-    public static void init(Consumer<FinishedRecipe> provider) {
+    public static void init(Consumer<FinishedRecipe> c) {
         // Classes
-        ResourceGenerationRecipes.init(provider);
+        ResourceGenerationRecipes.init(c);
+        MachineShapedRecipes.init(c);
 
         // Ungrouped
-        RecipeConstructors.pakRecipes(provider, "gtceu", "bronze", 4,
+        RecipeConstructors.pakRecipes(c, "gtceu", "bronze", 4,
                 new RecipeConstructors.AlloyIngredient("gtceu", "copper", 3),
                 new RecipeConstructors.AlloyIngredient("gtceu", "tin", 1));
 
-        RecipeConstructors.fusionRecipesMK3(provider, "evolutioncore",
+        RecipeConstructors.fusionRecipesMK3(c, "evolutioncore",
                 new RecipeConstructors.FluidIngredient("gtceu", "darmstadtium", 144),
                 new RecipeConstructors.FluidIngredient("gtceu", "beryllium", 250),
                 new RecipeConstructors.FluidIngredient("evolutioncore", "neuralium", 144),
@@ -40,7 +41,7 @@ public class EvoRecipeInitializer {
                 .outputFluids(Neuralium.getFluid(FluidStorageKeys.LIQUID, 1))
                 .duration(1280)
                 .EUt(-2048)
-                .save(provider);
+                .save(c);
 
         ASSEMBLY_LINE_RECIPES.recipeBuilder("fusion_alloying_chamber")
                 .inputItems(BLAST_ALLOY_SMELTER.asStack())
@@ -57,6 +58,6 @@ public class EvoRecipeInitializer {
                         .researchStack(BLAST_ALLOY_SMELTER.asStack())
                         .CWUt(20)
                         .EUt(VA[LuV]))
-                .duration(1200).EUt(VA[ZPM]).save(provider);
+                .duration(1200).EUt(VA[ZPM]).save(c);
     }
 }

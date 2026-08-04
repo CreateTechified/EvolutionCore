@@ -6,8 +6,10 @@ import com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlags;
 import com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialIconSet;
 import com.gregtechceu.gtceu.api.data.chemical.material.properties.BlastProperty;
 import com.gregtechceu.gtceu.api.fluids.FluidBuilder;
-import com.gregtechceu.gtceu.common.data.GTMaterials;
 import io.github.createtechified.evolutioncore.EvolutionCoreMod;
+
+import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
+import static io.github.createtechified.evolutioncore.common.registry.EvoElements.*;
 
 public class EvoMaterials {
     public static void init() {}
@@ -19,7 +21,7 @@ public class EvoMaterials {
             .ingot()
             .fluid()
             .plasma()
-            .element(EvoElements.Nu)
+            .element(Nu)
             .color(0xBD32C9)
             .iconSet(MaterialIconSet.BRIGHT)
             .flags(
@@ -44,7 +46,7 @@ public class EvoMaterials {
             EvolutionCoreMod.id("quantum_infused_neuralium"))
             .langValue("Quantum-Infused Neuralium")
             .gem()
-            .element(EvoElements.Nu2)
+            .element(Nu2)
             .color(0x756587)
             .iconSet(MaterialIconSet.RUBY)
             .flags(
@@ -59,7 +61,7 @@ public class EvoMaterials {
             .ingot()
             .fluid()
             .blastTemp(9780, BlastProperty.GasTier.HIGHER, GTValues.VA[GTValues.ZPM], 6000)
-            .components(EvoMaterials.Neuralium, 91, GTMaterials.Tantalum, 31, GTMaterials.Chromium, 38, GTMaterials.Bismuth, 8, GTMaterials.Iron, 17)
+            .components(Neuralium, 91, Tantalum, 31, Chromium, 38, Bismuth, 8, Iron, 17)
             .cableProperties(2097152, 2, 4, false)
             .color(0xD67CDE)
             .iconSet(MaterialIconSet.DULL)
@@ -86,7 +88,7 @@ public class EvoMaterials {
             EvolutionCoreMod.id("thaumium_alloy"))
             .langValue("Thaumium Alloy")
             .ingot()
-            .components(GTMaterials.Iron, 1, GTMaterials.Copper, 2, GTMaterials.Tin, 3, GTMaterials.Nickel, 4)
+            .components(Iron, 1, Copper, 2, Tin, 3, Nickel, 4)
             .color(0x000000)
             .iconSet(MaterialIconSet.DULL)
             .flags(MaterialFlags.GENERATE_PLATE)
@@ -97,7 +99,7 @@ public class EvoMaterials {
             .langValue("Wrldapple Alloy").ingot()
             .fluid()
             .blastTemp(12980, BlastProperty.GasTier.HIGHEST, GTValues.VA[GTValues.OpV], 9000)
-            .components(EvoMaterials.Neuralium, 87, GTMaterials.Duranium, 44, GTMaterials.SamariumIronArsenicOxide, 21, GTMaterials.Tritanium, 7, GTMaterials.Mercury, 3, GTMaterials.Neutronium, 38, EvoMaterials.NeuralicAlloy7, 13, GTMaterials.Oxygen, 12)
+            .components(Neuralium, 87, Duranium, 44, SamariumIronArsenicOxide, 21, Tritanium, 7, Mercury, 3, Neutronium, 38, NeuralicAlloy7, 13, Oxygen, 12)
             .cableProperties(GTValues.V[GTValues.MAX], 512, 0, true)
             .color(0xF7EA4D)
             .secondaryColor(0xF9EBFA)
@@ -134,7 +136,7 @@ public class EvoMaterials {
             EvolutionCoreMod.id("energy"))
             .langValue("Energy")
             .gas()
-            .element(EvoElements.ENERGY)
+            .element(ENERGY)
             .color(0xFAFF00)
             .iconSet(MaterialIconSet.BRIGHT)
             .buildAndRegister();
@@ -147,7 +149,7 @@ public class EvoMaterials {
             .gas()
             .plasma()
             //.ore() // Idk why red granite broke everything
-            .element(EvoElements.TEST)
+            .element(TEST)
             .color(0xFFFFFF)
             .iconSet(MaterialIconSet.SHINY)
             .flags(
