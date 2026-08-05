@@ -1,17 +1,14 @@
 package io.github.createtechified.evolutioncore.common.registry.recipes;
 
+import appeng.core.definitions.AEItems;
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.fluids.store.FluidStorageKeys;
 import com.gregtechceu.gtceu.data.recipe.CustomTags;
-import com.gregtechceu.gtceu.data.recipe.VanillaRecipeHelper;
-import com.simibubi.create.api.data.recipe.SequencedAssemblyRecipeGen;
-import com.simibubi.create.content.processing.sequenced.SequencedAssemblyRecipeBuilder;
 import io.github.createtechified.evolutioncore.common.registry.utils.RecipeConstructors;
 import net.minecraft.data.recipes.FinishedRecipe;
 
 import java.util.function.Consumer;
 
-import static appeng.core.localization.ButtonToolTips.*;
 import static com.gregtechceu.gtceu.api.GTValues.*;
 import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.*;
 import static com.gregtechceu.gtceu.common.data.GTBlocks.CASING_STEEL_TURBINE;
@@ -126,7 +123,7 @@ public class EvoRecipeInitializer {
                 .save(c);
 
         CHEMICAL_LINE_REDUCTION.recipeBuilder("plat_line_reduced")
-                .inputItems(PlatinumGroupSludge, 18)
+                .inputItems(dust, PlatinumGroupSludge, 18)
                 .inputFluids(AquaRegia.getFluid(1500)) // subjected to change
                 .outputItems(dust, Platinum, 3)
                 .outputItems(dust, Palladium, 3)
@@ -142,7 +139,7 @@ public class EvoRecipeInitializer {
                 .save(c);
 
         LARGE_CHEMICAL_PLANT.recipeBuilder("quantum_infusion")
-                .inputItems(Singularity)
+                .inputItems(AEItems.SINGULARITY)
                 .inputItems(dustSmall, IndiumGalliumPhosphide)
                 .inputFluids(Radon.getFluid(6250))
                 .inputFluids(AmmoniumFormate.getFluid(1500))

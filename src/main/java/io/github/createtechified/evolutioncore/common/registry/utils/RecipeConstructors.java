@@ -11,6 +11,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraftforge.fluids.FluidStack;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.function.Consumer;
 
@@ -22,80 +23,45 @@ import static io.github.createtechified.evolutioncore.common.registry.EvoMateria
 public class RecipeConstructors {
     public static void greenhouseBaseWoodRecipes(Consumer<FinishedRecipe> consumer, String id, Item sapling, ItemStack... outputs) {
         EvoRecipeTypes.STEEL_GREENHOUSE.recipeBuilder(EvolutionCoreMod.id(id)).notConsumable(sapling)
-                .inputFluids(Water.getFluid(1000)).outputItems(outputs).circuitMeta(1).duration(640).EUt(GTValues.VA[GTValues.LV]).save(consumer);
+                .inputFluids(Water.getFluid(1000)).outputItems(GeneralHelpers.filterItemStackForEmptyStacks(outputs)).circuitMeta(1).duration(640).EUt(GTValues.VA[GTValues.LV]).save(consumer);
     }
     public static void greenhouseBaseWoodRecipes2(Consumer<FinishedRecipe> consumer, String id, Item sapling, ItemStack... outputs) {
         EvoRecipeTypes.STEEL_GREENHOUSE.recipeBuilder(EvolutionCoreMod.id(id)).notConsumable(sapling)
-                .inputFluids(Water.getFluid(1000)).inputFluids(CarbonDioxide.getFluid(1250)).outputItems(outputs).circuitMeta(2).duration(640).EUt(GTValues.VA[GTValues.MV]).save(consumer);
+                .inputFluids(Water.getFluid(1000)).inputFluids(CarbonDioxide.getFluid(1250)).outputItems(GeneralHelpers.filterItemStackForEmptyStacks(outputs)).circuitMeta(2).duration(640).EUt(GTValues.VA[GTValues.MV]).save(consumer);
     }
     public static void greenhouseBaseWoodRecipes3(Consumer<FinishedRecipe> consumer, String id, Item sapling, ItemStack... outputs) {
         EvoRecipeTypes.STEEL_GREENHOUSE.recipeBuilder(EvolutionCoreMod.id(id)).notConsumable(sapling)
-                .inputFluids(Water.getFluid(1000)).inputFluids(CarbonDioxide.getFluid(1250)).inputFluids(PotassiumNitrate.getFluid(1500)).outputItems(outputs).circuitMeta(3).duration(640).EUt(GTValues.VA[GTValues.HV]).save(consumer);
+                .inputFluids(Water.getFluid(1000)).inputFluids(CarbonDioxide.getFluid(1250)).inputFluids(PotassiumNitrate.getFluid(1500)).outputItems(GeneralHelpers.filterItemStackForEmptyStacks(outputs)).circuitMeta(3).duration(640).EUt(GTValues.VA[GTValues.HV]).save(consumer);
     }
-    public static void greenhouseWoodRecipes(Consumer<FinishedRecipe> consumer, String namespace, String wood) {
-        greenhouseBaseWoodRecipes(consumer, wood + "_1", GeneralHelpers.getItemFromNamespaceAndID(namespace, wood + "_sapling"),
-                new ItemStack(GeneralHelpers.getItemFromNamespaceAndID(namespace, wood + "_log"), 64)
-        );
-        greenhouseBaseWoodRecipes2(consumer, wood + "_2", GeneralHelpers.getItemFromNamespaceAndID(namespace, wood + "_sapling"),
-                new ItemStack(GeneralHelpers.getItemFromNamespaceAndID(namespace, wood + "_log"), 128)
-        );
-        greenhouseBaseWoodRecipes3(consumer, wood + "_3", GeneralHelpers.getItemFromNamespaceAndID(namespace, wood + "_sapling"),
-                new ItemStack(GeneralHelpers.getItemFromNamespaceAndID(namespace, wood + "_log"), 256)
-        );
+    public static void greenhouseWoodRecipes(Consumer<FinishedRecipe> consumer, String namespace, String wood, @Nullable String byproduct) {
+        Item sapling = GeneralHelpers.getItemFromNamespaceAndID(namespace, wood + "_sapling");
+        Item log = GeneralHelpers.getItemFromNamespaceAndID(namespace, wood + "_log");
+        ItemStack stack1 = (byproduct != null) ? new ItemStack(GeneralHelpers.getItemFromNamespaceAndID(namespace, byproduct), 16) : ItemStack.EMPTY;
+        ItemStack stack2 = (byproduct != null) ? new ItemStack(GeneralHelpers.getItemFromNamespaceAndID(namespace, byproduct), 32) : ItemStack.EMPTY;
+        ItemStack stack3 = (byproduct != null) ? new ItemStack(GeneralHelpers.getItemFromNamespaceAndID(namespace, byproduct), 64) : ItemStack.EMPTY;
+        greenhouseBaseWoodRecipes(consumer, wood + "_1", sapling, new ItemStack(log, 64), stack1);
+        greenhouseBaseWoodRecipes2(consumer, wood + "_2", sapling, new ItemStack(log, 128), stack2);
+        greenhouseBaseWoodRecipes3(consumer, wood + "_3", sapling, new ItemStack(log, 256), stack3);
     }
-    public static void greenhouseWoodRecipes(Consumer<FinishedRecipe> consumer, String namespace, String wood, String byproduct) {
-        greenhouseBaseWoodRecipes(consumer, wood + "_1", GeneralHelpers.getItemFromNamespaceAndID(namespace, wood + "_sapling"),
-                new ItemStack(GeneralHelpers.getItemFromNamespaceAndID(namespace, wood + "_log"), 64),
-                new ItemStack(GeneralHelpers.getItemFromNamespaceAndID(namespace, byproduct), 16)
-        );
-        greenhouseBaseWoodRecipes2(consumer, wood + "_2", GeneralHelpers.getItemFromNamespaceAndID(namespace, wood + "_sapling"),
-                new ItemStack(GeneralHelpers.getItemFromNamespaceAndID(namespace, wood + "_log"), 128),
-                new ItemStack(GeneralHelpers.getItemFromNamespaceAndID(namespace, byproduct), 32)
-        );
-        greenhouseBaseWoodRecipes3(consumer, wood + "_3", GeneralHelpers.getItemFromNamespaceAndID(namespace, wood + "_sapling"),
-                new ItemStack(GeneralHelpers.getItemFromNamespaceAndID(namespace, wood + "_log"), 256),
-                new ItemStack(GeneralHelpers.getItemFromNamespaceAndID(namespace, byproduct), 64)
-        );
+    public static void greenhouseWoodRecipes(Consumer<FinishedRecipe> consumer, String namespace, String sapling_suffix, String wood, String log_suffix, @Nullable String byproduct) {
+        Item sapling = GeneralHelpers.getItemFromNamespaceAndID(namespace, wood + sapling_suffix);
+        Item log = GeneralHelpers.getItemFromNamespaceAndID(namespace, wood + log_suffix);
+        ItemStack stack1 = (byproduct != null) ? new ItemStack(GeneralHelpers.getItemFromNamespaceAndID(namespace, byproduct), 16) : ItemStack.EMPTY;
+        ItemStack stack2 = (byproduct != null) ? new ItemStack(GeneralHelpers.getItemFromNamespaceAndID(namespace, byproduct), 32) : ItemStack.EMPTY;
+        ItemStack stack3 = (byproduct != null) ? new ItemStack(GeneralHelpers.getItemFromNamespaceAndID(namespace, byproduct), 64) : ItemStack.EMPTY;
+        greenhouseBaseWoodRecipes(consumer, wood + "_1", sapling, new ItemStack(log, 64), stack1);
+        greenhouseBaseWoodRecipes2(consumer, wood + "_2", sapling, new ItemStack(log, 128), stack2);
+        greenhouseBaseWoodRecipes3(consumer, wood + "_3", sapling, new ItemStack(log, 256), stack3);
     }
-    public static void greenhouseWoodRecipes(Consumer<FinishedRecipe> consumer, String namespace, String sapling_prefix, String wood, String wood_prefix) {
-        greenhouseBaseWoodRecipes(consumer, wood + "_1", GeneralHelpers.getItemFromNamespaceAndID(namespace, wood + sapling_prefix),
-                new ItemStack(GeneralHelpers.getItemFromNamespaceAndID(namespace, wood + wood_prefix), 64)
-        );
-        greenhouseBaseWoodRecipes2(consumer, wood + "_2", GeneralHelpers.getItemFromNamespaceAndID(namespace, wood + sapling_prefix),
-                new ItemStack(GeneralHelpers.getItemFromNamespaceAndID(namespace, wood + wood_prefix), 128)
-        );
-        greenhouseBaseWoodRecipes3(consumer, wood + "_3", GeneralHelpers.getItemFromNamespaceAndID(namespace, wood + sapling_prefix),
-                new ItemStack(GeneralHelpers.getItemFromNamespaceAndID(namespace, wood + wood_prefix), 256)
-        );
-    }
-    public static void greenhouseWoodRecipes(Consumer<FinishedRecipe> consumer, String namespace, String sapling_prefix, String wood, String wood_prefix, String byproduct) {
-        greenhouseBaseWoodRecipes(consumer, wood + "_1", GeneralHelpers.getItemFromNamespaceAndID(namespace, wood + sapling_prefix),
-                new ItemStack(GeneralHelpers.getItemFromNamespaceAndID(namespace, wood + wood_prefix), 64),
-                new ItemStack(GeneralHelpers.getItemFromNamespaceAndID(namespace, byproduct), 16)
-        );
-        greenhouseBaseWoodRecipes2(consumer, wood + "_2", GeneralHelpers.getItemFromNamespaceAndID(namespace, wood + sapling_prefix),
-                new ItemStack(GeneralHelpers.getItemFromNamespaceAndID(namespace, wood + wood_prefix), 128),
-                new ItemStack(GeneralHelpers.getItemFromNamespaceAndID(namespace, byproduct), 32)
-        );
-        greenhouseBaseWoodRecipes3(consumer, wood + "_3", GeneralHelpers.getItemFromNamespaceAndID(namespace, wood + sapling_prefix),
-                new ItemStack(GeneralHelpers.getItemFromNamespaceAndID(namespace, wood + wood_prefix), 256),
-                new ItemStack(GeneralHelpers.getItemFromNamespaceAndID(namespace, byproduct), 64)
-        );
-    }
-    public static void greenhouseWoodRecipes(Consumer<FinishedRecipe> consumer, String namespace, String sapling_prefix, String wood, String wood_prefix, String byproduct, String sapling_suffix) {
-        greenhouseBaseWoodRecipes(consumer, wood + "_1", GeneralHelpers.getItemFromNamespaceAndID(namespace, sapling_suffix + wood + sapling_prefix),
-                new ItemStack(GeneralHelpers.getItemFromNamespaceAndID(namespace, wood + wood_prefix), 64),
-                new ItemStack(GeneralHelpers.getItemFromNamespaceAndID(namespace, byproduct), 16)
-        );
-        greenhouseBaseWoodRecipes2(consumer, wood + "_2", GeneralHelpers.getItemFromNamespaceAndID(namespace, sapling_suffix + wood + sapling_prefix),
-                new ItemStack(GeneralHelpers.getItemFromNamespaceAndID(namespace, wood + wood_prefix), 128),
-                new ItemStack(GeneralHelpers.getItemFromNamespaceAndID(namespace, byproduct), 32)
-        );
-        greenhouseBaseWoodRecipes3(consumer, wood + "_3", GeneralHelpers.getItemFromNamespaceAndID(namespace, sapling_suffix + wood + sapling_prefix),
-                new ItemStack(GeneralHelpers.getItemFromNamespaceAndID(namespace, wood + wood_prefix), 256),
-                new ItemStack(GeneralHelpers.getItemFromNamespaceAndID(namespace, byproduct), 64)
-        );
-
+    public static void greenhouseWoodRecipes(Consumer<FinishedRecipe> consumer, String namespace, String sapling_suffix, String wood, String log_suffix, String sapling_prefix, @Nullable String byproduct) {
+        Item sapling = GeneralHelpers.getItemFromNamespaceAndID(namespace, sapling_prefix + wood + sapling_suffix);
+        Item log = GeneralHelpers.getItemFromNamespaceAndID(namespace, wood + log_suffix);
+        ItemStack stack1 = (byproduct != null) ? new ItemStack(GeneralHelpers.getItemFromNamespaceAndID(namespace, byproduct), 16) : ItemStack.EMPTY;
+        ItemStack stack2 = (byproduct != null) ? new ItemStack(GeneralHelpers.getItemFromNamespaceAndID(namespace, byproduct), 32) : ItemStack.EMPTY;
+        ItemStack stack3 = (byproduct != null) ? new ItemStack(GeneralHelpers.getItemFromNamespaceAndID(namespace, byproduct), 64) : ItemStack.EMPTY;
+        greenhouseBaseWoodRecipes(consumer, sapling_prefix + wood + "_1", sapling, new ItemStack(log, 64), stack1);
+        greenhouseBaseWoodRecipes2(consumer, sapling_prefix + wood + "_2", sapling, new ItemStack(log, 128), stack2);
+        greenhouseBaseWoodRecipes3(consumer, sapling_prefix + wood + "_3", sapling, new ItemStack(log, 256), stack3);
     }
 
     public record AlloyIngredient(String namespace, String material, int count) {}
