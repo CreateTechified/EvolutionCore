@@ -4,6 +4,7 @@ import com.gregtechceu.gtceu.api.registry.registrate.GTRegistrate;
 import com.gregtechceu.gtceu.data.recipe.CustomTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
+import net.minecraftforge.fml.ModList;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -29,4 +30,9 @@ public class Reference {
             CustomTags.OpV_CIRCUITS,
             CustomTags.MAX_CIRCUITS
     };
+
+    // centralized mod loaded bools
+    public static final boolean ML_IntegratedDynamics = ModList.get().isLoaded("integrateddynamics");
+    public static final boolean ML_BiomesWeveGone = ModList.get().isLoaded("biomeswevegone");
+    public static final boolean ML_Occultism = ModList.get().isLoaded("occultism");
 }
