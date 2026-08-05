@@ -21,10 +21,6 @@ import static io.github.createtechified.evolutioncore.common.registry.utils.GTIt
 public class EvoItems {
     public static void init() {}
 
-    static {
-        Reference.REGISTRATE.creativeModeTab(() -> EvoTabs.EVOLUTIONCORE_MAIN);
-    }
-
     // Misc Items
     public static ItemEntry<Item> PLANT_FIBER = constructBasicItem("plant_fiber", EvolutionCoreMod.id("item/early/plant_fiber"));
     public static ItemEntry<Item> FLINT_SHARD = constructBasicItem("flint_shard", EvolutionCoreMod.id("item/early/flint_shard"));

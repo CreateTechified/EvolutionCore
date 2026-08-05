@@ -13,17 +13,12 @@ import io.github.createtechified.evolutioncore.Reference;
 import io.github.createtechified.evolutioncore.common.machine.electric.MENetworkingHatchPartMachine;
 import io.github.createtechified.evolutioncore.common.machine.steam.SteamFluidHatchPartMachine;
 import io.github.createtechified.evolutioncore.common.machine.steam.SteamMufflerPartMachine;
-import io.github.createtechified.evolutioncore.common.registry.EvoTabs;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 
 @SuppressWarnings("unused")
 public class EvoMultiParts {
     public static void init() {}
-
-    static {
-        Reference.REGISTRATE.creativeModeTab(() -> EvoTabs.EVOLUTIONCORE_MACHINES);
-    }
 
     // PartAbilities
     public static final PartAbility STEAM_VENT = new PartAbility("steam_vent");

@@ -15,7 +15,6 @@ import io.github.createtechified.evolutioncore.EvolutionCoreMod;
 import io.github.createtechified.evolutioncore.Reference;
 import io.github.createtechified.evolutioncore.common.machine.steam.HPSteamParallelMultiblockMachine;
 import io.github.createtechified.evolutioncore.common.registry.EvoBlocks;
-import io.github.createtechified.evolutioncore.common.registry.EvoTabs;
 import io.github.createtechified.evolutioncore.common.registry.machines.EvoMultiParts;
 import io.github.createtechified.evolutioncore.common.registry.recipes.EvoRecipeTypes;
 import net.minecraft.ChatFormatting;
@@ -31,10 +30,6 @@ import static com.gregtechceu.gtceu.api.multiblock.util.RelativeDirection.*;
 @SuppressWarnings("unused")
 public class SteamMultiblocksHP {
     public static void init() {}
-
-    static {
-        Reference.REGISTRATE.creativeModeTab(() -> EvoTabs.EVOLUTIONCORE_MACHINES);
-    }
 
     public static final MultiblockMachineDefinition HP_STEAM_ALLOY_KILN = Reference.REGISTRATE
             .multiblock("hp_steam_alloy_kiln", HPSteamParallelMultiblockMachine::new)

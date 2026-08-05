@@ -13,10 +13,6 @@ import net.minecraft.world.level.block.Block;
 public class EvoBlocks {
     public static void init() {}
 
-    static {
-        Reference.REGISTRATE.creativeModeTab(() -> EvoTabs.EVOLUTIONCORE_MAIN);
-    }
-
     public static BlockEntry<Block> HP_STEAM_MACHINE_CASING = BlockConstructors.constructSteamCasingBlock("hp_steam_machine_casing", "High Pressure Steam Machine Casing");
     public static BlockEntry<ActiveBlock> HP_STEAM_FIREBOX_CASING = ActiveBlockConstructors.constructFirebox(new ActiveBlockConstructors.FireboxInfo("hp_steam_firebox_casing",
             EvolutionCoreMod.id("block/casings/steam/hp_steam_machine_casing"),

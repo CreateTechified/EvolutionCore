@@ -13,7 +13,6 @@ import com.gregtechceu.gtceu.common.data.GTRecipeModifiers;
 import io.github.createtechified.evolutioncore.EvolutionCoreMod;
 import io.github.createtechified.evolutioncore.Reference;
 import io.github.createtechified.evolutioncore.common.registry.EvoBlocks;
-import io.github.createtechified.evolutioncore.common.registry.EvoTabs;
 import io.github.createtechified.evolutioncore.common.registry.recipes.EvoRecipeTypes;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
@@ -22,10 +21,6 @@ import static com.gregtechceu.gtceu.api.multiblock.util.RelativeDirection.*;
 
 public class OreProcessingMultiblocks {
     public static void init() {}
-
-    static {
-        Reference.REGISTRATE.creativeModeTab(() -> EvoTabs.EVOLUTIONCORE_MACHINES);
-    }
 
     public static final MultiblockMachineDefinition ELECTRIC_ORE_FACTORY = Reference.REGISTRATE
             .multiblock("electric_ore_factory", WorkableElectricMultiblockMachine::new)

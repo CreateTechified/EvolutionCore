@@ -14,7 +14,6 @@ import io.github.createtechified.evolutioncore.EvolutionCoreMod;
 import io.github.createtechified.evolutioncore.Reference;
 import io.github.createtechified.evolutioncore.common.machine.primitive.PrimitiveAlloyKilnMachine;
 import io.github.createtechified.evolutioncore.common.machine.primitive.PrimitiveOreFactoryMachine;
-import io.github.createtechified.evolutioncore.common.registry.EvoTabs;
 import io.github.createtechified.evolutioncore.common.registry.recipes.EvoRecipeTypes;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
@@ -25,10 +24,6 @@ import static com.gregtechceu.gtceu.api.multiblock.util.RelativeDirection.*;
 @SuppressWarnings("unused")
 public class PrimitiveMultiblocks {
     public static void init() {}
-
-    static {
-        Reference.REGISTRATE.creativeModeTab(() -> EvoTabs.EVOLUTIONCORE_MACHINES);
-    }
 
     public static final MultiblockMachineDefinition PRIMITIVE_ALLOY_KILN = Reference.REGISTRATE
             .multiblock("primitive_alloy_kiln", PrimitiveAlloyKilnMachine::new) // It's a thing and I'm pissed about it. Works though.

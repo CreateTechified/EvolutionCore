@@ -11,7 +11,6 @@ import com.gregtechceu.gtceu.common.data.GTBlocks;
 import com.simibubi.create.content.decoration.palettes.AllPaletteBlocks;
 import io.github.createtechified.evolutioncore.Reference;
 import io.github.createtechified.evolutioncore.common.registry.EvoBlocks;
-import io.github.createtechified.evolutioncore.common.registry.EvoTabs;
 import io.github.createtechified.evolutioncore.common.registry.recipes.EvoRecipeTypes;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
@@ -21,10 +20,6 @@ import static com.gregtechceu.gtceu.api.multiblock.util.RelativeDirection.*;
 
 public class ResourceGenerationMultiblocks {
     public static void init() {}
-
-    static {
-        Reference.REGISTRATE.creativeModeTab(() -> EvoTabs.EVOLUTIONCORE_MACHINES);
-    }
 
     public static final MultiblockMachineDefinition STEEL_GREENHOUSE = Reference.REGISTRATE
             .multiblock("steel_greenhouse", WorkableElectricMultiblockMachine::new)

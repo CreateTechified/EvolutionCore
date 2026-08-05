@@ -53,6 +53,7 @@ public class EvolutionCoreMod {
         eventBus.addListener(this::addMaterials);
         eventBus.addListener(this::modifyMaterials);
         BIOME_MODIFIER_SERIALIZERS.register(eventBus);
+        Reference.REGISTRATE.creativeModeTab(() -> EvoTabs.EVOLUTIONCORE_MAIN);
         EvoItems.init();
         EvoBlocks.init();
         EvoTabs.init();
