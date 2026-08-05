@@ -17,11 +17,15 @@ jobs:
         with:
           java-version: '21'
           distribution: 'temurin'
-          cache: 'gradle'
       - name: Make Gradle Wrapper Executable
         run: chmod +x ./gradlew
-      - name: Build with Gradle
-        run: ./gradlew build
+      - uses: burrunan/gradle-cache-action@v3
+        name: Build EvolutionCore
+        with:
+          job-id: jdk21
+          arguments: build
+          gradle-version: wrapper
+          concurrent-save: true
       - name: Get Mod Version
         id: mod_version
         run: |
