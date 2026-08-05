@@ -17,7 +17,11 @@ import java.util.function.Consumer;
 
 public class MachineShapedRecipes {
     public static void init(Consumer<FinishedRecipe> c) {
-        //TODO: make better recipes, these "work"
+        //TODO: make better recipes, these "work" but need to be more fitting (and challenging)
+
+        // Singleblocks
+
+        // Multiblocks
         VanillaRecipeHelper.addShapelessRecipe(c, EvolutionCoreMod.id("lp_steam_oven_swap"), SteamMultiblocksLP.LP_STEAM_OVEN.asStack(), GTMultiMachines.STEAM_OVEN.asStack());
         VanillaRecipeHelper.addShapelessRecipe(c, EvolutionCoreMod.id("lp_steam_grinder_swap"), SteamMultiblocksLP.LP_STEAM_GRINDER.asStack(), GTMultiMachines.STEAM_GRINDER.asStack());
         VanillaRecipeHelper.addShapedRecipe(c, true, EvolutionCoreMod.id("lp_steam_oven"),

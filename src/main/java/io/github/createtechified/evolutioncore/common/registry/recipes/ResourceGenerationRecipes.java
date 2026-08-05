@@ -30,7 +30,7 @@ public class ResourceGenerationRecipes {
         //RecipeConstructors.greenhouseBaseWoodRecipes(c, "biomeswevegone", "holly");
         //RecipeConstructors.greenhouseBaseWoodRecipes(c, "biomeswevegone", "ironwood");
         //RecipeConstructors.greenhouseBaseWoodRecipes(c, "biomeswevegone", "jacaranda");
-        //RecipeConstructors.greenhouseBaseWoodRecipes(c, "biomeswevegone", "mahogany");
+        //RecipeConstructors.greenhouseBaseWoodRecipes(c, "biomeswevegone", "mahogany"); //             Implement these all in KubeJS!
         //RecipeConstructors.greenhouseBaseWoodRecipes(c, "biomeswevegone", "maple");
         //RecipeConstructors.greenhouseBaseWoodRecipes(c, "biomeswevegone", "palm");
         //RecipeConstructors.greenhouseBaseWoodRecipes(c, "biomeswevegone", "pine");

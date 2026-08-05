@@ -14,7 +14,7 @@ public class EvoSingleblocks {
     public static void init() {}
 
     static {
-        Reference.REGISTRATE.creativeModeTab(() -> EvoTabs.EVOLUTIONCORE_MAIN);
+        Reference.REGISTRATE.creativeModeTab(() -> EvoTabs.EVOLUTIONCORE_MACHINES);
     }
 
     public static final Pair<MachineDefinition, MachineDefinition> STEAM_ASSEMBLER = MachineConstructors

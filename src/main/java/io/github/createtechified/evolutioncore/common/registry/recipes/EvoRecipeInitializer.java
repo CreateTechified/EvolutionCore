@@ -2,6 +2,9 @@ package io.github.createtechified.evolutioncore.common.registry.recipes;
 
 import com.gregtechceu.gtceu.api.fluids.store.FluidStorageKeys;
 import com.gregtechceu.gtceu.data.recipe.CustomTags;
+import com.gregtechceu.gtceu.data.recipe.VanillaRecipeHelper;
+import com.simibubi.create.api.data.recipe.SequencedAssemblyRecipeGen;
+import com.simibubi.create.content.processing.sequenced.SequencedAssemblyRecipeBuilder;
 import io.github.createtechified.evolutioncore.common.registry.utils.RecipeConstructors;
 import net.minecraft.data.recipes.FinishedRecipe;
 

@@ -7,7 +7,7 @@ public class FusionMultiblocks {
     public static void init() {}
 
     static {
-        Reference.REGISTRATE.creativeModeTab(() -> EvoTabs.EVOLUTIONCORE_MAIN);
+        Reference.REGISTRATE.creativeModeTab(() -> EvoTabs.EVOLUTIONCORE_MACHINES);
     }
 
 

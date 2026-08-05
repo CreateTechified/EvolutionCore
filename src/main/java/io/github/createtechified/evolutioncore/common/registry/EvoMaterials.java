@@ -7,12 +7,17 @@ import com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialIconSet;
 import com.gregtechceu.gtceu.api.data.chemical.material.properties.BlastProperty;
 import com.gregtechceu.gtceu.api.fluids.FluidBuilder;
 import io.github.createtechified.evolutioncore.EvolutionCoreMod;
+import io.github.createtechified.evolutioncore.Reference;
 
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 import static io.github.createtechified.evolutioncore.common.registry.EvoElements.*;
 
 public class EvoMaterials {
     public static void init() {}
+
+    static {
+        Reference.REGISTRATE.creativeModeTab(() -> EvoTabs.EVOLUTIONCORE_MATERIALS);
+    }
 
     // Materials
     public static Material Neuralium = new Material.Builder(
@@ -96,7 +101,8 @@ public class EvoMaterials {
 
     public static Material WrldappleAlloy = new Material.Builder(
             EvolutionCoreMod.id("wrldapple_alloy"))
-            .langValue("Wrldapple Alloy").ingot()
+            .langValue("Wrldapple Alloy")
+            .ingot()
             .fluid()
             .blastTemp(12980, BlastProperty.GasTier.HIGHEST, GTValues.VA[GTValues.OpV], 9000)
             .components(Neuralium, 87, Duranium, 44, SamariumIronArsenicOxide, 21, Tritanium, 7, Mercury, 3, Neutronium, 38, NeuralicAlloy7, 13, Oxygen, 12)

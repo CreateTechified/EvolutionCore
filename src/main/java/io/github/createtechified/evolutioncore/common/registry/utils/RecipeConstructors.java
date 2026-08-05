@@ -9,6 +9,7 @@ import io.github.createtechified.evolutioncore.common.registry.recipes.EvoRecipe
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraftforge.fluids.FluidStack;
 
 import java.util.function.Consumer;
@@ -75,6 +76,7 @@ public class RecipeConstructors {
     public static void pakRecipes(Consumer<FinishedRecipe> consumer, String id, ItemStack[] inputs, ItemStack output) {
         EvoRecipeTypes.PRIMITIVE_ALLOY_SMELTER.recipeBuilder(EvolutionCoreMod.id(id))
                 .inputItems(inputs)
+                .inputItems(new ItemStack(Items.COAL, 2))
                 .outputItems(output)
                 .duration(640)
                 .save(consumer);

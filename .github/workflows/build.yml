@@ -25,7 +25,7 @@ jobs:
           job-id: jdk21
           arguments: build
           gradle-version: wrapper
-          concurrent-save: true
+          concurrent: true
       - name: Get Mod Version
         id: mod_version
         run: |

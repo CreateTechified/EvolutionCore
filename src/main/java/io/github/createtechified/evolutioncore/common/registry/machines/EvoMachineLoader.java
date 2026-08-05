@@ -8,11 +8,8 @@ import io.github.createtechified.evolutioncore.common.registry.machines.multiblo
 import io.github.createtechified.evolutioncore.common.registry.machines.multiblocks.electric.*;
 
 public class EvoMachineLoader {
-    static {
-        Reference.REGISTRATE.creativeModeTab(() -> EvoTabs.EVOLUTIONCORE_MAIN);
-    }
-
     public static void init() {
+        Reference.REGISTRATE.creativeModeTab(() -> EvoTabs.EVOLUTIONCORE_MACHINES);
         EvoMultiParts.init();
         EvoSingleblocks.init();
         PrimitiveMultiblocks.init();
@@ -23,5 +20,6 @@ public class EvoMachineLoader {
         ResourceGenerationMultiblocks.init();
         FusionMultiblocks.init();
         UpgradeMultiblocks.init();
+        Reference.REGISTRATE.creativeModeTab(() -> EvoTabs.EVOLUTIONCORE_MATERIALS);
     }
 }
