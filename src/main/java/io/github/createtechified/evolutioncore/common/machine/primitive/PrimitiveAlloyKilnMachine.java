@@ -185,8 +185,8 @@ public class PrimitiveAlloyKilnMachine extends PrimitiveWorkableMachine implemen
                     return new ItemSlot()
                             .syncHandler("import", i)
                             .background(theme.getItemSlotTheme().theme().getBackground(),
-                                    (i == 0) ? GTGuiTextures.PRIMITIVE_INGOT_OVERLAY : (i == 1) ?
-                                                                                       GTGuiTextures.PRIMITIVE_INGOT_OVERLAY :
+                                    (i == 0) ? GTGuiTextures.PRIMITIVE_DUST_OVERLAY : (i == 1) ?
+                                                                                       GTGuiTextures.PRIMITIVE_DUST_OVERLAY :
                                                                                        GTGuiTextures.PRIMITIVE_FURNACE_OVERLAY);
                 })
                 .build();
@@ -208,8 +208,7 @@ public class PrimitiveAlloyKilnMachine extends PrimitiveWorkableMachine implemen
                     return new ItemSlot()
                             .syncHandler("export", i)
                             .background(theme.getItemSlotTheme().theme().getBackground(),
-                                    (i == 0) ? GTGuiTextures.PRIMITIVE_INGOT_OVERLAY :
-                                            GTGuiTextures.PRIMITIVE_DUST_OVERLAY);
+                                    GTGuiTextures.PRIMITIVE_DUST_OVERLAY);
                 })
                 .build();
     }
