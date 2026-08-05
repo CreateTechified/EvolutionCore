@@ -8,6 +8,7 @@ import io.github.createtechified.evolutioncore.Reference;
 import io.github.createtechified.evolutioncore.common.registry.utils.ActiveBlockConstructors;
 import io.github.createtechified.evolutioncore.common.registry.utils.BlockConstructors;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 
 @SuppressWarnings("unused")
 public class EvoBlocks {
@@ -18,7 +19,7 @@ public class EvoBlocks {
             EvolutionCoreMod.id("block/casings/steam/hp_steam_machine_casing"),
             EvolutionCoreMod.id("block/casings/steam/hp_steam_machine_casing"),
             GTCEu.id("block/casings/firebox/machine_casing_firebox_steel")), "High Pressure Steam Firebox Casing");
-    public static BlockEntry<Block> ORGANIC_PLANT_MATTER = BlockConstructors.constructBasicBlock("organic_plant_matter", EvolutionCoreMod.id("block/general/organic_plant_matter"), "Organic Plant Matter");
+    public static BlockEntry<Block> ORGANIC_PLANT_MATTER = BlockConstructors.constructBasicBlock("organic_plant_matter", EvolutionCoreMod.id("block/general/organic_plant_matter"), "Organic Plant Matter", Blocks.DIRT);
     public static BlockEntry<Block> SOLID_STAINLESS_STEEL_MACHINE_CASING = BlockConstructors.constructSolidCasingBlock("solid_stainless_steel_machine_casing", "stainless_steel", "Solid Stainless Steel Machine Casing");
     public static BlockEntry<Block> STAINLESS_STEEL_PIPE_CASING = BlockConstructors.constructPipeCasingBlock("stainless_steel_pipe_casing", "stainless_steel", "Stainless Steel Pipe Casing");
     public static BlockEntry<ActiveBlock> STAINLESS_STEEL_FIREBOX_CASING = ActiveBlockConstructors.constructFirebox(new ActiveBlockConstructors.FireboxInfo("stainless_steel_firebox",

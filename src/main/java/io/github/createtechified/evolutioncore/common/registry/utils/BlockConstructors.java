@@ -7,9 +7,9 @@ import com.tterrag.registrate.util.nullness.NonNullFunction;
 import io.github.createtechified.evolutioncore.EvolutionCoreMod;
 import io.github.createtechified.evolutioncore.Reference;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.WallBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 
 import java.util.function.Consumer;
@@ -54,42 +54,29 @@ public class BlockConstructors {
     }
     public static BlockEntry<Block> constructSteamCasingBlock(String name, String lang) {
         return constructBlock(name, EvolutionCoreMod.id("block/casings/steam/" + name), Block::new,
-                b -> b.lang(lang).initialProperties(() -> Blocks.IRON_BLOCK).tag(CustomTags.MINEABLE_WITH_CONFIG_VALID_PICKAXE_WRENCH));
+                b -> b.lang(lang).initialProperties(() -> Blocks.IRON_BLOCK).tag(CustomTags.MINEABLE_WITH_WRENCH, BlockTags.MINEABLE_WITH_PICKAXE).properties(p -> p.isValidSpawn((state, level, pos, ent) -> false)));
     }
     public static BlockEntry<Block> constructCasingBlock(String name, String type, String lang) {
         return constructBlock(name, EvolutionCoreMod.id("block/casings/" + type + "/casing"), Block::new,
-                b -> b.lang(lang).initialProperties(() -> Blocks.IRON_BLOCK).tag(CustomTags.MINEABLE_WITH_CONFIG_VALID_PICKAXE_WRENCH));
+                b -> b.lang(lang).initialProperties(() -> Blocks.IRON_BLOCK).tag(CustomTags.MINEABLE_WITH_WRENCH, BlockTags.MINEABLE_WITH_PICKAXE).properties(p -> p.isValidSpawn((state, level, pos, ent) -> false)));
     }
     public static BlockEntry<Block> constructSolidCasingBlock(String name, String type, String lang) {
         ResourceLocation side = EvolutionCoreMod.id("block/casings/" + type + "/side");
         ResourceLocation bottom = EvolutionCoreMod.id("block/casings/" + type + "/bottom");
         ResourceLocation top = EvolutionCoreMod.id("block/casings/" + type + "/top");
         return constructSidedBlock(name, side, bottom, top, Block::new,
-                b -> b.lang(lang).initialProperties(() -> Blocks.IRON_BLOCK).tag(CustomTags.MINEABLE_WITH_CONFIG_VALID_PICKAXE_WRENCH));
+                b -> b.lang(lang).initialProperties(() -> Blocks.IRON_BLOCK).tag(CustomTags.MINEABLE_WITH_WRENCH, BlockTags.MINEABLE_WITH_PICKAXE).properties(p -> p.isValidSpawn((state, level, pos, ent) -> false)));
     }
     public static BlockEntry<Block> constructPipeCasingBlock(String name, String type, String lang) {
         return constructBlock(name, EvolutionCoreMod.id("block/casings/" + type + "/pipe"), Block::new,
-                b -> b.lang(lang).initialProperties(() -> Blocks.IRON_BLOCK).tag(CustomTags.MINEABLE_WITH_CONFIG_VALID_PICKAXE_WRENCH));
+                b -> b.lang(lang).initialProperties(() -> Blocks.IRON_BLOCK).tag(CustomTags.MINEABLE_WITH_WRENCH, BlockTags.MINEABLE_WITH_PICKAXE).properties(p -> p.isValidSpawn((state, level, pos, ent) -> false)));
     }
     public static BlockEntry<Block> constructGearboxCasingBlock(String name, String type, String lang) {
         return constructBlock(name, EvolutionCoreMod.id("block/casings/" + type + "/gearbox"), Block::new,
-                b -> b.lang(lang).initialProperties(() -> Blocks.IRON_BLOCK).tag(CustomTags.MINEABLE_WITH_CONFIG_VALID_PICKAXE_WRENCH));
+                b -> b.lang(lang).initialProperties(() -> Blocks.IRON_BLOCK).tag(CustomTags.MINEABLE_WITH_WRENCH, BlockTags.MINEABLE_WITH_PICKAXE).properties(p -> p.isValidSpawn((state, level, pos, ent) -> false)));
     }
     public static BlockEntry<Block> constructTurbineCasingBlock(String name, String type, String lang) {
         return constructBlock(name, EvolutionCoreMod.id("block/casings/" + type + "/turbine"), Block::new,
-                b -> b.lang(lang).initialProperties(() -> Blocks.IRON_BLOCK).tag(CustomTags.MINEABLE_WITH_CONFIG_VALID_PICKAXE_WRENCH));
-    }
-
-    public static <T extends WallBlock> BlockEntry<T> constructWallBlock(String name, ResourceLocation texture, NonNullFunction<BlockBehaviour.Properties, T> factory, Consumer<BlockBuilder<T, ?>> customizer) {
-        return Reference.REGISTRATE.block(name, factory).transform(b -> { customizer.accept(b); return b; })
-                .blockstate((ctx, prov) -> prov.wallBlock(ctx.getEntry(), texture)).defaultLoot().item()
-                .model((ctx, prov) -> prov.wallInventory(ctx.getName(), texture)).build().register();
-    }
-    public static <T extends WallBlock> BlockEntry<T> constructWallBlock(String name, ResourceLocation texture, NonNullFunction<BlockBehaviour.Properties, T> factory) {
-        return constructWallBlock(name, texture, factory, b -> {});
-    }
-    public static BlockEntry<WallBlock> constructCasingWallBlock(String name, ResourceLocation texture, String lang) {
-        return constructWallBlock(name, texture, WallBlock::new,
-                b -> b.lang(lang).initialProperties(() -> Blocks.IRON_BLOCK));
+                b -> b.lang(lang).initialProperties(() -> Blocks.IRON_BLOCK).tag(CustomTags.MINEABLE_WITH_WRENCH, BlockTags.MINEABLE_WITH_PICKAXE).properties(p -> p.isValidSpawn((state, level, pos, ent) -> false)));
     }
 }
