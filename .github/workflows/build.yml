@@ -57,6 +57,17 @@ jobs:
             echo "make_latest=true" >> "$GITHUB_OUTPUT"
           fi
 
+      - name: Clean Existing Release Assets
+        if: github.event_name == 'push' && contains(github.ref, 'refs/heads/1.20.1') && steps.mod_version.outputs.tag_name == 'latest-1.20.1'
+        run: |
+          ASSETS=$(gh release view latest-1.20.1 --json assets -q '.assets[].name' 2>/dev/null || true)
+          for asset in $ASSETS; do
+            echo "Deleting asset: $asset"
+            gh release delete-asset latest-1.20.1 "$asset" -y || true
+          done
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Create Release
         if: github.event_name == 'push' && contains(github.ref, 'refs/heads/1.20.1')
         uses: softprops/action-gh-release@v2
@@ -67,7 +78,5 @@ jobs:
           draft: false
           prerelease: ${{ steps.mod_version.outputs.prerelease }}
           make_latest: ${{ steps.mod_version.outputs.make_latest }}
-          overwrite_files: true
-          generate_release_notes: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
