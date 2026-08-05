@@ -49,22 +49,13 @@ jobs:
             echo "tag_name=latest-1.20.1" >> "$GITHUB_OUTPUT"
             echo "release_name=${VERSION}-${SHORT_SHA}" >> "$GITHUB_OUTPUT"
             echo "prerelease=true" >> "$GITHUB_OUTPUT"
+            echo "make_latest=false" >> "$GITHUB_OUTPUT"
           else
             echo "tag_name=v${VERSION}" >> "$GITHUB_OUTPUT"
             echo "release_name=${VERSION}" >> "$GITHUB_OUTPUT"
             echo "prerelease=false" >> "$GITHUB_OUTPUT"
+            echo "make_latest=true" >> "$GITHUB_OUTPUT"
           fi
-
-      - name: Clean Existing Release Assets
-        if: github.event_name == 'push' && contains(github.ref, 'refs/heads/1.20.1') && steps.mod_version.outputs.tag_name == 'latest-1.20.1'
-        run: |
-          ASSETS=$(gh release view latest-1.20.1 --json assets -q '.assets[].name' 2>/dev/null || true)
-          for asset in $ASSETS; do
-            echo "Deleting asset: $asset"
-            gh release delete-asset latest-1.20.1 "$asset" -y || true
-          done
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Create Release
         if: github.event_name == 'push' && contains(github.ref, 'refs/heads/1.20.1')
@@ -75,6 +66,8 @@ jobs:
           name: ${{ steps.mod_version.outputs.release_name }}
           draft: false
           prerelease: ${{ steps.mod_version.outputs.prerelease }}
-          overwrite: true
+          make_latest: ${{ steps.mod_version.outputs.make_latest }}
+          overwrite-files: true
+          generate_release_notes: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
