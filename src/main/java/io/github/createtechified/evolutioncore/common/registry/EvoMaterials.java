@@ -133,6 +133,14 @@ public class EvoMaterials {
             .color(0x372f65)
             .buildAndRegister();
 
+    public static Material PotassiumNitrate = new Material.Builder( // subjected to change, very easy to craft. yes that's a problem
+            EvolutionCoreMod.id("potassium_nitrate"))
+            .langValue("Potassium Nitrate")
+            .liquid()
+            .components(Potassium, 1, Nitrogen, 1, Oxygen, 3)
+            .color(0x93AC72)
+            .buildAndRegister();
+
     // Hidden Materials
     public static Material Energy = new Material.Builder(
             EvolutionCoreMod.id("energy"))

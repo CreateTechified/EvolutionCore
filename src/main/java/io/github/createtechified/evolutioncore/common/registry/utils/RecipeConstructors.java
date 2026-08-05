@@ -15,8 +15,9 @@ import net.minecraftforge.fluids.FluidStack;
 import java.util.function.Consumer;
 
 import static com.gregtechceu.gtceu.api.GTValues.L;
-import static com.gregtechceu.gtceu.common.data.GTMaterials.SolderingAlloy;
-import static com.gregtechceu.gtceu.common.data.GTMaterials.Water;
+import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
+import static com.gregtechceu.gtceu.common.data.GTMaterials.CarbonDioxide;
+import static io.github.createtechified.evolutioncore.common.registry.EvoMaterials.PotassiumNitrate;
 
 public class RecipeConstructors {
     public static void greenhouseBaseWoodRecipes(Consumer<FinishedRecipe> consumer, String id, Item sapling, ItemStack... outputs) {
@@ -69,6 +70,112 @@ public class RecipeConstructors {
                 GeneralHelpers.getItemFromNamespaceAndID(namespace, sapling_suffix + wood + sapling_prefix),
                 new ItemStack(GeneralHelpers.getItemFromNamespaceAndID(namespace, wood + wood_prefix), 64),
                 new ItemStack(GeneralHelpers.getItemFromNamespaceAndID(namespace, byproduct), 16)
+        );
+    }
+
+    public static void greenhouseBaseWoodRecipes2(Consumer<FinishedRecipe> consumer, String id, Item sapling, ItemStack... outputs) {
+        EvoRecipeTypes.STEEL_GREENHOUSE.recipeBuilder(EvolutionCoreMod.id(id)).notConsumable(sapling)
+                .inputFluids(Water.getFluid(1000)).inputFluids(CarbonDioxide.getFluid(1250)).outputItems(outputs).circuitMeta(2).duration(640).EUt(GTValues.VA[GTValues.LV]).save(consumer);
+    }
+    public static void greenhouseBaseWoodRecipes2(Consumer<FinishedRecipe> consumer, String namespace, String wood) {
+        greenhouseBaseWoodRecipes2(
+                consumer,
+                wood,
+                GeneralHelpers.getItemFromNamespaceAndID(namespace, wood + "_sapling"),
+                new ItemStack(GeneralHelpers.getItemFromNamespaceAndID(namespace, wood + "_log"), 128)
+        );
+    }
+    public static void greenhouseBaseWoodRecipes2(Consumer<FinishedRecipe> consumer, String namespace, String wood, String byproduct) {
+        greenhouseBaseWoodRecipes2(
+                consumer,
+                wood,
+                GeneralHelpers.getItemFromNamespaceAndID(namespace, wood + "_sapling"),
+                new ItemStack(GeneralHelpers.getItemFromNamespaceAndID(namespace, wood + "_log"), 128),
+                new ItemStack(GeneralHelpers.getItemFromNamespaceAndID(namespace, byproduct), 32)
+        );
+    }
+
+    public static void greenhouseWoodRecipes2(Consumer<FinishedRecipe> consumer, String id, Item sapling, ItemStack... outputs) {
+        EvoRecipeTypes.STEEL_GREENHOUSE.recipeBuilder(EvolutionCoreMod.id(id)).notConsumable(sapling)
+                .inputFluids(Water.getFluid(1000)).inputFluids(CarbonDioxide.getFluid(1250)).outputItems(outputs).circuitMeta(2).duration(640).EUt(GTValues.VA[GTValues.LV]).save(consumer);
+    }
+    public static void greenhouseWoodRecipes2(Consumer<FinishedRecipe> consumer, String namespace, String sapling_prefix, String wood, String wood_prefix) {
+        greenhouseBaseWoodRecipes(
+                consumer,
+                wood,
+                GeneralHelpers.getItemFromNamespaceAndID(namespace, wood + sapling_prefix),
+                new ItemStack(GeneralHelpers.getItemFromNamespaceAndID(namespace, wood + wood_prefix), 128)
+        );
+    }
+    public static void greenhouseWoodRecipes2(Consumer<FinishedRecipe> consumer, String namespace, String sapling_prefix, String wood, String wood_prefix, String byproduct) {
+        greenhouseBaseWoodRecipes(
+                consumer,
+                wood,
+                GeneralHelpers.getItemFromNamespaceAndID(namespace, wood + sapling_prefix),
+                new ItemStack(GeneralHelpers.getItemFromNamespaceAndID(namespace, wood + wood_prefix), 128),
+                new ItemStack(GeneralHelpers.getItemFromNamespaceAndID(namespace, byproduct), 32)
+        );
+    }
+    public static void greenhouseWoodRecipes2(Consumer<FinishedRecipe> consumer, String namespace, String sapling_prefix, String wood, String wood_prefix, String byproduct, String sapling_suffix) {
+        greenhouseBaseWoodRecipes(
+                consumer,
+                wood,
+                GeneralHelpers.getItemFromNamespaceAndID(namespace, sapling_suffix + wood + sapling_prefix),
+                new ItemStack(GeneralHelpers.getItemFromNamespaceAndID(namespace, wood + wood_prefix), 128),
+                new ItemStack(GeneralHelpers.getItemFromNamespaceAndID(namespace, byproduct), 32)
+        );
+    }
+
+    public static void greenhouseBaseWoodRecipes3(Consumer<FinishedRecipe> consumer, String id, Item sapling, ItemStack... outputs) {
+        EvoRecipeTypes.STEEL_GREENHOUSE.recipeBuilder(EvolutionCoreMod.id(id)).notConsumable(sapling)
+                .inputFluids(Water.getFluid(1000)).inputFluids(CarbonDioxide.getFluid(1250)).inputFluids(PotassiumNitrate.getFluid(1500)).outputItems(outputs).circuitMeta(3).duration(640).EUt(GTValues.VA[GTValues.LV]).save(consumer);
+    }
+    public static void greenhouseBaseWoodRecipes3(Consumer<FinishedRecipe> consumer, String namespace, String wood) {
+        greenhouseBaseWoodRecipes3(
+                consumer,
+                wood,
+                GeneralHelpers.getItemFromNamespaceAndID(namespace, wood + "_sapling"),
+                new ItemStack(GeneralHelpers.getItemFromNamespaceAndID(namespace, wood + "_log"), 256)
+        );
+    }
+    public static void greenhouseBaseWoodRecipes3(Consumer<FinishedRecipe> consumer, String namespace, String wood, String byproduct) {
+        greenhouseBaseWoodRecipes3(
+                consumer,
+                wood,
+                GeneralHelpers.getItemFromNamespaceAndID(namespace, wood + "_sapling"),
+                new ItemStack(GeneralHelpers.getItemFromNamespaceAndID(namespace, wood + "_log"), 256),
+                new ItemStack(GeneralHelpers.getItemFromNamespaceAndID(namespace, byproduct), 64)
+        );
+    }
+
+    public static void greenhouseWoodRecipes3(Consumer<FinishedRecipe> consumer, String id, Item sapling, ItemStack... outputs) {
+        EvoRecipeTypes.STEEL_GREENHOUSE.recipeBuilder(EvolutionCoreMod.id(id)).notConsumable(sapling)
+                .inputFluids(Water.getFluid(1000)).inputFluids(CarbonDioxide.getFluid(1250)).inputFluids(PotassiumNitrate.getFluid(1500)).outputItems(outputs).circuitMeta(3).duration(640).EUt(GTValues.VA[GTValues.LV]).save(consumer);
+    }
+    public static void greenhouseWoodRecipes3(Consumer<FinishedRecipe> consumer, String namespace, String sapling_prefix, String wood, String wood_prefix) {
+        greenhouseBaseWoodRecipes(
+                consumer,
+                wood,
+                GeneralHelpers.getItemFromNamespaceAndID(namespace, wood + sapling_prefix),
+                new ItemStack(GeneralHelpers.getItemFromNamespaceAndID(namespace, wood + wood_prefix), 256)
+        );
+    }
+    public static void greenhouseWoodRecipes3(Consumer<FinishedRecipe> consumer, String namespace, String sapling_prefix, String wood, String wood_prefix, String byproduct) {
+        greenhouseBaseWoodRecipes(
+                consumer,
+                wood,
+                GeneralHelpers.getItemFromNamespaceAndID(namespace, wood + sapling_prefix),
+                new ItemStack(GeneralHelpers.getItemFromNamespaceAndID(namespace, wood + wood_prefix), 256),
+                new ItemStack(GeneralHelpers.getItemFromNamespaceAndID(namespace, byproduct), 64)
+        );
+    }
+    public static void greenhouseWoodRecipes3(Consumer<FinishedRecipe> consumer, String namespace, String sapling_prefix, String wood, String wood_prefix, String byproduct, String sapling_suffix) {
+        greenhouseBaseWoodRecipes(
+                consumer,
+                wood,
+                GeneralHelpers.getItemFromNamespaceAndID(namespace, sapling_suffix + wood + sapling_prefix),
+                new ItemStack(GeneralHelpers.getItemFromNamespaceAndID(namespace, wood + wood_prefix), 256),
+                new ItemStack(GeneralHelpers.getItemFromNamespaceAndID(namespace, byproduct), 64)
         );
     }
 

@@ -1,5 +1,6 @@
 package io.github.createtechified.evolutioncore.common.registry.recipes;
 
+import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.fluids.store.FluidStorageKeys;
 import com.gregtechceu.gtceu.data.recipe.CustomTags;
 import com.gregtechceu.gtceu.data.recipe.VanillaRecipeHelper;
@@ -10,23 +11,82 @@ import net.minecraft.data.recipes.FinishedRecipe;
 
 import java.util.function.Consumer;
 
+import static appeng.core.localization.ButtonToolTips.*;
 import static com.gregtechceu.gtceu.api.GTValues.*;
-import static com.gregtechceu.gtceu.api.GTValues.LuV;
-import static com.gregtechceu.gtceu.api.GTValues.VA;
 import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.*;
+import static com.gregtechceu.gtceu.common.data.GTBlocks.CASING_STEEL_TURBINE;
 import static com.gregtechceu.gtceu.common.data.GTItems.*;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
-import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.ASSEMBLY_LINE_RECIPES;
-import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.PLASMA_GENERATOR_FUELS;
-import static com.gregtechceu.gtceu.common.data.machines.GCYMMachines.BLAST_ALLOY_SMELTER;
-import static io.github.createtechified.evolutioncore.common.registry.EvoMaterials.Neuralium;
-import static io.github.createtechified.evolutioncore.common.registry.machines.multiblocks.electric.UpgradeMultiblocks.FUSION_ALLOYING_CHAMBER;
+import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.*;
+import static com.gregtechceu.gtceu.common.data.machines.GCYMMachines.*;
+import static io.github.createtechified.evolutioncore.common.registry.EvoBlocks.*;
+import static io.github.createtechified.evolutioncore.common.registry.EvoMaterials.*;
+import static io.github.createtechified.evolutioncore.common.registry.machines.multiblocks.electric.UpgradeMultiblocks.*;
+import static io.github.createtechified.evolutioncore.common.registry.recipes.EvoRecipeTypes.*;
+import static io.github.createtechified.evolutioncore.common.registry.recipes.EvoRecipeTypes.LARGE_CHEMICAL_PLANT;
 
 public class EvoRecipeInitializer {
     public static void init(Consumer<FinishedRecipe> c) {
         // Classes
         ResourceGenerationRecipes.init(c);
         MachineShapedRecipes.init(c);
+
+        // Stainless Steel Casings
+        ASSEMBLER_RECIPES.recipeBuilder("stainless_steel_firebox_casing")
+                .inputItems(rod, StainlessSteel, 3)
+                .inputItems(frameGt, StainlessSteel)
+                .inputItems(plate, StainlessSteel, 3)
+                .outputItems(STAINLESS_STEEL_FIREBOX_CASING.asStack(2))
+                .duration(300)
+                .EUt(120)
+                .save(c);
+
+        // Naquadah Alloy Casings
+        ASSEMBLER_RECIPES.recipeBuilder("naquadah_alloy_machine_casing")
+                .inputItems(plate, NaquadahAlloy, 6)
+                .inputItems(frameGt, NaquadahAlloy)
+                .outputItems(NAQUADAH_ALLOY_MACHINE_CASING.asStack(2))
+                .duration(50)
+                .EUt(16)
+                .circuitMeta(6)
+                .save(c);
+
+        ASSEMBLER_RECIPES.recipeBuilder("naquadah_alloy_gearbox")
+                .inputItems(plate, NaquadahAlloy, 4)
+                .inputItems(gear, NaquadahAlloy, 2)
+                .inputItems(frameGt, NaquadahAlloy)
+                .outputItems(NAQUADAH_ALLOY_GEARBOX_CASING.asStack(2))
+                .duration(50)
+                .EUt(16)
+                .circuitMeta(4)
+                .save(c);
+
+        ASSEMBLER_RECIPES.recipeBuilder("naquadah_alloy_firebox_casing")
+                .inputItems(rod, NaquadahAlloy, 3)
+                .inputItems(frameGt, NaquadahAlloy)
+                .inputItems(plate, NaquadahAlloy, 3)
+                .outputItems(NAQUADAH_ALLOY_FIREBOX_CASING.asStack(2))
+                .duration(500)
+                .EUt(30720)
+                .save(c);
+
+        ASSEMBLER_RECIPES.recipeBuilder("ludicrous_engine_intake_casing")
+                .inputItems(rotor, NaquadahAlloy, 2)
+                .inputItems(pipeNormalFluid, NaquadahAlloy, 4)
+                .inputItems(NAQUADAH_ALLOY_MACHINE_CASING.asStack())
+                .outputItems(LUDICROUS_ENGINE_INTAKE_CASING.asStack(2))
+                .duration(50)
+                .EUt(16)
+                .save(c);
+
+        ASSEMBLER_RECIPES.recipeBuilder("naquadah_alloy_turbine_casing")
+                .inputItems(CASING_STEEL_TURBINE.asStack())
+                .inputItems(plate, NaquadahAlloy, 6)
+                .outputItems(NAQUADAH_ALLOY_TURBINE_CASING.asStack(2))
+                .duration(50)
+                .EUt(16)
+                .circuitMeta(6)
+                .save(c);
 
         // Ungrouped
         RecipeConstructors.pakRecipes(c, "gtceu", "bronze", 4,
@@ -61,6 +121,36 @@ public class EvoRecipeInitializer {
                         .researchStack(BLAST_ALLOY_SMELTER.asStack())
                         .CWUt(20)
                         .EUt(VA[LuV]))
-                .duration(1200).EUt(VA[ZPM]).save(c);
+                .duration(1200)
+                .EUt(VA[ZPM])
+                .save(c);
+
+        CHEMICAL_LINE_REDUCTION.recipeBuilder("plat_line_reduced")
+                .inputItems(PlatinumGroupSludge, 18)
+                .inputFluids(AquaRegia.getFluid(1500)) // subjected to change
+                .outputItems(dust, Platinum, 3)
+                .outputItems(dust, Palladium, 3)
+                .outputItems(dust, Rhodium, 2)
+                .outputItems(dust, Ruthenium, 2)
+                .outputItems(dust, Iridium, 1)
+                .outputItems(dust, Osmium, 1)
+                .outputFluids(NitricAcid.getFluid(500))
+                .outputFluids(HydrochloricAcid.getFluid(1000))
+                .duration(300)
+                .EUt(GTValues.VA[GTValues.ZPM])
+                .circuitMeta(5)
+                .save(c);
+
+        LARGE_CHEMICAL_PLANT.recipeBuilder("quantum_infusion")
+                .inputItems(Singularity)
+                .inputItems(dustSmall, IndiumGalliumPhosphide)
+                .inputFluids(Radon.getFluid(6250))
+                .inputFluids(AmmoniumFormate.getFluid(1500))
+                .inputFluids(McGuffium239.getFluid(750)) // The forgotten GT Chemical, needs recipe(s) though
+                .outputFluids(QuantumInfusion.getFluid(1500))
+                .duration(300)
+                .EUt(GTValues.VA[GTValues.ZPM])
+                .circuitMeta(2)
+                .save(c);
     }
 }
