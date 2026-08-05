@@ -145,7 +145,6 @@ dependencies {
     modImplementation "appeng:appliedenergistics2-forge:${ae2_version}"
     modImplementation "brachy.modularui:modularui-mc${minecraft_version}:${mui_version}"
     modImplementation "com.tterrag.registrate:Registrate:${registrate_version}"
-    modImplementation "dev.architectury:architectury-forge:${architectury_version}"
     modImplementation("com.simibubi.create:create-${minecraft_version}:${create_version}:slim") { transitive = false }
     modLocalRuntime "org.appliedenergistics:guideme:${guideme_version}"
     modLocalRuntime "net.createmod.ponder:Ponder-Forge-${minecraft_version}:${ponder_version}"
@@ -155,6 +154,7 @@ dependencies {
     modLocalRuntime "curse.maven:mantle-74924:7563777"
     modLocalRuntime "dev.latvian.mods:rhino-forge:${rhino_version}"
     modLocalRuntime "dev.latvian.mods:kubejs-forge:${kubejs_version}"
+    modLocalRuntime "dev.architectury:architectury-forge:${architectury_version}"
     compileOnly "org.jetbrains:annotations:26.0.2"
 }
 
