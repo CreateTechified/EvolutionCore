@@ -40,7 +40,6 @@ import lombok.Setter;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -87,7 +86,7 @@ public class HPSteamParallelMultiblockMachine extends WorkableMultiblockMachine 
                     if (nft.isFluidValid(0, GTMaterials.Steam.getFluid(1))) {
                         SteamEnergyRecipeHandler handler = new SteamEnergyRecipeHandler(nft, getConversionRate());
                         this.steamEnergyHandlers.add(handler);
-                        //addHandlerList(RecipeHandlerList.of(IO.IN, handler));
+                        addHandlerList(RecipeHandlerList.of(IO.IN, handler));
                     }
                 }
             }

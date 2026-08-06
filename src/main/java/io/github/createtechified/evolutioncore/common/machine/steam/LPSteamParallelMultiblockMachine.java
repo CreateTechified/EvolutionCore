@@ -31,18 +31,15 @@ import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
 import com.gregtechceu.gtceu.api.recipe.modifier.ParallelLogic;
 import com.gregtechceu.gtceu.api.recipe.modifier.RecipeModifier;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
-import com.gregtechceu.gtceu.common.machine.trait.ExhaustVentMachineTrait;
 import com.gregtechceu.gtceu.common.mui.GTGuiTextures;
 import com.gregtechceu.gtceu.common.mui.GTMultiblockTextUtil;
 import com.gregtechceu.gtceu.common.mui.widgets.SteamDialWidget;
-import com.gregtechceu.gtceu.common.recipe.condition.VentCondition;
 import com.gregtechceu.gtceu.config.ConfigHolder;
 import lombok.Getter;
 import lombok.Setter;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -89,7 +86,7 @@ public class LPSteamParallelMultiblockMachine extends WorkableMultiblockMachine 
                     if (nft.isFluidValid(0, GTMaterials.Steam.getFluid(1))) {
                         SteamEnergyRecipeHandler handler = new SteamEnergyRecipeHandler(nft, getConversionRate());
                         this.steamEnergyHandlers.add(handler);
-                        //addHandlerList(RecipeHandlerList.of(IO.IN, handler));
+                        addHandlerList(RecipeHandlerList.of(IO.IN, handler));
                     }
                 }
             }

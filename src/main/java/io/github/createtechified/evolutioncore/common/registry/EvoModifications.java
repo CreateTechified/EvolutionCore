@@ -6,7 +6,11 @@ import com.gregtechceu.gtceu.api.data.chemical.material.properties.FluidPipeProp
 import com.gregtechceu.gtceu.api.data.chemical.material.properties.IngotProperty;
 import com.gregtechceu.gtceu.api.data.chemical.material.properties.PropertyKey;
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
+import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
+import com.gregtechceu.gtceu.common.data.machines.GTMultiMachines;
+import io.github.createtechified.evolutioncore.common.registry.recipes.EvoRecipeRemovals;
+import io.github.createtechified.evolutioncore.common.registry.recipes.EvoRecipeTypes;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -14,7 +18,14 @@ import net.minecraftforge.registries.ForgeRegistries;
 import java.util.function.Supplier;
 
 public class EvoModifications {
-    public static void modifyMaterials(PostMaterialEvent event) {
+    public static void machines() {
+        GTMultiMachines.STEAM_GRINDER.setRenderXEIPreview(false);
+        GTMultiMachines.STEAM_GRINDER.setRecipeTypes(nullArray);
+        GTMultiMachines.STEAM_OVEN.setRenderXEIPreview(false);
+        GTMultiMachines.STEAM_OVEN.setRecipeTypes(nullArray);
+    }
+
+    public static void materials(PostMaterialEvent event) {
         GTMaterials.NaquadahAlloy.setProperty(
                 PropertyKey.FLUID_PIPE,
                 new FluidPipeProperties(7200, 15780, true, true, false, false)
@@ -79,4 +90,6 @@ public class EvoModifications {
         ResourceLocation rl = ResourceLocation.parse(itemId); // e.g. "experienceobelisk:cognitive_amalgam"
         return () -> ForgeRegistries.ITEMS.getValue(rl);
     }
+
+    private static final GTRecipeType[] nullArray = new GTRecipeType[]{EvoRecipeTypes.NULL};
 }

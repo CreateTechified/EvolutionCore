@@ -36,10 +36,4 @@ public class SteamMufflerPartMachine extends MultiblockPartMachine {
     public void afterWorking(@NotNull WorkableMultiblockMachine controller) {
         exhaustVentTrait.afterWorking();
     }
-
-    @Override
-    public GTRecipe modifyRecipe(GTRecipe recipe) {
-        recipe.conditions.add(VentCondition.INSTANCE);
-        return recipe;
-    }
 }
