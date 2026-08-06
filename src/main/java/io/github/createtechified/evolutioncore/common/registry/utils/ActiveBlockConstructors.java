@@ -1,7 +1,11 @@
 package io.github.createtechified.evolutioncore.common.registry.utils;
 
+import com.gregtechceu.gtceu.api.GTCEuAPI;
 import com.gregtechceu.gtceu.api.block.ActiveBlock;
+import com.gregtechceu.gtceu.api.block.ICoilType;
 import com.gregtechceu.gtceu.api.block.property.GTBlockStateProperties;
+import com.gregtechceu.gtceu.common.block.CoilBlock;
+import com.gregtechceu.gtceu.common.data.models.GTModels;
 import com.gregtechceu.gtceu.data.recipe.CustomTags;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import io.github.createtechified.evolutioncore.EvolutionCoreMod;
@@ -45,5 +49,20 @@ public class ActiveBlockConstructors {
                 .tag(CustomTags.MINEABLE_WITH_WRENCH, BlockTags.MINEABLE_WITH_PICKAXE)
                 .properties(p -> p.isValidSpawn((state, level, pos, ent) -> false))
                 .item(BlockItem::new).build().register();
+    }
+
+    public static BlockEntry<CoilBlock> constructCoilBlock(ICoilType coilType) {
+        BlockEntry<CoilBlock> coilBlock = Reference.REGISTRATE
+                .block("%s_coil_block".formatted(coilType.getName()), p -> new CoilBlock(p, coilType))
+                .initialProperties(() -> Blocks.IRON_BLOCK)
+                .properties(p -> p.isValidSpawn((state, level, pos, ent) -> false))
+                .addLayer(() -> RenderType::cutoutMipped)
+                .blockstate(GTModels.createCoilModel(coilType))
+                .tag(CustomTags.MINEABLE_WITH_WRENCH, BlockTags.MINEABLE_WITH_PICKAXE)
+                .item(BlockItem::new)
+                .build()
+                .register();
+        GTCEuAPI.HEATING_COILS.put(coilType, coilBlock);
+        return coilBlock;
     }
 }

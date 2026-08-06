@@ -1,0 +1,7 @@
+{
+  "parent": "gtceu:block/cube_2_layer/all",
+  "textures": {
+    "bot_all": "evolutioncore:block/coils/neuralic_alloy_7/coil",
+    "top_all": "evolutioncore:block/coils/neuralic_alloy_7/coil_bloom"
+  }
+}

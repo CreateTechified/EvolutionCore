@@ -2,9 +2,9 @@ package io.github.createtechified.evolutioncore.common.registry;
 
 import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.block.ActiveBlock;
+import com.gregtechceu.gtceu.common.block.CoilBlock;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import io.github.createtechified.evolutioncore.EvolutionCoreMod;
-import io.github.createtechified.evolutioncore.Reference;
 import io.github.createtechified.evolutioncore.common.registry.utils.ActiveBlockConstructors;
 import io.github.createtechified.evolutioncore.common.registry.utils.BlockConstructors;
 import net.minecraft.world.level.block.Block;
@@ -37,4 +37,5 @@ public class EvoBlocks {
             EvolutionCoreMod.id("block/casings/naquadah_alloy/casing"),
             EvolutionCoreMod.id("block/casings/naquadah_alloy/firebox")), "Naquadah Alloy Firebox Casing");
     public static BlockEntry<ActiveBlock> LUDICROUS_ENGINE_INTAKE_CASING = ActiveBlockConstructors.constructIntakeCasingBlock("ludicrous_engine_intake_casing", "naquadah_alloy", "Ludicrous Engine Intake Casing");
+    //public static BlockEntry<CoilBlock> NEURALIC_ALLOY_7_COIL_BLOCK = ActiveBlockConstructors.constructCoilBlock(EvoCoilType.NEURALIC_ALLOY_7); // moved to EvoCoilBlocks, idk why but it won't work here
 }
