@@ -15,11 +15,12 @@ import org.jetbrains.annotations.NotNull;
  * <p>
  * Note: tier is set explicitly rather than derived from ordinal() so these coils slot into GT's existing
  * tier space (Cupronickel=0 ... Tritanium=7) correctly instead of restarting at 0.
- * Alright should be enough, hopefully it actually works the way intended
+ * Alright should be enough, hopefully it actually works the way intended.
  */
 public enum EvoCoilType implements StringRepresentable, ICoilType {
-    NEURALIC_ALLOY_7("neuralic_alloy_7", 13499, 24, 12, 8, EvoMaterials.NeuralicAlloy7,
-            EvolutionCoreMod.id("block/coils/neuralic_alloy_7/coil"));
+    NEURALIC_ALLOY_7("neuralic_alloy_7", 13500, 24, 12, 8, EvoMaterials.NeuralicAlloy7, EvolutionCoreMod.id("block/coils/neuralic_alloy_7/coil")),
+    WRLDAPPLE_ALLOY("wrldapple_alloy", 27000, 48, 36, 9, EvoMaterials.WrldappleAlloy, EvolutionCoreMod.id("block/coils/neuralic_alloy_7/coil"))
+    ;
 
     @NotNull
     private final String name;
@@ -27,15 +28,17 @@ public enum EvoCoilType implements StringRepresentable, ICoilType {
     private final int coilTemperature;
     // multi smelter properties
     private final int level;
+    // cracker/pyro properties
     private final int energyDiscount;
+    // tier num (ordered pls!)
     private final int tier;
     @NotNull
     private final Material material;
     @NotNull
     private final ResourceLocation texture;
 
-    EvoCoilType(String name, int coilTemperature, int level, int energyDiscount, int tier, Material material,
-                ResourceLocation texture) {
+    EvoCoilType(@NotNull String name, int coilTemperature, int level, int energyDiscount, int tier, @NotNull Material material,
+                @NotNull ResourceLocation texture) {
         this.name = name;
         this.coilTemperature = coilTemperature;
         this.level = level;
@@ -72,7 +75,7 @@ public enum EvoCoilType implements StringRepresentable, ICoilType {
     }
 
     @Override
-    public Material getMaterial() {
+    public @NotNull Material getMaterial() {
         return material;
     }
 
