@@ -1,0 +1,17 @@
+{
+    "gtceu": {
+        "connection_texture": "evolutioncore:block/coils/wrldapple_alloy/coil_bloom_ctm",
+        "emissive": true
+    },
+    "shimmer": {
+        "bloom": true
+    },
+    "animation": {
+        "interpolate": true,
+        "frames": [
+		    { "index": 0, "time": 300 },
+            { "index": 1, "time": 100 },
+            { "index": 2, "time": 200 }
+        ]
+    }
+}

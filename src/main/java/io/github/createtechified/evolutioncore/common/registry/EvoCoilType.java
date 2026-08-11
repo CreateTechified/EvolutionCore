@@ -19,7 +19,7 @@ import org.jetbrains.annotations.NotNull;
  */
 public enum EvoCoilType implements StringRepresentable, ICoilType {
     NEURALIC_ALLOY_7("neuralic_alloy_7", 13500, 24, 12, 8, EvoMaterials.NeuralicAlloy7, EvolutionCoreMod.id("block/coils/neuralic_alloy_7/coil")),
-    WRLDAPPLE_ALLOY("wrldapple_alloy", 27000, 48, 36, 9, EvoMaterials.WrldappleAlloy, EvolutionCoreMod.id("block/coils/neuralic_alloy_7/coil"))
+    WRLDAPPLE_ALLOY("wrldapple_alloy", 25879, 48, 36, 15, EvoMaterials.WrldappleAlloy, EvolutionCoreMod.id("block/coils/wrldapple_alloy/coil"))
     ;
 
     @NotNull

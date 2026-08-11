@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/cube_all",
   "textures": {
-    "all": "evolutioncore:block/coils/neuralic_alloy_7/coil"
+    "all": "evolutioncore:block/coils/wrldapple_alloy/coil"
   }
 }
