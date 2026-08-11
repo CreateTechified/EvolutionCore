@@ -9,7 +9,6 @@ import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
 import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
 import com.gregtechceu.gtceu.common.data.machines.GTMultiMachines;
-import io.github.createtechified.evolutioncore.common.registry.recipes.EvoRecipeRemovals;
 import io.github.createtechified.evolutioncore.common.registry.recipes.EvoRecipeTypes;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
