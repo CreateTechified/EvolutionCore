@@ -10,9 +10,9 @@ import com.gregtechceu.gtceu.api.machine.multiblock.PartAbility;
 import com.gregtechceu.gtceu.api.machine.property.GTMachineModelProperties;
 import com.gregtechceu.gtceu.common.mui.GTGuiTheme;
 import io.github.createtechified.evolutioncore.Reference;
-import io.github.createtechified.evolutioncore.common.machine.electric.MENetworkingHatchPartMachine;
-import io.github.createtechified.evolutioncore.common.machine.steam.SteamFluidHatchPartMachine;
-import io.github.createtechified.evolutioncore.common.machine.steam.SteamMufflerPartMachine;
+import io.github.createtechified.evolutioncore.common.data.machine.electric.MENetworkingHatchPartMachine;
+import io.github.createtechified.evolutioncore.common.data.machine.steam.SteamFluidHatchPartMachine;
+import io.github.createtechified.evolutioncore.common.data.machine.steam.SteamMufflerPartMachine;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 
@@ -36,7 +36,7 @@ public class EvoMultiParts {
             .langValue("Steam Venting Hatch")
             .tooltips(Component.translatable("evolutioncore.tooltip.steam_vent"),
                     Component.translatable("gtceu.machine.steam_bus.tooltip"),
-                    Component.translatable("evolutioncore.tooltip.steam_vent.warn").withStyle(ChatFormatting.DARK_RED))
+                    Component.translatable("evolutioncore.tooltip.steam_vent.warn").withStyle(ChatFormatting.RED))
             .allowCoverOnFront(false)
             .register();
 

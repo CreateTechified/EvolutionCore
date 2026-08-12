@@ -10,6 +10,8 @@ import com.gregtechceu.gtceu.data.recipe.CustomTags;
 import com.gregtechceu.gtceu.data.recipe.VanillaRecipeHelper;
 import io.github.createtechified.evolutioncore.EvolutionCoreMod;
 import io.github.createtechified.evolutioncore.common.registry.EvoBlocks;
+import io.github.createtechified.evolutioncore.common.registry.machines.EvoSingleblocks;
+import io.github.createtechified.evolutioncore.common.registry.machines.multiblocks.PrimitiveMultiblocks;
 import io.github.createtechified.evolutioncore.common.registry.machines.multiblocks.SteamMultiblocksHP;
 import io.github.createtechified.evolutioncore.common.registry.machines.multiblocks.SteamMultiblocksLP;
 import net.minecraft.data.recipes.FinishedRecipe;
@@ -23,8 +25,6 @@ public class MachineShapedRecipes {
         // Singleblocks
 
         // Multiblocks
-        VanillaRecipeHelper.addShapelessRecipe(c, EvolutionCoreMod.id("lp_steam_oven_swap"), SteamMultiblocksLP.LP_STEAM_OVEN.asStack(), GTMultiMachines.STEAM_OVEN.asStack());
-        VanillaRecipeHelper.addShapelessRecipe(c, EvolutionCoreMod.id("lp_steam_grinder_swap"), SteamMultiblocksLP.LP_STEAM_GRINDER.asStack(), GTMultiMachines.STEAM_GRINDER.asStack());
         VanillaRecipeHelper.addShapedRecipe(c, true, EvolutionCoreMod.id("lp_steam_oven"),
                 SteamMultiblocksLP.LP_STEAM_OVEN.asStack(),
                 "CGC", "FMF", "CGC",
@@ -67,6 +67,62 @@ public class MachineShapedRecipes {
                 "CGC", "CFC", "CGC",
                 'G', new MaterialEntry(TagPrefix.gear, GTMaterials.Potin),
                 'F', SteamMultiblocksLP.LP_STEAM_ALLOY_KILN.asStack(),
+                'C', EvoBlocks.HP_STEAM_MACHINE_CASING.asStack());
+
+        VanillaRecipeHelper.addShapedRecipe(c, true, EvolutionCoreMod.id("lp_steam_impact_forge"),
+                SteamMultiblocksLP.LP_STEAM_IMPACT_FORGE.asStack(),
+                "CGC", "CFC", "CGC",
+                'G', new MaterialEntry(TagPrefix.gear, GTMaterials.Potin),
+                'F', GTMachines.STEAM_HAMMER.left().asStack(),
+                'C', GTBlocks.CASING_BRONZE_BRICKS.asStack());
+
+        VanillaRecipeHelper.addShapedRecipe(c, true, EvolutionCoreMod.id("hp_steam_impact_forge"),
+                SteamMultiblocksHP.HP_STEAM_IMPACT_FORGE.asStack(),
+                "CGC", "CFC", "CGC",
+                'G', new MaterialEntry(TagPrefix.gear, GTMaterials.Potin),
+                'F', SteamMultiblocksLP.LP_STEAM_IMPACT_FORGE.asStack(),
+                'C', EvoBlocks.HP_STEAM_MACHINE_CASING.asStack());
+
+        VanillaRecipeHelper.addShapedRecipe(c, true, EvolutionCoreMod.id("lp_steam_seperator"),
+                SteamMultiblocksLP.LP_STEAM_SEPARATOR.asStack(),
+                "CGC", "CFC", "CGC",
+                'G', new MaterialEntry(TagPrefix.gear, GTMaterials.Potin),
+                'F', EvoSingleblocks.STEAM_CENTRIFUGE.left().asStack(),
+                'C', GTBlocks.CASING_BRONZE_BRICKS.asStack());
+
+        VanillaRecipeHelper.addShapedRecipe(c, true, EvolutionCoreMod.id("hp_steam_seperator"),
+                SteamMultiblocksHP.HP_STEAM_SEPARATOR.asStack(),
+                "CGC", "CFC", "CGC",
+                'G', new MaterialEntry(TagPrefix.gear, GTMaterials.Potin),
+                'F', SteamMultiblocksLP.LP_STEAM_SEPARATOR.asStack(),
+                'C', EvoBlocks.HP_STEAM_MACHINE_CASING.asStack());
+
+        VanillaRecipeHelper.addShapedRecipe(c, true, EvolutionCoreMod.id("lp_steam_purifier"),
+                SteamMultiblocksLP.LP_STEAM_PURIFIER.asStack(),
+                "CGC", "CFC", "CGC",
+                'G', new MaterialEntry(TagPrefix.gear, GTMaterials.Potin),
+                'F', EvoSingleblocks.STEAM_ORE_WASHER.left().asStack(),
+                'C', GTBlocks.CASING_BRONZE_BRICKS.asStack());
+
+        VanillaRecipeHelper.addShapedRecipe(c, true, EvolutionCoreMod.id("hp_steam_purifier"),
+                SteamMultiblocksHP.HP_STEAM_PURIFIER.asStack(),
+                "CGC", "CFC", "CGC",
+                'G', new MaterialEntry(TagPrefix.gear, GTMaterials.Potin),
+                'F', SteamMultiblocksLP.LP_STEAM_PURIFIER.asStack(),
+                'C', EvoBlocks.HP_STEAM_MACHINE_CASING.asStack());
+
+        VanillaRecipeHelper.addShapedRecipe(c, true, EvolutionCoreMod.id("lp_steam_ore_factory"),
+                SteamMultiblocksLP.LP_STEAM_ORE_FACTORY.asStack(),
+                "CGC", "CFC", "CGC",
+                'G', new MaterialEntry(TagPrefix.gear, GTMaterials.Potin),
+                'F', PrimitiveMultiblocks.PRIMITIVE_ORE_FACTORY.asStack(),
+                'C', GTBlocks.CASING_BRONZE_BRICKS.asStack());
+
+        VanillaRecipeHelper.addShapedRecipe(c, true, EvolutionCoreMod.id("hp_steam_ore_factory"),
+                SteamMultiblocksHP.HP_STEAM_ORE_FACTORY.asStack(),
+                "CGC", "CFC", "CGC",
+                'G', new MaterialEntry(TagPrefix.gear, GTMaterials.Potin),
+                'F', SteamMultiblocksLP.LP_STEAM_ORE_FACTORY.asStack(),
                 'C', EvoBlocks.HP_STEAM_MACHINE_CASING.asStack());
 
         // Stainless Steel Casings

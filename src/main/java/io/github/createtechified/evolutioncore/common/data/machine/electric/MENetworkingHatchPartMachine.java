@@ -1,4 +1,4 @@
-package io.github.createtechified.evolutioncore.common.machine.electric;
+package io.github.createtechified.evolutioncore.common.data.machine.electric;
 
 import appeng.api.networking.IManagedGridNode;
 import appeng.api.networking.security.IActionSource;

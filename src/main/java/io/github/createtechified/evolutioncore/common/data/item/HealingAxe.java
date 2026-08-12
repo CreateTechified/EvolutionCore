@@ -1,4 +1,4 @@
-package io.github.createtechified.evolutioncore.common.registry.tools;
+package io.github.createtechified.evolutioncore.common.data.item;
 
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;

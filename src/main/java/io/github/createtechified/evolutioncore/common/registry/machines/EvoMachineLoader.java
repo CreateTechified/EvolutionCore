@@ -1,7 +1,6 @@
 package io.github.createtechified.evolutioncore.common.registry.machines;
 
 import io.github.createtechified.evolutioncore.Reference;
-import io.github.createtechified.evolutioncore.common.registry.EvoCoilBlocks;
 import io.github.createtechified.evolutioncore.common.registry.EvoModifications;
 import io.github.createtechified.evolutioncore.common.registry.EvoTabs;
 import io.github.createtechified.evolutioncore.common.registry.machines.multiblocks.PrimitiveMultiblocks;

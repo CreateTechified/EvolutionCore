@@ -1,4 +1,4 @@
-package io.github.createtechified.evolutioncore.common.machine.steam;
+package io.github.createtechified.evolutioncore.common.data.machine.steam;
 
 import com.gregtechceu.gtceu.api.blockentity.BlockEntityCreationInfo;
 import com.gregtechceu.gtceu.api.machine.multiblock.MultiblockControllerMachine;
@@ -6,10 +6,8 @@ import com.gregtechceu.gtceu.api.machine.multiblock.WorkableMultiblockMachine;
 import com.gregtechceu.gtceu.api.machine.multiblock.part.MultiblockPartMachine;
 import com.gregtechceu.gtceu.api.machine.property.GTMachineModelProperties;
 import com.gregtechceu.gtceu.api.multiblock.util.RelativeDirection;
-import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.client.model.machine.MachineRenderState;
 import com.gregtechceu.gtceu.common.machine.trait.ExhaustVentMachineTrait;
-import com.gregtechceu.gtceu.common.recipe.condition.VentCondition;
 import org.jetbrains.annotations.NotNull;
 
 public class SteamMufflerPartMachine extends MultiblockPartMachine {

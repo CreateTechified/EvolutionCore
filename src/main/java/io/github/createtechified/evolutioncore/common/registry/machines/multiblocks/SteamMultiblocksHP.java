@@ -16,16 +16,14 @@ import com.gregtechceu.gtceu.common.mui.GTGuiTheme;
 import com.simibubi.create.content.decoration.palettes.AllPaletteBlocks;
 import io.github.createtechified.evolutioncore.EvolutionCoreMod;
 import io.github.createtechified.evolutioncore.Reference;
-import io.github.createtechified.evolutioncore.common.machine.steam.HPSteamParallelMultiblockMachine;
+import io.github.createtechified.evolutioncore.common.data.machine.steam.HPSteamParallelMultiblockMachine;
 import io.github.createtechified.evolutioncore.common.registry.EvoBlocks;
 import io.github.createtechified.evolutioncore.common.registry.machines.EvoMultiParts;
 import io.github.createtechified.evolutioncore.common.registry.recipes.EvoRecipeTypes;
 import io.github.createtechified.evolutioncore.common.registry.utils.GeneralHelpers;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.material.Fluids;
-import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.Objects;
 

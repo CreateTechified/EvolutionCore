@@ -1,7 +1,5 @@
-package io.github.createtechified.evolutioncore.common.machine.primitive;
+package io.github.createtechified.evolutioncore.common.data.machine.primitive;
 
-import brachy.modularui.value.sync.FluidSlotSyncHandler;
-import brachy.modularui.widgets.slot.FluidSlot;
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.blockentity.BlockEntityCreationInfo;
 import com.gregtechceu.gtceu.api.machine.TickableSubscription;
@@ -11,7 +9,6 @@ import com.gregtechceu.gtceu.api.machine.trait.recipe.RecipeLogic;
 import com.gregtechceu.gtceu.api.multiblock.util.RelativeDirection;
 import com.gregtechceu.gtceu.api.sync_system.annotations.RerenderOnChanged;
 import com.gregtechceu.gtceu.api.sync_system.annotations.SyncToClient;
-import com.gregtechceu.gtceu.common.data.GTRecipeTypes;
 import com.gregtechceu.gtceu.common.machine.multiblock.primitive.PrimitiveWorkableMachine;
 import com.gregtechceu.gtceu.common.machine.trait.multiblock.MultiblockFluidRendererTrait;
 import com.gregtechceu.gtceu.common.mui.GTGuiTextures;
@@ -52,8 +49,6 @@ import brachy.modularui.widgets.slot.SlotGroup;
 import lombok.Getter;
 
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.Set;
 
 import javax.annotation.Nullable;
@@ -61,8 +56,7 @@ import javax.annotation.ParametersAreNonnullByDefault;
 
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
-public class PrimitiveOreFactoryMachine extends PrimitiveWorkableMachine implements IMuiMachine {
-
+public class PrimitiveAlloyKilnMachine extends PrimitiveWorkableMachine implements IMuiMachine {
     private @Nullable TickableSubscription hurtSubscription;
 
     @Getter
@@ -70,7 +64,7 @@ public class PrimitiveOreFactoryMachine extends PrimitiveWorkableMachine impleme
     @RerenderOnChanged
     private final MultiblockFluidRendererTrait fluidRendererTrait;
 
-    public PrimitiveOreFactoryMachine(BlockEntityCreationInfo info) {
+    public PrimitiveAlloyKilnMachine(BlockEntityCreationInfo info) {
         super(info);
         fluidRendererTrait = attachTrait(new MultiblockFluidRendererTrait(this::saveOffsets));
     }
@@ -97,8 +91,8 @@ public class PrimitiveOreFactoryMachine extends PrimitiveWorkableMachine impleme
         Direction back = getFrontFacing().getOpposite();
         Direction up = RelativeDirection.UP.getRelativeFacing(getFrontFacing(), getUpwardsFacing(), isFlipped());
         BlockPos targetPos = getBlockPos()
-                .relative(up, 7)
-                .relative(back, 3);
+                .relative(up, 4)
+                .relative(back, 2);
         return Set.of(targetPos.subtract(getBlockPos()));
     }
 
@@ -109,8 +103,8 @@ public class PrimitiveOreFactoryMachine extends PrimitiveWorkableMachine impleme
         if (isFormed) {
             var pos = this.getBlockPos();
             var facing = this.getFrontFacing().getOpposite();
-            float xPos = facing.getStepX() * 0.76F + pos.getX() - 1.5F;
-            float yPos = facing.getStepY() * 0.76F + pos.getY() + 8.25F;
+            float xPos = facing.getStepX() * 0.76F + pos.getX() - 0.5F;
+            float yPos = facing.getStepY() * 0.76F + pos.getY() + 5.25F;
             float zPos = facing.getStepZ() * 0.76F + pos.getZ() + 0.5F;
 
             var up = RelativeDirection.UP.getRelativeFacing(getFrontFacing(), getUpwardsFacing(), isFlipped());
@@ -163,13 +157,12 @@ public class PrimitiveOreFactoryMachine extends PrimitiveWorkableMachine impleme
 
         progressWidget.listenGuiAction((IGuiAction.MousePressed) (guiContext, i) -> {
             if (!guiContext.isMouseAbove(progressWidget)) return false;
-            if (!EvoRecipeTypes.PRIMITIVE_ORE_FACTORY.getCategory().isXEIVisible()) return false;
-            GTUtil.openRecipeViewerCategory(EvoRecipeTypes.PRIMITIVE_ORE_FACTORY.getCategory());
+            if (!EvoRecipeTypes.PRIMITIVE_ALLOY_SMELTER.getCategory().isXEIVisible()) return false;
+            GTUtil.openRecipeViewerCategory(EvoRecipeTypes.PRIMITIVE_ALLOY_SMELTER.getCategory());
             return true;
         });
 
-        row.child(createImportItemSlot(syncManager, theme).margin(0, 4, 0, 0))
-                .child(createImportFluidSlot(syncManager, theme))
+        row.child(createImportItemSlot(syncManager, theme))
                 .child(progressWidget)
                 .child(createExportItemSlot(syncManager, theme));
 
@@ -191,7 +184,9 @@ public class PrimitiveOreFactoryMachine extends PrimitiveWorkableMachine impleme
                     return new ItemSlot()
                             .syncHandler("import", i)
                             .background(theme.getItemSlotTheme().theme().getBackground(),
-                                    (i == 0) ? GTGuiTextures.CRUSHED_ORE_OVERLAY : GTGuiTextures.PRIMITIVE_FURNACE_OVERLAY);
+                                    (i == 0) ? GTGuiTextures.PRIMITIVE_DUST_OVERLAY : (i == 1) ?
+                                                                                       GTGuiTextures.PRIMITIVE_DUST_OVERLAY :
+                                                                                       GTGuiTextures.PRIMITIVE_FURNACE_OVERLAY);
                 })
                 .build();
     }
@@ -199,16 +194,9 @@ public class PrimitiveOreFactoryMachine extends PrimitiveWorkableMachine impleme
     private SlotGroupWidget createExportItemSlot(PanelSyncManager syncManager, ITheme theme) {
         int size = exportItems.storage.getSlots();
         SlotGroup slotGroup = new SlotGroup("export", size);
-        int cols = (int) Math.ceil(size / 2.0);
+        String[] matrix = new String[1];
         char key = 'I';
-        String[] matrix = new String[2];
-        StringBuilder row1 = new StringBuilder();
-        StringBuilder row2 = new StringBuilder();
-        for (int i = 0; i < cols; i++) { row1.append(key); }
-        for (int i = cols; i < size; i++) { row2.append(key); }
-        while (row2.length() < cols) { row2.append(' '); }
-        matrix[0] = row1.toString();
-        matrix[1] = row2.toString();
+        matrix[0] = String.valueOf(key).repeat(size);
         return SlotGroupWidget.builder()
                 .matrix(matrix)
                 .key(key, i -> {
@@ -218,25 +206,10 @@ public class PrimitiveOreFactoryMachine extends PrimitiveWorkableMachine impleme
                     syncManager.syncValue("export", i, syncHandler);
                     return new ItemSlot()
                             .syncHandler("export", i)
-                            .background(theme.getItemSlotTheme().theme().getBackground(), GTGuiTextures.PRIMITIVE_DUST_OVERLAY);
-                }).build();
-    }
-
-    private SlotGroupWidget createImportFluidSlot(PanelSyncManager syncManager, ITheme theme) {
-        int size = importFluids.getStorages().length;
-        String[] matrix = new String[size];
-        char key = 'F';
-        Arrays.fill(matrix, String.valueOf(key));
-        return SlotGroupWidget.builder()
-                .matrix(matrix)
-                .key(key, i -> {
-                    var tank = importFluids.getStorages()[i];
-                    FluidSlotSyncHandler syncHandler = new FluidSlotSyncHandler(tank);
-                    syncManager.syncValue("import_fluid", i, syncHandler);
-                    return new FluidSlot()
-                            .syncHandler("import_fluid", i)
-                            .background(theme.getFluidSlotTheme().theme().getBackground(), GTGuiTextures.SLOT_PRIMITIVE);
-                }).build();
+                            .background(theme.getItemSlotTheme().theme().getBackground(),
+                                    GTGuiTextures.PRIMITIVE_DUST_OVERLAY);
+                })
+                .build();
     }
 
     @Override
@@ -272,8 +245,8 @@ public class PrimitiveOreFactoryMachine extends PrimitiveWorkableMachine impleme
         Direction back = getFrontFacing().getOpposite();
         Direction up = RelativeDirection.UP.getRelativeFacing(getFrontFacing(), getUpwardsFacing(), isFlipped());
         BlockPos middlePos = getBlockPos()
-                .relative(up, 7)
-                .relative(back, 3);
+                .relative(up, 4)
+                .relative(back, 2);
         getLevel().getEntities(null, new AABB(middlePos)).forEach(e -> e.hurt(e.damageSources().lava(), 3.0f));
         if (getOffsetTimer() % 10 == 0) {
             BlockState state = getLevel().getBlockState(middlePos);

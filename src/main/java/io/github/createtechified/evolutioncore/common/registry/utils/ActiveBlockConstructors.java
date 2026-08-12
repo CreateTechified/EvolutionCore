@@ -10,6 +10,7 @@ import com.gregtechceu.gtceu.data.recipe.CustomTags;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import io.github.createtechified.evolutioncore.EvolutionCoreMod;
 import io.github.createtechified.evolutioncore.Reference;
+import io.github.createtechified.evolutioncore.common.data.block.EvoCoilBlock;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.resources.ResourceLocation;
 
@@ -53,7 +54,7 @@ public class ActiveBlockConstructors {
 
     public static BlockEntry<CoilBlock> constructCoilBlock(ICoilType coilType) {
         BlockEntry<CoilBlock> coilBlock = Reference.REGISTRATE
-                .block("%s_coil_block".formatted(coilType.getName()), p -> new CoilBlock(p, coilType))
+                .block("%s_coil_block".formatted(coilType.getName()), p -> (CoilBlock) new EvoCoilBlock(p, coilType))
                 .initialProperties(() -> Blocks.IRON_BLOCK)
                 .properties(p -> p.isValidSpawn((state, level, pos, ent) -> false))
                 .addLayer(() -> RenderType::cutoutMipped)

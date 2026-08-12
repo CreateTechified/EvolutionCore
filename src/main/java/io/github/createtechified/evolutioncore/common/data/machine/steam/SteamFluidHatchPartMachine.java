@@ -1,4 +1,4 @@
-package io.github.createtechified.evolutioncore.common.machine.steam;
+package io.github.createtechified.evolutioncore.common.data.machine.steam;
 
 import com.gregtechceu.gtceu.api.blockentity.BlockEntityCreationInfo;
 import com.gregtechceu.gtceu.api.capability.recipe.IO;

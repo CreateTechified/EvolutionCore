@@ -1,4 +1,4 @@
-package io.github.createtechified.evolutioncore.common.machine.steam;
+package io.github.createtechified.evolutioncore.common.data.machine.steam;
 
 import brachy.modularui.api.drawable.Text;
 import brachy.modularui.drawable.Icon;
@@ -44,7 +44,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LPSteamParallelMultiblockMachine extends WorkableMultiblockMachine implements IMuiMachine {
+public class HPSteamParallelMultiblockMachine extends WorkableMultiblockMachine implements IMuiMachine {
 
     @Getter
     @Setter
@@ -55,13 +55,13 @@ public class LPSteamParallelMultiblockMachine extends WorkableMultiblockMachine 
 
     public static final double CONVERSION_RATE = 2.0;
 
-    public LPSteamParallelMultiblockMachine(BlockEntityCreationInfo info, int maxParallels) {
+    public HPSteamParallelMultiblockMachine(BlockEntityCreationInfo info, int maxParallels) {
         super(info);
         this.maxParallels = maxParallels;
     }
 
-    public LPSteamParallelMultiblockMachine(BlockEntityCreationInfo info) {
-        this(info, ConfigHolder.INSTANCE.machines.steamMultiParallelAmount);
+    public HPSteamParallelMultiblockMachine(BlockEntityCreationInfo info) {
+        this(info, ConfigHolder.INSTANCE.machines.steamMultiParallelAmount * 4);
     }
 
     @Override
@@ -102,8 +102,8 @@ public class LPSteamParallelMultiblockMachine extends WorkableMultiblockMachine 
     }
 
     public static ModifierFunction recipeModifier(MetaMachine machine, GTRecipe recipe) {
-        if (!(machine instanceof LPSteamParallelMultiblockMachine steamMachine)) {
-            return RecipeModifier.nullWrongType(LPSteamParallelMultiblockMachine.class, machine);
+        if (!(machine instanceof HPSteamParallelMultiblockMachine steamMachine)) {
+            return RecipeModifier.nullWrongType(HPSteamParallelMultiblockMachine.class, machine);
         }
         if (RecipeHelper.getRecipeEUtTier(recipe) > GTValues.LV) return ModifierFunction.NULL;
 
@@ -113,7 +113,7 @@ public class LPSteamParallelMultiblockMachine extends WorkableMultiblockMachine 
         return ModifierFunction.builder()
                 .inputModifier(ContentModifier.multiplier(parallelAmount))
                 .outputModifier(ContentModifier.multiplier(parallelAmount))
-                .durationMultiplier(3)
+                .durationMultiplier(1.5)
                 .eutMultiplier(eutMultiplier)
                 .parallels(parallelAmount)
                 .build();

@@ -1,4 +1,4 @@
-package io.github.createtechified.evolutioncore.common.machine.generator;
+package io.github.createtechified.evolutioncore.common.data.machine.generator;
 
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.blockentity.BlockEntityCreationInfo;
