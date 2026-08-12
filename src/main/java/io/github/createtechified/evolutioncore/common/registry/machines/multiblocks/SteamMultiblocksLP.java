@@ -3,11 +3,13 @@ package io.github.createtechified.evolutioncore.common.registry.machines.multibl
 import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.capability.recipe.ItemRecipeCapability;
 import com.gregtechceu.gtceu.api.data.RotationState;
+import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
 import com.gregtechceu.gtceu.api.machine.MultiblockMachineDefinition;
 import com.gregtechceu.gtceu.api.machine.multiblock.PartAbility;
 import com.gregtechceu.gtceu.api.multiblock.Predicates;
 import com.gregtechceu.gtceu.api.multiblock.pattern.MultiblockPatternBuilder;
 import com.gregtechceu.gtceu.common.data.GTBlocks;
+import com.gregtechceu.gtceu.common.data.GTMaterialBlocks;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
 import com.gregtechceu.gtceu.common.data.GTRecipeTypes;
 import com.gregtechceu.gtceu.common.mui.GTGuiTheme;
@@ -15,8 +17,10 @@ import com.simibubi.create.content.decoration.palettes.AllPaletteBlocks;
 import io.github.createtechified.evolutioncore.EvolutionCoreMod;
 import io.github.createtechified.evolutioncore.Reference;
 import io.github.createtechified.evolutioncore.common.machine.steam.LPSteamParallelMultiblockMachine;
+import io.github.createtechified.evolutioncore.common.registry.EvoBlocks;
 import io.github.createtechified.evolutioncore.common.registry.machines.EvoMultiParts;
 import io.github.createtechified.evolutioncore.common.registry.recipes.EvoRecipeTypes;
+import io.github.createtechified.evolutioncore.common.registry.utils.GeneralHelpers;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -194,6 +198,40 @@ public class SteamMultiblocksLP {
             .workableCasingModel(GTCEu.id("block/casings/solid/machine_casing_bronze_plated_bricks"), EvolutionCoreMod.id("block/machines/lp_steam_purifier"))
             .langValue("Low Pressure Steam Purifier")
             .tooltips(Component.translatable("evolutioncore.tooltip.steam_purifier.l").withStyle(ChatFormatting.GRAY))
+            .themeId(GTGuiTheme.BRONZE.getId())
+            .register();
+
+    public static final MultiblockMachineDefinition LP_STEAM_IMPACT_FORGE = Reference.REGISTRATE
+            .multiblock("lp_steam_impact_forge", LPSteamParallelMultiblockMachine::new)
+            .rotationState(RotationState.NON_Y_AXIS)
+            .appearanceBlock(GTBlocks.CASING_BRONZE_BRICKS)
+            .recipeType(GTRecipeTypes.FORGE_HAMMER_RECIPES)
+            .recipeModifier(LPSteamParallelMultiblockMachine::recipeModifier, true)
+            .pattern(definition -> MultiblockPatternBuilder.start(FRONT, UP, RIGHT)
+                    .slice(" FFFFF ", "  BVB  ", "       ", "       ", "       ", "       ")
+                    .slice("FBBBBBF", " B#S#B ", "   S   ", "   S   ", "   S   ", "       ")
+                    .slice("FBPPPBF", "B#####B", "  ###  ", "  #X#  ", "  ###  ", "   S   ")
+                    .slice("FBPPPBF", "BS###SB", " S###S ", " SXXXS ", " S#G#S ", "  SSS  ")
+                    .slice("FBPPPBF", "B#####B", "  ###  ", "  #X#  ", "  ###  ", "   S   ")
+                    .slice("FBBBBBF", " B#S#B ", "   S   ", "   S   ", "   S   ", "       ")
+                    .slice(" FFFFF ", "  BCB  ", "       ", "       ", "       ", "       ")
+                    .where('C', Predicates.controller(definition))
+                    .where('#', Predicates.air())
+                    .where(' ', Predicates.any())
+                    .where('B', Predicates.blocks(GTBlocks.CASING_BRONZE_BRICKS.get())
+                            .or(Predicates.abilities(PartAbility.STEAM_IMPORT_ITEMS).setExactLimit(1))
+                            .or(Predicates.abilities(PartAbility.STEAM_EXPORT_ITEMS).setExactLimit(1))
+                            .or(Predicates.abilities(PartAbility.STEAM).setExactLimit(1)))
+                    .where('P', Predicates.blocks(GTBlocks.CASING_BRONZE_PIPE.get()))
+                    .where('F', Predicates.blocks(GTBlocks.FIREBOX_BRONZE.get()))
+                    .where('S', Predicates.frames(GTMaterials.Bronze))
+                    .where('X', Predicates.blocks(Objects.requireNonNull(GTMaterialBlocks.MATERIAL_BLOCKS.get(TagPrefix.block, GTMaterials.WroughtIron)).get()))
+                    .where('V', Predicates.abilities(EvoMultiParts.STEAM_VENT).setExactLimit(1))
+                    .where('G', Predicates.blocks(Objects.requireNonNull(GeneralHelpers.getBlockFromNamespaceAndID("create", "metal_girder"))))
+                    .build())
+            .workableCasingModel(GTCEu.id("block/casings/solid/machine_casing_bronze_plated_bricks"), GTCEu.id("block/machines/forge_hammer"))
+            .langValue("Low Pressure Steam Impact Forge")
+            .tooltips(Component.translatable("evolutioncore.tooltip.steam_impact_forge.l").withStyle(ChatFormatting.GRAY))
             .themeId(GTGuiTheme.BRONZE.getId())
             .register();
 

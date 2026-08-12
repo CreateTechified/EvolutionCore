@@ -46,6 +46,7 @@ public class EvolutionCoreMod {
             );
 
     public EvolutionCoreMod() {
+        Reference.LOGGER.info("Loading EvolutionCore...");
         IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
         eventBus.addGenericListener(GTRecipeType.class, this::registerRecipeTypes);
         eventBus.addGenericListener(MachineDefinition.class, this::registerMachines);

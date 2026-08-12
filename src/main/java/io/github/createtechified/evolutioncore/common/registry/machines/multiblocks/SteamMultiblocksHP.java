@@ -1,12 +1,15 @@
 package io.github.createtechified.evolutioncore.common.registry.machines.multiblocks;
 
+import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.capability.recipe.ItemRecipeCapability;
 import com.gregtechceu.gtceu.api.data.RotationState;
+import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
 import com.gregtechceu.gtceu.api.machine.MultiblockMachineDefinition;
 import com.gregtechceu.gtceu.api.machine.multiblock.PartAbility;
 import com.gregtechceu.gtceu.api.multiblock.Predicates;
 import com.gregtechceu.gtceu.api.multiblock.pattern.MultiblockPatternBuilder;
 import com.gregtechceu.gtceu.common.data.GTBlocks;
+import com.gregtechceu.gtceu.common.data.GTMaterialBlocks;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
 import com.gregtechceu.gtceu.common.data.GTRecipeTypes;
 import com.gregtechceu.gtceu.common.mui.GTGuiTheme;
@@ -17,6 +20,7 @@ import io.github.createtechified.evolutioncore.common.machine.steam.HPSteamParal
 import io.github.createtechified.evolutioncore.common.registry.EvoBlocks;
 import io.github.createtechified.evolutioncore.common.registry.machines.EvoMultiParts;
 import io.github.createtechified.evolutioncore.common.registry.recipes.EvoRecipeTypes;
+import io.github.createtechified.evolutioncore.common.registry.utils.GeneralHelpers;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -84,7 +88,7 @@ public class SteamMultiblocksHP {
                     .where('G', Predicates.blocks(GTBlocks.CASING_STEEL_GEARBOX.get()))
                     .where('F', Predicates.frames(GTMaterials.Steel))
                     .where('V', Predicates.abilities(EvoMultiParts.STEAM_VENT))
-                    .where('W', Predicates.blocks(Objects.requireNonNull(ForgeRegistries.BLOCKS.getValue(ResourceLocation.fromNamespaceAndPath("create", "cut_deepslate_wall")))))
+                    .where('W', Predicates.blocks(Objects.requireNonNull(GeneralHelpers.getBlockFromNamespaceAndID("create", "cut_deepslate_wall"))))
                     .build())
             .workableCasingModel(EvolutionCoreMod.id("block/casings/steam/hp_steam_machine_casing"), EvolutionCoreMod.id("block/machines/hp_steam_grinder"))
             .langValue("High Pressure Steam Grinder")
@@ -114,9 +118,9 @@ public class SteamMultiblocksHP {
                             .or(Predicates.abilities(PartAbility.STEAM).setExactLimit(1)))
                     .where('M', Predicates.abilities(EvoMultiParts.STEAM_VENT).setExactLimit(1))
                     .where('F', Predicates.blocks(EvoBlocks.HP_STEAM_FIREBOX_CASING.get()))
-                    .where('W', Predicates.blocks(Objects.requireNonNull(ForgeRegistries.BLOCKS.getValue(ResourceLocation.fromNamespaceAndPath("create", "cut_deepslate_wall")))))
-                    .where('V', Predicates.blocks(Objects.requireNonNull(ForgeRegistries.BLOCKS.getValue(ResourceLocation.fromNamespaceAndPath("create", "cut_deepslate_brick_wall")))))
-                    .where('Q', Predicates.blocks(Objects.requireNonNull(ForgeRegistries.BLOCKS.getValue(ResourceLocation.fromNamespaceAndPath("create", "cut_deepslate_bricks")))))
+                    .where('W', Predicates.blocks(Objects.requireNonNull(GeneralHelpers.getBlockFromNamespaceAndID("create", "cut_deepslate_wall"))))
+                    .where('V', Predicates.blocks(Objects.requireNonNull(GeneralHelpers.getBlockFromNamespaceAndID("create", "cut_deepslate_brick_wall"))))
+                    .where('Q', Predicates.blocks(Objects.requireNonNull(GeneralHelpers.getBlockFromNamespaceAndID("create", "cut_deepslate_bricks"))))
                     .build())
             .workableCasingModel(EvolutionCoreMod.id("block/casings/steam/hp_steam_machine_casing"), EvolutionCoreMod.id("block/machines/hp_steam_oven"))
             .langValue("High Pressure Steam Oven")
@@ -150,7 +154,7 @@ public class SteamMultiblocksHP {
                     .where('J', Predicates.blocks(GTBlocks.CASING_STEEL_GEARBOX.get()))
                     .where('G', Predicates.blocks(AllPaletteBlocks.FRAMED_GLASS.get()))
                     .where('M', Predicates.abilities(EvoMultiParts.STEAM_VENT).setExactLimit(2))
-                    .where('W', Predicates.blocks(Objects.requireNonNull(ForgeRegistries.BLOCKS.getValue(ResourceLocation.fromNamespaceAndPath("create", "cut_deepslate_wall")))))
+                    .where('W', Predicates.blocks(Objects.requireNonNull(GeneralHelpers.getBlockFromNamespaceAndID("create", "cut_deepslate_wall"))))
                     .build())
             .workableCasingModel(EvolutionCoreMod.id("block/casings/steam/hp_steam_machine_casing"), EvolutionCoreMod.id("block/machines/hp_steam_separator"))
             .langValue("High Pressure Steam Separator")
@@ -189,11 +193,45 @@ public class SteamMultiblocksHP {
                     .where('S', Predicates.fluids(Fluids.WATER))
                     .where('G', Predicates.blocks(AllPaletteBlocks.FRAMED_GLASS.get()))
                     .where('V', Predicates.abilities(EvoMultiParts.STEAM_VENT).setExactLimit(1))
-                    .where('W', Predicates.blocks(Objects.requireNonNull(ForgeRegistries.BLOCKS.getValue(ResourceLocation.fromNamespaceAndPath("create", "cut_deepslate_wall")))))
+                    .where('W', Predicates.blocks(Objects.requireNonNull(GeneralHelpers.getBlockFromNamespaceAndID("create", "cut_deepslate_wall"))))
                     .build())
             .workableCasingModel(EvolutionCoreMod.id("block/casings/steam/hp_steam_machine_casing"), EvolutionCoreMod.id("block/machines/hp_steam_purifier"))
             .langValue("High Pressure Steam Purifier")
             .tooltips(Component.translatable("evolutioncore.tooltip.steam_purifier.h").withStyle(ChatFormatting.GRAY))
+            .themeId(GTGuiTheme.STEEL.getId())
+            .register();
+
+    public static final MultiblockMachineDefinition HP_STEAM_IMPACT_FORGE = Reference.REGISTRATE
+            .multiblock("hp_steam_impact_forge", HPSteamParallelMultiblockMachine::new)
+            .rotationState(RotationState.NON_Y_AXIS)
+            .appearanceBlock(EvoBlocks.HP_STEAM_MACHINE_CASING)
+            .recipeType(GTRecipeTypes.FORGE_HAMMER_RECIPES)
+            .recipeModifier(HPSteamParallelMultiblockMachine::recipeModifier, true)
+            .pattern(definition -> MultiblockPatternBuilder.start(FRONT, UP, RIGHT)
+                    .slice(" FFFFF ", "  BVB  ", "       ", "       ", "       ", "       ")
+                    .slice("FBBBBBF", " B#S#B ", "   S   ", "   S   ", "   S   ", "       ")
+                    .slice("FBPPPBF", "B#####B", "  ###  ", "  #X#  ", "  ###  ", "   S   ")
+                    .slice("FBPPPBF", "BS###SB", " S###S ", " SXXXS ", " S#G#S ", "  SSS  ")
+                    .slice("FBPPPBF", "B#####B", "  ###  ", "  #X#  ", "  ###  ", "   S   ")
+                    .slice("FBBBBBF", " B#S#B ", "   S   ", "   S   ", "   S   ", "       ")
+                    .slice(" FFFFF ", "  BCB  ", "       ", "       ", "       ", "       ")
+                    .where('C', Predicates.controller(definition))
+                    .where('#', Predicates.air())
+                    .where(' ', Predicates.any())
+                    .where('B', Predicates.blocks(EvoBlocks.HP_STEAM_MACHINE_CASING.get())
+                            .or(Predicates.abilities(PartAbility.STEAM_IMPORT_ITEMS).setExactLimit(1))
+                            .or(Predicates.abilities(PartAbility.STEAM_EXPORT_ITEMS).setExactLimit(1))
+                            .or(Predicates.abilities(PartAbility.STEAM).setExactLimit(1)))
+                    .where('P', Predicates.blocks(GTBlocks.CASING_STEEL_PIPE.get()))
+                    .where('F', Predicates.blocks(EvoBlocks.HP_STEAM_FIREBOX_CASING.get()))
+                    .where('S', Predicates.frames(GTMaterials.Steel))
+                    .where('X', Predicates.blocks(Objects.requireNonNull(GTMaterialBlocks.MATERIAL_BLOCKS.get(TagPrefix.block, GTMaterials.Steel)).get()))
+                    .where('V', Predicates.abilities(EvoMultiParts.STEAM_VENT).setExactLimit(1))
+                    .where('G', Predicates.blocks(Objects.requireNonNull(GeneralHelpers.getBlockFromNamespaceAndID("create", "metal_girder"))))
+                    .build())
+            .workableCasingModel(EvolutionCoreMod.id("block/casings/steam/hp_steam_machine_casing"), GTCEu.id("block/machines/forge_hammer"))
+            .langValue("High Pressure Steam Impact Forge")
+            .tooltips(Component.translatable("evolutioncore.tooltip.steam_impact_forge.h").withStyle(ChatFormatting.GRAY))
             .themeId(GTGuiTheme.STEEL.getId())
             .register();
 
@@ -218,7 +256,7 @@ public class SteamMultiblocksHP {
                     .where('F', Predicates.blocks(EvoBlocks.HP_STEAM_FIREBOX_CASING.get()))
                     .where('P', Predicates.blocks(GTBlocks.CASING_STEEL_PIPE.get()))
                     .where('S', Predicates.abilities(PartAbility.STEAM).setExactLimit(2))
-                    .where('W', Predicates.blocks(Objects.requireNonNull(ForgeRegistries.BLOCKS.getValue(ResourceLocation.fromNamespaceAndPath("create", "cut_deepslate_wall")))))
+                    .where('W', Predicates.blocks(Objects.requireNonNull(GeneralHelpers.getBlockFromNamespaceAndID("create", "cut_deepslate_wall"))))
                     .where('M', Predicates.abilities(EvoMultiParts.STEAM_VENT).setExactLimit(1))
                     .build())
             .workableCasingModel(EvolutionCoreMod.id("block/casings/steam/hp_steam_machine_casing"), EvolutionCoreMod.id("block/machines/hp_steam_blast_furnace"))
