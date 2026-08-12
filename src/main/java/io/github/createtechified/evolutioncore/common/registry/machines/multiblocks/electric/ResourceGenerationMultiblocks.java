@@ -34,7 +34,7 @@ public class ResourceGenerationMultiblocks {
                     .slice("MHDDDHM", "HM   MH", "M     M", "G     G", "G     G", "G  L  G", "G     G", " G   G ", "  GGG  ")
                     .slice("MMHHHMM", "MMMMMMM", " M   M ", " M   M ", " M   M ", " G   G ", " G   G ", "  GGG  ", "       ")
                     .slice(" MMMMM ", " MHCHM ", "  MMM  ", "  GGG  ", "  GGG  ", "  GGG  ", "  GGG  ", "       ", "       ")
-                    .where('C', Predicates.controller(Predicates.blocks(definition.get())))
+                    .where('C', Predicates.controller(definition))
                     .where('M', Predicates.blocks(GTBlocks.CASING_STEEL_SOLID.get()))
                     .where('G', Predicates.blocks(AllPaletteBlocks.FRAMED_GLASS.get()))
                     .where('L', Predicates.blocks(Blocks.OAK_LEAVES))

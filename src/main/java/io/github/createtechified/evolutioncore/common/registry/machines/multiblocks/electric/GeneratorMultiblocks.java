@@ -48,7 +48,7 @@ public class GeneratorMultiblocks {
                     .slice("CCCCC", "CMMMC", "G#W#G", "G#W#G", "G#W#G", "CMMMC", "CCCCC")
                     .slice("VCCCV", "CMMMC", "CH#HC", "CH#HC", "CH#HC", "CMMMC", "VCCCV")
                     .slice(" VCV ", " C@C ", " CGC ", " CGC ", " CGC ", " CCC ", " VCV ")
-                    .where('@', Predicates.controller(Predicates.blocks(definition.get())))
+                    .where('@', Predicates.controller(definition))
                     .where('#', Predicates.air())
                     .where('V', Predicates.blocks(GCYMBlocks.HEAT_VENT.get()))
                     .where('C', Predicates.blocks(GCYMBlocks.CASING_HIGH_TEMPERATURE_SMELTING.get())

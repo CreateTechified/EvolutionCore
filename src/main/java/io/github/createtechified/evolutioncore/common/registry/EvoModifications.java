@@ -6,9 +6,11 @@ import com.gregtechceu.gtceu.api.data.chemical.material.properties.FluidPipeProp
 import com.gregtechceu.gtceu.api.data.chemical.material.properties.IngotProperty;
 import com.gregtechceu.gtceu.api.data.chemical.material.properties.PropertyKey;
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
+import com.gregtechceu.gtceu.api.machine.MultiblockMachineDefinition;
 import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
 import com.gregtechceu.gtceu.common.data.machines.GTMultiMachines;
+import io.github.createtechified.evolutioncore.Reference;
 import io.github.createtechified.evolutioncore.common.registry.recipes.EvoRecipeTypes;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
@@ -18,10 +20,12 @@ import java.util.function.Supplier;
 
 public class EvoModifications {
     public static void machines() {
-        GTMultiMachines.STEAM_GRINDER.setRenderXEIPreview(false);
-        GTMultiMachines.STEAM_GRINDER.setRecipeTypes(nullArray);
-        GTMultiMachines.STEAM_OVEN.setRenderXEIPreview(false);
-        GTMultiMachines.STEAM_OVEN.setRecipeTypes(nullArray);
+        for (Supplier<MultiblockMachineDefinition> s : Reference.MACHINES_TO_REMOVE) {
+            MultiblockMachineDefinition m = s.get();
+            m.setRenderXEIPreview(false);
+            m.setRenderWorldPreview(false);
+            m.setRecipeTypes(nullArray);
+        }
     }
 
     public static void materials(PostMaterialEvent event) {

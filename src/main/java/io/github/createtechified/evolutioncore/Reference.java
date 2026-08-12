@@ -1,12 +1,16 @@
 package io.github.createtechified.evolutioncore;
 
+import com.gregtechceu.gtceu.api.machine.MultiblockMachineDefinition;
 import com.gregtechceu.gtceu.api.registry.registrate.GTRegistrate;
+import com.gregtechceu.gtceu.common.data.machines.GTMultiMachines;
 import com.gregtechceu.gtceu.data.recipe.CustomTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.fml.ModList;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import java.util.function.Supplier;
 
 @SuppressWarnings({"unused", "unchecked"})
 public class Reference {
@@ -29,6 +33,13 @@ public class Reference {
             CustomTags.UXV_CIRCUITS,
             CustomTags.OpV_CIRCUITS,
             CustomTags.MAX_CIRCUITS
+    };
+
+    @SuppressWarnings("unchecked")
+    public static final Supplier<MultiblockMachineDefinition>[] MACHINES_TO_REMOVE = new Supplier[] {
+            () -> GTMultiMachines.STEAM_OVEN,
+            () -> GTMultiMachines.STEAM_GRINDER,
+            () -> GTMultiMachines.CHARCOAL_PILE_IGNITER
     };
 
     // centralized mod loaded bools
