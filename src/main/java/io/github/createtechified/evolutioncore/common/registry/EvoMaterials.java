@@ -97,7 +97,7 @@ public class EvoMaterials {
 
     public static Material WrldappleAlloy = new Material.Builder(
             EvolutionCoreMod.id("wrldapple_alloy"))
-            .langValue("Wrldapple Alloy")
+            .langValue("Wrld-Apple Alloy")
             .ingot()
             .fluid()
             .blastTemp(12980, BlastProperty.GasTier.HIGHEST, GTValues.VA[GTValues.OpV], 9000)

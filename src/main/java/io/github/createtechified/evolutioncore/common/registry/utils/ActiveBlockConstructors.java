@@ -1,5 +1,6 @@
 package io.github.createtechified.evolutioncore.common.registry.utils;
 
+import brachy.modularui.utils.FormattingUtil;
 import com.gregtechceu.gtceu.api.GTCEuAPI;
 import com.gregtechceu.gtceu.api.block.ActiveBlock;
 import com.gregtechceu.gtceu.api.block.ICoilType;
@@ -12,6 +13,7 @@ import io.github.createtechified.evolutioncore.EvolutionCoreMod;
 import io.github.createtechified.evolutioncore.Reference;
 import io.github.createtechified.evolutioncore.common.data.block.EvoCoilBlock;
 import net.minecraft.client.renderer.RenderType;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 
 import net.minecraft.tags.BlockTags;
@@ -53,8 +55,16 @@ public class ActiveBlockConstructors {
     }
 
     public static BlockEntry<CoilBlock> constructCoilBlock(ICoilType coilType) {
+        String n;
+        if (coilType.getName().equals("wrldapple_alloy")) {
+            n = "Wrld-Apple Alloy Coil Block";
+        } else {
+            n = FormattingUtil.toEnglishName(coilType.getName() + "_coil_block");
+        }
+
         BlockEntry<CoilBlock> coilBlock = Reference.REGISTRATE
                 .block("%s_coil_block".formatted(coilType.getName()), p -> (CoilBlock) new EvoCoilBlock(p, coilType))
+                .lang(n)
                 .initialProperties(() -> Blocks.IRON_BLOCK)
                 .properties(p -> p.isValidSpawn((state, level, pos, ent) -> false))
                 .addLayer(() -> RenderType::cutoutMipped)

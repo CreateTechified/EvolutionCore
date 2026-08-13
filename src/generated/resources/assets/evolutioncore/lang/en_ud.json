@@ -50,7 +50,7 @@
   "block.evolutioncore.steam_output_hatch": "ɥɔʇɐH ʇndʇnO ɯɐǝʇS",
   "block.evolutioncore.steam_venting_hatch": "ɥɔʇɐH buıʇuǝΛ ɯɐǝʇS",
   "block.evolutioncore.steel_greenhouse": "ǝsnoɥuǝǝɹ⅁ ןǝǝʇS",
-  "block.evolutioncore.wrldapple_alloy_coil_block": "ʞɔoןᗺ ןıoƆ ʎoןןⱯ ǝןddɐpןɹM",
+  "block.evolutioncore.wrldapple_alloy_coil_block": "ʞɔoןᗺ ןıoƆ ʎoןןⱯ ǝןddⱯ-pןɹM",
   "evolutioncore.bulk_ore_processing_plant": "ʇuɐןԀ buıssǝɔoɹԀ ǝɹO ʞןnᗺ",
   "evolutioncore.chemical_line_reduction": "uoıʇɔnpǝᴚ ǝuıꞀ ןɐɔıɯǝɥƆ",
   "evolutioncore.electric_ore_factory": "ʎɹoʇɔɐℲ ǝɹO ɔıɹʇɔǝןƎ",
@@ -150,5 +150,5 @@
   "material.evolutioncore.quantum_infusion": "uoısnɟuI ɯnʇuɐnὉ",
   "material.evolutioncore.test": "ʇsǝ⟘",
   "material.evolutioncore.thaumium_alloy": "ʎoןןⱯ ɯnıɯnɐɥ⟘",
-  "material.evolutioncore.wrldapple_alloy": "ʎoןןⱯ ǝןddɐpןɹM"
+  "material.evolutioncore.wrldapple_alloy": "ʎoןןⱯ ǝןddⱯ-pןɹM"
 }

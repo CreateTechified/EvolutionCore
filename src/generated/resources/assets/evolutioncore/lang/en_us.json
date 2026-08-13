@@ -50,7 +50,7 @@
   "block.evolutioncore.steam_output_hatch": "Steam Output Hatch",
   "block.evolutioncore.steam_venting_hatch": "Steam Venting Hatch",
   "block.evolutioncore.steel_greenhouse": "Steel Greenhouse",
-  "block.evolutioncore.wrldapple_alloy_coil_block": "Wrldapple Alloy Coil Block",
+  "block.evolutioncore.wrldapple_alloy_coil_block": "Wrld-Apple Alloy Coil Block",
   "evolutioncore.bulk_ore_processing_plant": "Bulk Ore Processing Plant",
   "evolutioncore.chemical_line_reduction": "Chemical Line Reduction",
   "evolutioncore.electric_ore_factory": "Electric Ore Factory",
@@ -150,5 +150,5 @@
   "material.evolutioncore.quantum_infusion": "Quantum Infusion",
   "material.evolutioncore.test": "Test",
   "material.evolutioncore.thaumium_alloy": "Thaumium Alloy",
-  "material.evolutioncore.wrldapple_alloy": "Wrldapple Alloy"
+  "material.evolutioncore.wrldapple_alloy": "Wrld-Apple Alloy"
 }
