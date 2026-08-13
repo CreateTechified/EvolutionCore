@@ -3,7 +3,6 @@ package io.github.createtechified.evolutioncore.common.registry.machines.multibl
 import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.data.RotationState;
 import com.gregtechceu.gtceu.api.machine.MultiblockMachineDefinition;
-import com.gregtechceu.gtceu.api.machine.multiblock.CoilWorkableElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.machine.multiblock.PartAbility;
 import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.multiblock.Predicates;
@@ -11,6 +10,7 @@ import com.gregtechceu.gtceu.api.multiblock.pattern.MultiblockPatternBuilder;
 import com.gregtechceu.gtceu.api.recipe.OverclockingLogic;
 import com.gregtechceu.gtceu.common.data.*;
 import io.github.createtechified.evolutioncore.Reference;
+import io.github.createtechified.evolutioncore.common.data.machine.electric.FixedHeatingCoilElectricMultiblock;
 import io.github.createtechified.evolutioncore.common.registry.EvoBlocks;
 import io.github.createtechified.evolutioncore.common.registry.recipes.EvoRecipeTypes;
 import net.minecraft.ChatFormatting;
@@ -56,7 +56,7 @@ public class UpgradeMultiblocks {
             .register();
 
     public static final MultiblockMachineDefinition FUSION_ALLOYING_CHAMBER = Reference.REGISTRATE
-            .multiblock("fusion_alloying_chamber", CoilWorkableElectricMultiblockMachine::new)
+            .multiblock("fusion_alloying_chamber", FixedHeatingCoilElectricMultiblock::new)
             .rotationState(RotationState.NON_Y_AXIS)
             .appearanceBlock(GCYMBlocks.CASING_HIGH_TEMPERATURE_SMELTING)
             .recipeType(GCYMRecipeTypes.ALLOY_BLAST_RECIPES)

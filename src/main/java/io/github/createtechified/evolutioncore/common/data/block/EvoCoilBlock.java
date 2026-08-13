@@ -27,8 +27,8 @@ public class EvoCoilBlock extends CoilBlock {
     @Override
     public void appendHoverText(@NotNull ItemStack stack, @Nullable BlockGetter level, @NotNull List<Component> tooltip,
                                 @NotNull TooltipFlag flag) {
-        int coilTier = coilType.getTier(); // am pro
         if (GTUtil.isShiftDown()) {
+            int coilTier = coilType.getTier();
             tooltip.add(Component.translatable("block.gtceu.wire_coil.tooltip_heat", coilType.getCoilTemperature()));
             tooltip.add(Component.translatable("block.gtceu.wire_coil.tooltip_smelter"));
             tooltip.add(
@@ -42,11 +42,6 @@ public class EvoCoilBlock extends CoilBlock {
             tooltip.add(Component.translatable("block.gtceu.wire_coil.tooltip_energy_cracking", 100 - 10 * coilTier));
         } else {
             tooltip.add(Component.translatable("block.gtceu.wire_coil.tooltip_extended_info"));
-            if (0<=coilTier && coilTier<=7) {
-                tooltip.add(Component.translatable("evolutioncore.tooltip.coils.texture_notice").withStyle(ChatFormatting.RED));
-            } else { // i borked gtm i think so inform the end user :thumbsup:
-                tooltip.add(Component.translatable("evolutioncore.tooltip.coils.texture_crash").withStyle(ChatFormatting.DARK_RED));
-            }
         }
     }
 

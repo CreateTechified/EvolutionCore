@@ -64,8 +64,6 @@
   "evolutioncore.steam_ore_factory": "Steam Ore Factory",
   "evolutioncore.steel_greenhouse": "Steel Greenhouse",
   "evolutioncore.tooltip.bulk_ore_processing_plant": "A beast which can process large amounts of ore in seconds.\nCan Parallelize with Parallel Control Hatchs.",
-  "evolutioncore.tooltip.coils.texture_crash": "Will crash the GUI of a coiled multiblock. :D",
-  "evolutioncore.tooltip.coils.texture_notice": "The texture of the coil in a multiblock GUI may not reflect its texture!",
   "evolutioncore.tooltip.electric_ore_factory": "An Electric-Powered Ore Factory to process all your ores.",
   "evolutioncore.tooltip.fusion_alloying_chamber": "Can Parallelize with Parallel Control Hatches.\nFor every 900K §7above the recipe temperature, a multiplicative §r95% §7energy multiplier is applied pre-overclocking.§r\nFor every 1800K §7above the recipe temperature, one overclock becomes §r100% efficient §7(perfect overclock).§r\nFor every voltage tier above §bMV§7, temperature is increased by §r100K",
   "evolutioncore.tooltip.large_chemical_plant": "An Advanced Chemical Reactor.\nCan Parallelize with Parallel Control Hatches.",

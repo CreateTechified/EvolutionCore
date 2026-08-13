@@ -11,8 +11,6 @@ public class LanguageHandler {
         // TODO: make these better
         provider.add("evolutioncore.tooltip.steam_vent", "Exhausts Steam from Multiblocks");
         provider.add("evolutioncore.tooltip.steam_vent.warn", "⚠ | Obstruction of output prevents the machine from running more recipes.");
-        provider.add("evolutioncore.tooltip.coils.texture_notice", "The texture of the coil in a multiblock GUI may not reflect its texture!");
-        provider.add("evolutioncore.tooltip.coils.texture_crash", "Will crash the GUI of a coiled multiblock. :D");
         provider.add("evolutioncore.tooltip.steam_assembler", "Assembling with Steam!");
         provider.add("evolutioncore.tooltip.steam_centrifuge", "Centrifuging your Resin, among many others.");
         provider.add("evolutioncore.tooltip.steam_ore_washer", "Washing your Ores!");
