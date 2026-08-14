@@ -65,8 +65,8 @@ repositories {
         url = 'https://maven.theillusivec4.top/'
     }
     maven {
-        name = 'ModMaven'
-        url = 'https://modmaven.dev'
+        name = 'ExpandiumReleases Maven'
+        url = 'https://repo.expandium.net/releases'
         content {
             includeGroup 'appeng'
         }

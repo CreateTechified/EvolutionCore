@@ -21,5 +21,5 @@ Overly complicated and mildly cluttered addon for GregTechCEu Modern.
 ### Dependencies
 - ForgeModLoader v47.4.0 (or later) | [Don't use NeoForge on 1.20.1!](https://github.com/neoforged/NeoForge/issues/2019)
 - GregTech-Modern v8.0.0-SNAPSHOT (or later) and its dependencies.
-- Applied Energistics 2 v15.4.10 and its dependencies.
+- [AE2-UELM](https://www.curseforge.com/minecraft/mc-mods/ae2-uelm) v15.5.0-uelm (or later) and its dependencies.
 - Create v6.0.8
