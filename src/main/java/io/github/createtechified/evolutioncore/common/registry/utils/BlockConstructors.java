@@ -56,6 +56,10 @@ public class BlockConstructors {
         return constructBlock(name, EvolutionCoreMod.id("block/casings/steam/" + name), Block::new,
                 b -> b.lang(lang).initialProperties(() -> Blocks.IRON_BLOCK).tag(CustomTags.MINEABLE_WITH_WRENCH, BlockTags.MINEABLE_WITH_PICKAXE).properties(p -> p.isValidSpawn((state, level, pos, ent) -> false)));
     }
+    public static BlockEntry<Block> constructFusionCasingBlock(String name, String texture, String lang) {
+        return constructBlock(name, EvolutionCoreMod.id("block/casings/fusion/" + texture), Block::new,
+                b -> b.lang(lang).initialProperties(() -> Blocks.IRON_BLOCK).tag(CustomTags.MINEABLE_WITH_WRENCH).properties(p -> p.isValidSpawn((state, level, pos, ent) -> false)));
+    }
     public static BlockEntry<Block> constructCasingBlock(String name, String type, String lang) {
         return constructBlock(name, EvolutionCoreMod.id("block/casings/" + type + "/casing"), Block::new,
                 b -> b.lang(lang).initialProperties(() -> Blocks.IRON_BLOCK).tag(CustomTags.MINEABLE_WITH_WRENCH, BlockTags.MINEABLE_WITH_PICKAXE).properties(p -> p.isValidSpawn((state, level, pos, ent) -> false)));

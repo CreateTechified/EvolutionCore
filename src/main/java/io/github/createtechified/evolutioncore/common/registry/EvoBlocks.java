@@ -37,5 +37,8 @@ public class EvoBlocks {
             EvolutionCoreMod.id("block/casings/naquadah_alloy/casing"),
             EvolutionCoreMod.id("block/casings/naquadah_alloy/firebox")), "Naquadah Alloy Firebox Casing");
     public static BlockEntry<ActiveBlock> LUDICROUS_ENGINE_INTAKE_CASING = ActiveBlockConstructors.constructIntakeCasingBlock("ludicrous_engine_intake_casing", "naquadah_alloy", "Ludicrous Engine Intake Casing");
-    //public static BlockEntry<CoilBlock> NEURALIC_ALLOY_7_COIL_BLOCK = ActiveBlockConstructors.constructCoilBlock(EvoCoilType.NEURALIC_ALLOY_7); // moved to EvoCoilBlocks, idk why but it won't work here
+    public static BlockEntry<Block> FUSION_CASING_MK4 = BlockConstructors.constructFusionCasingBlock("fusion_casing_mk4", "fusion_casing_mk4", "Fusion Machine Casing MK IV");
+    public static BlockEntry<Block> FUSION_CASING_MK5 = BlockConstructors.constructFusionCasingBlock("fusion_casing_mk5", "fusion_casing_mk5", "Fusion Machine Casing MK V");
+    public static BlockEntry<Block> INERTIAL_FUSION_CASING = BlockConstructors.constructFusionCasingBlock("inertial_fusion_casing", "inertial_fusion_casing", "Inertial Fusion Machine Casing");
+    public static BlockEntry<Block> INERTIAL_FUSION_CASING_MK2 = BlockConstructors.constructFusionCasingBlock("inertial_fusion_casing_mk2", "inertial_fusion_casing_mk2", "Inertial Fusion Machine Casing MK II");
 }
