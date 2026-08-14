@@ -1,0 +1,35 @@
+{
+  "type": "create:sequenced_assembly",
+  "ingredient": {
+    "item": "gtceu:steel_plate"
+  },
+  "loops": 5,
+  "results": [
+    {
+      "chance": 70.0,
+      "item": "evolutioncore:vacuum_tube_base"
+    },
+    {
+      "chance": 30.0,
+      "item": "gtceu:steel_plate"
+    }
+  ],
+  "sequence": [
+    {
+      "type": "create:cutting",
+      "ingredients": [
+        {
+          "item": "evolutioncore:incomplete_vacuum_tube_base"
+        }
+      ],
+      "results": [
+        {
+          "item": "evolutioncore:incomplete_vacuum_tube_base"
+        }
+      ]
+    }
+  ],
+  "transitionalItem": {
+    "item": "evolutioncore:incomplete_vacuum_tube_base"
+  }
+}

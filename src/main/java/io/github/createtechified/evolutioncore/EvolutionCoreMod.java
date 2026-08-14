@@ -59,7 +59,6 @@ public class EvolutionCoreMod {
         EvoBlocks.init();
         EvoTabs.init();
         Reference.REGISTRATE.registerEventListeners(eventBus);
-        EvoDatagen.init();
     }
 
     public void registerRecipeTypes(GTCEuAPI.RegisterEvent<ResourceLocation, GTRecipeType> event) {
