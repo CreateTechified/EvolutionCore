@@ -54,8 +54,8 @@ repositories {
         url = 'https://maven.createmod.net'
     }
     maven {
-        name = 'TerraformersMC Maven'
-        url = 'https://maven.terraformersmc.com/'
+        name = "Sleeping Town"
+        url = "https://repo.sleeping.town/"
         content {
             includeGroup 'dev.emi'
         }
