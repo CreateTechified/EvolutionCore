@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "evolutioncore:block/machine/iv_vacuum_chamber",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "evolutioncore:block/machine/iv_vacuum_chamber"
+    },
+    "facing=south": {
+      "model": "evolutioncore:block/machine/iv_vacuum_chamber",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "evolutioncore:block/machine/iv_vacuum_chamber",
+      "y": 270
+    }
+  }
+}

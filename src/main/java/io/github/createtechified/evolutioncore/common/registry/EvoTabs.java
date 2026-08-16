@@ -6,6 +6,7 @@ import com.gregtechceu.gtceu.common.data.GTCreativeModeTabs;
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import io.github.createtechified.evolutioncore.EvolutionCoreMod;
 import io.github.createtechified.evolutioncore.Reference;
+import io.github.createtechified.evolutioncore.common.registry.machines.EvoCoilBlocks;
 import io.github.createtechified.evolutioncore.common.registry.machines.EvoSingleblocks;
 import net.minecraft.world.item.CreativeModeTab;
 
@@ -15,10 +16,10 @@ public class EvoTabs {
     }
 
     public static final RegistryEntry<CreativeModeTab> EVOLUTIONCORE_MAIN = Reference.REGISTRATE.defaultCreativeTab("main",
-            builder -> builder.displayItems(new GTCreativeModeTabs.RegistrateDisplayItemsGenerator("main", Reference.REGISTRATE))
-                    .icon(() -> EvoItems.FLINT_HATCHET.asStack())
-                    .title(Reference.REGISTRATE.addLang("itemGroup", EvolutionCoreMod.id("main"), "EvolutionCore - Main"))
-                    .build())
+                    builder -> builder.displayItems(new GTCreativeModeTabs.RegistrateDisplayItemsGenerator("main", Reference.REGISTRATE))
+                            .icon(() -> EvoItems.FLINT_HATCHET.asStack())
+                            .title(Reference.REGISTRATE.addLang("itemGroup", EvolutionCoreMod.id("main"), "EvolutionCore - Main"))
+                            .build())
             .register();
     public static final RegistryEntry<CreativeModeTab> EVOLUTIONCORE_MACHINES = Reference.REGISTRATE.defaultCreativeTab("machines",
                     builder -> builder.displayItems(new GTCreativeModeTabs.RegistrateDisplayItemsGenerator("machines", Reference.REGISTRATE))
@@ -30,6 +31,12 @@ public class EvoTabs {
                     builder -> builder.displayItems(new GTCreativeModeTabs.RegistrateDisplayItemsGenerator("materials", Reference.REGISTRATE))
                             .icon(() -> ChemicalHelper.get(TagPrefix.ingot, EvoMaterials.WrldappleAlloy))
                             .title(Reference.REGISTRATE.addLang("itemGroup", EvolutionCoreMod.id("materials"), "EvolutionCore - Materials"))
+                            .build())
+            .register();
+    public static final RegistryEntry<CreativeModeTab> EVOLUTIONCORE_BLOCKS = Reference.REGISTRATE.defaultCreativeTab("blocks",
+                    builder -> builder.displayItems(new GTCreativeModeTabs.RegistrateDisplayItemsGenerator("blocks", Reference.REGISTRATE))
+                            .icon(() -> EvoCoilBlocks.NEURALIC_ALLOY_7_COIL.asStack())
+                            .title(Reference.REGISTRATE.addLang("itemGroup", EvolutionCoreMod.id("blocks"), "EvolutionCore - Blocks"))
                             .build())
             .register();
 }

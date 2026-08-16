@@ -3,7 +3,9 @@ package io.github.createtechified.evolutioncore.common.registry.recipes;
 import appeng.core.definitions.AEItems;
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.fluids.store.FluidStorageKeys;
+import com.gregtechceu.gtceu.common.data.GTItems;
 import com.gregtechceu.gtceu.data.recipe.CustomTags;
+import io.github.createtechified.evolutioncore.common.registry.EvoItems;
 import io.github.createtechified.evolutioncore.common.registry.utils.RecipeConstructors;
 import net.minecraft.data.recipes.FinishedRecipe;
 
@@ -148,6 +150,13 @@ public class EvoRecipeInitializer {
                 .duration(300)
                 .EUt(GTValues.VA[GTValues.ZPM])
                 .circuitMeta(2)
+                .save(c);
+
+        VACUUM_CHAMBER_RECIPES.recipeBuilder("sealed_vacuum_tube")
+                .inputItems(EvoItems.UNSEALED_VACUUM_TUBE)
+                .outputItems(GTItems.VACUUM_TUBE)
+                .duration(300)
+                .EUt(GTValues.VA[GTValues.ULV])
                 .save(c);
     }
 }

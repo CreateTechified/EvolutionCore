@@ -1,5 +1,6 @@
 package io.github.createtechified.evolutioncore.common.registry.machines.multiblocks.electric;
 
+import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.data.RotationState;
 import com.gregtechceu.gtceu.api.machine.MultiblockMachineDefinition;
 import com.gregtechceu.gtceu.api.machine.multiblock.PartAbility;
@@ -8,6 +9,7 @@ import com.gregtechceu.gtceu.api.multiblock.pattern.IBlockPattern;
 import com.gregtechceu.gtceu.api.multiblock.pattern.MultiblockPatternBuilder;
 import com.gregtechceu.gtceu.common.data.GTRecipeModifiers;
 import com.gregtechceu.gtceu.common.data.GTRecipeTypes;
+import com.gregtechceu.gtceu.common.data.models.GTMachineModels;
 import com.gregtechceu.gtceu.common.machine.multiblock.electric.FusionReactorMachine;
 import io.github.createtechified.evolutioncore.Reference;
 import io.github.createtechified.evolutioncore.common.registry.EvoBlocks;
@@ -36,6 +38,15 @@ public class FusionMultiblocks {
         };
     }
 
+    private static net.minecraft.resources.ResourceLocation getCasingTexture(int tier) {
+        return switch (tier) {
+            case UHV -> io.github.createtechified.evolutioncore.EvolutionCoreMod.id("block/casings/fusion/inertial_fusion_casing");
+            case UEV -> io.github.createtechified.evolutioncore.EvolutionCoreMod.id("block/casings/fusion/fusion_casing_mk4");
+            case UIV -> io.github.createtechified.evolutioncore.EvolutionCoreMod.id("block/casings/fusion/inertial_fusion_casing_mk2");
+            default -> io.github.createtechified.evolutioncore.EvolutionCoreMod.id("block/casings/fusion/fusion_casing_mk5");
+        };
+    }
+
     private static MultiblockMachineDefinition registerFusionReactor(String name, int tier, boolean inertial, String langName) {
         var builder = Reference.REGISTRATE.multiblock(name, holder -> new FusionReactorMachine(holder, tier))
                 .rotationState(RotationState.ALL)
@@ -53,6 +64,8 @@ public class FusionMultiblocks {
 
         return builder
                 .appearanceBlock(() -> getCasingState(tier))
+                .model(GTMachineModels.createWorkableCasingMachineModel(getCasingTexture(tier),
+                        GTCEu.id("block/multiblock/fusion_reactor")))
                 .pattern(definition -> inertial
                         ? buildInertialPattern(definition, tier)
                         : buildGtPattern(definition, tier))
@@ -65,7 +78,7 @@ public class FusionMultiblocks {
         var casing = Predicates.blocks(getCasingState(tier));
         var coil = Predicates.blocks(FUSION_COIL.get());
         var glass = Predicates.blocks(FUSION_GLASS.get()).or(casing);
-        var energyHatch = casing.or(Predicates.abilities(PartAbility.INPUT_ENERGY).setMinGlobalLimited(1).setPreviewCount(16));
+        var energyHatch = Predicates.blocks(PartAbility.INPUT_ENERGY.getBlocks(tier).toArray(Block[]::new));
         return MultiblockPatternBuilder.start(FRONT, UP, RIGHT)
                 .slice("               ", "      OGO      ", "               ")
                 .slice("      ICI      ", "    GG###GG    ", "      ICI      ")
@@ -98,9 +111,8 @@ public class FusionMultiblocks {
         var casing = Predicates.blocks(getCasingState(tier));
         var coil = Predicates.blocks(FUSION_COIL.get());
         var glass = Predicates.blocks(FUSION_GLASS.get()).or(casing);
-        var flexInput = casing
-                .or(Predicates.abilities(PartAbility.INPUT_ENERGY).setMinGlobalLimited(1))
-                .or(Predicates.abilities(PartAbility.IMPORT_FLUIDS));
+        var energyHatch = Predicates.blocks(PartAbility.INPUT_ENERGY.getBlocks(tier).toArray(Block[]::new));
+        var flexInput = casing.or(Predicates.abilities(PartAbility.IMPORT_FLUIDS));
         var flexOutput = casing.or(Predicates.abilities(PartAbility.EXPORT_FLUIDS));
         var parallelHatch = casing.or(Predicates.abilities(PartAbility.PARALLEL_HATCH).setMaxGlobalLimited(1));
 
@@ -128,7 +140,7 @@ public class FusionMultiblocks {
                 .where('c', casing)
                 .where('e', glass)
                 .where('f', parallelHatch)
-                .where('g', flexOutput)
+                .where('g', energyHatch)
                 .where('h', coil)
                 .where('o', flexOutput)
                 .where(' ', Predicates.any())

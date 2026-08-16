@@ -1,6 +1,7 @@
 package io.github.createtechified.evolutioncore.common.registry.recipes;
 
 import com.gregtechceu.gtceu.api.capability.recipe.IO;
+import com.gregtechceu.gtceu.api.capability.recipe.ItemRecipeCapability;
 import com.gregtechceu.gtceu.api.recipe.GTRecipeSerializer;
 import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
 import com.gregtechceu.gtceu.api.registry.GTRegistries;
@@ -39,4 +40,5 @@ public class EvoRecipeTypes {
     public static final GTRecipeType LARGE_CHEMICAL_PLANT = register("large_chemical_plant", GTRecipeTypes.MULTIBLOCK).setMaxIOSize(6, 6, 6, 6).setEUIO(IO.IN).UI(builder -> builder.setProgressBar(GTGuiTextures.PROGRESS_ARROW_MULTIPLE)).setSound(GTSoundEntries.CHEMICAL);
     public static final GTRecipeType CHEMICAL_LINE_REDUCTION = register("chemical_line_reduction", GTRecipeTypes.MULTIBLOCK).setMaxIOSize(6, 6, 6, 6).setEUIO(IO.IN).UI(builder -> builder.setProgressBar(GTGuiTextures.PROGRESS_ARROW_MULTIPLE)).setSound(GTSoundEntries.CHEMICAL);
     public static final GTRecipeType FISSION_REACTOR_FUELS = register("simple_fission_reactor", GTRecipeTypes.MULTIBLOCK).setMaxIOSize(1, 1, 1, 0).setEUIO(IO.OUT).UI(builder -> builder.setProgressBar(GTGuiTextures.PROGRESS_EXTRUDER)).setSound(GTSoundEntries.ARC);
+    public static final GTRecipeType VACUUM_CHAMBER_RECIPES = register("vacuum_chamber", GTRecipeTypes.ELECTRIC).setEUIO(IO.IN).setMaxIOSize(1, 1, 0, 0).UI(builder -> builder.setSlotOverlay(IO.IN, 0, ItemRecipeCapability.CAP, GTGuiTextures.COMPRESSOR_OVERLAY).setSlotOverlay(IO.OUT, 0, ItemRecipeCapability.CAP, GTGuiTextures.COMPRESSOR_OVERLAY).setProgressBar(GTGuiTextures.PROGRESS_GAS_COLLECTOR)).setSound(GTSoundEntries.COOLING);
 }

@@ -14,6 +14,7 @@ public class LanguageHandler {
         provider.add("evolutioncore.tooltip.steam_assembler", "Assembling with Steam!");
         provider.add("evolutioncore.tooltip.steam_centrifuge", "Centrifuging your Resin, among many others.");
         provider.add("evolutioncore.tooltip.steam_ore_washer", "Washing your Ores!");
+        provider.add("evolutioncore.tooltip.steam_vacuum_chamber", "Sealing your Vacuum Tubes, anong other things.");
         provider.add("evolutioncore.tooltip.primitive_alloy_kiln", "Alloying with Fire(bricks)!");
         provider.add("evolutioncore.tooltip.steam_alloy_kiln.l", "Steam-charged Parallelized Alloying Machine");
         provider.add("evolutioncore.tooltip.steam_alloy_kiln.h", "Steam-charged Parallelized Alloying Machine, reinforced with Steel to sustain High Pressures.");
