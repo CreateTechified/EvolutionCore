@@ -4,8 +4,10 @@ Overly complicated and mildly cluttered addon for GregTechCEu Modern.
 ### Features
 - Expands the Steam Age by adding many new paralleled multiblock machines, inspired by GT:NoLeisure & many other GT:NewHorizons addons.
 - Many new multiblocks, from upgraded Chemical Reactors to simple Nuclear Fission.
+- New Fusion Reactors! MKIV and MKV along with parallel reactors, Inertial MKI and Inertial MKII
 - Universal circuits from ULV-MAX.
 - New overly complicated recipes for simple circuits.
+- Additional Casings! (Stainless Steel, Tungstensteel, and Naquadah Alloy)
 - That's it for now... more later!
 
 ### Where download?
