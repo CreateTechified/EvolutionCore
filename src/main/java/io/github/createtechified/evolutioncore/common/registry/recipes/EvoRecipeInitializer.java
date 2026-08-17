@@ -5,6 +5,7 @@ import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.fluids.store.FluidStorageKeys;
 import com.gregtechceu.gtceu.common.data.GTItems;
 import com.gregtechceu.gtceu.data.recipe.CustomTags;
+import io.github.createtechified.evolutioncore.EvolutionCoreMod;
 import io.github.createtechified.evolutioncore.common.registry.EvoItems;
 import io.github.createtechified.evolutioncore.common.registry.utils.RecipeConstructors;
 import net.minecraft.data.recipes.FinishedRecipe;
@@ -101,14 +102,14 @@ public class EvoRecipeInitializer {
                 .fusionStartEU(420000000)
                 .save(c);
 
-        PLASMA_GENERATOR_FUELS.recipeBuilder("neuralium")
+        PLASMA_GENERATOR_FUELS.recipeBuilder(EvolutionCoreMod.id("neuralium"))
                 .inputFluids(Neuralium.getFluid(FluidStorageKeys.PLASMA, 1))
                 .outputFluids(Neuralium.getFluid(FluidStorageKeys.LIQUID, 1))
                 .duration(1280)
                 .EUt(-2048)
                 .save(c);
 
-        ASSEMBLY_LINE_RECIPES.recipeBuilder("fusion_alloying_chamber")
+        ASSEMBLY_LINE_RECIPES.recipeBuilder(EvolutionCoreMod.id("fusion_alloying_chamber"))
                 .inputItems(BLAST_ALLOY_SMELTER.asStack())
                 .inputItems(plateDouble, NaquadahAlloy, 12)
                 .inputItems(FIELD_GENERATOR_ZPM, 2)
@@ -127,7 +128,8 @@ public class EvoRecipeInitializer {
                 .EUt(VA[ZPM])
                 .save(c);
 
-        CHEMICAL_LINE_REDUCTION.recipeBuilder("plat_line_reduced")
+        // can this be its own multiblock? like GTNL's Platinum Group Processing Hub...
+        CHEMICAL_LINE_REDUCTION.recipeBuilder(EvolutionCoreMod.id("plat_line_reduced"))
                 .inputItems(dust, PlatinumGroupSludge, 18)
                 .inputFluids(AquaRegia.getFluid(1500)) // subjected to change
                 .outputItems(dust, Platinum, 3)
@@ -139,11 +141,11 @@ public class EvoRecipeInitializer {
                 .outputFluids(NitricAcid.getFluid(500))
                 .outputFluids(HydrochloricAcid.getFluid(1000))
                 .duration(300)
-                .EUt(GTValues.VA[GTValues.ZPM])
+                .EUt(VA[ZPM])
                 .circuitMeta(5)
                 .save(c);
 
-        LARGE_CHEMICAL_PLANT.recipeBuilder("quantum_infusion")
+        LARGE_CHEMICAL_PLANT.recipeBuilder(EvolutionCoreMod.id("quantum_infusion"))
                 .inputItems(AEItems.SINGULARITY)
                 .inputItems(dustSmall, IndiumGalliumPhosphide)
                 .inputFluids(Radon.getFluid(6250))
@@ -151,15 +153,22 @@ public class EvoRecipeInitializer {
                 .inputFluids(McGuffium239.getFluid(750)) // The forgotten GT Chemical, needs recipe(s) though
                 .outputFluids(QuantumInfusion.getFluid(1500))
                 .duration(300)
-                .EUt(GTValues.VA[GTValues.ZPM])
+                .EUt(VA[ZPM])
                 .circuitMeta(2)
                 .save(c);
 
-        VACUUM_CHAMBER_RECIPES.recipeBuilder("sealed_vacuum_tube")
+        VACUUM_CHAMBER_RECIPES.recipeBuilder(EvolutionCoreMod.id("sealed_vacuum_tube"))
                 .inputItems(EvoItems.UNSEALED_VACUUM_TUBE)
-                .outputItems(GTItems.VACUUM_TUBE)
+                .outputItems(VACUUM_TUBE)
                 .duration(300)
-                .EUt(GTValues.VA[GTValues.ULV])
+                .EUt(VA[ULV])
+                .save(c);
+
+        CENTRIFUGE_RECIPES.recipeBuilder(EvolutionCoreMod.id("failed_vacuum_tube_recycling"))
+                .inputItems(EvoItems.FAILED_VACUUM_TUBE_PARTS)
+                .chancedOutput(GLASS_TUBE.get(), 1, "1/4") // add more outs later
+                .duration(1200)
+                .EUt(VA[ULV])
                 .save(c);
     }
 }

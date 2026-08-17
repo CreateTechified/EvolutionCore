@@ -14,6 +14,10 @@ public class EvoRecipeRemovals {
     }
 
     private static void shaped(Consumer<ResourceLocation> p) {
+        // Circuits
+        p.accept(gtshaped("vacuum_tube"));
+
+        // MB Controllers
         if (Reference.GT_SteelSteamRecipes.get()) {
             p.accept(gtshaped("steam_oven"));
             p.accept(gtshaped("steam_grinder"));
@@ -33,8 +37,14 @@ public class EvoRecipeRemovals {
         p.accept(gtarc("steam_oven"));
         p.accept(gtarc("steam_grinder"));
     }
+    private static void assembler(Consumer<ResourceLocation> p) {
+        p.accept(gtass("vacuum_tube_plain"));
+        p.accept(gtass("vacuum_tube_red_alloy"));
+        p.accept(gtass("vacuum_tube_red_alloy_annealed"));
+    }
 
     private static ResourceLocation gtshaped(String n) {return GTCEu.id("shaped/" + n);}
     private static ResourceLocation gtmace(String n) {return GTCEu.id("macerator/macerate_" + n);}
     private static ResourceLocation gtarc(String n) {return GTCEu.id("arc_furnace/arc_" + n);}
+    private static ResourceLocation gtass(String n) {return GTCEu.id("assembler/" + n);}
 }
