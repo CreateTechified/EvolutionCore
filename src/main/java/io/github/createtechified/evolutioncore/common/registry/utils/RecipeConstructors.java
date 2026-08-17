@@ -70,7 +70,7 @@ public class RecipeConstructors {
                 .inputItems(inputs)
                 //.inputItems(new ItemStack(Items.COAL, 2))
                 .outputItems(output)
-                .duration(640)
+                .duration(400)
                 .save(consumer);
     }
     public static void pakRecipes(Consumer<FinishedRecipe> consumer, String outputNamespace, String materialOut, int outputCount, AlloyIngredient... ingredients) {
