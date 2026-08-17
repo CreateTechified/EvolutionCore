@@ -9,7 +9,6 @@ import com.gregtechceu.gtceu.api.machine.trait.recipe.RecipeLogic;
 import com.gregtechceu.gtceu.api.multiblock.util.RelativeDirection;
 import com.gregtechceu.gtceu.api.sync_system.annotations.RerenderOnChanged;
 import com.gregtechceu.gtceu.api.sync_system.annotations.SyncToClient;
-import com.gregtechceu.gtceu.common.machine.multiblock.primitive.PrimitiveWorkableMachine;
 import com.gregtechceu.gtceu.common.machine.trait.multiblock.MultiblockFluidRendererTrait;
 import com.gregtechceu.gtceu.common.mui.GTGuiTextures;
 import com.gregtechceu.gtceu.config.ConfigHolder;
@@ -56,7 +55,7 @@ import javax.annotation.ParametersAreNonnullByDefault;
 
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
-public class PrimitiveAlloyKilnMachine extends PrimitiveWorkableMachine implements IMuiMachine {
+public class PrimitiveAlloyKilnMachine extends PrimitiveFuelWorkableMachine implements IMuiMachine {
     private @Nullable TickableSubscription hurtSubscription;
 
     @Getter
@@ -65,7 +64,7 @@ public class PrimitiveAlloyKilnMachine extends PrimitiveWorkableMachine implemen
     private final MultiblockFluidRendererTrait fluidRendererTrait;
 
     public PrimitiveAlloyKilnMachine(BlockEntityCreationInfo info) {
-        super(info);
+        super(info, new RecipeLogic(), 2, 2, 0, 0, 0, 1);
         fluidRendererTrait = attachTrait(new MultiblockFluidRendererTrait(this::saveOffsets));
     }
 
@@ -146,7 +145,23 @@ public class PrimitiveAlloyKilnMachine extends PrimitiveWorkableMachine implemen
                     return recipeLogic.getProgressPercent();
                 }));
 
+        DoubleSyncValue fuelPercent = syncManager.getOrCreateSyncHandler("fuelPercent", DoubleSyncValue.class,
+                () -> new DoubleSyncValue(() -> (double) getFuelPercent()));
+
         var row = Flow.row().coverChildren().center();
+
+        var importRow = createImportItemSlot(syncManager, theme);
+        var fuelSlot = createFuelItemSlot(syncManager, theme);
+
+        var fuelProgressWidget = new ProgressWidget()
+                .size(18)
+                .texture(GTGuiTextures.PROGRESS_BAR_BOILER_FUEL_BRONZE, ProgressDrawable.Direction.UP)
+                .value(fuelPercent)
+                .margin(0, 6, 0, 0);
+
+        var leftColumn = Flow.column().coverChildren()
+                .child(importRow)
+                .child(fuelSlot.margin(9, 0, 0, 0));
 
         var progressWidget = new ProgressWidget()
                 .value(progressPercent)
@@ -162,7 +177,8 @@ public class PrimitiveAlloyKilnMachine extends PrimitiveWorkableMachine implemen
             return true;
         });
 
-        row.child(createImportItemSlot(syncManager, theme))
+        row.child(fuelProgressWidget)
+                .child(leftColumn)
                 .child(progressWidget)
                 .child(createExportItemSlot(syncManager, theme));
 
@@ -172,9 +188,9 @@ public class PrimitiveAlloyKilnMachine extends PrimitiveWorkableMachine implemen
     private SlotGroupWidget createImportItemSlot(PanelSyncManager syncManager, ITheme theme) {
         int size = importItems.storage.getSlots();
         SlotGroup slotGroup = new SlotGroup("import", size);
-        String[] matrix = new String[size];
+        String[] matrix = new String[1];
         char key = 'I';
-        Arrays.fill(matrix, String.valueOf(key));
+        matrix[0] = String.valueOf(key).repeat(size);
         return SlotGroupWidget.builder()
                 .matrix(matrix)
                 .key(key, i -> {
@@ -184,9 +200,27 @@ public class PrimitiveAlloyKilnMachine extends PrimitiveWorkableMachine implemen
                     return new ItemSlot()
                             .syncHandler("import", i)
                             .background(theme.getItemSlotTheme().theme().getBackground(),
-                                    (i == 0) ? GTGuiTextures.PRIMITIVE_DUST_OVERLAY : (i == 1) ?
-                                                                                       GTGuiTextures.PRIMITIVE_DUST_OVERLAY :
-                                                                                       GTGuiTextures.PRIMITIVE_FURNACE_OVERLAY);
+                                    GTGuiTextures.PRIMITIVE_DUST_OVERLAY);
+                })
+                .build();
+    }
+
+    private SlotGroupWidget createFuelItemSlot(PanelSyncManager syncManager, ITheme theme) {
+        int size = fuelItems.storage.getSlots();
+        SlotGroup slotGroup = new SlotGroup("fuel", size);
+        String[] matrix = new String[size];
+        char key = 'F';
+        Arrays.fill(matrix, String.valueOf(key));
+        return SlotGroupWidget.builder()
+                .matrix(matrix)
+                .key(key, i -> {
+                    ModularSlot slot = new ModularSlot(fuelItems.storage, i);
+                    ItemSlotSyncHandler syncHandler = new ItemSlotSyncHandler(slot.slotGroup(slotGroup));
+                    syncManager.syncValue("fuel", i, syncHandler);
+                    return new ItemSlot()
+                            .syncHandler("fuel", i)
+                            .background(theme.getItemSlotTheme().theme().getBackground(),
+                                    GTGuiTextures.PRIMITIVE_FURNACE_OVERLAY);
                 })
                 .build();
     }

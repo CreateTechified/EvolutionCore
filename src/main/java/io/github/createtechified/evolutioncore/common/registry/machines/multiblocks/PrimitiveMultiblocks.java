@@ -14,6 +14,7 @@ import io.github.createtechified.evolutioncore.EvolutionCoreMod;
 import io.github.createtechified.evolutioncore.Reference;
 import io.github.createtechified.evolutioncore.common.data.machine.primitive.PrimitiveAlloyKilnMachine;
 import io.github.createtechified.evolutioncore.common.data.machine.primitive.PrimitiveOreFactoryMachine;
+import io.github.createtechified.evolutioncore.common.registry.recipes.EvoRecipeModifiers;
 import io.github.createtechified.evolutioncore.common.registry.recipes.EvoRecipeTypes;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
@@ -29,6 +30,7 @@ public class PrimitiveMultiblocks {
             .multiblock("primitive_alloy_kiln", PrimitiveAlloyKilnMachine::new) // It's a thing and I'm pissed about it. Works though.
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(EvoRecipeTypes.PRIMITIVE_ALLOY_SMELTER)
+            .recipeModifiers(EvoRecipeModifiers::primitiveFuel)
             .appearanceBlock(GTBlocks.CASING_PRIMITIVE_BRICKS)
             .hasBER(true)
             .pattern(definition -> MultiblockPatternBuilder.start(FRONT, UP, RIGHT)
@@ -58,6 +60,7 @@ public class PrimitiveMultiblocks {
             .multiblock("primitive_ore_factory", PrimitiveOreFactoryMachine::new)
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(EvoRecipeTypes.PRIMITIVE_ORE_FACTORY)
+            .recipeModifiers(EvoRecipeModifiers::primitiveFuel)
             .appearanceBlock(GTBlocks.CASING_PRIMITIVE_BRICKS)
             .hasBER(true)
             .pattern(definition -> MultiblockPatternBuilder.start(FRONT, UP, RIGHT)

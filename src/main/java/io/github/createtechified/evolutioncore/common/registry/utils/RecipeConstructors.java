@@ -68,7 +68,7 @@ public class RecipeConstructors {
     public static void pakRecipes(Consumer<FinishedRecipe> consumer, String id, ItemStack[] inputs, ItemStack output) {
         EvoRecipeTypes.PRIMITIVE_ALLOY_SMELTER.recipeBuilder(EvolutionCoreMod.id(id))
                 .inputItems(inputs)
-                .inputItems(new ItemStack(Items.COAL, 2))
+                //.inputItems(new ItemStack(Items.COAL, 2))
                 .outputItems(output)
                 .duration(640)
                 .save(consumer);
@@ -99,26 +99,6 @@ public class RecipeConstructors {
                 GeneralHelpers.getFluidFromNamespaceAndID(ingredient.namespace(), ingredient.fluid()),
                 ingredient.amount()
         );
-    }
-    public static void fusionRecipesMK3(Consumer<FinishedRecipe> consumer, String id, FluidStack[] inputs, FluidStack output, int duration, int euStart) {
-        GTRecipeTypes.FUSION_RECIPES.recipeBuilder(EvolutionCoreMod.id(id))
-                .inputFluids(inputs)
-                .outputFluids(output)
-                .duration(duration)
-                .fusionStartEU(euStart)
-                .EUt(GTValues.VA[GTValues.UV])
-                .save(consumer);
-    }
-    public static void fusionRecipesMK3(Consumer<FinishedRecipe> consumer, String id,
-                                        FluidIngredient input1, FluidIngredient input2,
-                                        FluidIngredient output, int duration, int euStart) {
-        FluidStack[] inputs = new FluidStack[] {
-                resolveFluidStack(input1),
-                resolveFluidStack(input2)
-        };
-        FluidStack outputStack = resolveFluidStack(output);
-
-        fusionRecipesMK3(consumer, id, inputs, outputStack, duration, euStart);
     }
 
     public static void fuelRodRecipes(Consumer<FinishedRecipe> consumer, String id, Item input, ItemStack... output) {

@@ -92,11 +92,14 @@ public class EvoRecipeInitializer {
                 new RecipeConstructors.AlloyIngredient("gtceu", "copper", 3),
                 new RecipeConstructors.AlloyIngredient("gtceu", "tin", 1));
 
-        RecipeConstructors.fusionRecipesMK3(c, "evolutioncore",
-                new RecipeConstructors.FluidIngredient("gtceu", "darmstadtium", 144),
-                new RecipeConstructors.FluidIngredient("gtceu", "beryllium", 250),
-                new RecipeConstructors.FluidIngredient("evolutioncore", "neuralium", 144),
-                50, 420000000);
+        FUSION_RECIPES.recipeBuilder("darmstadtium_and_beryllium_to_neuralium_plasma")
+                .inputFluids(Darmstadtium.getFluid(FluidStorageKeys.LIQUID, 144))
+                .inputFluids(Beryllium.getFluid(FluidStorageKeys.LIQUID, 250))
+                .outputFluids(Neuralium.getFluid(FluidStorageKeys.PLASMA, 144))
+                .duration(50)
+                .EUt(GTValues.VA[GTValues.UHV])
+                .fusionStartEU(420000000)
+                .save(c);
 
         PLASMA_GENERATOR_FUELS.recipeBuilder("neuralium")
                 .inputFluids(Neuralium.getFluid(FluidStorageKeys.PLASMA, 1))
