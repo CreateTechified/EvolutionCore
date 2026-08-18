@@ -155,12 +155,13 @@ public class PrimitiveAlloyKilnMachine extends PrimitiveFuelWorkableMachine impl
 
         var fuelProgressWidget = new ProgressWidget()
                 .size(18)
-                .texture(GTGuiTextures.PROGRESS_BAR_BOILER_FUEL_BRONZE, ProgressDrawable.Direction.UP)
+                .texture(GTGuiTextures.PROGRESS_BAR_BOILER_FUEL_STEEL, ProgressDrawable.Direction.UP)
                 .value(fuelPercent)
                 .margin(0, 6, 0, 0);
 
         var leftColumn = Flow.column().coverChildren()
                 .child(importRow)
+                .child(fuelProgressWidget.margin(9, 0, 0, 0))
                 .child(fuelSlot.margin(9, 0, 0, 0));
 
         var progressWidget = new ProgressWidget()
@@ -177,10 +178,7 @@ public class PrimitiveAlloyKilnMachine extends PrimitiveFuelWorkableMachine impl
             return true;
         });
 
-        row.child(fuelProgressWidget)
-                .child(leftColumn)
-                .child(progressWidget)
-                .child(createExportItemSlot(syncManager, theme));
+        row.child(leftColumn).child(progressWidget).child(createExportItemSlot(syncManager, theme));
 
         mainWidget.child(row);
     }
