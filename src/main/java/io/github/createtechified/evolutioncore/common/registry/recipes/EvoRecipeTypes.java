@@ -4,6 +4,7 @@ import com.gregtechceu.gtceu.api.capability.recipe.IO;
 import com.gregtechceu.gtceu.api.capability.recipe.ItemRecipeCapability;
 import com.gregtechceu.gtceu.api.recipe.GTRecipeSerializer;
 import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
+import com.gregtechceu.gtceu.api.recipe.category.GTRecipeCategory;
 import com.gregtechceu.gtceu.api.registry.GTRegistries;
 import com.gregtechceu.gtceu.common.data.GTRecipeTypes;
 import com.gregtechceu.gtceu.common.data.GTSoundEntries;
@@ -12,12 +13,19 @@ import io.github.createtechified.evolutioncore.EvolutionCoreMod;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.crafting.RecipeType;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Set;
 
 @SuppressWarnings("deprecation")
 public class EvoRecipeTypes {
     public static void init() {}
+
+    public static GTRecipeCategory register(String categoryName, GTRecipeType recipeType) {
+        GTRecipeCategory category = new GTRecipeCategory(categoryName, recipeType);
+        GTRegistries.RECIPE_CATEGORIES.register(category.registryKey, category);
+        return category;
+    }
 
     public static GTRecipeType register(String name, String group, RecipeType<?>... proxyRecipes) {
         var recipeType = new GTRecipeType(EvolutionCoreMod.id(name), group, proxyRecipes);

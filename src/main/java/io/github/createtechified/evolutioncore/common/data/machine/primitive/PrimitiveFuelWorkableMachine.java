@@ -66,7 +66,6 @@ public class PrimitiveFuelWorkableMachine extends PrimitiveWorkableMachine {
                     fuelItems.storage.extractItem(i, 1, false);
                     fuelTicksLeft = burnTime;
                     fuelMaxTicks = burnTime;
-                    System.out.println("[EvoDebug] fuel burnTime = " + burnTime); // temporary
                     return;
                 }
             }

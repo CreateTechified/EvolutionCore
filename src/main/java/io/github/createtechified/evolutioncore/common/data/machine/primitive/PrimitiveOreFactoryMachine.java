@@ -178,8 +178,7 @@ public class PrimitiveOreFactoryMachine extends PrimitiveFuelWorkableMachine imp
         var fuelProgressWidget = new ProgressWidget()
                 .size(18)
                 .texture(GTGuiTextures.PROGRESS_BAR_BOILER_FUEL_STEEL, ProgressDrawable.Direction.UP)
-                .value(fuelPercent)
-                .margin(0, 6, 0, 0);
+                .value(fuelPercent);
 
         var leftColumn = Flow.column().coverChildren()
                 .child(topRow)

@@ -8,7 +8,6 @@ import io.github.createtechified.evolutioncore.common.data.machine.primitive.Pri
 import javax.annotation.Nullable;
 
 public class EvoRecipeModifiers {
-
     public static ModifierFunction primitiveFuel(MetaMachine machine, @Nullable GTRecipe recipe) {
         if (!(machine instanceof PrimitiveFuelWorkableMachine fuelMachine)) return ModifierFunction.NULL;
         if (!fuelMachine.hasFuel()) return ModifierFunction.NULL;
