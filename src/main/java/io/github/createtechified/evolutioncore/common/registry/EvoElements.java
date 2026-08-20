@@ -18,6 +18,11 @@ public class EvoElements {
             119, 128, -1, null,
             "Quantum Infused Neuralium", "Nu→", true
     );
+    public static final Element Nr2 = createAndRegister( // Technically we never really added Nr.. but still we call it Nr2, just for the sake of simplicity. Also don't ask me why I added this :D
+            EvolutionCoreMod.id("ancient_netherite"),
+            127, 139, -1 , null,
+            "Ancient Netherite", "*Nr*", true
+    );
 
     // Hidden Elements
     // Don't tell me they exist, but treat 'em as a picture of a coconut. I see how it is...

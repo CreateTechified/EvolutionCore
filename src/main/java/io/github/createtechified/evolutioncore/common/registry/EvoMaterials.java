@@ -55,6 +55,28 @@ public class EvoMaterials {
             )
             .buildAndRegister();
 
+    public static Material AncientNetherite = new Material.Builder(
+            EvolutionCoreMod.id("ancient_netherite"))
+            .langValue("Ancient Netherite")
+            .ingot()
+            .element(Nr2)
+            .color(0x292222)
+            .iconSet(MaterialIconSet.RADIOACTIVE) // Not really radioactive but ok
+            .flags(
+                    MaterialFlags.GENERATE_PLATE,
+                    MaterialFlags.GENERATE_DENSE,
+                    MaterialFlags.GENERATE_ROD,
+                    MaterialFlags.GENERATE_LONG_ROD,
+                    MaterialFlags.GENERATE_BOLT_SCREW,
+                    MaterialFlags.GENERATE_FRAME,
+                    MaterialFlags.GENERATE_GEAR,
+                    MaterialFlags.GENERATE_SMALL_GEAR,
+                    MaterialFlags.GENERATE_FOIL,
+                    MaterialFlags.GENERATE_RING,
+                    MaterialFlags.GENERATE_ROTOR
+            )
+            .buildAndRegister();
+
     // Alloys
     public static Material NeuralicAlloy7 = new Material.Builder(
             EvolutionCoreMod.id("neuralic_alloy_7"))
