@@ -68,7 +68,6 @@ public class RecipeConstructors {
     public static void pakRecipes(Consumer<FinishedRecipe> consumer, String id, ItemStack[] inputs, ItemStack output) {
         EvoRecipeTypes.PRIMITIVE_ALLOY_SMELTER.recipeBuilder(EvolutionCoreMod.id(id))
                 .inputItems(inputs)
-                //.inputItems(new ItemStack(Items.COAL, 2))
                 .outputItems(output)
                 .duration(400)
                 .save(consumer);

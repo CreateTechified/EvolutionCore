@@ -57,8 +57,7 @@ import javax.annotation.ParametersAreNonnullByDefault;
 
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
-public class PrimitiveOreFactoryMachine extends PrimitiveFuelWorkableMachine implements IMuiMachine {
-
+public class PrimitiveOreFactory extends FueledPrimitiveMultiblockBase implements IMuiMachine {
     private @Nullable TickableSubscription hurtSubscription;
 
     @Getter
@@ -66,7 +65,7 @@ public class PrimitiveOreFactoryMachine extends PrimitiveFuelWorkableMachine imp
     @RerenderOnChanged
     private final MultiblockFluidRendererTrait fluidRendererTrait;
 
-    public PrimitiveOreFactoryMachine(BlockEntityCreationInfo info) {
+    public PrimitiveOreFactory(BlockEntityCreationInfo info) {
         super(info, new RecipeLogic(), 1, 6, 1, 0, 32000, 1);
         fluidRendererTrait = attachTrait(new MultiblockFluidRendererTrait(this::saveOffsets));
     }

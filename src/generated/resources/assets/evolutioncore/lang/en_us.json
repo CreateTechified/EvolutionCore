@@ -82,6 +82,7 @@
   "evolutioncore.null": "Null",
   "evolutioncore.ore_processing_plant": "Ore Processing Plant",
   "evolutioncore.primitive_alloy_smelter": "Primitive Alloy Smelter",
+  "evolutioncore.primitive_blast_furnace": "Primitive Blast Furnace",
   "evolutioncore.primitive_ore_factory": "Primitive Ore Factory",
   "evolutioncore.simple_fission_reactor": "Simple Fission Reactor",
   "evolutioncore.steam_blast_furnace": "Steam Blast Furnace",

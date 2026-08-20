@@ -17,24 +17,30 @@ import net.minecraft.MethodsReturnNonnullByDefault;
 
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
-public class PrimitiveFuelWorkableMachine extends PrimitiveWorkableMachine {
-
+public class FueledPrimitiveMultiblockBase extends PrimitiveWorkableMachine {
     @SaveField
     public final NotifiableItemStackHandler fuelItems;
-
     @SaveField
     private int fuelTicksLeft = 0;
-
     @SaveField
     private int fuelMaxTicks = 0;
+    private int fuelBurnMultiplier = 1;
 
     private @Nullable TickableSubscription fuelSubscription;
 
-    public PrimitiveFuelWorkableMachine(BlockEntityCreationInfo info, RecipeLogic recipeLogic, int importSlots,
-                                        int exportSlots, int fluidImportSlots, int fluidExportSlots,
-                                        int tankCapacity, int fuelSlots) {
+    public FueledPrimitiveMultiblockBase(BlockEntityCreationInfo info, RecipeLogic recipeLogic, int importSlots,
+                                         int exportSlots, int fluidImportSlots, int fluidExportSlots,
+                                         int tankCapacity, int fuelSlots) {
         super(info, recipeLogic, importSlots, exportSlots, fluidImportSlots, fluidExportSlots, tankCapacity);
         this.fuelItems = attachTrait(new NotifiableItemStackHandler(fuelSlots, IO.IN));
+    }
+
+    public FueledPrimitiveMultiblockBase(BlockEntityCreationInfo info, RecipeLogic recipeLogic, int importSlots,
+                                         int exportSlots, int fluidImportSlots, int fluidExportSlots,
+                                         int tankCapacity, int fuelSlots, int fuelBurnMultiplier) {
+        super(info, recipeLogic, importSlots, exportSlots, fluidImportSlots, fluidExportSlots, tankCapacity);
+        this.fuelItems = attachTrait(new NotifiableItemStackHandler(fuelSlots, IO.IN));
+        this.fuelBurnMultiplier = fuelBurnMultiplier;
     }
 
     @Override
@@ -52,8 +58,9 @@ public class PrimitiveFuelWorkableMachine extends PrimitiveWorkableMachine {
 
     private void tickFuel() {
         if (recipeLogic.isWorking() && fuelTicksLeft > 0) {
-            fuelTicksLeft--;
-            if (fuelTicksLeft == 0) {
+            fuelTicksLeft -= fuelBurnMultiplier;
+            if (fuelTicksLeft <= 0) {
+                fuelTicksLeft = 0;
                 fuelMaxTicks = 0;
             }
         }
@@ -70,6 +77,7 @@ public class PrimitiveFuelWorkableMachine extends PrimitiveWorkableMachine {
                 }
             }
         }
+        recipeLogic.setWorkingEnabled(hasFuel());
     }
 
     public boolean hasFuel() {

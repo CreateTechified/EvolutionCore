@@ -55,7 +55,7 @@ import javax.annotation.ParametersAreNonnullByDefault;
 
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
-public class PrimitiveAlloyKilnMachine extends PrimitiveFuelWorkableMachine implements IMuiMachine {
+public class PrimitiveAlloyKiln extends FueledPrimitiveMultiblockBase implements IMuiMachine {
     private @Nullable TickableSubscription hurtSubscription;
 
     @Getter
@@ -63,7 +63,7 @@ public class PrimitiveAlloyKilnMachine extends PrimitiveFuelWorkableMachine impl
     @RerenderOnChanged
     private final MultiblockFluidRendererTrait fluidRendererTrait;
 
-    public PrimitiveAlloyKilnMachine(BlockEntityCreationInfo info) {
+    public PrimitiveAlloyKiln(BlockEntityCreationInfo info) {
         super(info, new RecipeLogic(), 2, 2, 0, 0, 0, 1);
         fluidRendererTrait = attachTrait(new MultiblockFluidRendererTrait(this::saveOffsets));
     }
@@ -178,7 +178,6 @@ public class PrimitiveAlloyKilnMachine extends PrimitiveFuelWorkableMachine impl
         });
 
         row.child(leftColumn).child(progressWidget).child(createExportItemSlot(syncManager, theme));
-
         mainWidget.child(row);
     }
 

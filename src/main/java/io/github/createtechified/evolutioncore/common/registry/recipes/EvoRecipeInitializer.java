@@ -30,6 +30,7 @@ public class EvoRecipeInitializer {
         // Classes
         ResourceGenerationRecipes.init(c);
         MachineShapedRecipes.init(c);
+        pbfRecipes(c);
 
         // Stainless Steel Casings
         ASSEMBLER_RECIPES.recipeBuilder("stainless_steel_firebox_casing")
@@ -170,5 +171,23 @@ public class EvoRecipeInitializer {
                 .duration(1200)
                 .EUt(VA[ULV])
                 .save(c);
+    }
+
+    private static void pbfRecipes(Consumer<FinishedRecipe> provider) {
+        PRIMITIVE_BLAST_FURNACE.recipeBuilder("steel_iron")
+                .inputItems(ingot, Iron).outputItems(ingot, Steel).outputItems(dustTiny, DarkAsh, 2).duration(1600)
+                .save(provider);
+
+        PRIMITIVE_BLAST_FURNACE.recipeBuilder("steel_iron_block")
+                .inputItems(block, Iron).outputItems(block, Steel).outputItems(dust, DarkAsh, 2).duration(16000)
+                .save(provider);
+
+        PRIMITIVE_BLAST_FURNACE.recipeBuilder("steel_wrought_iron")
+                .inputItems(ingot, WroughtIron).outputItems(ingot, Steel).outputItems(dustTiny, DarkAsh, 2).duration(800)
+                .save(provider);
+
+        PRIMITIVE_BLAST_FURNACE.recipeBuilder("steel_wrought_iron_block")
+                .inputItems(block, WroughtIron).outputItems(block, Steel).outputItems(dust, DarkAsh, 2).duration(8000)
+                .save(provider);
     }
 }
