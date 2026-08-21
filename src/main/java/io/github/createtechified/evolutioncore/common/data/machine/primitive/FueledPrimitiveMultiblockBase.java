@@ -31,8 +31,7 @@ public class FueledPrimitiveMultiblockBase extends PrimitiveWorkableMachine {
     public FueledPrimitiveMultiblockBase(BlockEntityCreationInfo info, RecipeLogic recipeLogic, int importSlots,
                                          int exportSlots, int fluidImportSlots, int fluidExportSlots,
                                          int tankCapacity, int fuelSlots) {
-        super(info, recipeLogic, importSlots, exportSlots, fluidImportSlots, fluidExportSlots, tankCapacity);
-        this.fuelItems = attachTrait(new NotifiableItemStackHandler(fuelSlots, IO.IN));
+        this(info, recipeLogic, importSlots, exportSlots, fluidImportSlots, fluidExportSlots, tankCapacity, fuelSlots, 1);
     }
 
     public FueledPrimitiveMultiblockBase(BlockEntityCreationInfo info, RecipeLogic recipeLogic, int importSlots,
@@ -57,30 +56,31 @@ public class FueledPrimitiveMultiblockBase extends PrimitiveWorkableMachine {
     }
 
     private void tickFuel() {
-        if (recipeLogic.isWorking() && fuelTicksLeft > 0) {
+        if (recipeLogic.isWorking() && hasFuel()) {
             fuelTicksLeft -= fuelBurnMultiplier;
-            if (fuelTicksLeft <= 0) {
-                fuelTicksLeft = 0;
-                fuelMaxTicks = 0;
-            }
+            consumeFuel();
+        } else if (!hasFuel()) {
+            recipeLogic.setStatus(RecipeLogic.Status.SUSPEND);
+            consumeFuel();
         }
+    }
+
+    private void consumeFuel() {
         if (fuelTicksLeft <= 0) {
             for (int i = 0; i < fuelItems.storage.getSlots(); i++) {
                 ItemStack stack = fuelItems.storage.getStackInSlot(i);
-                if (stack.isEmpty()) continue;
-                int burnTime = ForgeHooks.getBurnTime(stack, null);
-                if (burnTime > 0) {
-                    fuelItems.storage.extractItem(i, 1, false);
-                    fuelTicksLeft = burnTime;
-                    fuelMaxTicks = burnTime;
-                    return;
+                if (!stack.isEmpty()) {
+                    int burnTime = ForgeHooks.getBurnTime(stack, null);
+                    if (burnTime > 0) {
+                        recipeLogic.setWorkingEnabled(true);
+                        fuelItems.storage.extractItem(i, 1, false);
+                        fuelTicksLeft = burnTime;
+                        fuelMaxTicks = burnTime;
+                        return;
+                    }
                 }
             }
-        }
-        if (!hasFuel() && recipeLogic.isWorking()) {
-            recipeLogic.setStatus(RecipeLogic.Status.SUSPEND);
-        } else {
-            recipeLogic.setWorkingEnabled(hasFuel());
+            recipeLogic.setWorkingEnabled(false);
         }
     }
 
