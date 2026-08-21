@@ -102,9 +102,9 @@ public class PrimitiveAlloyKiln extends FueledPrimitiveMultiblockBase implements
         if (isFormed) {
             var pos = this.getBlockPos();
             var facing = this.getFrontFacing().getOpposite();
-            float xPos = facing.getStepX() * 0.76F + pos.getX() - 0.5F;
+            float xPos = facing.getStepX() * 0.76F + pos.getX() + 0.5F;
             float yPos = facing.getStepY() * 0.76F + pos.getY() + 5.25F;
-            float zPos = facing.getStepZ() * 0.76F + pos.getZ() + 0.5F;
+            float zPos = facing.getStepZ() * 0.76F + pos.getZ() - 0.5F;
 
             var up = RelativeDirection.UP.getRelativeFacing(getFrontFacing(), getUpwardsFacing(), isFlipped());
             var sign = up.getAxisDirection().getStep();

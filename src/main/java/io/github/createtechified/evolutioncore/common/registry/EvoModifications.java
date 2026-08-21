@@ -24,7 +24,7 @@ public class EvoModifications {
             MultiblockMachineDefinition m = s.get();
             m.setRenderXEIPreview(false);
             m.setRenderWorldPreview(false);
-            m.setRecipeTypes(nullArray);
+            m.setRecipeTypes(new GTRecipeType[]{EvoRecipeTypes.NULL});
         }
         GTMultiMachines.PRIMITIVE_BLAST_FURNACE.setRecipeTypes(new GTRecipeType[]{EvoRecipeTypes.PRIMITIVE_BLAST_FURNACE});
     }
@@ -94,6 +94,4 @@ public class EvoModifications {
         ResourceLocation rl = ResourceLocation.parse(itemId); // e.g. "experienceobelisk:cognitive_amalgam"
         return () -> ForgeRegistries.ITEMS.getValue(rl);
     }
-
-    private static final GTRecipeType[] nullArray = new GTRecipeType[]{EvoRecipeTypes.NULL};
 }

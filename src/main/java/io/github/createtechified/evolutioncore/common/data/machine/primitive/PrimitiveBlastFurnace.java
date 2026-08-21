@@ -31,6 +31,7 @@ import com.gregtechceu.gtceu.common.machine.trait.multiblock.MultiblockFluidRend
 import com.gregtechceu.gtceu.common.mui.GTGuiTextures;
 import com.gregtechceu.gtceu.config.ConfigHolder;
 import com.gregtechceu.gtceu.utils.GTUtil;
+import io.github.createtechified.evolutioncore.common.registry.recipes.EvoRecipeTypes;
 import lombok.Getter;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.BlockPos;
@@ -165,8 +166,8 @@ public class PrimitiveBlastFurnace extends FueledPrimitiveMultiblockBase impleme
 
         progressWidget.listenGuiAction((IGuiAction.MousePressed) (guiContext, i) -> {
             if (!guiContext.isMouseAbove(progressWidget)) return false;
-            if (!GTRecipeTypes.PRIMITIVE_BLAST_FURNACE_RECIPES.getCategory().isXEIVisible()) return false;
-            GTUtil.openRecipeViewerCategory(GTRecipeTypes.PRIMITIVE_BLAST_FURNACE_RECIPES.getCategory());
+            if (!EvoRecipeTypes.PRIMITIVE_BLAST_FURNACE.getCategory().isXEIVisible()) return false;
+            GTUtil.openRecipeViewerCategory(EvoRecipeTypes.PRIMITIVE_BLAST_FURNACE.getCategory());
             return true;
         });
 

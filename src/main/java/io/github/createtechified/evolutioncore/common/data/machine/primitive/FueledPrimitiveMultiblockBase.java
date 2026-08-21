@@ -77,7 +77,11 @@ public class FueledPrimitiveMultiblockBase extends PrimitiveWorkableMachine {
                 }
             }
         }
-        recipeLogic.setWorkingEnabled(hasFuel());
+        if (!hasFuel() && recipeLogic.isWorking()) {
+            recipeLogic.setStatus(RecipeLogic.Status.SUSPEND);
+        } else {
+            recipeLogic.setWorkingEnabled(hasFuel());
+        }
     }
 
     public boolean hasFuel() {

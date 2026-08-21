@@ -171,6 +171,11 @@ public class EvoRecipeInitializer {
                 .duration(1200)
                 .EUt(VA[ULV])
                 .save(c);
+
+        PRIMITIVE_ORE_FACTORY.recipeBuilder("temp")
+                .inputItems(crushed, Iron).inputFluids(Water, 1000)
+                .outputItems(dust, Iron)
+                .duration(400).save(c);
     }
 
     private static void pbfRecipes(Consumer<FinishedRecipe> provider) {
