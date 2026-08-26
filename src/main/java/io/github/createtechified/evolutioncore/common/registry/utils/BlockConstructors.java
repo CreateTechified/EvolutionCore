@@ -58,29 +58,33 @@ public class BlockConstructors {
     }
     public static BlockEntry<Block> constructSteamCasingBlock(String name, String lang) {
         return constructBlock(name, EvolutionCoreMod.id("block/casings/steam/" + name), Block::new,
-                b -> b.lang(lang).initialProperties(() -> Blocks.IRON_BLOCK));
+                b -> b.lang(lang).initialProperties(() -> Blocks.IRON_BLOCK).tag(CustomTags.MINEABLE_WITH_CONFIG_VALID_PICKAXE_WRENCH));
+    }
+    public static BlockEntry<Block> constructFusionCasingBlock(String name, String texture, String lang) {
+        return constructBlock(name, EvolutionCoreMod.id("block/casings/fusion/" + texture), Block::new,
+                b -> b.lang(lang).initialProperties(() -> Blocks.IRON_BLOCK).tag(CustomTags.MINEABLE_WITH_CONFIG_VALID_PICKAXE_WRENCH).properties(p -> p.isValidSpawn((state, level, pos, ent) -> false)));
     }
     public static BlockEntry<Block> constructCasingBlock(String name, String type, String lang) {
         return constructBlock(name, EvolutionCoreMod.id("block/casings/" + type + "/casing"), Block::new,
-                b -> b.lang(lang).initialProperties(() -> Blocks.IRON_BLOCK));
+                b -> b.lang(lang).initialProperties(() -> Blocks.IRON_BLOCK).tag(CustomTags.MINEABLE_WITH_CONFIG_VALID_PICKAXE_WRENCH));
     }
     public static BlockEntry<Block> constructSolidCasingBlock(String name, String type, String lang) {
         ResourceLocation side = EvolutionCoreMod.id("block/casings/" + type + "/side");
         ResourceLocation bottom = EvolutionCoreMod.id("block/casings/" + type + "/bottom");
         ResourceLocation top = EvolutionCoreMod.id("block/casings/" + type + "/top");
         return constructSidedBlock(name, side, bottom, top, Block::new,
-                b -> b.lang(lang).initialProperties(() -> Blocks.IRON_BLOCK));
+                b -> b.lang(lang).initialProperties(() -> Blocks.IRON_BLOCK).tag(CustomTags.MINEABLE_WITH_CONFIG_VALID_PICKAXE_WRENCH));
     }
     public static BlockEntry<Block> constructPipeCasingBlock(String name, String type, String lang) {
         return constructBlock(name, EvolutionCoreMod.id("block/casings/" + type + "/pipe"), Block::new,
-                b -> b.lang(lang).initialProperties(() -> Blocks.IRON_BLOCK));
+                b -> b.lang(lang).initialProperties(() -> Blocks.IRON_BLOCK).tag(CustomTags.MINEABLE_WITH_CONFIG_VALID_PICKAXE_WRENCH));
     }
     public static BlockEntry<Block> constructGearboxCasingBlock(String name, String type, String lang) {
         return constructBlock(name, EvolutionCoreMod.id("block/casings/" + type + "/gearbox"), Block::new,
-                b -> b.lang(lang).initialProperties(() -> Blocks.IRON_BLOCK));
+                b -> b.lang(lang).initialProperties(() -> Blocks.IRON_BLOCK).tag(CustomTags.MINEABLE_WITH_CONFIG_VALID_PICKAXE_WRENCH));
     }
     public static BlockEntry<Block> constructTurbineCasingBlock(String name, String type, String lang) {
         return constructBlock(name, EvolutionCoreMod.id("block/casings/" + type + "/turbine"), Block::new,
-                b -> b.lang(lang).initialProperties(() -> Blocks.IRON_BLOCK));
+                b -> b.lang(lang).initialProperties(() -> Blocks.IRON_BLOCK).tag(CustomTags.MINEABLE_WITH_CONFIG_VALID_PICKAXE_WRENCH));
     }
 }

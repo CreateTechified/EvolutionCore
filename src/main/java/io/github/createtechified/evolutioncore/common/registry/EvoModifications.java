@@ -1,6 +1,5 @@
 package io.github.createtechified.evolutioncore.common.registry;
 
-import com.gregtechceu.gtceu.api.data.chemical.material.event.PostMaterialEvent;
 import com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlags;
 import com.gregtechceu.gtceu.api.data.chemical.material.properties.FluidPipeProperties;
 import com.gregtechceu.gtceu.api.data.chemical.material.properties.IngotProperty;
@@ -12,9 +11,9 @@ import com.gregtechceu.gtceu.common.data.GTMaterials;
 import com.gregtechceu.gtceu.common.data.machines.GTMultiMachines;
 import io.github.createtechified.evolutioncore.Reference;
 import io.github.createtechified.evolutioncore.common.registry.recipes.EvoRecipeTypes;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
-import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.function.Supplier;
 
@@ -29,7 +28,7 @@ public class EvoModifications {
         GTMultiMachines.PRIMITIVE_BLAST_FURNACE.setRecipeTypes(new GTRecipeType[]{EvoRecipeTypes.PRIMITIVE_BLAST_FURNACE});
     }
 
-    public static void materials(PostMaterialEvent event) {
+    public static void materials() {
         GTMaterials.NaquadahAlloy.setProperty(
                 PropertyKey.FLUID_PIPE,
                 new FluidPipeProperties(7200, 15780, true, true, false, false)
@@ -92,6 +91,6 @@ public class EvoModifications {
 
     private static Supplier<Item> itemSupplier(String itemId) {
         ResourceLocation rl = ResourceLocation.parse(itemId); // e.g. "experienceobelisk:cognitive_amalgam"
-        return () -> ForgeRegistries.ITEMS.getValue(rl);
+        return () -> BuiltInRegistries.ITEM.get(rl);
     }
 }

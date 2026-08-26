@@ -5,7 +5,6 @@ import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
 import com.gregtechceu.gtceu.common.data.GTBlocks;
 import com.gregtechceu.gtceu.common.data.GTMachines;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
-import com.gregtechceu.gtceu.common.data.machines.GTMultiMachines;
 import com.gregtechceu.gtceu.data.recipe.CustomTags;
 import com.gregtechceu.gtceu.data.recipe.VanillaRecipeHelper;
 import io.github.createtechified.evolutioncore.EvolutionCoreMod;
@@ -14,12 +13,10 @@ import io.github.createtechified.evolutioncore.common.registry.machines.EvoSingl
 import io.github.createtechified.evolutioncore.common.registry.machines.multiblocks.PrimitiveMultiblocks;
 import io.github.createtechified.evolutioncore.common.registry.machines.multiblocks.SteamMultiblocksHP;
 import io.github.createtechified.evolutioncore.common.registry.machines.multiblocks.SteamMultiblocksLP;
-import net.minecraft.data.recipes.FinishedRecipe;
-
-import java.util.function.Consumer;
+import net.minecraft.data.recipes.RecipeOutput;
 
 public class MachineShapedRecipes {
-    public static void init(Consumer<FinishedRecipe> c) {
+    public static void init(RecipeOutput c) {
         //TODO: make better recipes, these "work" but need to be more fitting (and challenging)
 
         // Singleblocks

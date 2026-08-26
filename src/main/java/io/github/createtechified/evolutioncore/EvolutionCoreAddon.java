@@ -6,6 +6,9 @@ import com.gregtechceu.gtceu.api.registry.registrate.GTRegistrate;
 import io.github.createtechified.evolutioncore.common.registry.recipes.EvoRecipeTypes;
 import io.github.createtechified.evolutioncore.common.registry.recipes.ResourceGenerationRecipes;
 import net.minecraft.data.recipes.RecipeOutput;
+import net.minecraft.resources.ResourceLocation;
+
+import java.util.function.Consumer;
 
 @GTAddon(Reference.MODID)
 public class EvolutionCoreAddon implements IGTAddon {

@@ -24,6 +24,5 @@ public class EvoMachineLoader {
         ResourceGenerationMultiblocks.init();
         FusionMultiblocks.init();
         UpgradeMultiblocks.init();
-        Reference.REGISTRATE.creativeModeTab(() -> EvoTabs.EVOLUTIONCORE_MATERIALS);
     }
 }

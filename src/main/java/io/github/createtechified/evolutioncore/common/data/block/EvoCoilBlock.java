@@ -23,28 +23,6 @@ public class EvoCoilBlock extends CoilBlock {
         super(properties, coilType);
     }
 
-    // Yes, I did do this entirely to change the tooltip. You ain't gonna do nothin' about it tho.
-    @Override
-    public void appendHoverText(@NotNull ItemStack stack, @Nullable BlockGetter level, @NotNull List<Component> tooltip,
-                                @NotNull TooltipFlag flag) {
-        if (GTUtil.isShiftDown()) {
-            int coilTier = coilType.getTier();
-            tooltip.add(Component.translatable("block.gtceu.wire_coil.tooltip_heat", coilType.getCoilTemperature()));
-            tooltip.add(Component.translatable("block.gtceu.wire_coil.tooltip_smelter"));
-            tooltip.add(
-                    Component.translatable("block.gtceu.wire_coil.tooltip_parallel_smelter", coilType.getLevel() * 32));
-            tooltip.add(Component.translatable("block.gtceu.wire_coil.tooltip_energy_smelter",
-                    Math.max(1, (4 * coilType.getLevel() * 32 / (8 * coilType.getEnergyDiscount())))));
-            tooltip.add(Component.translatable("block.gtceu.wire_coil.tooltip_pyro"));
-            tooltip.add(Component.translatable("block.gtceu.wire_coil.tooltip_speed_pyro",
-                    coilTier == 0 ? 75 : 50 * (coilTier + 1)));
-            tooltip.add(Component.translatable("block.gtceu.wire_coil.tooltip_cracking"));
-            tooltip.add(Component.translatable("block.gtceu.wire_coil.tooltip_energy_cracking", 100 - 10 * coilTier));
-        } else {
-            tooltip.add(Component.translatable("block.gtceu.wire_coil.tooltip_extended_info"));
-        }
-    }
-
     /**
      * EvolutionCore's own heating coil types, separate from GTCEuM's {@link com.gregtechceu.gtceu.common.block.CoilBlock.CoilType}.
      * Each entry here gets registered as its own {@link com.gregtechceu.gtceu.common.block.CoilBlock} and plugged

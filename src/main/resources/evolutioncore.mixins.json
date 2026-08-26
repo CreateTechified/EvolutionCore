@@ -3,7 +3,7 @@
   "minVersion": "0.8",
   "package": "io.github.createtechified.evolutioncore.mixin",
   "refmap": "evolutioncore.refmap.json",
-  "compatibilityLevel": "JAVA_17",
+  "compatibilityLevel": "JAVA_21",
   "mixins": [
     "gt.BaseMultiblockMixin",
     "gt.GCYMMultiblockMixin"

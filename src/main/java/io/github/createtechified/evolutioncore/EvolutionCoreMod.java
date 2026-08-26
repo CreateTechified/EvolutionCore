@@ -4,12 +4,17 @@ import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import io.github.createtechified.evolutioncore.common.overhaul.RemoveAllOresBiomeModifier;
 import io.github.createtechified.evolutioncore.common.registry.EvoBlocks;
+import io.github.createtechified.evolutioncore.common.registry.EvoElements;
 import io.github.createtechified.evolutioncore.common.registry.EvoItems;
+import io.github.createtechified.evolutioncore.common.registry.EvoMaterials;
+import io.github.createtechified.evolutioncore.common.registry.EvoModifications;
 import io.github.createtechified.evolutioncore.common.registry.EvoTabs;
 import io.github.createtechified.evolutioncore.common.registry.machines.EvoMachineLoader;
+import io.github.createtechified.evolutioncore.common.registry.recipes.EvoRecipeInitializer;
+import io.github.createtechified.evolutioncore.common.registry.recipes.EvoRecipeRemovals;
 import io.github.createtechified.evolutioncore.common.registry.recipes.EvoRecipeTypes;
 import io.github.createtechified.evolutioncore.datagen.EvoDatagen;
-import net.minecraft.data.recipes.FinishedRecipe;
+import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.biome.Biome;
 import net.neoforged.bus.api.IEventBus;
@@ -51,17 +56,19 @@ public class EvolutionCoreMod {
         didRunRegistration = true;
 
         EvoTabs.init();
-        Reference.REGISTRATE.creativeModeTab(() -> EvoTabs.EVOLUTIONCORE_MAIN)
+        Reference.REGISTRATE.creativeModeTab(() -> EvoTabs.EVOLUTIONCORE_MAIN);
         EvoItems.init();
         Reference.REGISTRATE.creativeModeTab(() -> EvoTabs.EVOLUTIONCORE_BLOCKS);
         EvoBlocks.init();
         EvoRecipeTypes.init();
+        Reference.REGISTRATE.creativeModeTab(() -> EvoTabs.EVOLUTIONCORE_MACHINES);
         EvoMachineLoader.init();
-
-        EvoDatagen.init();
+        Reference.REGISTRATE.creativeModeTab(() -> EvoTabs.EVOLUTIONCORE_MATERIALS);
+        EvoElements.init();
+        EvoMaterials.init();
     }
 
-    public static void addRecipes(Consumer<FinishedRecipe> provider) {
+    public static void addRecipes(RecipeOutput provider) {
         EvoRecipeInitializer.init(provider);
     }
 

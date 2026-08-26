@@ -1,9 +1,11 @@
 package io.github.createtechified.evolutioncore.common.registry.recipes;
 
 import com.gregtechceu.gtceu.api.capability.recipe.IO;
+import com.gregtechceu.gtceu.api.capability.recipe.ItemRecipeCapability;
 import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
 import com.gregtechceu.gtceu.common.data.GTRecipeTypes;
 import com.gregtechceu.gtceu.common.data.GTSoundEntries;
+import com.gregtechceu.gtceu.common.data.machines.GTMultiMachines;
 import com.gregtechceu.gtceu.common.mui.GTGuiTextures;
 import io.github.createtechified.evolutioncore.EvolutionCoreMod;
 import net.minecraft.world.item.crafting.RecipeType;

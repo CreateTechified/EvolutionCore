@@ -8,8 +8,8 @@ import com.gregtechceu.gtceu.api.machine.trait.recipe.RecipeLogic;
 import com.gregtechceu.gtceu.api.sync_system.annotations.SaveField;
 import com.gregtechceu.gtceu.common.machine.multiblock.primitive.PrimitiveWorkableMachine;
 
+import com.gregtechceu.gtceu.utils.GTUtil;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.common.ForgeHooks;
 
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
@@ -70,7 +70,7 @@ public class FueledPrimitiveMultiblockBase extends PrimitiveWorkableMachine {
             for (int i = 0; i < fuelItems.storage.getSlots(); i++) {
                 ItemStack stack = fuelItems.storage.getStackInSlot(i);
                 if (!stack.isEmpty()) {
-                    int burnTime = ForgeHooks.getBurnTime(stack, null);
+                    int burnTime = GTUtil.getItemBurnTime(stack.getItem());
                     if (burnTime > 0) {
                         recipeLogic.setWorkingEnabled(true);
                         fuelItems.storage.extractItem(i, 1, false);

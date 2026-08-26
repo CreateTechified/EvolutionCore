@@ -13,12 +13,12 @@ import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 import static io.github.createtechified.evolutioncore.common.registry.EvoElements.*;
 
 public class EvoMaterials {
-    public static void init() {Reference.REGISTRATE.creativeModeTab(() -> EvoTabs.EVOLUTIONCORE_MATERIALS);}
+    public static void init() {EvoModifications.materials();}
 
     // Materials
     public static Material Neuralium = new Material.Builder(
             EvolutionCoreMod.id("neuralium"))
-            .langValue("Neuralium")
+            //.langValue("Neuralium")
             .ingot()
             .fluid()
             .plasma()
@@ -45,7 +45,7 @@ public class EvoMaterials {
 
     public static Material NeuraliumInfused = new Material.Builder(
             EvolutionCoreMod.id("quantum_infused_neuralium"))
-            .langValue("Quantum-Infused Neuralium")
+            //.langValue("Quantum-Infused Neuralium")
             .gem()
             .element(Nu2)
             .color(0x756587)
@@ -57,7 +57,7 @@ public class EvoMaterials {
 
     public static Material AncientNetherite = new Material.Builder(
             EvolutionCoreMod.id("ancient_netherite"))
-            .langValue("Ancient Netherite")
+            //.langValue("Ancient Netherite")
             .ingot()
             .element(Nr2)
             .color(0x292222)
@@ -80,7 +80,7 @@ public class EvoMaterials {
     // Alloys
     public static Material NeuralicAlloy7 = new Material.Builder(
             EvolutionCoreMod.id("neuralic_alloy_7"))
-            .langValue("Neuralic Alloy 7")
+            //.langValue("Neuralic Alloy 7")
             .ingot()
             .fluid()
             .blastTemp(9780, BlastProperty.GasTier.HIGHER, GTValues.VA[GTValues.ZPM], 6000)
@@ -109,7 +109,7 @@ public class EvoMaterials {
 
     public static Material ThaumiumAlloy = new Material.Builder( // Not sure if we'll keep this though, I think we will
             EvolutionCoreMod.id("thaumium_alloy"))
-            .langValue("Thaumium Alloy")
+            //.langValue("Thaumium Alloy")
             .ingot()
             .components(Iron, 1, Copper, 2, Tin, 3, Nickel, 4)
             .color(0x000000)
@@ -119,7 +119,7 @@ public class EvoMaterials {
 
     public static Material WrldappleAlloy = new Material.Builder(
             EvolutionCoreMod.id("wrldapple_alloy"))
-            .langValue("Wrld-Apple Alloy")
+            //.langValue("Wrld-Apple Alloy")
             .ingot()
             .fluid()
             .blastTemp(12980, BlastProperty.GasTier.HIGHEST, GTValues.VA[GTValues.OpV], 9000)
@@ -150,14 +150,14 @@ public class EvoMaterials {
     // Fluids
     public static Material QuantumInfusion = new Material.Builder(
             EvolutionCoreMod.id("quantum_infusion"))
-            .langValue("Quantum Infusion")
+            //.langValue("Quantum Infusion")
             .liquid(new FluidBuilder().block().temperature(293))
             .color(0x372f65)
             .buildAndRegister();
 
     public static Material PotassiumNitrate = new Material.Builder( // subjected to change, very easy to craft. yes that's a problem
             EvolutionCoreMod.id("potassium_nitrate"))
-            .langValue("Potassium Nitrate")
+            //.langValue("Potassium Nitrate")
             .liquid()
             .components(Potassium, 1, Nitrogen, 1, Oxygen, 3)
             .color(0x93AC72)
@@ -166,7 +166,7 @@ public class EvoMaterials {
     // Hidden Materials
     public static Material Energy = new Material.Builder(
             EvolutionCoreMod.id("energy"))
-            .langValue("Energy")
+            //.langValue("Energy")
             .gas()
             .element(ENERGY)
             .color(0xFAFF00)
@@ -175,7 +175,7 @@ public class EvoMaterials {
 
     public static Material Test = new Material.Builder(
             EvolutionCoreMod.id("test"))
-            .langValue("Test")
+            //.langValue("Test")
             .ingot()
             .fluid()
             .gas()

@@ -3,14 +3,11 @@ package io.github.createtechified.evolutioncore.common.registry.recipes;
 import appeng.core.definitions.AEItems;
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.fluids.store.FluidStorageKeys;
-import com.gregtechceu.gtceu.common.data.GTItems;
 import com.gregtechceu.gtceu.data.recipe.CustomTags;
 import io.github.createtechified.evolutioncore.EvolutionCoreMod;
 import io.github.createtechified.evolutioncore.common.registry.EvoItems;
 import io.github.createtechified.evolutioncore.common.registry.utils.RecipeConstructors;
-import net.minecraft.data.recipes.FinishedRecipe;
-
-import java.util.function.Consumer;
+import net.minecraft.data.recipes.RecipeOutput;
 
 import static com.gregtechceu.gtceu.api.GTValues.*;
 import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.*;
@@ -26,7 +23,7 @@ import static io.github.createtechified.evolutioncore.common.registry.recipes.Ev
 import static io.github.createtechified.evolutioncore.common.registry.recipes.EvoRecipeTypes.LARGE_CHEMICAL_PLANT;
 
 public class EvoRecipeInitializer {
-    public static void init(Consumer<FinishedRecipe> c) {
+    public static void init(RecipeOutput c) {
         // Classes
         ResourceGenerationRecipes.init(c);
         MachineShapedRecipes.init(c);
@@ -178,7 +175,7 @@ public class EvoRecipeInitializer {
                 .duration(400).save(c);
     }
 
-    private static void pbfRecipes(Consumer<FinishedRecipe> provider) {
+    private static void pbfRecipes(RecipeOutput provider) {
         PRIMITIVE_BLAST_FURNACE.recipeBuilder("steel_iron")
                 .inputItems(ingot, Iron).outputItems(ingot, Steel).outputItems(dustTiny, DarkAsh, 2).duration(1600)
                 .save(provider);

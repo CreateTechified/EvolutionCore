@@ -2,18 +2,14 @@ package io.github.createtechified.evolutioncore.common.registry.utils;
 
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.common.data.GTItems;
-import com.gregtechceu.gtceu.common.data.GTMaterials;
 import com.gregtechceu.gtceu.common.data.GTRecipeTypes;
 import io.github.createtechified.evolutioncore.EvolutionCoreMod;
 import io.github.createtechified.evolutioncore.common.registry.recipes.EvoRecipeTypes;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
-import net.minecraftforge.fluids.FluidStack;
+import net.neoforged.neoforge.fluids.FluidStack;
 import org.jetbrains.annotations.Nullable;
-
-import java.util.function.Consumer;
 
 import static com.gregtechceu.gtceu.api.GTValues.L;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
@@ -25,15 +21,15 @@ public class RecipeConstructors {
         EvoRecipeTypes.STEEL_GREENHOUSE.recipeBuilder(EvolutionCoreMod.id(id)).notConsumable(sapling)
                 .inputFluids(Water.getFluid(1000)).outputItems(GeneralHelpers.filterItemStackForEmptyStacks(outputs)).circuitMeta(1).duration(640).EUt(GTValues.VA[GTValues.LV]).save(consumer);
     }
-    public static void greenhouseBaseWoodRecipes2(Consumer<FinishedRecipe> consumer, String id, Item sapling, ItemStack... outputs) {
+    public static void greenhouseBaseWoodRecipes2(RecipeOutput consumer, String id, Item sapling, ItemStack... outputs) {
         EvoRecipeTypes.STEEL_GREENHOUSE.recipeBuilder(EvolutionCoreMod.id(id)).notConsumable(sapling)
                 .inputFluids(Water.getFluid(1000)).inputFluids(CarbonDioxide.getFluid(1250)).outputItems(GeneralHelpers.filterItemStackForEmptyStacks(outputs)).circuitMeta(2).duration(640).EUt(GTValues.VA[GTValues.MV]).save(consumer);
     }
-    public static void greenhouseBaseWoodRecipes3(Consumer<FinishedRecipe> consumer, String id, Item sapling, ItemStack... outputs) {
+    public static void greenhouseBaseWoodRecipes3(RecipeOutput consumer, String id, Item sapling, ItemStack... outputs) {
         EvoRecipeTypes.STEEL_GREENHOUSE.recipeBuilder(EvolutionCoreMod.id(id)).notConsumable(sapling)
                 .inputFluids(Water.getFluid(1000)).inputFluids(CarbonDioxide.getFluid(1250)).inputFluids(PotassiumNitrate.getFluid(1500)).outputItems(GeneralHelpers.filterItemStackForEmptyStacks(outputs)).circuitMeta(3).duration(640).EUt(GTValues.VA[GTValues.HV]).save(consumer);
     }
-    public static void greenhouseWoodRecipes(Consumer<FinishedRecipe> consumer, String namespace, String wood, @Nullable String byproduct) {
+    public static void greenhouseWoodRecipes(RecipeOutput consumer, String namespace, String wood, @Nullable String byproduct) {
         Item sapling = GeneralHelpers.getItemFromNamespaceAndID(namespace, wood + "_sapling");
         Item log = GeneralHelpers.getItemFromNamespaceAndID(namespace, wood + "_log");
         ItemStack stack1 = (byproduct != null) ? new ItemStack(GeneralHelpers.getItemFromNamespaceAndID(namespace, byproduct), 16) : ItemStack.EMPTY;
@@ -43,7 +39,7 @@ public class RecipeConstructors {
         greenhouseBaseWoodRecipes2(consumer, wood + "_2", sapling, new ItemStack(log, 128), stack2);
         greenhouseBaseWoodRecipes3(consumer, wood + "_3", sapling, new ItemStack(log, 256), stack3);
     }
-    public static void greenhouseWoodRecipes(Consumer<FinishedRecipe> consumer, String namespace, String sapling_suffix, String wood, String log_suffix, @Nullable String byproduct) {
+    public static void greenhouseWoodRecipes(RecipeOutput consumer, String namespace, String sapling_suffix, String wood, String log_suffix, @Nullable String byproduct) {
         Item sapling = GeneralHelpers.getItemFromNamespaceAndID(namespace, wood + sapling_suffix);
         Item log = GeneralHelpers.getItemFromNamespaceAndID(namespace, wood + log_suffix);
         ItemStack stack1 = (byproduct != null) ? new ItemStack(GeneralHelpers.getItemFromNamespaceAndID(namespace, byproduct), 16) : ItemStack.EMPTY;
@@ -53,7 +49,7 @@ public class RecipeConstructors {
         greenhouseBaseWoodRecipes2(consumer, wood + "_2", sapling, new ItemStack(log, 128), stack2);
         greenhouseBaseWoodRecipes3(consumer, wood + "_3", sapling, new ItemStack(log, 256), stack3);
     }
-    public static void greenhouseWoodRecipes(Consumer<FinishedRecipe> consumer, String namespace, String sapling_suffix, String wood, String log_suffix, String sapling_prefix, @Nullable String byproduct) {
+    public static void greenhouseWoodRecipes(RecipeOutput consumer, String namespace, String sapling_suffix, String wood, String log_suffix, String sapling_prefix, @Nullable String byproduct) {
         Item sapling = GeneralHelpers.getItemFromNamespaceAndID(namespace, sapling_prefix + wood + sapling_suffix);
         Item log = GeneralHelpers.getItemFromNamespaceAndID(namespace, wood + log_suffix);
         ItemStack stack1 = (byproduct != null) ? new ItemStack(GeneralHelpers.getItemFromNamespaceAndID(namespace, byproduct), 16) : ItemStack.EMPTY;
@@ -65,14 +61,14 @@ public class RecipeConstructors {
     }
 
     public record AlloyIngredient(String namespace, String material, int count) {}
-    public static void pakRecipes(Consumer<FinishedRecipe> consumer, String id, ItemStack[] inputs, ItemStack output) {
+    public static void pakRecipes(RecipeOutput consumer, String id, ItemStack[] inputs, ItemStack output) {
         EvoRecipeTypes.PRIMITIVE_ALLOY_SMELTER.recipeBuilder(EvolutionCoreMod.id(id))
                 .inputItems(inputs)
                 .outputItems(output)
                 .duration(400)
                 .save(consumer);
     }
-    public static void pakRecipes(Consumer<FinishedRecipe> consumer, String outputNamespace, String materialOut, int outputCount, AlloyIngredient... ingredients) {
+    public static void pakRecipes(RecipeOutput consumer, String outputNamespace, String materialOut, int outputCount, AlloyIngredient... ingredients) {
         ItemStack[] inputs = new ItemStack[ingredients.length];
         for (int i = 0; i < ingredients.length; i++) {
             AlloyIngredient ing = ingredients[i];
@@ -100,7 +96,7 @@ public class RecipeConstructors {
         );
     }
 
-    public static void fuelRodRecipes(Consumer<FinishedRecipe> consumer, String id, Item input, ItemStack... output) {
+    public static void fuelRodRecipes(RecipeOutput consumer, String id, Item input, ItemStack... output) {
         GTRecipeTypes.CANNER_RECIPES.recipeBuilder(EvolutionCoreMod.id(id))
                 .inputItems(input)
                 .inputItems(GTItems.FLUID_CELL_LARGE_STAINLESS_STEEL)
@@ -110,7 +106,7 @@ public class RecipeConstructors {
                 .EUt(GTValues.VA[GTValues.HV])
                 .save(consumer);
     }
-    public static void fuelRodRecipes(Consumer<FinishedRecipe> consumer, String namespaceIN, String fuelType, String namespaceOUT, String fuelRodType) {
+    public static void fuelRodRecipes(RecipeOutput consumer, String namespaceIN, String fuelType, String namespaceOUT, String fuelRodType) {
         fuelRodRecipes(
                 consumer,
                 fuelType,
@@ -119,7 +115,7 @@ public class RecipeConstructors {
         );
     }
 
-    public static void depletedFuelRodRecipes(Consumer<FinishedRecipe> consumer, String id, Item input, FluidStack[] outputFluids, ItemStack... outputItems) {
+    public static void depletedFuelRodRecipes(RecipeOutput consumer, String id, Item input, FluidStack[] outputFluids, ItemStack... outputItems) {
         GTRecipeTypes.CENTRIFUGE_RECIPES.recipeBuilder(EvolutionCoreMod.id(id))
                 .inputItems(input)
                 .outputItems(outputItems)
@@ -129,7 +125,7 @@ public class RecipeConstructors {
                 .EUt(GTValues.VA[GTValues.HV])
                 .save(consumer);
     }
-    public static void depletedFuelRodRecipes(Consumer<FinishedRecipe> consumer, String namespaceIN, String fuelRodType, String namespaceItemsOUT1, String itemsOUT1, String namespaceItemsOUT2, String itemsOUT2) {
+    public static void depletedFuelRodRecipes(RecipeOutput consumer, String namespaceIN, String fuelRodType, String namespaceItemsOUT1, String itemsOUT1, String namespaceItemsOUT2, String itemsOUT2) {
         depletedFuelRodRecipes(
                 consumer,
                 fuelRodType,
@@ -139,7 +135,7 @@ public class RecipeConstructors {
                 new ItemStack(GeneralHelpers.getItemFromNamespaceAndID(namespaceItemsOUT2, itemsOUT2 + "_dust"), 1)
         );
     }
-    public static void depletedFuelRodRecipes(Consumer<FinishedRecipe> consumer, String namespaceIN, String fuelRodType, String namespaceItemsOUT1, String itemsOUT1, String namespaceItemsOUT2, String itemsOUT2, String namespaceFluidsOUT1, String fluidsOUT1) {
+    public static void depletedFuelRodRecipes(RecipeOutput consumer, String namespaceIN, String fuelRodType, String namespaceItemsOUT1, String itemsOUT1, String namespaceItemsOUT2, String itemsOUT2, String namespaceFluidsOUT1, String fluidsOUT1) {
         depletedFuelRodRecipes(
                 consumer,
                 fuelRodType,
@@ -151,7 +147,7 @@ public class RecipeConstructors {
                 new ItemStack(GeneralHelpers.getItemFromNamespaceAndID(namespaceItemsOUT2, itemsOUT2 + "_dust"), 1)
         );
     }
-    public static void depletedFuelRodRecipes(Consumer<FinishedRecipe> consumer, String namespaceIN, String fuelRodType, String namespaceItemsOUT1, String itemsOUT1, String namespaceItemsOUT2, String itemsOUT2, String namespaceFluidsOUT1, String fluidsOUT1, String namespaceFluidsOUT2, String fluidsOUT2) {
+    public static void depletedFuelRodRecipes(RecipeOutput consumer, String namespaceIN, String fuelRodType, String namespaceItemsOUT1, String itemsOUT1, String namespaceItemsOUT2, String itemsOUT2, String namespaceFluidsOUT1, String fluidsOUT1, String namespaceFluidsOUT2, String fluidsOUT2) {
         depletedFuelRodRecipes(
                 consumer,
                 fuelRodType,
@@ -165,7 +161,7 @@ public class RecipeConstructors {
         );
     }
 
-    public static void simpleFissionReactions(Consumer<FinishedRecipe> consumer, String id, Item input, ItemStack output, int energy) {
+    public static void simpleFissionReactions(RecipeOutput consumer, String id, Item input, ItemStack output, int energy) {
         EvoRecipeTypes.FISSION_REACTOR_FUELS.recipeBuilder(EvolutionCoreMod.id(id))
                 .inputItems(input)
                 .perTick(true)
@@ -176,7 +172,7 @@ public class RecipeConstructors {
                 .EUt(energy)
                 .save(consumer);
     }
-    public static void simpleFissionReactions(Consumer<FinishedRecipe> consumer, String namespaceIN, String fuelRodType, String namespaceOUT, String depletedFuelRodType, int energy) {
+    public static void simpleFissionReactions(RecipeOutput consumer, String namespaceIN, String fuelRodType, String namespaceOUT, String depletedFuelRodType, int energy) {
         simpleFissionReactions(
                 consumer,
                 fuelRodType,

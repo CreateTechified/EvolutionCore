@@ -5,6 +5,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.material.Fluid;
 
 import java.util.Arrays;
 
@@ -17,7 +18,7 @@ public class GeneralHelpers {
     }
 
     public static Fluid getFluidFromNamespaceAndID(String namespace, String fluid) {
-        return BuiltInRegistries.FLUIDS.getValue(ResourceLocation.fromNamespaceAndPath(namespace, fluid));
+        return BuiltInRegistries.FLUID.get(ResourceLocation.fromNamespaceAndPath(namespace, fluid));
     }
 
     public static ItemStack[] filterItemStackForEmptyStacks(ItemStack... outputs) {

@@ -5,7 +5,7 @@ import io.github.createtechified.evolutioncore.common.registry.utils.RecipeConst
 import net.minecraft.data.recipes.RecipeOutput;
 
 public class ResourceGenerationRecipes {
-    public static void init(Consumer<FinishedRecipe> c) {
+    public static void init(RecipeOutput c) {
         // Greenhouse
         RecipeConstructors.greenhouseWoodRecipes(c,"minecraft", "oak", null);
         RecipeConstructors.greenhouseWoodRecipes(c, "minecraft", "spruce", null);
