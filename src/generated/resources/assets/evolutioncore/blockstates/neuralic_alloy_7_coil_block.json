@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "active=false": {
+      "model": "evolutioncore:block/neuralic_alloy_7_coil_block"
+    },
+    "active=true": {
+      "model": "evolutioncore:block/neuralic_alloy_7_coil_block_active"
+    }
+  }
+}

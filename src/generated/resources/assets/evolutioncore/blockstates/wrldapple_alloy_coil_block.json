@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "active=false": {
+      "model": "evolutioncore:block/wrldapple_alloy_coil_block"
+    },
+    "active=true": {
+      "model": "evolutioncore:block/wrldapple_alloy_coil_block_active"
+    }
+  }
+}

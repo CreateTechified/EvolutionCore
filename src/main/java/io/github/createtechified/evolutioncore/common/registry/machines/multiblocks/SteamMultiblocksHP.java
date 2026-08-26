@@ -1,21 +1,23 @@
 package io.github.createtechified.evolutioncore.common.registry.machines.multiblocks;
 
+import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.capability.recipe.ItemRecipeCapability;
 import com.gregtechceu.gtceu.api.data.RotationState;
+import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
 import com.gregtechceu.gtceu.api.machine.MultiblockMachineDefinition;
 import com.gregtechceu.gtceu.api.machine.multiblock.PartAbility;
 import com.gregtechceu.gtceu.api.multiblock.Predicates;
 import com.gregtechceu.gtceu.api.multiblock.pattern.MultiblockPatternBuilder;
 import com.gregtechceu.gtceu.common.data.GTBlocks;
+import com.gregtechceu.gtceu.common.data.GTMaterialBlocks;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
 import com.gregtechceu.gtceu.common.data.GTRecipeTypes;
 import com.gregtechceu.gtceu.common.mui.GTGuiTheme;
 import com.simibubi.create.content.decoration.palettes.AllPaletteBlocks;
 import io.github.createtechified.evolutioncore.EvolutionCoreMod;
 import io.github.createtechified.evolutioncore.Reference;
-import io.github.createtechified.evolutioncore.common.machine.steam.HPSteamParallelMultiblockMachine;
+import io.github.createtechified.evolutioncore.common.data.machine.steam.HPSteamParallelMultiblockMachine;
 import io.github.createtechified.evolutioncore.common.registry.EvoBlocks;
-import io.github.createtechified.evolutioncore.common.registry.EvoTabs;
 import io.github.createtechified.evolutioncore.common.registry.machines.EvoMultiParts;
 import io.github.createtechified.evolutioncore.common.registry.recipes.EvoRecipeTypes;
 import io.github.createtechified.evolutioncore.common.registry.utils.GeneralHelpers;
@@ -31,10 +33,6 @@ import static com.gregtechceu.gtceu.api.multiblock.util.RelativeDirection.*;
 public class SteamMultiblocksHP {
     public static void init() {}
 
-    static {
-        Reference.REGISTRATE.creativeModeTab(() -> EvoTabs.EVOLUTIONCORE_MAIN);
-    }
-
     public static final MultiblockMachineDefinition HP_STEAM_ALLOY_KILN = Reference.REGISTRATE
             .multiblock("hp_steam_alloy_kiln", HPSteamParallelMultiblockMachine::new)
             .rotationState(RotationState.NON_Y_AXIS)
@@ -47,7 +45,7 @@ public class SteamMultiblocksHP {
                     .slice("FMMMF", "M#P#M", "M#P#M", "M#P#M", "M#P#M", " MVM ", " B B ")
                     .slice("FMMMF", "MG#GM", "M###M", "M###M", " M#M ", " MMM ", " BBB ")
                     .slice(" FFF ", " MCM ", " MMM ", " MMM ", "  M  ", "     ", "     ")
-                    .where('C', Predicates.controller(Predicates.blocks(definition.get())))
+                    .where('C', Predicates.controller(definition))
                     .where('#', Predicates.air())
                     .where('M', Predicates.blocks(EvoBlocks.HP_STEAM_MACHINE_CASING.get()).setMinGlobalLimited(30)
                             .or(Predicates.abilities(PartAbility.STEAM_IMPORT_ITEMS).setPreviewCount(1).setMaxGlobalLimited(2))
@@ -79,7 +77,7 @@ public class SteamMultiblocksHP {
                     .slice("BBBBB", "B###B", "BFFFB")
                     .slice("BBBBB", "BG#GB", "B#F#B")
                     .slice("WBBBW", "WBCBW", "WBBBW")
-                    .where('C', Predicates.controller(Predicates.blocks(definition.getBlock())))
+                    .where('C', Predicates.controller(definition))
                     .where('#', Predicates.air())
                     .where('B', Predicates.blocks(EvoBlocks.HP_STEAM_MACHINE_CASING.get())
                             .or(Predicates.abilities(PartAbility.STEAM_IMPORT_ITEMS).setExactLimit(1))
@@ -108,7 +106,7 @@ public class SteamMultiblocksHP {
                     .slice("FBBBF", " H#H ", "HBMBH", " Q#Q ")
                     .slice("FBBBF", "WBCBW", "HBBBH", " VQV ")
                     .slice(" FFF ", " W W ", " HHH ", "     ")
-                    .where('C', Predicates.controller(Predicates.blocks(definition.getBlock())))
+                    .where('C', Predicates.controller(definition))
                     .where('#', Predicates.air())
                     .where(' ', Predicates.any())
                     .where('B', Predicates.blocks(EvoBlocks.HP_STEAM_MACHINE_CASING.get()))
@@ -142,7 +140,7 @@ public class SteamMultiblocksHP {
                     .slice("FBBBBBBPBBBBBBF", "BJ###JG GJ###JB", "B#####G G#####B", "B#####G G#####B", "B#####G G#####B", "B#####BBB#####B", "BBBBBBBBBBBBBBB", " WBBBW   WBBBW ", "  BBB     BBB  ")
                     .slice("WFBBBBBBBBBBBFW", "WBJ#JBBCBBJ JBW", "WB###BBGBB###BW", "WB###BBGBB###BW", "WB###BBGBB   BW", "WB###BBBBB###BW", " BBBBB   BBBBB ", "  WBW     WBW  ", "               ")
                     .slice(" WFFFFFFFFFFFW ", " WBBBW   WBBBW ", " WBGBW   WBGBW ", " WBGBW   WBGBW ", " WBGBW   WBGBW ", " WBBBW   WBBBW ", "  BBBW   WBBB  ", "               ", "               ")
-                    .where('C', Predicates.controller(Predicates.blocks(definition.getBlock())))
+                    .where('C', Predicates.controller(definition))
                     .where('#', Predicates.air())
                     .where(' ', Predicates.any())
                     .where('B', Predicates.blocks(EvoBlocks.HP_STEAM_MACHINE_CASING.get())
@@ -180,7 +178,7 @@ public class SteamMultiblocksHP {
                     .slice("WHFFFHHHW", "WHGGGHHHW", "WHHHHHHHW", "         ", "         ", "    P    ")
                     .slice("HHHHHHHHH", "HBSSPPPBH", "HHGGPHVHH", "    P    ", "    P    ", "    P    ")
                     .slice("WHFFFHHHW", "WHGGGHCHW", "WHHHHHHHW", "         ", "         ", "         ")
-                    .where('C', Predicates.controller(Predicates.blocks(definition.getBlock())))
+                    .where('C', Predicates.controller(definition))
                     .where('#', Predicates.air())
                     .where(' ', Predicates.any())
                     .where('B', Predicates.blocks(EvoBlocks.HP_STEAM_MACHINE_CASING.get()))
@@ -201,6 +199,40 @@ public class SteamMultiblocksHP {
             .themeId(GTGuiTheme.STEEL.getId())
             .register();
 
+    public static final MultiblockMachineDefinition HP_STEAM_IMPACT_FORGE = Reference.REGISTRATE
+            .multiblock("hp_steam_impact_forge", HPSteamParallelMultiblockMachine::new)
+            .rotationState(RotationState.NON_Y_AXIS)
+            .appearanceBlock(EvoBlocks.HP_STEAM_MACHINE_CASING)
+            .recipeType(GTRecipeTypes.FORGE_HAMMER_RECIPES)
+            .recipeModifier(HPSteamParallelMultiblockMachine::recipeModifier, true)
+            .pattern(definition -> MultiblockPatternBuilder.start(FRONT, UP, RIGHT)
+                    .slice(" FFFFF ", "  BVB  ", "       ", "       ", "       ", "       ")
+                    .slice("FBBBBBF", " B#S#B ", "   S   ", "   S   ", "   S   ", "       ")
+                    .slice("FBPPPBF", "B#####B", "  ###  ", "  #X#  ", "  ###  ", "   S   ")
+                    .slice("FBPPPBF", "BS###SB", " S###S ", " SXXXS ", " S#G#S ", "  SSS  ")
+                    .slice("FBPPPBF", "B#####B", "  ###  ", "  #X#  ", "  ###  ", "   S   ")
+                    .slice("FBBBBBF", " B#S#B ", "   S   ", "   S   ", "   S   ", "       ")
+                    .slice(" FFFFF ", "  BCB  ", "       ", "       ", "       ", "       ")
+                    .where('C', Predicates.controller(definition))
+                    .where('#', Predicates.air())
+                    .where(' ', Predicates.any())
+                    .where('B', Predicates.blocks(EvoBlocks.HP_STEAM_MACHINE_CASING.get())
+                            .or(Predicates.abilities(PartAbility.STEAM_IMPORT_ITEMS).setExactLimit(1))
+                            .or(Predicates.abilities(PartAbility.STEAM_EXPORT_ITEMS).setExactLimit(1))
+                            .or(Predicates.abilities(PartAbility.STEAM).setExactLimit(1)))
+                    .where('P', Predicates.blocks(GTBlocks.CASING_STEEL_PIPE.get()))
+                    .where('F', Predicates.blocks(EvoBlocks.HP_STEAM_FIREBOX_CASING.get()))
+                    .where('S', Predicates.frames(GTMaterials.Steel))
+                    .where('X', Predicates.blocks(Objects.requireNonNull(GTMaterialBlocks.MATERIAL_BLOCKS.get(TagPrefix.block, GTMaterials.Steel)).get()))
+                    .where('V', Predicates.abilities(EvoMultiParts.STEAM_VENT).setExactLimit(1))
+                    .where('G', Predicates.blocks(Objects.requireNonNull(GeneralHelpers.getBlockFromNamespaceAndID("create", "metal_girder"))))
+                    .build())
+            .workableCasingModel(EvolutionCoreMod.id("block/casings/steam/hp_steam_machine_casing"), GTCEu.id("block/machines/forge_hammer"))
+            .langValue("High Pressure Steam Impact Forge")
+            .tooltips(Component.translatable("evolutioncore.tooltip.steam_impact_forge.h").withStyle(ChatFormatting.GRAY))
+            .themeId(GTGuiTheme.STEEL.getId())
+            .register();
+
     public static final MultiblockMachineDefinition HP_STEAM_BLAST_FURNACE = Reference.REGISTRATE
             .multiblock("hp_steam_blast_furnace", HPSteamParallelMultiblockMachine::new)
             .rotationState(RotationState.NON_Y_AXIS)
@@ -213,7 +245,7 @@ public class SteamMultiblocksHP {
                     .slice("FPPPPPPPPPPPF", "BPB B#P#B BPB", "BPB B#P#B BPB", "B B B#P#B B B", "    B#M#B    ", "     B#B     ")
                     .slice("WFW FBBBF WFW", "WBW B###B WBW", "WBW B###B WBW", " B  B###B  B ", "     B#B     ", "     BBB     ")
                     .slice("    WFFFW    ", "    WBCBW    ", "    WBBBW    ", "     BBB     ", "      B      ", "             ")
-                    .where('C', Predicates.controller(Predicates.blocks(definition.getBlock())))
+                    .where('C', Predicates.controller(definition))
                     .where('#', Predicates.air())
                     .where(' ', Predicates.any())
                     .where('B', Predicates.blocks(EvoBlocks.HP_STEAM_MACHINE_CASING.get())
@@ -245,7 +277,7 @@ public class SteamMultiblocksHP {
                     .slice("FCCCCCF", "CG###GC", "C#####C", "C#####C", "C#####C", "C#####C", " C###C ", " C###C ", "  CCC  ", "  BBB  ")
                     .slice(" FCCCF ", " CGGGC ", " V###V ", " V###V ", " C###C ", " C###C ", " CCVCC ", "  CCC  ", "       ", "       ")
                     .slice("  FFF  ", "  C@C  ", "  CVC  ", "  CVC  ", "  CVC  ", "  CCC  ", "       ", "       ", "       ", "       ")
-                    .where('@', Predicates.controller(Predicates.blocks(definition.get())))
+                    .where('@', Predicates.controller(definition))
                     .where('#', Predicates.air())
                     .where('C', Predicates.blocks(EvoBlocks.HP_STEAM_MACHINE_CASING.get())
                             .or(Predicates.abilities(PartAbility.STEAM_IMPORT_ITEMS).setExactLimit(1))

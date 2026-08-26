@@ -1,0 +1,14 @@
+{
+    "gtceu": {
+        "connection_texture": "evolutioncore:block/coils/neuralic_alloy_7/coil_bloom_ctm",
+        "bloom": true
+    },
+    "animation": {
+        "interpolate": true,
+        "frames": [
+		    { "index": 0, "time": 300 },
+            { "index": 1, "time": 100 },
+            { "index": 2, "time": 200 }
+        ]
+    }
+}

@@ -21,7 +21,14 @@ public class EvolutionCoreAddon implements IGTAddon {
 
     @Override
     public void addRecipes(RecipeOutput provider) {
-        EvoRecipeTypes.init();
-        ResourceGenerationRecipes.init(provider);
+        EvolutionCoreMod.addRecipes(provider);
     }
+
+    @Override
+    public void removeRecipes(Consumer<ResourceLocation> provider) {
+        EvolutionCoreMod.removeRecipes(provider);
+    }
+
+    @Override
+    public boolean requiresHighTier() {return true;}
 }

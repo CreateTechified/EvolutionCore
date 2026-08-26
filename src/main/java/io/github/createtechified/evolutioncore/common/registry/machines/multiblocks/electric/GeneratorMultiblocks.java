@@ -14,7 +14,6 @@ import com.gregtechceu.gtceu.common.data.GTRecipeModifiers;
 import io.github.createtechified.evolutioncore.EvolutionCoreMod;
 import io.github.createtechified.evolutioncore.Reference;
 import io.github.createtechified.evolutioncore.common.registry.EvoBlocks;
-import io.github.createtechified.evolutioncore.common.registry.EvoTabs;
 import io.github.createtechified.evolutioncore.common.registry.recipes.EvoRecipeTypes;
 import io.github.createtechified.evolutioncore.common.registry.utils.GeneralHelpers;
 import net.minecraft.ChatFormatting;
@@ -28,10 +27,6 @@ import static com.gregtechceu.gtceu.common.data.machines.GTMachineUtils.register
 
 public class GeneratorMultiblocks {
     public static void init() {}
-
-    static {
-        Reference.REGISTRATE.creativeModeTab(() -> EvoTabs.EVOLUTIONCORE_MAIN);
-    }
 
     public static final MultiblockMachineDefinition LUDICROUS_COMBUSTION_ENGINE = registerLargeCombustionEngine(
             Reference.REGISTRATE, "ludicrous_combustion_engine", ZPM,
@@ -52,7 +47,7 @@ public class GeneratorMultiblocks {
                     .slice("CCCCC", "CMMMC", "G#W#G", "G#W#G", "G#W#G", "CMMMC", "CCCCC")
                     .slice("VCCCV", "CMMMC", "CH#HC", "CH#HC", "CH#HC", "CMMMC", "VCCCV")
                     .slice(" VCV ", " C@C ", " CGC ", " CGC ", " CGC ", " CCC ", " VCV ")
-                    .where('@', Predicates.controller(Predicates.blocks(definition.get())))
+                    .where('@', Predicates.controller(definition))
                     .where('#', Predicates.air())
                     .where('V', Predicates.blocks(GCYMBlocks.HEAT_VENT.get()))
                     .where('C', Predicates.blocks(GCYMBlocks.CASING_HIGH_TEMPERATURE_SMELTING.get())

@@ -1,17 +1,15 @@
 name: Java CI with Gradle
-
 on:
   push:
-    branches: [ "main", "master" ]
+    branches: ["1.20.1", "1.21.1"]
   pull_request:
-    branches: [ "main", "master" ]
+    branches: ["1.20.1", "1.21.1"]
 
 jobs:
   build:
     runs-on: ubuntu-latest
     permissions:
       contents: write
-
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
@@ -21,22 +19,64 @@ jobs:
         with:
           java-version: '21'
           distribution: 'temurin'
-          cache: 'gradle'
 
       - name: Make Gradle Wrapper Executable
         run: chmod +x ./gradlew
 
-      - name: Build with Gradle
-        run: ./gradlew build
+      - uses: burrunan/gradle-cache-action@v3
+        name: Build EvolutionCore
+        with:
+          job-id: jdk21
+          arguments: build
+          gradle-version: wrapper
+          concurrent: true
+
+      - name: Process Version and Rename Jar
+        id: mod_version
+        run: |
+          VERSION=$(grep '^mod_version=' gradle.properties | cut -d'=' -f2 | tr -d '[:space:]')
+          SHORT_SHA=$(git rev-parse --short HEAD)
+
+          if [[ "$VERSION" == *-SNAPSHOT ]]; then
+            # Rename build jars to include commit hash only for snapshot builds
+            for file in build/libs/*.jar; do
+              if [ -f "$file" ]; then
+                base="${file%.jar}"
+                mv "$file" "${base}-${SHORT_SHA}.jar"
+              fi
+            done
+
+            echo "tag_name=latest-1.20.1" >> "$GITHUB_OUTPUT"
+            echo "release_name=${VERSION}-${SHORT_SHA}" >> "$GITHUB_OUTPUT"
+            echo "prerelease=true" >> "$GITHUB_OUTPUT"
+            echo "make_latest=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "tag_name=v${VERSION}" >> "$GITHUB_OUTPUT"
+            echo "release_name=${VERSION}" >> "$GITHUB_OUTPUT"
+            echo "prerelease=false" >> "$GITHUB_OUTPUT"
+            echo "make_latest=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Clean Existing Release Assets
+        if: github.event_name == 'push' && contains(github.ref, 'refs/heads/1.20.1') && steps.mod_version.outputs.tag_name == 'latest-1.20.1'
+        run: |
+          ASSETS=$(gh release view latest-1.20.1 --json assets -q '.assets[].name' 2>/dev/null || true)
+          for asset in $ASSETS; do
+            echo "Deleting asset: $asset"
+            gh release delete-asset latest-1.20.1 "$asset" -y || true
+          done
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Create Release
-        if: github.event_name == 'push' && contains(github.ref, 'refs/heads/main')
+        if: github.event_name == 'push' && contains(github.ref, 'refs/heads/1.20.1')
         uses: softprops/action-gh-release@v2
         with:
           files: build/libs/*.jar
-          tag_name: build-${{ github.run_number }}
-          name: Release ${{ github.run_number }}
+          tag_name: ${{ steps.mod_version.outputs.tag_name }}
+          name: ${{ steps.mod_version.outputs.release_name }}
           draft: false
-          prerelease: false
+          prerelease: ${{ steps.mod_version.outputs.prerelease }}
+          make_latest: ${{ steps.mod_version.outputs.make_latest }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

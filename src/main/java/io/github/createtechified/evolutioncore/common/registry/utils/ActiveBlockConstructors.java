@@ -1,20 +1,30 @@
 package io.github.createtechified.evolutioncore.common.registry.utils;
 
+import brachy.modularui.utils.FormattingUtil;
+import com.gregtechceu.gtceu.api.GTCEuAPI;
 import com.gregtechceu.gtceu.api.block.ActiveBlock;
+import com.gregtechceu.gtceu.api.block.ICoilType;
 import com.gregtechceu.gtceu.api.block.property.GTBlockStateProperties;
+import com.gregtechceu.gtceu.common.block.CoilBlock;
+import com.gregtechceu.gtceu.common.data.models.GTModels;
 import com.gregtechceu.gtceu.data.recipe.CustomTags;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import io.github.createtechified.evolutioncore.EvolutionCoreMod;
 import io.github.createtechified.evolutioncore.Reference;
+import io.github.createtechified.evolutioncore.common.data.block.EvoCoilBlock;
 import net.minecraft.client.renderer.RenderType;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+
+import net.minecraft.tags.BlockTags;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.level.block.Blocks;
 import net.neoforged.neoforge.client.model.generators.ModelFile;
 
 public class ActiveBlockConstructors {
     public static BlockEntry<ActiveBlock> constructIntakeCasingBlock(String name, String type, String lang) {
-        return BlockConstructors.constructBlock(name, EvolutionCoreMod.id("block/casings/" + type + "/intake"), ActiveBlock::new, b -> b.lang(lang));
+        return BlockConstructors.constructBlock(name, EvolutionCoreMod.id("block/casings/" + type + "/intake"), ActiveBlock::new, b -> b
+                .lang(lang).initialProperties(() -> Blocks.IRON_BLOCK).tag(CustomTags.MINEABLE_WITH_WRENCH, BlockTags.MINEABLE_WITH_PICKAXE).properties(p -> p.isValidSpawn((state, level, pos, ent) -> false)));
     }
 
     // modified from astrocore by hazevista
@@ -38,7 +48,31 @@ public class ActiveBlockConstructors {
                             .addModel();
                 })
                 .lang(lang)
-                .tag(CustomTags.MINEABLE_WITH_CONFIG_VALID_PICKAXE_WRENCH)
+                .tag(CustomTags.MINEABLE_WITH_WRENCH, BlockTags.MINEABLE_WITH_PICKAXE)
+                .properties(p -> p.isValidSpawn((state, level, pos, ent) -> false))
                 .item(BlockItem::new).build().register();
+    }
+
+    public static BlockEntry<CoilBlock> constructCoilBlock(ICoilType coilType) {
+        String n;
+        if (coilType.getName().equals("wrldapple_alloy")) {
+            n = "Wrld-Apple Alloy Coil Block";
+        } else {
+            n = FormattingUtil.toEnglishName(coilType.getName() + "_coil_block");
+        }
+
+        BlockEntry<CoilBlock> coilBlock = Reference.REGISTRATE
+                .block("%s_coil_block".formatted(coilType.getName()), p -> (CoilBlock) new EvoCoilBlock(p, coilType))
+                .lang(n)
+                .initialProperties(() -> Blocks.IRON_BLOCK)
+                .properties(p -> p.isValidSpawn((state, level, pos, ent) -> false))
+                .addLayer(() -> RenderType::cutoutMipped)
+                .blockstate(GTModels.createCoilModel(coilType))
+                .tag(CustomTags.MINEABLE_WITH_WRENCH, BlockTags.MINEABLE_WITH_PICKAXE)
+                .item(BlockItem::new)
+                .build()
+                .register();
+        GTCEuAPI.HEATING_COILS.put(coilType, coilBlock);
+        return coilBlock;
     }
 }

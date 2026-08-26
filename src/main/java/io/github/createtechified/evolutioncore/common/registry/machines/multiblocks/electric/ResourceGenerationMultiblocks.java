@@ -11,7 +11,6 @@ import com.gregtechceu.gtceu.common.data.GTBlocks;
 import com.simibubi.create.content.decoration.palettes.AllPaletteBlocks;
 import io.github.createtechified.evolutioncore.Reference;
 import io.github.createtechified.evolutioncore.common.registry.EvoBlocks;
-import io.github.createtechified.evolutioncore.common.registry.EvoTabs;
 import io.github.createtechified.evolutioncore.common.registry.recipes.EvoRecipeTypes;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
@@ -21,10 +20,6 @@ import static com.gregtechceu.gtceu.api.multiblock.util.RelativeDirection.*;
 
 public class ResourceGenerationMultiblocks {
     public static void init() {}
-
-    static {
-        Reference.REGISTRATE.creativeModeTab(() -> EvoTabs.EVOLUTIONCORE_MAIN);
-    }
 
     public static final MultiblockMachineDefinition STEEL_GREENHOUSE = Reference.REGISTRATE
             .multiblock("steel_greenhouse", WorkableElectricMultiblockMachine::new)
@@ -39,17 +34,17 @@ public class ResourceGenerationMultiblocks {
                     .slice("MHDDDHM", "HM   MH", "M     M", "G     G", "G     G", "G  L  G", "G     G", " G   G ", "  GGG  ")
                     .slice("MMHHHMM", "MMMMMMM", " M   M ", " M   M ", " M   M ", " G   G ", " G   G ", "  GGG  ", "       ")
                     .slice(" MMMMM ", " MHCHM ", "  MMM  ", "  GGG  ", "  GGG  ", "  GGG  ", "  GGG  ", "       ", "       ")
-                    .where('C', Predicates.controller(Predicates.blocks(definition.get())))
+                    .where('C', Predicates.controller(definition))
                     .where('M', Predicates.blocks(GTBlocks.CASING_STEEL_SOLID.get()))
                     .where('G', Predicates.blocks(AllPaletteBlocks.FRAMED_GLASS.get()))
                     .where('L', Predicates.blocks(Blocks.OAK_LEAVES))
                     .where('W', Predicates.blocks(Blocks.OAK_LOG))
                     .where('D', Predicates.blocks(EvoBlocks.ORGANIC_PLANT_MATTER.get()))
                     .where('H', Predicates.blocks(GTBlocks.CASING_STEEL_SOLID.get())
-                            .or(Predicates.abilities(PartAbility.IMPORT_ITEMS).setExactLimit(1))
-                            .or(Predicates.abilities(PartAbility.IMPORT_FLUIDS).setExactLimit(1))
+                            .or(Predicates.abilities(PartAbility.IMPORT_ITEMS).setMinGlobalLimited(1).setMaxGlobalLimited(2).setPreviewCount(1))
+                            .or(Predicates.abilities(PartAbility.IMPORT_FLUIDS).setMinGlobalLimited(1).setMaxGlobalLimited(3).setPreviewCount(1))
                             .or(Predicates.abilities(PartAbility.INPUT_ENERGY).setMinGlobalLimited(1).setMaxGlobalLimited(2).setPreviewCount(1))
-                            .or(Predicates.abilities(PartAbility.EXPORT_ITEMS).setExactLimit(1))
+                            .or(Predicates.abilities(PartAbility.EXPORT_ITEMS).setMinGlobalLimited(1).setMaxGlobalLimited(5).setPreviewCount(1))
                     )
                     .where(' ', Predicates.any())
                     .build())

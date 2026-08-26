@@ -21,10 +21,6 @@ import net.minecraft.network.chat.Component;
 public class EvoMultiParts {
     public static void init() {}
 
-    static {
-        Reference.REGISTRATE.creativeModeTab(() -> EvoTabs.EVOLUTIONCORE_MAIN);
-    }
-
     // PartAbilities
     public static final PartAbility STEAM_VENT = new PartAbility("steam_vent");
     public static final PartAbility STEAM_IMPORT_FLUIDS = new PartAbility("steam_import_fluids");
@@ -41,7 +37,7 @@ public class EvoMultiParts {
             .langValue("Steam Venting Hatch")
             .tooltips(Component.translatable("evolutioncore.tooltip.steam_vent"),
                     Component.translatable("gtceu.machine.steam_bus.tooltip"),
-                    Component.translatable("evolutioncore.tooltip.steam_vent.warn").withStyle(ChatFormatting.DARK_RED))
+                    Component.translatable("evolutioncore.tooltip.steam_vent.warn").withStyle(ChatFormatting.RED))
             .allowCoverOnFront(false)
             .register();
 

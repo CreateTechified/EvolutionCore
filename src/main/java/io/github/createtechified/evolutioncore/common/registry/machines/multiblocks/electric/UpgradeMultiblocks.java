@@ -3,7 +3,6 @@ package io.github.createtechified.evolutioncore.common.registry.machines.multibl
 import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.data.RotationState;
 import com.gregtechceu.gtceu.api.machine.MultiblockMachineDefinition;
-import com.gregtechceu.gtceu.api.machine.multiblock.CoilWorkableElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.machine.multiblock.PartAbility;
 import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.multiblock.Predicates;
@@ -11,8 +10,8 @@ import com.gregtechceu.gtceu.api.multiblock.pattern.MultiblockPatternBuilder;
 import com.gregtechceu.gtceu.api.recipe.OverclockingLogic;
 import com.gregtechceu.gtceu.common.data.*;
 import io.github.createtechified.evolutioncore.Reference;
+import io.github.createtechified.evolutioncore.common.data.machine.electric.FixedHeatingCoilElectricMultiblock;
 import io.github.createtechified.evolutioncore.common.registry.EvoBlocks;
-import io.github.createtechified.evolutioncore.common.registry.EvoTabs;
 import io.github.createtechified.evolutioncore.common.registry.recipes.EvoRecipeTypes;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
@@ -21,10 +20,6 @@ import static com.gregtechceu.gtceu.api.multiblock.util.RelativeDirection.*;
 
 public class UpgradeMultiblocks {
     public static void init() {}
-
-    static {
-        Reference.REGISTRATE.creativeModeTab(() -> EvoTabs.EVOLUTIONCORE_MAIN);
-    }
 
     public static final MultiblockMachineDefinition LARGE_CHEMICAL_PLANT = Reference.REGISTRATE
             .multiblock("large_chemical_plant", WorkableElectricMultiblockMachine::new)
@@ -40,7 +35,7 @@ public class UpgradeMultiblocks {
                     .slice("CCCCCCCCCCCCCCC", "VTPPPTPPPTPPPTV", " TPPPTPPPTPPPT ", "  PPP PPP PPP  ", "  PPP PPP PPP  ", "  PPP PPP PPP  ", "  PPP PPP PPP  ", "  PPP PPP PPP  ")
                     .slice("CCCCCCCCCCCCCCC", "CTTTTTTTTTTTTTC", "  TTT TTT TTT  ", "               ", "               ", "               ", "               ", "               ")
                     .slice("CCCCCCCCCCCCCCC", " CVVVVC@CVVVVC ", "               ", "               ", "               ", "               ", "               ", "               ")
-                    .where('@', Predicates.controller(Predicates.blocks(definition.get())))
+                    .where('@', Predicates.controller(definition))
                     .where('#', Predicates.air())
                     .where('C', Predicates.blocks(GCYMBlocks.CASING_HIGH_TEMPERATURE_SMELTING.get())
                             .or(Predicates.abilities(PartAbility.MAINTENANCE).setExactLimit(1))
@@ -61,7 +56,7 @@ public class UpgradeMultiblocks {
             .register();
 
     public static final MultiblockMachineDefinition FUSION_ALLOYING_CHAMBER = Reference.REGISTRATE
-            .multiblock("fusion_alloying_chamber", CoilWorkableElectricMultiblockMachine::new)
+            .multiblock("fusion_alloying_chamber", FixedHeatingCoilElectricMultiblock::new)
             .rotationState(RotationState.NON_Y_AXIS)
             .appearanceBlock(GCYMBlocks.CASING_HIGH_TEMPERATURE_SMELTING)
             .recipeType(GCYMRecipeTypes.ALLOY_BLAST_RECIPES)
@@ -74,7 +69,7 @@ public class UpgradeMultiblocks {
                     .slice("CCIIICC", "CCCCCCC", " H###H ", " H###H ", "  V#V  ", "  VVV  ", "  V#V  ", " H###H ", " H###H ", "CCCCCCC", "CCIIICC")
                     .slice("CCCCCCC", "FCCCCCF", "FHHHHHF", "FHHHHHF", " F H F ", " F   F ", " F H F ", "FHHHHHF", "FHHHHHF", "FCCCCCF", "CCCCCCC")
                     .slice(" CCCCC ", " FC@CF ", " F C F ", " F   F ", "       ", "       ", "       ", " F   F ", " F C F ", " FCCCF ", " CCCCC ")
-                    .where('@', Predicates.controller(Predicates.blocks(definition.get())))
+                    .where('@', Predicates.controller(definition))
                     .where('#', Predicates.air())
                     .where('C', Predicates.blocks(GCYMBlocks.CASING_HIGH_TEMPERATURE_SMELTING.get())
                             .or(Predicates.abilities(PartAbility.MAINTENANCE).setExactLimit(1))

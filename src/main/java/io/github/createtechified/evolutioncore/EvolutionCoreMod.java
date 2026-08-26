@@ -9,6 +9,7 @@ import io.github.createtechified.evolutioncore.common.registry.EvoTabs;
 import io.github.createtechified.evolutioncore.common.registry.machines.EvoMachineLoader;
 import io.github.createtechified.evolutioncore.common.registry.recipes.EvoRecipeTypes;
 import io.github.createtechified.evolutioncore.datagen.EvoDatagen;
+import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.biome.Biome;
 import net.neoforged.bus.api.IEventBus;
@@ -20,6 +21,8 @@ import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.neoforged.neoforge.registries.NeoForgeRegistries;
 import net.neoforged.neoforge.registries.RegisterEvent;
+
+import java.util.function.Consumer;
 
 @Mod(Reference.MODID)
 public class EvolutionCoreMod {
@@ -48,12 +51,22 @@ public class EvolutionCoreMod {
         didRunRegistration = true;
 
         EvoTabs.init();
+        Reference.REGISTRATE.creativeModeTab(() -> EvoTabs.EVOLUTIONCORE_MAIN)
         EvoItems.init();
+        Reference.REGISTRATE.creativeModeTab(() -> EvoTabs.EVOLUTIONCORE_BLOCKS);
         EvoBlocks.init();
         EvoRecipeTypes.init();
         EvoMachineLoader.init();
 
         EvoDatagen.init();
+    }
+
+    public static void addRecipes(Consumer<FinishedRecipe> provider) {
+        EvoRecipeInitializer.init(provider);
+    }
+
+    public static void removeRecipes(Consumer<ResourceLocation> provider) {
+        EvoRecipeRemovals.init(provider);
     }
 
     public static ResourceLocation id(String path) {

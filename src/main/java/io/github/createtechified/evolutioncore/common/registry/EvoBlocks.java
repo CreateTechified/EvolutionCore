@@ -2,26 +2,24 @@ package io.github.createtechified.evolutioncore.common.registry;
 
 import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.block.ActiveBlock;
+import com.gregtechceu.gtceu.common.block.CoilBlock;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import io.github.createtechified.evolutioncore.EvolutionCoreMod;
-import io.github.createtechified.evolutioncore.Reference;
 import io.github.createtechified.evolutioncore.common.registry.utils.ActiveBlockConstructors;
 import io.github.createtechified.evolutioncore.common.registry.utils.BlockConstructors;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 
+@SuppressWarnings("unused")
 public class EvoBlocks {
     public static void init() {}
-
-    static {
-        Reference.REGISTRATE.creativeModeTab(() -> EvoTabs.EVOLUTIONCORE_MAIN);
-    }
 
     public static BlockEntry<Block> HP_STEAM_MACHINE_CASING = BlockConstructors.constructSteamCasingBlock("hp_steam_machine_casing", "High Pressure Steam Machine Casing");
     public static BlockEntry<ActiveBlock> HP_STEAM_FIREBOX_CASING = ActiveBlockConstructors.constructFirebox(new ActiveBlockConstructors.FireboxInfo("hp_steam_firebox_casing",
             EvolutionCoreMod.id("block/casings/steam/hp_steam_machine_casing"),
             EvolutionCoreMod.id("block/casings/steam/hp_steam_machine_casing"),
             GTCEu.id("block/casings/firebox/machine_casing_firebox_steel")), "High Pressure Steam Firebox Casing");
-    public static BlockEntry<Block> ORGANIC_PLANT_MATTER = BlockConstructors.constructBasicBlock("organic_plant_matter", EvolutionCoreMod.id("block/general/organic_plant_matter"), "Organic Plant Matter");
+    public static BlockEntry<Block> ORGANIC_PLANT_MATTER = BlockConstructors.constructBasicBlock("organic_plant_matter", EvolutionCoreMod.id("block/general/organic_plant_matter"), "Organic Plant Matter", Blocks.DIRT);
     public static BlockEntry<Block> SOLID_STAINLESS_STEEL_MACHINE_CASING = BlockConstructors.constructSolidCasingBlock("solid_stainless_steel_machine_casing", "stainless_steel", "Solid Stainless Steel Machine Casing");
     public static BlockEntry<Block> STAINLESS_STEEL_PIPE_CASING = BlockConstructors.constructPipeCasingBlock("stainless_steel_pipe_casing", "stainless_steel", "Stainless Steel Pipe Casing");
     public static BlockEntry<ActiveBlock> STAINLESS_STEEL_FIREBOX_CASING = ActiveBlockConstructors.constructFirebox(new ActiveBlockConstructors.FireboxInfo("stainless_steel_firebox",
@@ -39,4 +37,8 @@ public class EvoBlocks {
             EvolutionCoreMod.id("block/casings/naquadah_alloy/casing"),
             EvolutionCoreMod.id("block/casings/naquadah_alloy/firebox")), "Naquadah Alloy Firebox Casing");
     public static BlockEntry<ActiveBlock> LUDICROUS_ENGINE_INTAKE_CASING = ActiveBlockConstructors.constructIntakeCasingBlock("ludicrous_engine_intake_casing", "naquadah_alloy", "Ludicrous Engine Intake Casing");
+    public static BlockEntry<Block> FUSION_CASING_MK4 = BlockConstructors.constructFusionCasingBlock("fusion_casing_mk4", "fusion_casing_mk4", "Fusion Machine Casing MK IV");
+    public static BlockEntry<Block> FUSION_CASING_MK5 = BlockConstructors.constructFusionCasingBlock("fusion_casing_mk5", "fusion_casing_mk5", "Fusion Machine Casing MK V");
+    public static BlockEntry<Block> INERTIAL_FUSION_CASING = BlockConstructors.constructFusionCasingBlock("inertial_fusion_casing", "inertial_fusion_casing", "Inertial Fusion Machine Casing");
+    public static BlockEntry<Block> INERTIAL_FUSION_CASING_MK2 = BlockConstructors.constructFusionCasingBlock("inertial_fusion_casing_mk2", "inertial_fusion_casing_mk2", "Inertial Fusion Machine Casing MK II");
 }

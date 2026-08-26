@@ -60,8 +60,8 @@ repositories {
         url = 'https://maven.createmod.net/'
     }
     maven {
-        name = 'TerraformersMC Maven'
-        url = 'https://maven.terraformersmc.com/'
+        name = "Sleeping Town"
+        url = "https://repo.sleeping.town/"
         content {
             includeGroup 'dev.emi'
         }
@@ -126,7 +126,6 @@ neoForge {
             client()
             systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
         }
-
         server {
             server()
             programArgument '--nogui'
@@ -175,7 +174,6 @@ dependencies {
     localRuntime "dev.engine-room.flywheel:flywheel-neoforge-${minecraft_version}:${flywheel_version}"
     localRuntime "dev.emi:emi-neoforge:${emi_version}+${minecraft_version}"
     localRuntime "top.theillusivec4.curios:curios-neoforge:${curios_version}+${minecraft_version}"
-    //localRuntime "curse.maven:mantle-74924:7563777" // N/A for 1.21
     compileOnly "org.jetbrains:annotations:26.0.2"
 }
 
@@ -201,7 +199,6 @@ var generateModMetadata = tasks.register("generateModMetadata", ProcessResources
     from "src/main/templates"
     into "build/generated/sources/modMetadata"
 }
-
 sourceSets.main.resources.srcDir generateModMetadata
 neoForge.ideSyncTask generateModMetadata
 

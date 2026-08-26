@@ -1,0 +1,146 @@
+{
+  "type": "create:sequenced_assembly",
+  "ingredient": {
+    "item": "evolutioncore:vacuum_tube_base"
+  },
+  "loops": 5,
+  "results": [
+    {
+      "chance": 47.0,
+      "item": "evolutioncore:unsealed_vacuum_tube"
+    },
+    {
+      "chance": 53.0,
+      "item": "evolutioncore:failed_vacuum_tube_parts"
+    }
+  ],
+  "sequence": [
+    {
+      "type": "create:filling",
+      "ingredients": [
+        {
+          "item": "evolutioncore:incomplete_unsealed_vacuum_tube"
+        },
+        {
+          "amount": 200,
+          "fluid": "gtceu:glue",
+          "nbt": {}
+        }
+      ],
+      "results": [
+        {
+          "item": "evolutioncore:incomplete_unsealed_vacuum_tube"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "evolutioncore:incomplete_unsealed_vacuum_tube"
+        },
+        {
+          "item": "evolutioncore:carbon_filament"
+        }
+      ],
+      "results": [
+        {
+          "item": "evolutioncore:incomplete_unsealed_vacuum_tube"
+        }
+      ]
+    },
+    {
+      "type": "create:cutting",
+      "ingredients": [
+        {
+          "item": "evolutioncore:incomplete_unsealed_vacuum_tube"
+        }
+      ],
+      "results": [
+        {
+          "item": "evolutioncore:incomplete_unsealed_vacuum_tube"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "evolutioncore:incomplete_unsealed_vacuum_tube"
+        },
+        {
+          "item": "evolutioncore:graphite_electrode"
+        }
+      ],
+      "results": [
+        {
+          "item": "evolutioncore:incomplete_unsealed_vacuum_tube"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "evolutioncore:incomplete_unsealed_vacuum_tube"
+        },
+        {
+          "item": "evolutioncore:graphite_electrode"
+        }
+      ],
+      "results": [
+        {
+          "item": "evolutioncore:incomplete_unsealed_vacuum_tube"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "evolutioncore:incomplete_unsealed_vacuum_tube"
+        },
+        {
+          "item": "gtceu:fine_red_alloy_wire"
+        }
+      ],
+      "results": [
+        {
+          "item": "evolutioncore:incomplete_unsealed_vacuum_tube"
+        }
+      ]
+    },
+    {
+      "type": "create:pressing",
+      "ingredients": [
+        {
+          "item": "evolutioncore:incomplete_unsealed_vacuum_tube"
+        }
+      ],
+      "results": [
+        {
+          "item": "evolutioncore:incomplete_unsealed_vacuum_tube"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "evolutioncore:incomplete_unsealed_vacuum_tube"
+        },
+        {
+          "item": "gtceu:glass_tube"
+        }
+      ],
+      "results": [
+        {
+          "item": "evolutioncore:incomplete_unsealed_vacuum_tube"
+        }
+      ]
+    }
+  ],
+  "transitionalItem": {
+    "item": "evolutioncore:incomplete_unsealed_vacuum_tube"
+  }
+}

@@ -23,10 +23,6 @@ import static io.github.createtechified.evolutioncore.common.registry.utils.GTIt
 public class EvoItems {
     public static void init() {}
 
-    static {
-        Reference.REGISTRATE.creativeModeTab(() -> EvoTabs.EVOLUTIONCORE_MAIN);
-    }
-
     // Misc Items
     public static ItemEntry<Item> PLANT_FIBER = constructBasicItem("plant_fiber", EvolutionCoreMod.id("item/early/plant_fiber"));
     public static ItemEntry<Item> FLINT_SHARD = constructBasicItem("flint_shard", EvolutionCoreMod.id("item/early/flint_shard"));
@@ -80,4 +76,12 @@ public class EvoItems {
     public static ItemEntry<Item> UXV_UNIVERSAL_1 = constructUniversalCircuit(12);
     public static ItemEntry<Item> OPV_UNIVERSAL_1 = constructUniversalCircuit(13);
     public static ItemEntry<Item> MAX_UNIVERSAL_1 = constructUniversalCircuit(14);
+    public static ItemEntry<Item> THORIUM_FUEL_ROD = constructFuelRod("thorium");
+    public static ItemEntry<Item> URANIUM_238_FUEL_ROD = constructFuelRod("uranium_238");
+    public static ItemEntry<Item> URANIUM_235_FUEL_ROD = constructFuelRod("uranium_235");
+    public static ItemEntry<Item> PLUTONIUM_FUEL_ROD = constructFuelRod("plutonium");
+    public static ItemEntry<Item> DEPLETED_THORIUM_FUEL_ROD = constructDepletedFuelRod("thorium");
+    public static ItemEntry<Item> DEPLETED_URANIUM_238_FUEL_ROD = constructDepletedFuelRod("uranium_238");
+    public static ItemEntry<Item> DEPLETED_URANIUM_235_FUEL_ROD = constructDepletedFuelRod("uranium_235");
+    public static ItemEntry<Item> DEPLETED_PLUTONIUM_FUEL_ROD = constructDepletedFuelRod("plutonium");
 }
