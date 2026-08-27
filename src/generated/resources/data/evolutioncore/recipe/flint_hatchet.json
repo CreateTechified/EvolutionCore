@@ -1,23 +1,23 @@
 {
-    "type": "minecraft:crafting_shaped",
-    "category": "equipment",
-    "key": {
-        "F": {
-            "item": "evolutioncore:flint_shard"
-        },
-        "P": {
-            "item": "evolutioncore:plant_fiber"
-        },
-        "S": {
-            "item": "minecraft:stick"
-        }
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "F": {
+      "item": "evolutioncore:flint_shard"
     },
-    "pattern": [
-        "PF",
-        "SP"
-    ],
-    "result": {
-        "count": 1,
-        "id": "evolutioncore:flint_hatchet"
+    "P": {
+      "item": "evolutioncore:plant_fiber"
+    },
+    "S": {
+      "item": "minecraft:stick"
     }
+  },
+  "pattern": [
+    "PF",
+    "SP"
+  ],
+  "result": {
+    "count": 1,
+    "id": "evolutioncore:flint_hatchet"
+  }
 }

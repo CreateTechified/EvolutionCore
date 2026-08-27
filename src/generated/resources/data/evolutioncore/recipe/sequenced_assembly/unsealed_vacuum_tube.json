@@ -7,11 +7,11 @@
   "results": [
     {
       "chance": 47.0,
-      "item": "evolutioncore:unsealed_vacuum_tube"
+      "id": "evolutioncore:unsealed_vacuum_tube"
     },
     {
       "chance": 53.0,
-      "item": "evolutioncore:failed_vacuum_tube_parts"
+      "id": "evolutioncore:failed_vacuum_tube_parts"
     }
   ],
   "sequence": [
@@ -22,14 +22,14 @@
           "item": "evolutioncore:incomplete_unsealed_vacuum_tube"
         },
         {
+          "type": "neoforge:tag",
           "amount": 200,
-          "fluid": "gtceu:glue",
-          "nbt": {}
+          "tag": "c:glue"
         }
       ],
       "results": [
         {
-          "item": "evolutioncore:incomplete_unsealed_vacuum_tube"
+          "id": "evolutioncore:incomplete_unsealed_vacuum_tube"
         }
       ]
     },
@@ -45,7 +45,7 @@
       ],
       "results": [
         {
-          "item": "evolutioncore:incomplete_unsealed_vacuum_tube"
+          "id": "evolutioncore:incomplete_unsealed_vacuum_tube"
         }
       ]
     },
@@ -58,7 +58,7 @@
       ],
       "results": [
         {
-          "item": "evolutioncore:incomplete_unsealed_vacuum_tube"
+          "id": "evolutioncore:incomplete_unsealed_vacuum_tube"
         }
       ]
     },
@@ -74,7 +74,7 @@
       ],
       "results": [
         {
-          "item": "evolutioncore:incomplete_unsealed_vacuum_tube"
+          "id": "evolutioncore:incomplete_unsealed_vacuum_tube"
         }
       ]
     },
@@ -90,7 +90,7 @@
       ],
       "results": [
         {
-          "item": "evolutioncore:incomplete_unsealed_vacuum_tube"
+          "id": "evolutioncore:incomplete_unsealed_vacuum_tube"
         }
       ]
     },
@@ -106,7 +106,7 @@
       ],
       "results": [
         {
-          "item": "evolutioncore:incomplete_unsealed_vacuum_tube"
+          "id": "evolutioncore:incomplete_unsealed_vacuum_tube"
         }
       ]
     },
@@ -119,7 +119,7 @@
       ],
       "results": [
         {
-          "item": "evolutioncore:incomplete_unsealed_vacuum_tube"
+          "id": "evolutioncore:incomplete_unsealed_vacuum_tube"
         }
       ]
     },
@@ -135,12 +135,12 @@
       ],
       "results": [
         {
-          "item": "evolutioncore:incomplete_unsealed_vacuum_tube"
+          "id": "evolutioncore:incomplete_unsealed_vacuum_tube"
         }
       ]
     }
   ],
-  "transitionalItem": {
-    "item": "evolutioncore:incomplete_unsealed_vacuum_tube"
+  "transitional_item": {
+    "id": "evolutioncore:incomplete_unsealed_vacuum_tube"
   }
 }

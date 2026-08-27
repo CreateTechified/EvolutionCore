@@ -1,7 +1,7 @@
 {
-    "variants": {
-        "": {
-            "model": "evolutioncore:block/solid_stainless_steel_machine_casing"
-        }
+  "variants": {
+    "": {
+      "model": "evolutioncore:block/solid_stainless_steel_machine_casing"
     }
+  }
 }

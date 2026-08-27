@@ -1,8 +1,8 @@
 {
-    "parent": "minecraft:block/cube_bottom_top",
-    "textures": {
-        "bottom": "evolutioncore:block/casings/stainless_steel/bottom",
-        "side": "evolutioncore:block/casings/stainless_steel/side",
-        "top": "evolutioncore:block/casings/stainless_steel/top"
-    }
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "bottom": "evolutioncore:block/casings/stainless_steel/bottom",
+    "side": "evolutioncore:block/casings/stainless_steel/side",
+    "top": "evolutioncore:block/casings/stainless_steel/top"
+  }
 }

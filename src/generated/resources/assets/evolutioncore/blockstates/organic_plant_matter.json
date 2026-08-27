@@ -1,7 +1,7 @@
 {
-    "variants": {
-        "": {
-            "model": "evolutioncore:block/organic_plant_matter"
-        }
+  "variants": {
+    "": {
+      "model": "evolutioncore:block/organic_plant_matter"
     }
+  }
 }

@@ -66,6 +66,8 @@ public class EvolutionCoreMod {
         Reference.REGISTRATE.creativeModeTab(() -> EvoTabs.EVOLUTIONCORE_MATERIALS);
         EvoElements.init();
         EvoMaterials.init();
+
+        EvoDatagen.registrateDatagen();
     }
 
     public static void addRecipes(RecipeOutput provider) {

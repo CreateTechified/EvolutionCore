@@ -1,7 +1,7 @@
 {
-    "variants": {
-        "": {
-            "model": "evolutioncore:block/solid_tungstensteel_machine_casing"
-        }
+  "variants": {
+    "": {
+      "model": "evolutioncore:block/solid_tungstensteel_machine_casing"
     }
+  }
 }

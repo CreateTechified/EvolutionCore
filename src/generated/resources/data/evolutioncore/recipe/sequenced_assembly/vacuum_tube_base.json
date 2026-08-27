@@ -7,11 +7,11 @@
   "results": [
     {
       "chance": 70.0,
-      "item": "evolutioncore:vacuum_tube_base"
+      "id": "evolutioncore:vacuum_tube_base"
     },
     {
       "chance": 30.0,
-      "item": "gtceu:steel_plate"
+      "id": "gtceu:steel_plate"
     }
   ],
   "sequence": [
@@ -24,12 +24,12 @@
       ],
       "results": [
         {
-          "item": "evolutioncore:incomplete_vacuum_tube_base"
+          "id": "evolutioncore:incomplete_vacuum_tube_base"
         }
       ]
     }
   ],
-  "transitionalItem": {
-    "item": "evolutioncore:incomplete_vacuum_tube_base"
+  "transitional_item": {
+    "id": "evolutioncore:incomplete_vacuum_tube_base"
   }
 }

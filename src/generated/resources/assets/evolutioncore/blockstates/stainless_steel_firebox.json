@@ -1,10 +1,10 @@
 {
-    "variants": {
-        "active=false": {
-            "model": "evolutioncore:block/stainless_steel_firebox"
-        },
-        "active=true": {
-            "model": "evolutioncore:block/stainless_steel_firebox_active"
-        }
+  "variants": {
+    "active=false": {
+      "model": "evolutioncore:block/stainless_steel_firebox"
+    },
+    "active=true": {
+      "model": "evolutioncore:block/stainless_steel_firebox_active"
     }
+  }
 }

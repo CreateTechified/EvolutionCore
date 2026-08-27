@@ -1,8 +1,8 @@
 {
-    "parent": "minecraft:block/cube_bottom_top",
-    "textures": {
-        "bottom": "evolutioncore:block/casings/naquadah_alloy/bottom",
-        "side": "evolutioncore:block/casings/naquadah_alloy/side",
-        "top": "evolutioncore:block/casings/naquadah_alloy/top"
-    }
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "bottom": "evolutioncore:block/casings/naquadah_alloy/bottom",
+    "side": "evolutioncore:block/casings/naquadah_alloy/side",
+    "top": "evolutioncore:block/casings/naquadah_alloy/top"
+  }
 }

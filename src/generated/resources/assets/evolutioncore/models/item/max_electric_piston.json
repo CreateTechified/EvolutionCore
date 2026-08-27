@@ -1,6 +1,6 @@
 {
-    "parent": "minecraft:item/generated",
-    "textures": {
-        "layer0": "evolutioncore:item/covers/max_electric_piston"
-    }
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "evolutioncore:item/covers/max_electric_piston"
+  }
 }

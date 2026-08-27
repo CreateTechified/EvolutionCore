@@ -1,6 +1,5 @@
 package io.github.createtechified.evolutioncore.datagen;
 
-import com.simibubi.create.infrastructure.data.GeneratedEntriesProvider;
 import com.tterrag.registrate.providers.ProviderType;
 import io.github.createtechified.evolutioncore.Reference;
 import io.github.createtechified.evolutioncore.datagen.providers.ItemTagHandler;
@@ -22,11 +21,14 @@ public class EvoDatagen {
         DataGenerator gen = e.getGenerator();
         PackOutput out = gen.getPackOutput();
         CompletableFuture<HolderLookup.Provider> lookupProvider = e.getLookupProvider();
-        Reference.REGISTRATE.addDataGenerator(ProviderType.LANG, LanguageHandler::init);
-        Reference.REGISTRATE.addDataGenerator(ProviderType.ITEM_TAGS, ItemTagHandler::init);
 
         if (e.includeServer()) {
             gen.addProvider(true, new SequencedAssemblyProvider(out, lookupProvider));
         }
+    }
+
+    public static void registrateDatagen() {
+        Reference.REGISTRATE.addDataGenerator(ProviderType.LANG, LanguageHandler::init);
+        Reference.REGISTRATE.addDataGenerator(ProviderType.ITEM_TAGS, ItemTagHandler::init);
     }
 }
