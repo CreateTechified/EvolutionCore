@@ -1,5 +1,6 @@
 package io.github.createtechified.evolutioncore;
 
+import com.gregtechceu.gtceu.api.data.chemical.material.event.PostMaterialEvent;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import io.github.createtechified.evolutioncore.common.overhaul.RemoveAllOresBiomeModifier;
@@ -68,6 +69,11 @@ public class EvolutionCoreMod {
         EvoMaterials.init();
 
         EvoDatagen.registrateDatagen();
+    }
+
+    @SubscribeEvent
+    public void modifyMaterials(PostMaterialEvent event) {
+        EvoModifications.materials();
     }
 
     public static void addRecipes(RecipeOutput provider) {
