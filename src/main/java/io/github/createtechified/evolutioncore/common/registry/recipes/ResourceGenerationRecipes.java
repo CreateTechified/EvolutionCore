@@ -54,11 +54,11 @@ public class ResourceGenerationRecipes {
 
         // Nuclear
         RecipeConstructors.fuelRodRecipes(c, "gtceu", "thorium", "evolutioncore", "thorium");
-        RecipeConstructors.fuelRodRecipes(c, "gtceu", "uranium", "evolutioncore", "uranium_238");
+        RecipeConstructors.fuelRodRecipes(c, "gtceu", "uranium_238", "evolutioncore", "uranium_238");
         RecipeConstructors.fuelRodRecipes(c, "gtceu", "uranium_235", "evolutioncore", "uranium_235");
-        RecipeConstructors.fuelRodRecipes(c, "gtceu", "plutonium", "evolutioncore", "plutonium");
+        RecipeConstructors.fuelRodRecipes(c, "gtceu", "plutonium_239", "evolutioncore", "plutonium");
         RecipeConstructors.depletedFuelRodRecipes(c, "evolutioncore", "thorium", "gtceu", "uranium_235", "gtceu", "rare_earth", "gtceu", "tritium");
-        RecipeConstructors.depletedFuelRodRecipes(c, "evolutioncore", "uranium_238", "gtceu", "plutonium", "gtceu", "thorium");
+        RecipeConstructors.depletedFuelRodRecipes(c, "evolutioncore", "uranium_238", "gtceu", "plutonium_239", "gtceu", "thorium");
         RecipeConstructors.depletedFuelRodRecipes(c, "evolutioncore", "uranium_235", "gtceu", "plutonium_241", "gtceu", "caesium", "gtceu", "krypton", "gtceu", "xenon");
         RecipeConstructors.depletedFuelRodRecipes(c, "evolutioncore", "plutonium", "gtceu", "polonium", "gtceu", "technetium");
         RecipeConstructors.simpleFissionReactions(c, "evolutioncore", "thorium", "evolutioncore", "thorium", -2048);
