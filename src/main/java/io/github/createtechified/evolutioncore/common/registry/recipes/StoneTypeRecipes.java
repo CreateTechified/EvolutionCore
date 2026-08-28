@@ -14,6 +14,8 @@ public class StoneTypeRecipes {
     public static void init(RecipeOutput c) {
         wall(c, "coke_bricks", GTBlocks.CASING_COKE_BRICKS.get(), EvoBlocks.CASING_COKE_BRICK_WALL.get());
         stair(c, "coke_bricks", GTBlocks.CASING_COKE_BRICKS.get(), EvoBlocks.CASING_COKE_BRICK_STAIRS.get());
+        wall(c, "firebricks", GTBlocks.CASING_PRIMITIVE_BRICKS.get(), EvoBlocks.CASING_PRIMITIVE_BRICK_WALL.get());
+        stair(c, "firebricks", GTBlocks.CASING_PRIMITIVE_BRICKS.get(), EvoBlocks.CASING_PRIMITIVE_BRICK_STAIRS.get());
     }
 
     private static void wall(RecipeOutput c, String name, Block source, Block wall) {

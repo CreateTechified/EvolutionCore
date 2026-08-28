@@ -58,7 +58,6 @@ public class EvoBlocks {
             .tag(ItemTags.STAIRS)
             .build()
             .register();
-
     public static final BlockEntry<WallBlock> CASING_COKE_BRICK_WALL = Reference.REGISTRATE
             .block("coke_oven_brick_wall", WallBlock::new)
             .initialProperties(() -> Blocks.BRICK_WALL)
@@ -67,6 +66,28 @@ public class EvoBlocks {
             .blockstate((ctx, prov) -> prov.wallBlock(ctx.getEntry(), GTCEu.id("block/casings/solid/machine_coke_bricks")))
             .item()
             .model((ctx, prov) -> prov.wallInventory(ctx.getName(), GTCEu.id("block/casings/solid/machine_coke_bricks")))
+            .tag(ItemTags.WALLS)
+            .build()
+            .register();
+
+    public static final BlockEntry<StairBlock> CASING_PRIMITIVE_BRICK_STAIRS = Reference.REGISTRATE
+            .block("firebrick_stairs", (p) -> new StairBlock(GTBlocks.CASING_PRIMITIVE_BRICKS.getDefaultState(), p))
+            .initialProperties(() -> Blocks.BRICK_STAIRS)
+            .lang("Firebrick Stairs")
+            .tag(BlockTags.STAIRS, BlockTags.MINEABLE_WITH_PICKAXE)
+            .blockstate((ctx, prov) -> prov.stairsBlock(ctx.getEntry(), GTCEu.id("block/casings/solid/machine_primitive_bricks")))
+            .item()
+            .tag(ItemTags.STAIRS)
+            .build()
+            .register();
+    public static final BlockEntry<WallBlock> CASING_PRIMITIVE_BRICK_WALL = Reference.REGISTRATE
+            .block("firebrick_wall", WallBlock::new)
+            .initialProperties(() -> Blocks.BRICK_WALL)
+            .lang("Firebrick Wall")
+            .tag(BlockTags.WALLS, BlockTags.MINEABLE_WITH_PICKAXE)
+            .blockstate((ctx, prov) -> prov.wallBlock(ctx.getEntry(), GTCEu.id("block/casings/solid/machine_primitive_bricks")))
+            .item()
+            .model((ctx, prov) -> prov.wallInventory(ctx.getName(), GTCEu.id("block/casings/solid/machine_primitive_bricks")))
             .tag(ItemTags.WALLS)
             .build()
             .register();
