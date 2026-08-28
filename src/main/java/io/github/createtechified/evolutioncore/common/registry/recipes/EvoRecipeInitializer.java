@@ -25,12 +25,13 @@ import static io.github.createtechified.evolutioncore.common.registry.recipes.Ev
 public class EvoRecipeInitializer {
     public static void init(RecipeOutput c) {
         // Classes
+        StoneTypeRecipes.init(c);
         ResourceGenerationRecipes.init(c);
         MachineShapedRecipes.init(c);
         pbfRecipes(c);
 
         // Stainless Steel Casings
-        ASSEMBLER_RECIPES.recipeBuilder("stainless_steel_firebox_casing")
+        ASSEMBLER_RECIPES.recipeBuilder(EvolutionCoreMod.id("stainless_steel_firebox_casing"))
                 .inputItems(rod, StainlessSteel, 3)
                 .inputItems(frameGt, StainlessSteel)
                 .inputItems(plate, StainlessSteel, 3)
@@ -40,7 +41,7 @@ public class EvoRecipeInitializer {
                 .save(c);
 
         // Naquadah Alloy Casings
-        ASSEMBLER_RECIPES.recipeBuilder("naquadah_alloy_machine_casing")
+        ASSEMBLER_RECIPES.recipeBuilder(EvolutionCoreMod.id("naquadah_alloy_machine_casing"))
                 .inputItems(plate, NaquadahAlloy, 6)
                 .inputItems(frameGt, NaquadahAlloy)
                 .outputItems(NAQUADAH_ALLOY_MACHINE_CASING.asStack(2))
@@ -49,7 +50,7 @@ public class EvoRecipeInitializer {
                 .circuitMeta(6)
                 .save(c);
 
-        ASSEMBLER_RECIPES.recipeBuilder("naquadah_alloy_gearbox")
+        ASSEMBLER_RECIPES.recipeBuilder(EvolutionCoreMod.id("naquadah_alloy_gearbox"))
                 .inputItems(plate, NaquadahAlloy, 4)
                 .inputItems(gear, NaquadahAlloy, 2)
                 .inputItems(frameGt, NaquadahAlloy)
@@ -59,7 +60,7 @@ public class EvoRecipeInitializer {
                 .circuitMeta(4)
                 .save(c);
 
-        ASSEMBLER_RECIPES.recipeBuilder("naquadah_alloy_firebox_casing")
+        ASSEMBLER_RECIPES.recipeBuilder(EvolutionCoreMod.id("naquadah_alloy_firebox_casing"))
                 .inputItems(rod, NaquadahAlloy, 3)
                 .inputItems(frameGt, NaquadahAlloy)
                 .inputItems(plate, NaquadahAlloy, 3)
@@ -68,7 +69,7 @@ public class EvoRecipeInitializer {
                 .EUt(30720)
                 .save(c);
 
-        ASSEMBLER_RECIPES.recipeBuilder("ludicrous_engine_intake_casing")
+        ASSEMBLER_RECIPES.recipeBuilder(EvolutionCoreMod.id("ludicrous_engine_intake_casing"))
                 .inputItems(rotor, NaquadahAlloy, 2)
                 .inputItems(pipeNormalFluid, NaquadahAlloy, 4)
                 .inputItems(NAQUADAH_ALLOY_MACHINE_CASING.asStack())
@@ -77,7 +78,7 @@ public class EvoRecipeInitializer {
                 .EUt(16)
                 .save(c);
 
-        ASSEMBLER_RECIPES.recipeBuilder("naquadah_alloy_turbine_casing")
+        ASSEMBLER_RECIPES.recipeBuilder(EvolutionCoreMod.id("naquadah_alloy_turbine_casing"))
                 .inputItems(CASING_STEEL_TURBINE.asStack())
                 .inputItems(plate, NaquadahAlloy, 6)
                 .outputItems(NAQUADAH_ALLOY_TURBINE_CASING.asStack(2))
@@ -91,7 +92,7 @@ public class EvoRecipeInitializer {
                 new RecipeConstructors.AlloyIngredient("gtceu", "copper", 3),
                 new RecipeConstructors.AlloyIngredient("gtceu", "tin", 1));
 
-        FUSION_RECIPES.recipeBuilder("darmstadtium_and_beryllium_to_neuralium_plasma")
+        FUSION_RECIPES.recipeBuilder(EvolutionCoreMod.id("darmstadtium_and_beryllium_to_neuralium_plasma"))
                 .inputFluids(Darmstadtium.getFluid(FluidStorageKeys.LIQUID, 144))
                 .inputFluids(Beryllium.getFluid(FluidStorageKeys.LIQUID, 250))
                 .outputFluids(Neuralium.getFluid(FluidStorageKeys.PLASMA, 144))
@@ -168,27 +169,22 @@ public class EvoRecipeInitializer {
                 .duration(1200)
                 .EUt(VA[ULV])
                 .save(c);
-
-        PRIMITIVE_ORE_FACTORY.recipeBuilder("temp")
-                .inputItems(crushed, Iron).inputFluids(Water, 1000)
-                .outputItems(dust, Iron)
-                .duration(400).save(c);
     }
 
     private static void pbfRecipes(RecipeOutput provider) {
-        PRIMITIVE_BLAST_FURNACE.recipeBuilder("steel_iron")
+        PRIMITIVE_BLAST_FURNACE.recipeBuilder(EvolutionCoreMod.id("steel_iron"))
                 .inputItems(ingot, Iron).outputItems(ingot, Steel).outputItems(dustTiny, DarkAsh, 2).duration(1600)
                 .save(provider);
 
-        PRIMITIVE_BLAST_FURNACE.recipeBuilder("steel_iron_block")
+        PRIMITIVE_BLAST_FURNACE.recipeBuilder(EvolutionCoreMod.id("steel_iron_block"))
                 .inputItems(block, Iron).outputItems(block, Steel).outputItems(dust, DarkAsh, 2).duration(16000)
                 .save(provider);
 
-        PRIMITIVE_BLAST_FURNACE.recipeBuilder("steel_wrought_iron")
+        PRIMITIVE_BLAST_FURNACE.recipeBuilder(EvolutionCoreMod.id("steel_wrought_iron"))
                 .inputItems(ingot, WroughtIron).outputItems(ingot, Steel).outputItems(dustTiny, DarkAsh, 2).duration(800)
                 .save(provider);
 
-        PRIMITIVE_BLAST_FURNACE.recipeBuilder("steel_wrought_iron_block")
+        PRIMITIVE_BLAST_FURNACE.recipeBuilder(EvolutionCoreMod.id("steel_wrought_iron_block"))
                 .inputItems(block, WroughtIron).outputItems(block, Steel).outputItems(dust, DarkAsh, 2).duration(8000)
                 .save(provider);
     }

@@ -39,18 +39,19 @@ public class EvoPredicates {
                 .candidates(List.of(BlockInfo.fromBlockState(previewDirState(block, relativeDir, half, invertedFacing))))
                 .predicate(ctx -> {
                     PatternState pstate = Objects.requireNonNull(((PredicateContextAccessor) ctx).evoc$getPatternState());
+                    MultiblockControllerMachine controller = Objects.requireNonNull(pstate.getController());
                     BlockState state = ctx.state();
                     if (!state.is(block)) return false;
 
                     if (half != null) {
                         if (!state.hasProperty(BlockStateProperties.HALF)) return false;
-                        if (state.getValue(BlockStateProperties.HALF) != half) return false;
+                        Half expectedHalf = halfHandler(half, controller.getUpwardsFacing());
+                        if (state.getValue(BlockStateProperties.HALF) != expectedHalf) return false;
                     }
 
                     Direction facing = Objects.requireNonNull(getFacing(state));
                     if (invertedFacing) facing = facing.getOpposite(); // Some blocks PISS ME OFF. thanks.
 
-                    MultiblockControllerMachine controller = Objects.requireNonNull(pstate.getController());
                     Direction controllerFacing = controller.getFrontFacing();
                     Direction targetDirection = relativeDir.applyDirection(controllerFacing);
 
@@ -63,10 +64,14 @@ public class EvoPredicates {
         return new PredicateBuilder("half_" + block.getDescriptionId())
                 .candidates(List.of(BlockInfo.fromBlockState(previewHalfState(block, half))))
                 .predicate(ctx -> {
+                    PatternState pstate = Objects.requireNonNull(((PredicateContextAccessor) ctx).evoc$getPatternState());
                     BlockState state = ctx.state();
                     if (!state.is(block)) return false;
                     if (!state.hasProperty(BlockStateProperties.HALF)) return false;
-                    return state.getValue(BlockStateProperties.HALF) == half;
+
+                    MultiblockControllerMachine controller = Objects.requireNonNull(pstate.getController());
+                    Half expectedHalf = halfHandler(half, controller.getUpwardsFacing());
+                    return state.getValue(BlockStateProperties.HALF) == expectedHalf;
                 })
                 .toMultiPredicate();
     }
@@ -83,6 +88,7 @@ public class EvoPredicates {
 
     private static BlockState previewDirState(Block block, RelativeDirection relativeDir, @Nullable Half half, boolean invertedFacing) {
         Direction previewControllerFacing = Direction.NORTH;
+        Direction previewUpwardsFacing = Direction.UP;
         Direction target = relativeDir.applyDirection(previewControllerFacing);
         if (invertedFacing) target = target.getOpposite();
 
@@ -93,16 +99,25 @@ public class EvoPredicates {
             state = state.setValue(BlockStateProperties.HORIZONTAL_FACING, target);
         }
         if (half != null && state.hasProperty(BlockStateProperties.HALF)) {
-            state = state.setValue(BlockStateProperties.HALF, half);
+            state = state.setValue(BlockStateProperties.HALF, halfHandler(half, previewUpwardsFacing));
         }
         return state;
     }
 
     private static BlockState previewHalfState(Block block, Half half) {
+        Direction previewUpwardsFacing = Direction.UP;
         BlockState previewState = block.defaultBlockState();
         if (previewState.hasProperty(BlockStateProperties.HALF)) {
-            previewState = previewState.setValue(BlockStateProperties.HALF, half);
+            previewState = previewState.setValue(BlockStateProperties.HALF, halfHandler(half, previewUpwardsFacing));
         }
         return previewState;
+    }
+
+    private static Half halfHandler(Half half, Direction upwardsFacing) {
+        return upwardsFacing == Direction.DOWN ? flip(half) : half;
+    }
+
+    private static Half flip(Half half) {
+        return half == Half.TOP ? Half.BOTTOM : Half.TOP;
     }
 }
