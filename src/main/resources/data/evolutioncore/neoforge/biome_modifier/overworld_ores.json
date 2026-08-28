@@ -1,0 +1,4 @@
+{
+  "type": "evolutioncore:remove_all_ores",
+  "biomes": "#minecraft:is_overworld"
+}

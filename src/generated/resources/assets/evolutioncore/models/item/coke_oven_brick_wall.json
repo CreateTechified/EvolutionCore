@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/wall_inventory",
+  "textures": {
+    "wall": "gtceu:block/casings/solid/machine_coke_bricks"
+  }
+}

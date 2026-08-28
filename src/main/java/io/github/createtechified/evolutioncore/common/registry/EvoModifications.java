@@ -8,7 +8,9 @@ import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
 import com.gregtechceu.gtceu.api.machine.MultiblockMachineDefinition;
 import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
+import com.gregtechceu.gtceu.common.data.GTRecipeTypes;
 import com.gregtechceu.gtceu.common.data.machines.GTMultiMachines;
+import com.gregtechceu.gtceu.common.mui.GTGuiTheme;
 import io.github.createtechified.evolutioncore.Reference;
 import io.github.createtechified.evolutioncore.common.registry.recipes.EvoRecipeTypes;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -23,9 +25,12 @@ public class EvoModifications {
             MultiblockMachineDefinition m = s.get();
             m.setRenderXEIPreview(false);
             m.setRenderWorldPreview(false);
-            m.setRecipeTypes(new GTRecipeType[]{EvoRecipeTypes.NULL});
+            m.setRecipeTypes(new GTRecipeType[]{GTRecipeTypes.DUMMY_RECIPES});
         }
         GTMultiMachines.PRIMITIVE_BLAST_FURNACE.setRecipeTypes(new GTRecipeType[]{EvoRecipeTypes.PRIMITIVE_BLAST_FURNACE});
+        GTMultiMachines.WOODEN_MULTIBLOCK_TANK.setThemeId(GTGuiTheme.PRIMITIVE.getId());
+        GTMultiMachines.BRONZE_MULTIBLOCK_TANK.setThemeId(GTGuiTheme.BRONZE.getId());
+        GTMultiMachines.STEEL_MULTIBLOCK_TANK.setThemeId(GTGuiTheme.STEEL.getId());
     }
 
     public static void materials() {

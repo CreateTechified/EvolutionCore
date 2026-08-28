@@ -17,8 +17,6 @@ public class EvoRecipeTypes {
         return GTRecipeTypes.register(EvolutionCoreMod.id(name), group, proxyRecipes);
     }
 
-    public static final GTRecipeType NULL = register("null", GTRecipeTypes.DUMMY); // This only exists to be a null recipe for removing multiblocks.
-
     public static final GTRecipeType PRIMITIVE_BLAST_FURNACE = register("primitive_blast_furnace", GTRecipeTypes.MULTIBLOCK).setMaxIOSize(2, 2, 0, 0).UI(builder -> builder.setProgressBar(GTGuiTextures.PROGRESS_ARROW)).setSound(GTSoundEntries.FIRE).setIconSupplier(() -> GTMultiMachines.PRIMITIVE_BLAST_FURNACE.asStack()); // Don't change to method ref (::) else it'll break.
     public static final GTRecipeType PRIMITIVE_ALLOY_SMELTER = register("primitive_alloy_smelter", GTRecipeTypes.MULTIBLOCK).setMaxIOSize(3,2,0,0).UI(builder -> builder.setProgressBar(GTGuiTextures.PROGRESS_ARROW)).setSound(GTSoundEntries.FURNACE);
     public static final GTRecipeType PRIMITIVE_ORE_FACTORY = register("primitive_ore_factory", GTRecipeTypes.MULTIBLOCK).setMaxIOSize(2,6,1, 0).UI(builder -> builder.setProgressBar(GTGuiTextures.PROGRESS_MACERATE)).setSound(GTSoundEntries.BOILER);

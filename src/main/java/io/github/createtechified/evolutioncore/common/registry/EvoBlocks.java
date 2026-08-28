@@ -3,12 +3,18 @@ package io.github.createtechified.evolutioncore.common.registry;
 import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.block.ActiveBlock;
 import com.gregtechceu.gtceu.common.block.CoilBlock;
+import com.gregtechceu.gtceu.common.data.GTBlocks;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import io.github.createtechified.evolutioncore.EvolutionCoreMod;
+import io.github.createtechified.evolutioncore.Reference;
 import io.github.createtechified.evolutioncore.common.registry.utils.ActiveBlockConstructors;
 import io.github.createtechified.evolutioncore.common.registry.utils.BlockConstructors;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.StairBlock;
+import net.minecraft.world.level.block.WallBlock;
 
 @SuppressWarnings("unused")
 public class EvoBlocks {
@@ -41,4 +47,27 @@ public class EvoBlocks {
     public static BlockEntry<Block> FUSION_CASING_MK5 = BlockConstructors.constructFusionCasingBlock("fusion_casing_mk5", "fusion_casing_mk5", "Fusion Machine Casing MK V");
     public static BlockEntry<Block> INERTIAL_FUSION_CASING = BlockConstructors.constructFusionCasingBlock("inertial_fusion_casing", "inertial_fusion_casing", "Inertial Fusion Machine Casing");
     public static BlockEntry<Block> INERTIAL_FUSION_CASING_MK2 = BlockConstructors.constructFusionCasingBlock("inertial_fusion_casing_mk2", "inertial_fusion_casing_mk2", "Inertial Fusion Machine Casing MK II");
+
+    public static final BlockEntry<StairBlock> CASING_COKE_BRICK_STAIRS = Reference.REGISTRATE
+            .block("coke_oven_brick_stairs", (p) -> new StairBlock(GTBlocks.CASING_COKE_BRICKS.getDefaultState(), p))
+            .initialProperties(() -> Blocks.BRICK_STAIRS)
+            .lang("Coke Oven Brick Stairs")
+            .tag(BlockTags.STAIRS, BlockTags.MINEABLE_WITH_PICKAXE)
+            .blockstate((ctx, prov) -> prov.stairsBlock(ctx.getEntry(), GTCEu.id("block/casings/solid/machine_coke_bricks")))
+            .item()
+            .tag(ItemTags.STAIRS)
+            .build()
+            .register();
+
+    public static final BlockEntry<WallBlock> CASING_COKE_BRICK_WALL = Reference.REGISTRATE
+            .block("coke_oven_brick_wall", WallBlock::new)
+            .initialProperties(() -> Blocks.BRICK_WALL)
+            .lang("Coke Oven Brick Wall")
+            .tag(BlockTags.WALLS, BlockTags.MINEABLE_WITH_PICKAXE)
+            .blockstate((ctx, prov) -> prov.wallBlock(ctx.getEntry(), GTCEu.id("block/casings/solid/machine_coke_bricks")))
+            .item()
+            .model((ctx, prov) -> prov.wallInventory(ctx.getName(), GTCEu.id("block/casings/solid/machine_coke_bricks")))
+            .tag(ItemTags.WALLS)
+            .build()
+            .register();
 }

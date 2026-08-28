@@ -41,13 +41,6 @@ config="${mod_id}.mixins.json"
     side = "BOTH"
 
 [[dependencies.${mod_id}]]
-    modId="kubejs"
-    mandatory = true
-    versionRange = "${kjs_version_range}"
-    ordering = "NONE"
-    side = "BOTH"
-
-[[dependencies.${mod_id}]]
     modId="create"
     mandatory = true
     versionRange = "${create_version_range}"
