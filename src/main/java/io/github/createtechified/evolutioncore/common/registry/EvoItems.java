@@ -4,7 +4,6 @@ import com.simibubi.create.content.processing.sequenced.SequencedAssemblyItem;
 import com.tterrag.registrate.providers.RegistrateRecipeProvider;
 import com.tterrag.registrate.util.entry.ItemEntry;
 import io.github.createtechified.evolutioncore.EvolutionCoreMod;
-import io.github.createtechified.evolutioncore.common.data.item.HammerItem;
 import io.github.createtechified.evolutioncore.common.data.item.HealingAxe;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.data.recipes.RecipeCategory;
@@ -23,8 +22,6 @@ public class EvoItems {
     public static void init() {}
 
     // Misc Items
-    public static ItemEntry<Item> PLANT_FIBER = constructBasicItem("plant_fiber", EvolutionCoreMod.id("item/early/plant_fiber"));
-    public static ItemEntry<Item> FLINT_SHARD = constructBasicItem("flint_shard", EvolutionCoreMod.id("item/early/flint_shard"));
     public static ItemEntry<Item> GPS_DEVICE = constructItem("gps_device", EvolutionCoreMod.id("item/tools/gps_device"), Item::new, b -> b.lang("GPS Device").properties(p -> p.stacksTo(1)));
     // Vacuum Tube Parts (ULV/Steam)
     public static ItemEntry<Item> CARBON_FILAMENT = constructBasicItem("carbon_filament", EvolutionCoreMod.id("item/vactube/carbon_filament"));
@@ -45,18 +42,6 @@ public class EvoItems {
     public static ItemEntry<Item> MAX_EMITTER = constructEmitter(14);
     public static ItemEntry<Item> MAX_SENSOR = constructSensor(14);
     // Tools
-    public static ItemEntry<AxeItem> FLINT_HATCHET = constructHandheldItem("flint_hatchet", EvolutionCoreMod.id("item/tools/flint_hatchet"),
-            p -> new AxeItem(Tiers.GOLD, p),
-            b -> b.recipe((ctx, prov) -> ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, ctx.get())
-                            .pattern("PF")
-                            .pattern("SP")
-                            .define('S', Items.STICK)
-                            .define('P', EvoItems.PLANT_FIBER)
-                            .define('F', EvoItems.FLINT_SHARD)
-                            .unlockedBy("has_flint", RegistrateRecipeProvider.has(Items.FLINT))
-                            .save(prov)));
-    public static ItemEntry<HammerItem> FLINT_HAMMER = constructHandheldItem("flint_hammer", EvolutionCoreMod.id("item/tools/flint_hammer"),
-            p -> new HammerItem(Tiers.GOLD, p), b -> {});
     public static ItemEntry<HealingAxe> HEALING_AXE = constructHandheldItem("healing_axe", EvolutionCoreMod.id("item/tools/healing_axe"),
             p -> new HealingAxe(Tiers.DIAMOND, p.component(DataComponents.UNBREAKABLE, new Unbreakable(true))), b -> {});
     // Universal circuits
