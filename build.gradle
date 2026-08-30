@@ -165,9 +165,6 @@ dependencies {
     implementation "org.appliedenergistics:appliedenergistics2:${ae2_version}"
     implementation "brachy.modularui:modularui-mc${minecraft_version}:${mui_version}"
     implementation "com.tterrag.registrate:Registrate:${registrate_version}"
-    implementation "dev.architectury:architectury-neoforge:${architectury_version}"
-    implementation "dev.latvian.mods:rhino:${rhino_version}"
-    implementation "dev.latvian.mods:kubejs-neoforge:${kubejs_version}"
     implementation("com.simibubi.create:create-${minecraft_version}:${create_version}:slim") { transitive = false }
     localRuntime "org.appliedenergistics:guideme:${guideme_version}"
     localRuntime "net.createmod.ponder:ponder-neoforge:${ponder_version}+mc${minecraft_version}"
