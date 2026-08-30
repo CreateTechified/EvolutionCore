@@ -1,13 +1,18 @@
 package io.github.createtechified.evolutioncore.datagen.providers;
 
+import brachy.modularui.utils.FormattingUtil;
+import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
 import com.gregtechceu.gtceu.api.registry.GTRegistries;
 import com.tterrag.registrate.providers.RegistrateLangProvider;
+import net.minecraft.core.registries.BuiltInRegistries;
 
 public class LanguageHandler {
     public static void init(RegistrateLangProvider provider) {
-        for (var recipeType : GTRegistries.RECIPE_TYPES) {
-            if (recipeType.registryName.getNamespace().equals("evolutioncore")) provider.add(recipeType.registryName.toLanguageKey(), RegistrateLangProvider.toEnglishName(recipeType.registryName.getPath()));
-        } // Stupid solutions to stupid problems. Works though.
+        for (var recipeType : BuiltInRegistries.RECIPE_TYPE) {
+            if (recipeType instanceof GTRecipeType gtRecipeType) {
+                provider.add(gtRecipeType.getTranslationKey(), FormattingUtil.toEnglishName(gtRecipeType.registryName.getPath()));
+            }
+        }
         // TODO: make these better
         provider.add("evolutioncore.tooltip.steam_vent", "Exhausts Steam from Multiblocks");
         provider.add("evolutioncore.tooltip.steam_vent.warn", "⚠ | Obstruction of output prevents the machine from running more recipes.");
