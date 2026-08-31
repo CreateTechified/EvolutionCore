@@ -5,6 +5,7 @@
   "refmap": "evolutioncore.refmap.json",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
+    "gt.AbstractStructureHelperMixin",
     "gt.BaseMultiblockMixin",
     "gt.GCYMMultiblockMixin",
     "gt.MachineConfigsMixin",

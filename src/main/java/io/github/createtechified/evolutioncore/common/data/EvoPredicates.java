@@ -14,13 +14,17 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.Half;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.Collections;
+import java.util.IdentityHashMap;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 public class EvoPredicates {
     /* For anyone trying to comprehend this,
      * I'm sorry.
      */
+    public static final Set<BlockState> HALF_AWARE_CANDIDATES = Collections.newSetFromMap(new IdentityHashMap<>());
 
     public static MultiPredicate directionalBlock(Block block, RelativeDirection relativeDir) {
         return directionalBlock(block, relativeDir, null, false);
@@ -35,8 +39,10 @@ public class EvoPredicates {
     }
 
     public static MultiPredicate directionalBlock(Block block, RelativeDirection relativeDir, @Nullable Half half, boolean invertedFacing) {
+        BlockState previewState = previewDirState(block, relativeDir, half, invertedFacing);
+        if (half != null) {HALF_AWARE_CANDIDATES.add(previewState);}
         return new PredicateBuilder("directional_" + block.getDescriptionId())
-                .candidates(List.of(BlockInfo.fromBlockState(previewDirState(block, relativeDir, half, invertedFacing))))
+                .candidates(List.of(BlockInfo.fromBlockState(previewState)))
                 .predicate(ctx -> {
                     PatternState pstate = Objects.requireNonNull(((PredicateContextAccessor) ctx).evoc$getPatternState());
                     MultiblockControllerMachine controller = Objects.requireNonNull(pstate.getController());
@@ -117,7 +123,7 @@ public class EvoPredicates {
         return upwardsFacing == Direction.DOWN ? flip(half) : half;
     }
 
-    private static Half flip(Half half) {
+    public static Half flip(Half half) {
         return half == Half.TOP ? Half.BOTTOM : Half.TOP;
     }
 }
