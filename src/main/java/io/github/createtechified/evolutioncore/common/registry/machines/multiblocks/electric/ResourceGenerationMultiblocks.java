@@ -7,6 +7,7 @@ import com.gregtechceu.gtceu.api.machine.multiblock.PartAbility;
 import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.multiblock.Predicates;
 import com.gregtechceu.gtceu.api.multiblock.pattern.MultiblockPatternBuilder;
+import com.gregtechceu.gtceu.api.registry.registrate.entry.MachineEntry;
 import com.gregtechceu.gtceu.common.data.GTBlocks;
 import com.simibubi.create.content.decoration.palettes.AllPaletteBlocks;
 import io.github.createtechified.evolutioncore.Reference;
@@ -21,7 +22,7 @@ import static com.gregtechceu.gtceu.api.multiblock.util.RelativeDirection.*;
 public class ResourceGenerationMultiblocks {
     public static void init() {}
 
-    public static final MultiblockMachineDefinition STEEL_GREENHOUSE = Reference.REGISTRATE
+    public static final MachineEntry<MultiblockMachineDefinition> STEEL_GREENHOUSE = Reference.REGISTRATE
             .multiblock("steel_greenhouse", WorkableElectricMultiblockMachine::new)
             .rotationState(RotationState.NON_Y_AXIS)
             .appearanceBlock(GTBlocks.CASING_STEEL_SOLID)

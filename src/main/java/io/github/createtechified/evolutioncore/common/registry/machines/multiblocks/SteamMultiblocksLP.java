@@ -8,6 +8,7 @@ import com.gregtechceu.gtceu.api.machine.MultiblockMachineDefinition;
 import com.gregtechceu.gtceu.api.machine.multiblock.PartAbility;
 import com.gregtechceu.gtceu.api.multiblock.Predicates;
 import com.gregtechceu.gtceu.api.multiblock.pattern.MultiblockPatternBuilder;
+import com.gregtechceu.gtceu.api.registry.registrate.entry.MachineEntry;
 import com.gregtechceu.gtceu.common.data.GTBlocks;
 import com.gregtechceu.gtceu.common.data.GTMaterialBlocks;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
@@ -32,7 +33,7 @@ import static com.gregtechceu.gtceu.api.multiblock.util.RelativeDirection.*;
 public class SteamMultiblocksLP {
     public static void init() {}
 
-    public static final MultiblockMachineDefinition LP_STEAM_ALLOY_KILN = Reference.REGISTRATE
+    public static final MachineEntry<MultiblockMachineDefinition> LP_STEAM_ALLOY_KILN = Reference.REGISTRATE
             .multiblock("lp_steam_alloy_kiln", LPSteamParallelMultiblockMachine::new)
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(GTRecipeTypes.ALLOY_SMELTER_RECIPES)
@@ -63,7 +64,7 @@ public class SteamMultiblocksLP {
             .themeId(GTGuiTheme.BRONZE.getId())
             .register();
 
-    public static final MultiblockMachineDefinition LP_STEAM_GRINDER = Reference.REGISTRATE
+    public static final MachineEntry<MultiblockMachineDefinition> LP_STEAM_GRINDER = Reference.REGISTRATE
             .multiblock("lp_steam_grinder", LPSteamParallelMultiblockMachine::new)
             .rotationState(RotationState.NON_Y_AXIS)
             .appearanceBlock(GTBlocks.CASING_BRONZE_BRICKS)
@@ -93,7 +94,7 @@ public class SteamMultiblocksLP {
             .themeId(GTGuiTheme.BRONZE.getId())
             .register();
 
-    public static final MultiblockMachineDefinition LP_STEAM_OVEN = Reference.REGISTRATE
+    public static final MachineEntry<MultiblockMachineDefinition> LP_STEAM_OVEN = Reference.REGISTRATE
             .multiblock("lp_steam_oven", LPSteamParallelMultiblockMachine::new)
             .rotationState(RotationState.NON_Y_AXIS)
             .appearanceBlock(GTBlocks.CASING_BRONZE_BRICKS)
@@ -125,7 +126,7 @@ public class SteamMultiblocksLP {
             .themeId(GTGuiTheme.BRONZE.getId())
             .register();
 
-    public static final MultiblockMachineDefinition LP_STEAM_SEPARATOR = Reference.REGISTRATE
+    public static final MachineEntry<MultiblockMachineDefinition> LP_STEAM_SEPARATOR = Reference.REGISTRATE
             .multiblock("lp_steam_separator", LPSteamParallelMultiblockMachine::new)
             .rotationState(RotationState.NON_Y_AXIS)
             .appearanceBlock(GTBlocks.CASING_BRONZE_BRICKS)
@@ -159,7 +160,7 @@ public class SteamMultiblocksLP {
             .themeId(GTGuiTheme.BRONZE.getId())
             .register();
 
-    public static final MultiblockMachineDefinition LP_STEAM_PURIFIER = Reference.REGISTRATE
+    public static final MachineEntry<MultiblockMachineDefinition> LP_STEAM_PURIFIER = Reference.REGISTRATE
             .multiblock("lp_steam_purifier", LPSteamParallelMultiblockMachine::new)
             .rotationState(RotationState.NON_Y_AXIS)
             .appearanceBlock(GTBlocks.CASING_BRONZE_BRICKS)
@@ -198,7 +199,7 @@ public class SteamMultiblocksLP {
             .themeId(GTGuiTheme.BRONZE.getId())
             .register();
 
-    public static final MultiblockMachineDefinition LP_STEAM_IMPACT_FORGE = Reference.REGISTRATE
+    public static final MachineEntry<MultiblockMachineDefinition> LP_STEAM_IMPACT_FORGE = Reference.REGISTRATE
             .multiblock("lp_steam_impact_forge", LPSteamParallelMultiblockMachine::new)
             .rotationState(RotationState.NON_Y_AXIS)
             .appearanceBlock(GTBlocks.CASING_BRONZE_BRICKS)
@@ -232,7 +233,7 @@ public class SteamMultiblocksLP {
             .themeId(GTGuiTheme.BRONZE.getId())
             .register();
 
-    public static final MultiblockMachineDefinition LP_STEAM_ORE_FACTORY = Reference.REGISTRATE
+    public static final MachineEntry<MultiblockMachineDefinition> LP_STEAM_ORE_FACTORY = Reference.REGISTRATE
             .multiblock("lp_steam_ore_factory", LPSteamParallelMultiblockMachine::new)
             .rotationState(RotationState.NON_Y_AXIS)
             .appearanceBlock(GTBlocks.CASING_BRONZE_BRICKS)

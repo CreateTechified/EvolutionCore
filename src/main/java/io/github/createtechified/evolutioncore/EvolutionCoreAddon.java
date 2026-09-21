@@ -18,11 +18,6 @@ public class EvolutionCoreAddon implements IGTAddon {
     }
 
     @Override
-    public void gtInitComplete() {
-        Reference.LOGGER.info("EvolutionCore GT Init Complete!");
-    }
-
-    @Override
     public void addRecipes(RecipeOutput provider) {
         EvolutionCoreMod.addRecipes(provider);
     }

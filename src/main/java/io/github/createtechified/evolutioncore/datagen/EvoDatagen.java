@@ -2,7 +2,6 @@ package io.github.createtechified.evolutioncore.datagen;
 
 import com.tterrag.registrate.providers.ProviderType;
 import io.github.createtechified.evolutioncore.Reference;
-import io.github.createtechified.evolutioncore.datagen.providers.ItemTagHandler;
 import io.github.createtechified.evolutioncore.datagen.providers.LanguageHandler;
 import io.github.createtechified.evolutioncore.datagen.providers.recipe.SequencedAssemblyProvider;
 import net.minecraft.core.HolderLookup;
@@ -29,6 +28,5 @@ public class EvoDatagen {
 
     public static void registrateDatagen() {
         Reference.REGISTRATE.addDataGenerator(ProviderType.LANG, LanguageHandler::init);
-        Reference.REGISTRATE.addDataGenerator(ProviderType.ITEM_TAGS, ItemTagHandler::init);
     }
 }

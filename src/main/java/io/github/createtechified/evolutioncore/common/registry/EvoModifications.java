@@ -20,19 +20,6 @@ import net.minecraft.world.item.Item;
 import java.util.function.Supplier;
 
 public class EvoModifications {
-    public static void machines() {
-        for (Supplier<MultiblockMachineDefinition> s : Reference.MACHINES_TO_REMOVE) {
-            MultiblockMachineDefinition m = s.get();
-            m.setRenderXEIPreview(false);
-            m.setRenderWorldPreview(false);
-            m.setRecipeTypes(new GTRecipeType[]{GTRecipeTypes.DUMMY_RECIPES});
-        }
-        GTMultiMachines.PRIMITIVE_BLAST_FURNACE.setRecipeTypes(new GTRecipeType[]{EvoRecipeTypes.PRIMITIVE_BLAST_FURNACE});
-        GTMultiMachines.WOODEN_MULTIBLOCK_TANK.setThemeId(GTGuiTheme.PRIMITIVE.getId());
-        GTMultiMachines.BRONZE_MULTIBLOCK_TANK.setThemeId(GTGuiTheme.BRONZE.getId());
-        GTMultiMachines.STEEL_MULTIBLOCK_TANK.setThemeId(GTGuiTheme.STEEL.getId());
-    }
-
     public static void materials() {
         GTMaterials.NaquadahAlloy.setProperty(
                 PropertyKey.FLUID_PIPE,
@@ -76,26 +63,5 @@ public class EvoModifications {
 
         GTMaterials.Netherite.setFormula("Nr");
         EvoMaterials.QuantumInfusion.setFormula("⚛");
-    }
-
-    private static void ingot(String material, String itemId) {
-        TagPrefix.ingot.setIgnored(GTMaterials.get(material), itemSupplier(itemId));
-    }
-    private static void block(String material, String itemId) {
-        TagPrefix.block.setIgnored(GTMaterials.get(material), itemSupplier(itemId));
-    }
-    private static void nugget(String material, String itemId) {
-        TagPrefix.nugget.setIgnored(GTMaterials.get(material), itemSupplier(itemId));
-    }
-    private static void dust(String material, String itemId) {
-        TagPrefix.dust.setIgnored(GTMaterials.get(material), itemSupplier(itemId));
-    }
-    private static void gem(String material, String itemId) {
-        TagPrefix.gem.setIgnored(GTMaterials.get(material), itemSupplier(itemId));
-    }
-
-    private static Supplier<Item> itemSupplier(String itemId) {
-        ResourceLocation rl = ResourceLocation.parse(itemId); // e.g. "experienceobelisk:cognitive_amalgam"
-        return () -> BuiltInRegistries.ITEM.get(rl);
     }
 }

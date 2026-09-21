@@ -8,6 +8,7 @@ import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMa
 import com.gregtechceu.gtceu.api.multiblock.Predicates;
 import com.gregtechceu.gtceu.api.multiblock.pattern.MultiblockPatternBuilder;
 import com.gregtechceu.gtceu.api.recipe.OverclockingLogic;
+import com.gregtechceu.gtceu.api.registry.registrate.entry.MachineEntry;
 import com.gregtechceu.gtceu.common.data.*;
 import io.github.createtechified.evolutioncore.Reference;
 import io.github.createtechified.evolutioncore.common.data.machine.electric.FixedHeatingCoilElectricMultiblock;
@@ -21,7 +22,7 @@ import static com.gregtechceu.gtceu.api.multiblock.util.RelativeDirection.*;
 public class UpgradeMultiblocks {
     public static void init() {}
 
-    public static final MultiblockMachineDefinition LARGE_CHEMICAL_PLANT = Reference.REGISTRATE
+    public static final MachineEntry<MultiblockMachineDefinition> LARGE_CHEMICAL_PLANT = Reference.REGISTRATE
             .multiblock("large_chemical_plant", WorkableElectricMultiblockMachine::new)
             .rotationState(RotationState.NON_Y_AXIS)
             .appearanceBlock(GCYMBlocks.CASING_HIGH_TEMPERATURE_SMELTING)
@@ -55,7 +56,7 @@ public class UpgradeMultiblocks {
             .tooltips(Component.translatable("evolutioncore.tooltip.large_chemical_plant").withStyle(ChatFormatting.GRAY))
             .register();
 
-    public static final MultiblockMachineDefinition FUSION_ALLOYING_CHAMBER = Reference.REGISTRATE
+    public static final MachineEntry<MultiblockMachineDefinition> FUSION_ALLOYING_CHAMBER = Reference.REGISTRATE
             .multiblock("fusion_alloying_chamber", FixedHeatingCoilElectricMultiblock::new)
             .rotationState(RotationState.NON_Y_AXIS)
             .appearanceBlock(GCYMBlocks.CASING_HIGH_TEMPERATURE_SMELTING)

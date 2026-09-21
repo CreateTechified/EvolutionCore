@@ -8,6 +8,7 @@ import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMa
 import com.gregtechceu.gtceu.api.multiblock.Predicates;
 import com.gregtechceu.gtceu.api.multiblock.pattern.MultiblockPatternBuilder;
 import com.gregtechceu.gtceu.api.recipe.OverclockingLogic;
+import com.gregtechceu.gtceu.api.registry.registrate.entry.MachineEntry;
 import com.gregtechceu.gtceu.common.data.GTBlocks;
 import com.gregtechceu.gtceu.common.data.GTRecipeModifiers;
 import io.github.createtechified.evolutioncore.EvolutionCoreMod;
@@ -22,7 +23,7 @@ import static com.gregtechceu.gtceu.api.multiblock.util.RelativeDirection.*;
 public class OreProcessingMultiblocks {
     public static void init() {}
 
-    public static final MultiblockMachineDefinition ELECTRIC_ORE_FACTORY = Reference.REGISTRATE
+    public static final MachineEntry<MultiblockMachineDefinition> ELECTRIC_ORE_FACTORY = Reference.REGISTRATE
             .multiblock("electric_ore_factory", WorkableElectricMultiblockMachine::new)
             .rotationState(RotationState.NON_Y_AXIS)
             .appearanceBlock(GTBlocks.CASING_STEEL_SOLID)
@@ -55,7 +56,7 @@ public class OreProcessingMultiblocks {
             .tooltips(Component.translatable("evolutioncore.tooltip.electric_ore_factory").withStyle(ChatFormatting.GRAY))
             .register();
 
-    public static final MultiblockMachineDefinition ORE_PROCESSING_FACTORY = Reference.REGISTRATE
+    public static final MachineEntry<MultiblockMachineDefinition> ORE_PROCESSING_FACTORY = Reference.REGISTRATE
             .multiblock("ore_processing_factory", WorkableElectricMultiblockMachine::new)
             .rotationState(RotationState.NON_Y_AXIS)
             .appearanceBlock(GTBlocks.CASING_STAINLESS_CLEAN)
@@ -89,7 +90,7 @@ public class OreProcessingMultiblocks {
             .tooltips(Component.translatable("evolutioncore.tooltip.ore_processing_factory").withStyle(ChatFormatting.GRAY))
             .register();
 
-    public static final MultiblockMachineDefinition ORE_PROCESSING_PLANT = Reference.REGISTRATE
+    public static final MachineEntry<MultiblockMachineDefinition> ORE_PROCESSING_PLANT = Reference.REGISTRATE
             .multiblock("ore_processing_plant", WorkableElectricMultiblockMachine::new)
             .rotationState(RotationState.NON_Y_AXIS)
             .appearanceBlock(GTBlocks.CASING_TUNGSTENSTEEL_ROBUST)
@@ -124,7 +125,7 @@ public class OreProcessingMultiblocks {
             .tooltips(Component.translatable("evolutioncore.tooltip.ore_processing_plant").withStyle(ChatFormatting.GRAY))
             .register();
 
-    public static final MultiblockMachineDefinition BULK_ORE_PROCESSING_PLANT = Reference.REGISTRATE
+    public static final MachineEntry<MultiblockMachineDefinition> BULK_ORE_PROCESSING_PLANT = Reference.REGISTRATE
             .multiblock("bulk_ore_processing_plant", WorkableElectricMultiblockMachine::new)
             .rotationState(RotationState.NON_Y_AXIS)
             .appearanceBlock(EvoBlocks.NAQUADAH_ALLOY_MACHINE_CASING)

@@ -7,7 +7,9 @@ import com.gregtechceu.gtceu.api.machine.multiblock.PartAbility;
 import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.multiblock.Predicates;
 import com.gregtechceu.gtceu.api.multiblock.pattern.MultiblockPatternBuilder;
+import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
 import com.gregtechceu.gtceu.api.recipe.OverclockingLogic;
+import com.gregtechceu.gtceu.api.registry.registrate.entry.MachineEntry;
 import com.gregtechceu.gtceu.common.data.GCYMBlocks;
 import com.gregtechceu.gtceu.common.data.GTBlocks;
 import com.gregtechceu.gtceu.common.data.GTRecipeModifiers;
@@ -20,6 +22,7 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 
 import java.util.Objects;
+import java.util.function.Supplier;
 
 import static com.gregtechceu.gtceu.api.GTValues.ZPM;
 import static com.gregtechceu.gtceu.api.multiblock.util.RelativeDirection.*;
@@ -28,13 +31,13 @@ import static com.gregtechceu.gtceu.common.data.machines.GTMachineUtils.register
 public class GeneratorMultiblocks {
     public static void init() {}
 
-    public static final MultiblockMachineDefinition LUDICROUS_COMBUSTION_ENGINE = registerLargeCombustionEngine(
+    public static final MachineEntry<MultiblockMachineDefinition> LUDICROUS_COMBUSTION_ENGINE = registerLargeCombustionEngine(
             Reference.REGISTRATE, "ludicrous_combustion_engine", ZPM,
             EvoBlocks.NAQUADAH_ALLOY_MACHINE_CASING, EvoBlocks.NAQUADAH_ALLOY_GEARBOX_CASING, EvoBlocks.LUDICROUS_ENGINE_INTAKE_CASING,
             EvolutionCoreMod.id("block/casings/naquadah_alloy/casing"),
             GTCEu.id("block/multiblock/generator/extreme_combustion_engine"));
 
-    public static final MultiblockMachineDefinition SIMPLE_FISSION_REACTOR = Reference.REGISTRATE
+    public static final MachineEntry<MultiblockMachineDefinition> SIMPLE_FISSION_REACTOR = Reference.REGISTRATE
             .multiblock("simple_fission_reactor", WorkableElectricMultiblockMachine::new)
             .rotationState(RotationState.NON_Y_AXIS)
             .appearanceBlock(GCYMBlocks.CASING_HIGH_TEMPERATURE_SMELTING)

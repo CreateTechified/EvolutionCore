@@ -7,6 +7,7 @@ import com.gregtechceu.gtceu.api.data.RotationState;
 import com.gregtechceu.gtceu.api.machine.MachineDefinition;
 import com.gregtechceu.gtceu.api.machine.multiblock.PartAbility;
 import com.gregtechceu.gtceu.api.machine.property.GTMachineModelProperties;
+import com.gregtechceu.gtceu.api.registry.registrate.entry.MachineEntry;
 import com.gregtechceu.gtceu.common.mui.GTGuiTheme;
 import io.github.createtechified.evolutioncore.Reference;
 import io.github.createtechified.evolutioncore.common.data.machine.steam.SteamFluidHatchPartMachine;
@@ -24,7 +25,7 @@ public class EvoMultiParts {
     public static final PartAbility STEAM_EXPORT_FLUIDS = new PartAbility("steam_export_fluids");
 
     // Parts
-    public static final MachineDefinition STEAM_VENTING_HATCH = Reference.REGISTRATE
+    public static final MachineEntry<MachineDefinition> STEAM_VENTING_HATCH = Reference.REGISTRATE
             .machine("steam_venting_hatch", SteamMufflerPartMachine::new)
             .rotationState(RotationState.ALL)
             .abilities(STEAM_VENT)
@@ -37,7 +38,7 @@ public class EvoMultiParts {
             .allowCoverOnFront(false)
             .register();
 
-    public static final MachineDefinition STEAM_IMPORT_HATCH = Reference.REGISTRATE
+    public static final MachineEntry<MachineDefinition> STEAM_IMPORT_HATCH = Reference.REGISTRATE
             .machine("steam_input_hatch", holder -> new SteamFluidHatchPartMachine(holder, IO.IN))
             .rotationState(RotationState.ALL)
             .abilities(STEAM_IMPORT_FLUIDS)
@@ -51,7 +52,7 @@ public class EvoMultiParts {
             .allowCoverOnFront(true)
             .register();
 
-    public static final MachineDefinition STEAM_EXPORT_HATCH = Reference.REGISTRATE
+    public static final MachineEntry<MachineDefinition> STEAM_EXPORT_HATCH = Reference.REGISTRATE
             .machine("steam_output_hatch", holder -> new SteamFluidHatchPartMachine(holder, IO.OUT))
             .rotationState(RotationState.ALL)
             .abilities(STEAM_EXPORT_FLUIDS)

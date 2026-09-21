@@ -13,7 +13,9 @@ import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 import static io.github.createtechified.evolutioncore.common.registry.EvoElements.*;
 
 public class EvoMaterials {
-    public static void init() {}
+    public static void init() {
+        Reference.REGISTRATE.defaultCreativeTab(EvoTabs.EVOLUTIONCORE_MATERIALS.getKey());
+    }
 
     // Materials
     public static Material Neuralium = new Material.Builder(

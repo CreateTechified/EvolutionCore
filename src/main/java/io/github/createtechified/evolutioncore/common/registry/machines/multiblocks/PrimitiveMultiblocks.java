@@ -6,6 +6,7 @@ import com.gregtechceu.gtceu.api.machine.MultiblockMachineDefinition;
 import com.gregtechceu.gtceu.api.multiblock.Predicates;
 import com.gregtechceu.gtceu.api.multiblock.pattern.MultiblockPatternBuilder;
 import com.gregtechceu.gtceu.api.multiblock.util.RelativeDirection;
+import com.gregtechceu.gtceu.api.registry.registrate.entry.MachineEntry;
 import com.gregtechceu.gtceu.client.renderer.machine.DynamicRenderHelper;
 import com.gregtechceu.gtceu.common.data.GTBlocks;
 import com.gregtechceu.gtceu.common.data.GTMachines;
@@ -30,58 +31,9 @@ import static net.minecraft.world.level.block.state.properties.Half.*;
 
 @SuppressWarnings("unused")
 public class PrimitiveMultiblocks {
-    public static void init() {
-        coke_oven();
-        primitive_blast_furnace();
-    }
+    public static void init() {}
 
-    public static void coke_oven() {
-        GTMultiMachines.COKE_OVEN.setPattern("main", () -> MultiblockPatternBuilder.start(FRONT, UP, RIGHT)
-                .slice("XXX", "XXX", "BBB", "   ", "   ", "   ")
-                .slice("XXX", "XXX", "XXX", "WXW", "WXW", "XUX")
-                .slice("XXX", "X#X", "XXX", "XXX", "XXX", "LXR")
-                .slice("XXX", "XYX", "XXX", "WXW", "WXW", "XDX")
-                .where('Y', Predicates.controller(GTMultiMachines.COKE_OVEN))
-                .where('X', Predicates.blocks(GTBlocks.CASING_COKE_BRICKS.get()).and(Predicates.blocks(GTMachines.COKE_OVEN_HATCH.get()).setMaxGlobalLimited(5)))
-                .where('B', EvoPredicates.directionalBlock(EvoBlocks.CASING_COKE_BRICK_STAIRS.get(), BACK, BOTTOM, true))
-                .where('U', EvoPredicates.directionalBlock(EvoBlocks.CASING_COKE_BRICK_STAIRS.get(), BACK, TOP, true))
-                .where('L', EvoPredicates.directionalBlock(EvoBlocks.CASING_COKE_BRICK_STAIRS.get(), LEFT, TOP, true))
-                .where('R', EvoPredicates.directionalBlock(EvoBlocks.CASING_COKE_BRICK_STAIRS.get(), RIGHT, TOP, true))
-                .where('D', EvoPredicates.directionalBlock(EvoBlocks.CASING_COKE_BRICK_STAIRS.get(), FRONT, TOP, true))
-                .where('W', Predicates.blocks(EvoBlocks.CASING_COKE_BRICK_WALL.get())) // ^ I have commit horrors that would disappoint my ancestors.
-                .where('#', Predicates.air())
-                .where(' ', Predicates.any())
-                .build());
-    }
-    public static void primitive_blast_furnace() {
-        GTMultiMachines.PRIMITIVE_BLAST_FURNACE.setPattern("main", () -> MultiblockPatternBuilder.start(FRONT, UP, RIGHT)
-                .slice("BUUUB", "     ", "     ", "     ", "     ", "     ")
-                .slice("LBBBR", " XIX ", " XXX ", " PXP ", " PXP ", " XIX ")
-                .slice("LBBBR", " JXO ", " X&X ", " X#X ", " X#X ", " J#O ")
-                .slice("LBBBR", " XKX ", " XYX ", " PXP ", " PXP ", " XKX ")
-                .slice("BDDDB", "     ", "     ", "     ", "     ", "     ")
-                .where('Y', Predicates.controller(GTMultiMachines.PRIMITIVE_BLAST_FURNACE))
-                .where('X', Predicates.blocks(GTBlocks.CASING_PRIMITIVE_BRICKS.get()))
-                .where('B', Predicates.blocks(GTBlocks.CASING_COKE_BRICKS.get()))
-                .where('U', EvoPredicates.directionalBlock(EvoBlocks.CASING_COKE_BRICK_STAIRS.get(), BACK, BOTTOM, true))
-                .where('L', EvoPredicates.directionalBlock(EvoBlocks.CASING_COKE_BRICK_STAIRS.get(), LEFT, BOTTOM, true))
-                .where('R', EvoPredicates.directionalBlock(EvoBlocks.CASING_COKE_BRICK_STAIRS.get(), RIGHT, BOTTOM, true))
-                .where('D', EvoPredicates.directionalBlock(EvoBlocks.CASING_COKE_BRICK_STAIRS.get(), FRONT, BOTTOM, true))
-                .where('I', EvoPredicates.directionalBlock(EvoBlocks.CASING_PRIMITIVE_BRICK_STAIRS.get(), BACK, TOP, true))
-                .where('J', EvoPredicates.directionalBlock(EvoBlocks.CASING_PRIMITIVE_BRICK_STAIRS.get(), LEFT, TOP, true))
-                .where('O', EvoPredicates.directionalBlock(EvoBlocks.CASING_PRIMITIVE_BRICK_STAIRS.get(), RIGHT, TOP, true))
-                .where('K', EvoPredicates.directionalBlock(EvoBlocks.CASING_PRIMITIVE_BRICK_STAIRS.get(), FRONT, TOP, true))
-                .where('P', Predicates.blocks(EvoBlocks.CASING_PRIMITIVE_BRICK_WALL.get()))
-                .where('#', Predicates.air())
-                .where('&', Predicates.air()
-                        .or(Predicates.builder("SnowPredicate")
-                                .predicate(ctx -> GTUtil.isBlockSnow(ctx.state()))
-                                .toMultiPredicate()
-                                .addTooltips(Component.literal("Can be snow"))))
-                .build());
-    }
-
-    public static final MultiblockMachineDefinition PRIMITIVE_ALLOY_KILN = Reference.REGISTRATE
+    public static final MachineEntry<MultiblockMachineDefinition> PRIMITIVE_ALLOY_KILN = Reference.REGISTRATE
             .multiblock("primitive_alloy_kiln", PrimitiveAlloyKiln::new) // It's a thing and I'm pissed about it. Works though.
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(EvoRecipeTypes.PRIMITIVE_ALLOY_SMELTER)
@@ -110,7 +62,7 @@ public class PrimitiveMultiblocks {
             .tooltips(Component.translatable("evolutioncore.tooltip.primitive_alloy_kiln").withStyle(ChatFormatting.GRAY))
             .themeId(GTGuiTheme.PRIMITIVE.getId())
             .register();
-    public static final MultiblockMachineDefinition PRIMITIVE_ORE_FACTORY = Reference.REGISTRATE
+    public static final MachineEntry<MultiblockMachineDefinition> PRIMITIVE_ORE_FACTORY = Reference.REGISTRATE
             .multiblock("primitive_ore_factory", PrimitiveOreFactory::new)
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(EvoRecipeTypes.PRIMITIVE_ORE_FACTORY)

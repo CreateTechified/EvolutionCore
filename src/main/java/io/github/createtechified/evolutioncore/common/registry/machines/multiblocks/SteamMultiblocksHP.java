@@ -8,6 +8,7 @@ import com.gregtechceu.gtceu.api.machine.MultiblockMachineDefinition;
 import com.gregtechceu.gtceu.api.machine.multiblock.PartAbility;
 import com.gregtechceu.gtceu.api.multiblock.Predicates;
 import com.gregtechceu.gtceu.api.multiblock.pattern.MultiblockPatternBuilder;
+import com.gregtechceu.gtceu.api.registry.registrate.entry.MachineEntry;
 import com.gregtechceu.gtceu.common.data.GTBlocks;
 import com.gregtechceu.gtceu.common.data.GTMaterialBlocks;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
@@ -33,7 +34,7 @@ import static com.gregtechceu.gtceu.api.multiblock.util.RelativeDirection.*;
 public class SteamMultiblocksHP {
     public static void init() {}
 
-    public static final MultiblockMachineDefinition HP_STEAM_ALLOY_KILN = Reference.REGISTRATE
+    public static final MachineEntry<MultiblockMachineDefinition> HP_STEAM_ALLOY_KILN = Reference.REGISTRATE
             .multiblock("hp_steam_alloy_kiln", HPSteamParallelMultiblockMachine::new)
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(GTRecipeTypes.ALLOY_SMELTER_RECIPES)
@@ -64,7 +65,7 @@ public class SteamMultiblocksHP {
             .themeId(GTGuiTheme.STEEL.getId())
             .register();
 
-    public static final MultiblockMachineDefinition HP_STEAM_GRINDER = Reference.REGISTRATE
+    public static final MachineEntry<MultiblockMachineDefinition> HP_STEAM_GRINDER = Reference.REGISTRATE
             .multiblock("hp_steam_grinder", HPSteamParallelMultiblockMachine::new)
             .rotationState(RotationState.NON_Y_AXIS)
             .appearanceBlock(EvoBlocks.HP_STEAM_MACHINE_CASING)
@@ -94,7 +95,7 @@ public class SteamMultiblocksHP {
             .themeId(GTGuiTheme.STEEL.getId())
             .register();
 
-    public static final MultiblockMachineDefinition HP_STEAM_OVEN = Reference.REGISTRATE
+    public static final MachineEntry<MultiblockMachineDefinition> HP_STEAM_OVEN = Reference.REGISTRATE
             .multiblock("hp_steam_oven", HPSteamParallelMultiblockMachine::new)
             .rotationState(RotationState.NON_Y_AXIS)
             .appearanceBlock(EvoBlocks.HP_STEAM_MACHINE_CASING)
@@ -126,7 +127,7 @@ public class SteamMultiblocksHP {
             .themeId(GTGuiTheme.STEEL.getId())
             .register();
 
-    public static final MultiblockMachineDefinition HP_STEAM_SEPARATOR = Reference.REGISTRATE
+    public static final MachineEntry<MultiblockMachineDefinition> HP_STEAM_SEPARATOR = Reference.REGISTRATE
             .multiblock("hp_steam_separator", HPSteamParallelMultiblockMachine::new)
             .rotationState(RotationState.NON_Y_AXIS)
             .appearanceBlock(EvoBlocks.HP_STEAM_MACHINE_CASING)
@@ -160,7 +161,7 @@ public class SteamMultiblocksHP {
             .themeId(GTGuiTheme.STEEL.getId())
             .register();
 
-    public static final MultiblockMachineDefinition HP_STEAM_PURIFIER = Reference.REGISTRATE
+    public static final MachineEntry<MultiblockMachineDefinition> HP_STEAM_PURIFIER = Reference.REGISTRATE
             .multiblock("hp_steam_purifier", HPSteamParallelMultiblockMachine::new)
             .rotationState(RotationState.NON_Y_AXIS)
             .appearanceBlock(EvoBlocks.HP_STEAM_MACHINE_CASING)
@@ -199,7 +200,7 @@ public class SteamMultiblocksHP {
             .themeId(GTGuiTheme.STEEL.getId())
             .register();
 
-    public static final MultiblockMachineDefinition HP_STEAM_IMPACT_FORGE = Reference.REGISTRATE
+    public static final MachineEntry<MultiblockMachineDefinition> HP_STEAM_IMPACT_FORGE = Reference.REGISTRATE
             .multiblock("hp_steam_impact_forge", HPSteamParallelMultiblockMachine::new)
             .rotationState(RotationState.NON_Y_AXIS)
             .appearanceBlock(EvoBlocks.HP_STEAM_MACHINE_CASING)
@@ -233,7 +234,7 @@ public class SteamMultiblocksHP {
             .themeId(GTGuiTheme.STEEL.getId())
             .register();
 
-    public static final MultiblockMachineDefinition HP_STEAM_BLAST_FURNACE = Reference.REGISTRATE
+    public static final MachineEntry<MultiblockMachineDefinition> HP_STEAM_BLAST_FURNACE = Reference.REGISTRATE
             .multiblock("hp_steam_blast_furnace", HPSteamParallelMultiblockMachine::new)
             .rotationState(RotationState.NON_Y_AXIS)
             .appearanceBlock(EvoBlocks.HP_STEAM_MACHINE_CASING)
@@ -263,7 +264,7 @@ public class SteamMultiblocksHP {
             .themeId(GTGuiTheme.STEEL.getId())
             .register();
 
-    public static final MultiblockMachineDefinition HP_STEAM_ORE_FACTORY = Reference.REGISTRATE
+    public static final MachineEntry<MultiblockMachineDefinition> HP_STEAM_ORE_FACTORY = Reference.REGISTRATE
             .multiblock("hp_steam_ore_factory", HPSteamParallelMultiblockMachine::new)
             .rotationState(RotationState.NON_Y_AXIS)
             .appearanceBlock(EvoBlocks.HP_STEAM_MACHINE_CASING)

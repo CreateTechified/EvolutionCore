@@ -7,6 +7,7 @@ import com.gregtechceu.gtceu.api.machine.multiblock.PartAbility;
 import com.gregtechceu.gtceu.api.multiblock.Predicates;
 import com.gregtechceu.gtceu.api.multiblock.pattern.IBlockPattern;
 import com.gregtechceu.gtceu.api.multiblock.pattern.MultiblockPatternBuilder;
+import com.gregtechceu.gtceu.api.registry.registrate.entry.MachineEntry;
 import com.gregtechceu.gtceu.common.data.GTRecipeModifiers;
 import com.gregtechceu.gtceu.common.data.GTRecipeTypes;
 import com.gregtechceu.gtceu.common.data.models.GTMachineModels;
@@ -47,7 +48,7 @@ public class FusionMultiblocks {
         };
     }
 
-    private static MultiblockMachineDefinition registerFusionReactor(String name, int tier, boolean inertial, String langName) {
+    private static MachineEntry<MultiblockMachineDefinition> registerFusionReactor(String name, int tier, boolean inertial, String langName) {
         var builder = Reference.REGISTRATE.multiblock(name, holder -> new FusionReactorMachine(holder, tier))
                 .rotationState(RotationState.ALL)
                 .langValue(langName)
@@ -147,15 +148,15 @@ public class FusionMultiblocks {
                 .build();
     }
 
-    public static final MultiblockMachineDefinition INERTIAL_FUSION_REACTOR_MK1 = registerFusionReactor(
+    public static final MachineEntry<MultiblockMachineDefinition> INERTIAL_FUSION_REACTOR_MK1 = registerFusionReactor(
             "inertial_fusion_reactor_mk1", UHV, true, "Inertial Fusion Reactor MK I");
 
-    public static final MultiblockMachineDefinition FUSION_REACTOR_MK4 = registerFusionReactor(
+    public static final MachineEntry<MultiblockMachineDefinition> FUSION_REACTOR_MK4 = registerFusionReactor(
             "fusion_reactor_mk4", UEV, false, "Fusion Reactor Computer MK IV");
 
-    public static final MultiblockMachineDefinition INERTIAL_FUSION_REACTOR_MK2 = registerFusionReactor(
+    public static final MachineEntry<MultiblockMachineDefinition> INERTIAL_FUSION_REACTOR_MK2 = registerFusionReactor(
             "inertial_fusion_reactor_mk2", UIV, true, "Inertial Fusion Reactor MK II");
 
-    public static final MultiblockMachineDefinition FUSION_REACTOR_MK5 = registerFusionReactor(
+    public static final MachineEntry<MultiblockMachineDefinition> FUSION_REACTOR_MK5 = registerFusionReactor(
             "fusion_reactor_mk5", UXV, false, "Fusion Reactor Computer MK V");
 }

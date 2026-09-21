@@ -11,28 +11,28 @@ public class EvoTabs {
                     builder -> builder
                             .icon(() -> EvoItems.HEALING_AXE.asStack())
                             .title(Reference.REGISTRATE.addLang("itemGroup", EvolutionCoreMod.id("main"), "EvolutionCore - Main"))
-                            .withTabsAfter(GTCreativeModeTabs.MACHINE.getKey())
+                            .withTabsBefore(GTCreativeModeTabs.MACHINE.getKey())
                             .build())
             .register();
     public static final RegistryEntry<CreativeModeTab, CreativeModeTab> EVOLUTIONCORE_MACHINES = Reference.REGISTRATE.defaultCreativeTab("machines",
                     builder -> builder
                             .icon(() -> EvoItems.HEALING_AXE.asStack())
                             .title(Reference.REGISTRATE.addLang("itemGroup", EvolutionCoreMod.id("machines"), "EvolutionCore - Machines"))
-                            .withTabsAfter(GTCreativeModeTabs.MACHINE.getKey())
+                            .withTabsBefore(EvoTabs.EVOLUTIONCORE_BLOCKS.getKey())
                             .build())
             .register();
     public static final RegistryEntry<CreativeModeTab, CreativeModeTab> EVOLUTIONCORE_MATERIALS = Reference.REGISTRATE.defaultCreativeTab("materials",
                     builder -> builder
                             .icon(() -> EvoItems.HEALING_AXE.asStack())
                             .title(Reference.REGISTRATE.addLang("itemGroup", EvolutionCoreMod.id("materials"), "EvolutionCore - Materials"))
-                            .withTabsAfter(GTCreativeModeTabs.MACHINE.getKey())
+                            .withTabsBefore(EvoTabs.EVOLUTIONCORE_MACHINES.getKey())
                             .build())
             .register();
     public static final RegistryEntry<CreativeModeTab, CreativeModeTab> EVOLUTIONCORE_BLOCKS = Reference.REGISTRATE.defaultCreativeTab("blocks",
                     builder -> builder
                             .icon(() -> EvoItems.HEALING_AXE.asStack())
                             .title(Reference.REGISTRATE.addLang("itemGroup", EvolutionCoreMod.id("blocks"), "EvolutionCore - Blocks"))
-                            .withTabsAfter(GTCreativeModeTabs.MACHINE.getKey())
+                            .withTabsBefore(EvoTabs.EVOLUTIONCORE_MAIN.getKey())
                             .build())
             .register();
 

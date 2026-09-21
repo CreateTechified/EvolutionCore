@@ -36,13 +36,6 @@ public class Reference {
             CustomTags.MAX_CIRCUITS
     };
 
-    @SuppressWarnings("unchecked")
-    public static final Supplier<MultiblockMachineDefinition>[] MACHINES_TO_REMOVE = new Supplier[] {
-            () -> GTMultiMachines.STEAM_OVEN,
-            () -> GTMultiMachines.STEAM_GRINDER,
-            () -> GTMultiMachines.CHARCOAL_PILE_IGNITER
-    };
-
     // GT Configs must use Suppliers!
     public static final Supplier<Boolean> GT_SteelSteamRecipes = () -> ConfigHolder.INSTANCE.machines.steelSteamMultiblocks;
     // If mods are loaded...

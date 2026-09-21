@@ -6,6 +6,7 @@ import com.gregtechceu.gtceu.api.machine.MachineDefinition;
 import com.gregtechceu.gtceu.api.machine.property.GTMachineModelProperties;
 import com.gregtechceu.gtceu.api.machine.steam.SimpleSteamMachine;
 import com.gregtechceu.gtceu.api.multiblock.util.RelativeDirection;
+import com.gregtechceu.gtceu.api.registry.registrate.entry.MachineEntry;
 import com.gregtechceu.gtceu.common.data.GTRecipeTypes;
 import com.gregtechceu.gtceu.common.mui.GTGuiTheme;
 import com.gregtechceu.gtceu.common.mui.GTSingleblockMachinePanels;
@@ -23,13 +24,13 @@ import static com.gregtechceu.gtceu.common.data.machines.GTMachineUtils.*;
 public class EvoSingleblocks {
     public static void init() {}
 
-    public static final Pair<MachineDefinition, MachineDefinition> STEAM_ASSEMBLER = MachineConstructors
+    public static final Pair<MachineEntry<MachineDefinition>, MachineEntry<MachineDefinition>> STEAM_ASSEMBLER = MachineConstructors
             .registerSimpleSteamMachines("assembler", GTRecipeTypes.ASSEMBLER_RECIPES, Component.translatable("evolutioncore.tooltip.steam_assembler").withStyle(ChatFormatting.GRAY));
-    public static final Pair<MachineDefinition, MachineDefinition> STEAM_CENTRIFUGE = MachineConstructors
+    public static final Pair<MachineEntry<MachineDefinition>, MachineEntry<MachineDefinition>> STEAM_CENTRIFUGE = MachineConstructors
             .registerSimpleSteamMachines("centrifuge", GTRecipeTypes.CENTRIFUGE_RECIPES, Component.translatable("evolutioncore.tooltip.steam_centrifuge").withStyle(ChatFormatting.GRAY));
-    public static final Pair<MachineDefinition, MachineDefinition> STEAM_ORE_WASHER = MachineConstructors
+    public static final Pair<MachineEntry<MachineDefinition>, MachineEntry<MachineDefinition>> STEAM_ORE_WASHER = MachineConstructors
             .registerSimpleSteamMachines("ore_washer", GTRecipeTypes.ORE_WASHER_RECIPES, Component.translatable("evolutioncore.tooltip.steam_ore_washer").withStyle(ChatFormatting.GRAY));
-    public static final Pair<MachineDefinition, MachineDefinition> STEAM_VACUUM_CHAMBER = registerSteamMachines(
+    public static final Pair<MachineEntry<MachineDefinition>, MachineEntry<MachineDefinition>> STEAM_VACUUM_CHAMBER = registerSteamMachines(
             Reference.REGISTRATE, "vacuum_chamber", SimpleSteamMachine::new,
             (pressure, builder) -> builder
                     .rotationState(RotationState.ALL)
@@ -41,7 +42,7 @@ public class EvoSingleblocks {
                     .workableSteamHullModel(pressure, ResourceLocation.fromNamespaceAndPath(Reference.REGISTRATE.getModid(), "block/machines/vacuum_chamber"))
                     .tooltips(Component.translatable("evolutioncore.tooltip.steam_vacuum_chamber").withStyle(ChatFormatting.GRAY))
                     .register());
-    public static final MachineDefinition[] VACUUM_CHAMBER = new SimpleMachineBuilder(
+    public static final MachineEntry<MachineDefinition>[] VACUUM_CHAMBER = new SimpleMachineBuilder(
             Reference.REGISTRATE, "vacuum_chamber", EvoRecipeTypes.VACUUM_CHAMBER_RECIPES)
             .tiers(GTValues.tiersBetween(GTValues.ULV, GTValues.OpV))
             .register();

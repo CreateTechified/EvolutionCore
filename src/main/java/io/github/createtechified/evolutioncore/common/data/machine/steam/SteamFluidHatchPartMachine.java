@@ -3,6 +3,7 @@ package io.github.createtechified.evolutioncore.common.data.machine.steam;
 import com.gregtechceu.gtceu.api.blockentity.BlockEntityCreationInfo;
 import com.gregtechceu.gtceu.api.capability.recipe.IO;
 import com.gregtechceu.gtceu.api.machine.MachineDefinition;
+import com.gregtechceu.gtceu.api.registry.registrate.entry.MachineEntry;
 import com.gregtechceu.gtceu.common.machine.multiblock.part.FluidHatchPartMachine;
 import io.github.createtechified.evolutioncore.common.registry.machines.EvoMultiParts;
 import net.minecraft.core.BlockPos;
@@ -18,7 +19,7 @@ public class SteamFluidHatchPartMachine extends FluidHatchPartMachine {
     @Override
     public boolean swapIO() {
         BlockPos blockPos = getBlockPos();
-        MachineDefinition newDefinition = null;
+        MachineEntry<MachineDefinition> newDefinition = null;
         if (io == IO.IN) {
             newDefinition = EvoMultiParts.STEAM_EXPORT_HATCH;
         } else if (io == IO.OUT) {

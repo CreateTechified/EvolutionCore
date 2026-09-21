@@ -3,14 +3,15 @@ package io.github.createtechified.evolutioncore.datagen.providers;
 import brachy.modularui.utils.FormattingUtil;
 import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
 import com.gregtechceu.gtceu.api.registry.GTRegistries;
+import com.gregtechceu.gtceu.api.registry.registrate.entry.GTRecipeTypeEntry;
 import com.tterrag.registrate.providers.RegistrateLangProvider;
 import net.minecraft.core.registries.BuiltInRegistries;
 
 public class LanguageHandler {
     public static void init(RegistrateLangProvider provider) {
         for (var recipeType : BuiltInRegistries.RECIPE_TYPE) {
-            if (recipeType instanceof GTRecipeType gtRecipeType) {
-                provider.add(gtRecipeType.getTranslationKey(), FormattingUtil.toEnglishName(gtRecipeType.registryName.getPath()));
+            if (recipeType instanceof GTRecipeTypeEntry gtRecipeType) {
+                provider.add(gtRecipeType.getRegisteredName(), FormattingUtil.toEnglishName(gtRecipeType.getRegisteredName()));
             }
         }
         // TODO: make these better
