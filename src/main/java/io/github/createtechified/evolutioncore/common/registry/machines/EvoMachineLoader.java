@@ -10,9 +10,9 @@ import io.github.createtechified.evolutioncore.common.registry.machines.multiblo
 
 public class EvoMachineLoader {
     public static void init() {
-        Reference.REGISTRATE.defaultCreativeTab(EvoTabs.EVOLUTIONCORE_BLOCKS.getKey());
+        Reference.REGISTRATE.creativeModeTab(() -> EvoTabs.EVOLUTIONCORE_BLOCKS);
         EvoCoilBlocks.init();
-        Reference.REGISTRATE.defaultCreativeTab(EvoTabs.EVOLUTIONCORE_MACHINES.getKey());
+        Reference.REGISTRATE.creativeModeTab(() -> EvoTabs.EVOLUTIONCORE_MACHINES);
         EvoMultiParts.init();
         EvoSingleblocks.init();
         PrimitiveMultiblocks.init();

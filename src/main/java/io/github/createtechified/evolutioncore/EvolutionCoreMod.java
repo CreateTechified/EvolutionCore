@@ -57,14 +57,14 @@ public class EvolutionCoreMod {
         didRunRegistration = true;
 
         EvoTabs.init();
-        Reference.REGISTRATE.defaultCreativeTab(EvoTabs.EVOLUTIONCORE_MAIN.getKey());
+        Reference.REGISTRATE.creativeModeTab(() -> EvoTabs.EVOLUTIONCORE_MAIN);
         EvoItems.init();
-        Reference.REGISTRATE.defaultCreativeTab(EvoTabs.EVOLUTIONCORE_BLOCKS.getKey());
+        Reference.REGISTRATE.creativeModeTab(() -> EvoTabs.EVOLUTIONCORE_BLOCKS);
         EvoBlocks.init();
         EvoRecipeTypes.init();
-        Reference.REGISTRATE.defaultCreativeTab(EvoTabs.EVOLUTIONCORE_MACHINES.getKey());
+        Reference.REGISTRATE.creativeModeTab(() -> EvoTabs.EVOLUTIONCORE_MACHINES);
         EvoMachineLoader.init();
-        Reference.REGISTRATE.defaultCreativeTab(EvoTabs.EVOLUTIONCORE_MATERIALS.getKey());
+        Reference.REGISTRATE.creativeModeTab(() -> EvoTabs.EVOLUTIONCORE_MATERIALS);
         EvoElements.init();
         EvoMaterials.init();
 
