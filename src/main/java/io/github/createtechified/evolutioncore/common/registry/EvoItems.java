@@ -1,16 +1,11 @@
 package io.github.createtechified.evolutioncore.common.registry;
 
 import com.simibubi.create.content.processing.sequenced.SequencedAssemblyItem;
-import com.tterrag.registrate.providers.RegistrateRecipeProvider;
 import com.tterrag.registrate.util.entry.ItemEntry;
 import io.github.createtechified.evolutioncore.EvolutionCoreMod;
 import io.github.createtechified.evolutioncore.common.data.item.HealingAxe;
 import net.minecraft.core.component.DataComponents;
-import net.minecraft.data.recipes.RecipeCategory;
-import net.minecraft.data.recipes.ShapedRecipeBuilder;
-import net.minecraft.world.item.AxeItem;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.item.Tiers;
 import net.minecraft.world.item.component.Unbreakable;
 
@@ -22,7 +17,7 @@ public class EvoItems {
     public static void init() {}
 
     // Misc Items
-    public static ItemEntry<Item> GPS_DEVICE = constructItem("gps_device", EvolutionCoreMod.id("item/tools/gps_device"), Item::new, b -> b.lang("GPS Device").properties(p -> p.stacksTo(1)));
+    public static ItemEntry<Item> GPS_DEVICE = constructHandheldItem("gps_device", EvolutionCoreMod.id("item/tools/gps_device"), Item::new, b -> b.lang("GPS Device").properties(p -> p.stacksTo(1)));
     // Vacuum Tube Parts (ULV/Steam)
     public static ItemEntry<Item> CARBON_FILAMENT = constructBasicItem("carbon_filament", EvolutionCoreMod.id("item/vactube/carbon_filament"));
     public static ItemEntry<Item> GRAPHITE_ELECTRODE = constructBasicItem("graphite_electrode", EvolutionCoreMod.id("item/vactube/graphite_electrode"));

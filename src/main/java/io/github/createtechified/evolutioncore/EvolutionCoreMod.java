@@ -1,6 +1,7 @@
 package io.github.createtechified.evolutioncore;
 
 import com.gregtechceu.gtceu.api.data.chemical.material.event.PostMaterialEvent;
+import com.gregtechceu.gtceu.api.events.ModifyMachineEvent;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import io.github.createtechified.evolutioncore.common.overhaul.RemoveAllOresBiomeModifier;
@@ -52,19 +53,16 @@ public class EvolutionCoreMod {
     }
 
     @SubscribeEvent
-    public void onRegister(RegisterEvent event) {
+    private void onRegister(RegisterEvent event) {
         if (didRunRegistration) return;
         didRunRegistration = true;
 
         EvoTabs.init();
-        Reference.REGISTRATE.defaultCreativeTab(EvoTabs.EVOLUTIONCORE_MAIN.getKey());
+        Reference.REGISTRATE.defaultCreativeTab(EvoTabs.EVOLUTIONCORE_MAIN.getKey()); // TODO: actually fix this
         EvoItems.init();
-        Reference.REGISTRATE.defaultCreativeTab(EvoTabs.EVOLUTIONCORE_BLOCKS.getKey());
         EvoBlocks.init();
         EvoRecipeTypes.init();
-        Reference.REGISTRATE.defaultCreativeTab(EvoTabs.EVOLUTIONCORE_MACHINES.getKey());
         EvoMachineLoader.init();
-        Reference.REGISTRATE.defaultCreativeTab(EvoTabs.EVOLUTIONCORE_MATERIALS.getKey());
         EvoElements.init();
         EvoMaterials.init();
 
@@ -72,7 +70,7 @@ public class EvolutionCoreMod {
     }
 
     @SubscribeEvent
-    public void modifyMaterials(PostMaterialEvent event) {
+    private void modifyMaterials(PostMaterialEvent event) {
         EvoModifications.materials();
     }
 

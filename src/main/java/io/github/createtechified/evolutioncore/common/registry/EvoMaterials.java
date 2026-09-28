@@ -7,15 +7,12 @@ import com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialIconSet;
 import com.gregtechceu.gtceu.api.data.chemical.material.properties.BlastProperty;
 import com.gregtechceu.gtceu.api.fluids.FluidBuilder;
 import io.github.createtechified.evolutioncore.EvolutionCoreMod;
-import io.github.createtechified.evolutioncore.Reference;
 
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 import static io.github.createtechified.evolutioncore.common.registry.EvoElements.*;
 
 public class EvoMaterials {
-    public static void init() {
-        Reference.REGISTRATE.defaultCreativeTab(EvoTabs.EVOLUTIONCORE_MATERIALS.getKey());
-    }
+    public static void init() {}
 
     // Materials
     public static Material Neuralium = new Material.Builder(

@@ -26,7 +26,6 @@ import javax.annotation.ParametersAreNonnullByDefault;
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
 public class FixedHeatingCoilElectricMultiblock extends WorkableElectricMultiblockMachine {
-    @Getter
     private ICoilType coilType = CoilBlock.CoilType.CUPRONICKEL;
 
     @SyncToClient
@@ -38,6 +37,10 @@ public class FixedHeatingCoilElectricMultiblock extends WorkableElectricMultiblo
     }
     public FixedHeatingCoilElectricMultiblock(BlockEntityCreationInfo info) {
         super(info);
+    }
+
+    public ICoilType getCoilType() {
+        return coilType;
     }
 
     @Override
