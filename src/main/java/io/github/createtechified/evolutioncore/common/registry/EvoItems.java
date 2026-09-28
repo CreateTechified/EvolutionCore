@@ -21,6 +21,8 @@ import static io.github.createtechified.evolutioncore.common.registry.utils.GTIt
 public class EvoItems {
     public static void init() {}
 
+    // Misc Items
+    public static ItemEntry<Item> GPS_DEVICE = constructItem("gps_device", EvolutionCoreMod.id("item/tools/gps_device"), Item::new, b -> b.lang("GPS Device").properties(p -> p.stacksTo(1)));
     // Vacuum Tube Parts (ULV/Steam)
     public static ItemEntry<Item> CARBON_FILAMENT = constructBasicItem("carbon_filament", EvolutionCoreMod.id("item/vactube/carbon_filament"));
     public static ItemEntry<Item> GRAPHITE_ELECTRODE = constructBasicItem("graphite_electrode", EvolutionCoreMod.id("item/vactube/graphite_electrode"));
@@ -66,6 +68,4 @@ public class EvoItems {
     public static ItemEntry<Item> DEPLETED_URANIUM_238_FUEL_ROD = constructDepletedFuelRod("uranium_238");
     public static ItemEntry<Item> DEPLETED_URANIUM_235_FUEL_ROD = constructDepletedFuelRod("uranium_235");
     public static ItemEntry<Item> DEPLETED_PLUTONIUM_FUEL_ROD = constructDepletedFuelRod("plutonium");
-    // Misc Items
-    public static ItemEntry<Item> GPS_DEVICE = constructItem("gps_device", EvolutionCoreMod.id("item/tools/gps_device"), Item::new, b -> b.lang("GPS Device").properties(p -> p.stacksTo(1)));
 }

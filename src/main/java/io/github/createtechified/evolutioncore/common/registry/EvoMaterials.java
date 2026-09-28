@@ -14,7 +14,7 @@ import static io.github.createtechified.evolutioncore.common.registry.EvoElement
 
 public class EvoMaterials {
     public static void init() {
-        Reference.REGISTRATE.creativeModeTab(() -> EvoTabs.EVOLUTIONCORE_MATERIALS);
+        Reference.REGISTRATE.defaultCreativeTab(EvoTabs.EVOLUTIONCORE_MATERIALS.getKey());
     }
 
     // Materials
