@@ -44,6 +44,6 @@ public class EvoSingleblocks {
                     .register());
     public static final MachineEntry<MachineDefinition>[] VACUUM_CHAMBER = new SimpleMachineBuilder(
             Reference.REGISTRATE, "vacuum_chamber", EvoRecipeTypes.VACUUM_CHAMBER_RECIPES)
-            .tiers(GTValues.tiersBetween(GTValues.ULV, GTValues.OpV))
+            .tiers(GTValues.tiersBetween(GTValues.ULV, GTValues.LV))
             .register();
 }
