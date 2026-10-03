@@ -1,0 +1,6 @@
+{
+  "parent": "evolutioncore:block/template_vertical_stairs",
+  "textures": {
+    "all": "gtceu:block/casings/solid/machine_casing_heatproof"
+  }
+}

@@ -4,15 +4,18 @@ import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.block.ActiveBlock;
 import com.gregtechceu.gtceu.common.block.CoilBlock;
 import com.gregtechceu.gtceu.common.data.GTBlocks;
+import com.gregtechceu.gtceu.data.recipe.CustomTags;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import io.github.createtechified.evolutioncore.EvolutionCoreMod;
 import io.github.createtechified.evolutioncore.Reference;
+import io.github.createtechified.evolutioncore.common.data.block.VerticalStairBlock;
 import io.github.createtechified.evolutioncore.common.registry.utils.ActiveBlockConstructors;
 import io.github.createtechified.evolutioncore.common.registry.utils.BlockConstructors;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.StairBlock;
 import net.minecraft.world.level.block.WallBlock;
 
@@ -88,6 +91,49 @@ public class EvoBlocks {
             .blockstate((ctx, prov) -> prov.wallBlock(ctx.getEntry(), GTCEu.id("block/casings/solid/machine_primitive_bricks")))
             .item()
             .model((ctx, prov) -> prov.wallInventory(ctx.getName(), GTCEu.id("block/casings/solid/machine_primitive_bricks")))
+            .tag(ItemTags.WALLS)
+            .build()
+            .register();
+
+    public static final BlockEntry<StairBlock> CASING_INVAR_HEATPROOF_STAIRS = Reference.REGISTRATE
+            .block("heatproof_machine_casing_stairs", (p) -> new StairBlock(GTBlocks.CASING_INVAR_HEATPROOF.getDefaultState(), p))
+            .initialProperties(() -> Blocks.IRON_BLOCK)
+            .lang("Heat Proof Invar Machine Casing Stairs")
+            .tag(BlockTags.STAIRS, CustomTags.MINEABLE_WITH_CONFIG_VALID_PICKAXE_WRENCH)
+            .blockstate((ctx, prov) -> prov.stairsBlock(ctx.getEntry(), GTCEu.id("block/casings/solid/machine_casing_heatproof")))
+            .item()
+            .tag(ItemTags.STAIRS)
+            .build()
+            .register();
+    public static final BlockEntry<VerticalStairBlock> CASING_INVAR_HEATPROOF_VERTICAL_STAIRS = Reference.REGISTRATE
+            .block("heatproof_machine_casing_vertical_stairs", VerticalStairBlock::new)
+            .initialProperties(() -> Blocks.IRON_BLOCK)
+            .lang("Heat Proof Invar Machine Casing Vertical Stairs")
+            .tag(BlockTags.STAIRS, CustomTags.MINEABLE_WITH_CONFIG_VALID_PICKAXE_WRENCH)
+            .blockstate((ctx, prov) -> prov.horizontalBlock(ctx.getEntry(), prov.models().singleTexture(ctx.getName(), EvolutionCoreMod.id("template_vertical_stairs"), "all", GTCEu.id("block/casings/solid/machine_casing_heatproof"))))
+            .item()
+            .model((ctx, prov) -> prov.withExistingParent(ctx.getName(), prov.modLoc("block/" + ctx.getName())))
+            .tag(ItemTags.STAIRS)
+            .build()
+            .register();
+    public static final BlockEntry<SlabBlock> CASING_INVAR_HEATPROOF_SLAB = Reference.REGISTRATE
+            .block("heatproof_machine_casing_slab", SlabBlock::new)
+            .initialProperties(() -> Blocks.IRON_BLOCK)
+            .lang("Heat Proof Invar Machine Casing Slab")
+            .tag(BlockTags.SLABS, CustomTags.MINEABLE_WITH_CONFIG_VALID_PICKAXE_WRENCH)
+            .blockstate((ctx, prov) -> prov.slabBlock(ctx.getEntry(), GTBlocks.CASING_INVAR_HEATPROOF.getId(), GTCEu.id("block/casings/solid/machine_casing_heatproof")))
+            .item()
+            .tag(ItemTags.SLABS)
+            .build()
+            .register();
+    public static final BlockEntry<WallBlock> CASING_INVAR_HEATPROOF_WALL = Reference.REGISTRATE
+            .block("heatproof_machine_casing_wall", WallBlock::new)
+            .initialProperties(() -> Blocks.IRON_BLOCK)
+            .lang("Heat Proof Invar Machine Casing Wall")
+            .tag(BlockTags.WALLS, CustomTags.MINEABLE_WITH_CONFIG_VALID_PICKAXE_WRENCH)
+            .blockstate((ctx, prov) -> prov.wallBlock(ctx.getEntry(), GTCEu.id("block/casings/solid/machine_casing_heatproof")))
+            .item()
+            .model((ctx, prov) -> prov.wallInventory(ctx.getName(), GTCEu.id("block/casings/solid/machine_casing_heatproof")))
             .tag(ItemTags.WALLS)
             .build()
             .register();

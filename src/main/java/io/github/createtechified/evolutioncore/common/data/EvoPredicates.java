@@ -6,12 +6,15 @@ import com.gregtechceu.gtceu.api.multiblock.pattern.PatternState;
 import com.gregtechceu.gtceu.api.multiblock.predicates.PredicateBuilder;
 import com.gregtechceu.gtceu.api.multiblock.util.BlockInfo;
 import com.gregtechceu.gtceu.api.multiblock.util.RelativeDirection;
+import io.github.createtechified.evolutioncore.common.registry.EvoBlocks;
 import io.github.createtechified.evolutioncore.mixin.gt.PredicateContextAccessor;
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.Half;
+import net.minecraft.world.level.block.state.properties.SlabType;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Collections;
@@ -25,6 +28,7 @@ public class EvoPredicates {
      * I'm sorry.
      */
     public static final Set<BlockState> HALF_AWARE_CANDIDATES = Collections.newSetFromMap(new IdentityHashMap<>());
+    private static int NEXT_ID = 0;
 
     public static MultiPredicate directionalBlock(Block block, RelativeDirection relativeDir) {
         return directionalBlock(block, relativeDir, null, false);
@@ -39,47 +43,56 @@ public class EvoPredicates {
     }
 
     public static MultiPredicate directionalBlock(Block block, RelativeDirection relativeDir, @Nullable Half half, boolean invertedFacing) {
+        final int id = NEXT_ID++;
         BlockState previewState = previewDirState(block, relativeDir, half, invertedFacing);
         if (half != null) {HALF_AWARE_CANDIDATES.add(previewState);}
-        return new PredicateBuilder("directional_" + block.getDescriptionId())
+        return new PredicateBuilder("directional_" + block.getDescriptionId() + "_" + id)
                 .candidates(List.of(BlockInfo.fromBlockState(previewState)))
                 .predicate(ctx -> {
                     PatternState pstate = ((PredicateContextAccessor) ctx).evoc$getPatternState();
-                    if (pstate == null) return false; // No idea why this is null now.
+                    if (pstate == null) {// No idea why this is null now.
+                        System.out.println("[evoc] pstate nulled for " + block.getDescriptionId() + " at " + ctx.pos());
+                        return false;
+                    }
                     MultiblockControllerMachine controller = Objects.requireNonNull(pstate.getController());
                     BlockState state = ctx.state();
                     if (!state.is(block)) return false;
+                    Direction facing = Objects.requireNonNull(getFacing(state));
+                    if (invertedFacing) facing = facing.getOpposite(); // Some blocks PISS ME OFF. thanks.
+                    Direction controllerFacing = controller.getFrontFacing();
+                    Direction targetDirection = relativeDir.applyDirection(controllerFacing);
 
                     if (half != null) {
                         if (!state.hasProperty(BlockStateProperties.HALF)) return false;
                         Half expectedHalf = halfHandler(half, controller.getUpwardsFacing());
                         if (state.getValue(BlockStateProperties.HALF) != expectedHalf) return false;
                     }
-
-                    Direction facing = Objects.requireNonNull(getFacing(state));
-                    if (invertedFacing) facing = facing.getOpposite(); // Some blocks PISS ME OFF. thanks.
-
-                    Direction controllerFacing = controller.getFrontFacing();
-                    Direction targetDirection = relativeDir.applyDirection(controllerFacing);
-
                     return facing == targetDirection;
                 })
                 .toMultiPredicate();
     }
 
     public static MultiPredicate halfBlock(Block block, Half half) {
-        return new PredicateBuilder("half_" + block.getDescriptionId())
+        final int id = NEXT_ID++;
+        return new PredicateBuilder("half_" + block.getDescriptionId() + "_" + id)
                 .candidates(List.of(BlockInfo.fromBlockState(previewHalfState(block, half))))
                 .predicate(ctx -> {
+                    boolean result = false;
                     PatternState pstate = ((PredicateContextAccessor) ctx).evoc$getPatternState();
                     if (pstate == null) return false;
                     BlockState state = ctx.state();
                     if (!state.is(block)) return false;
-                    if (!state.hasProperty(BlockStateProperties.HALF)) return false;
-
                     MultiblockControllerMachine controller = Objects.requireNonNull(pstate.getController());
-                    Half expectedHalf = halfHandler(half, controller.getUpwardsFacing());
-                    return state.getValue(BlockStateProperties.HALF) == expectedHalf;
+                    if (state.hasProperty(BlockStateProperties.SLAB_TYPE)) {
+                        SlabType expected = (half == Half.BOTTOM) != (controller.getUpwardsFacing() == Direction.DOWN)
+                                ? SlabType.BOTTOM : SlabType.TOP;
+                        result = state.getValue(BlockStateProperties.SLAB_TYPE) == expected;
+                    }
+                    if (state.hasProperty(BlockStateProperties.HALF)) {
+                        Half expectedHalf = halfHandler(half, controller.getUpwardsFacing());
+                        result = state.getValue(BlockStateProperties.HALF) == expectedHalf;
+                    }
+                    return result;
                 })
                 .toMultiPredicate();
     }

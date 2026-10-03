@@ -1,6 +1,7 @@
 {
   "values": [
     "evolutioncore:coke_oven_brick_wall",
-    "evolutioncore:firebrick_wall"
+    "evolutioncore:firebrick_wall",
+    "evolutioncore:heatproof_machine_casing_wall"
   ]
 }

@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "evolutioncore:block/heatproof_machine_casing_vertical_stairs",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "evolutioncore:block/heatproof_machine_casing_vertical_stairs"
+    },
+    "facing=south": {
+      "model": "evolutioncore:block/heatproof_machine_casing_vertical_stairs",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "evolutioncore:block/heatproof_machine_casing_vertical_stairs",
+      "y": 270
+    }
+  }
+}

@@ -25,7 +25,7 @@ import static io.github.createtechified.evolutioncore.common.registry.recipes.Ev
 public class EvoRecipeInitializer {
     public static void init(RecipeOutput c) {
         // Classes
-        StoneTypeRecipes.init(c);
+        MultiblockCasingAdditionals.init(c);
         ResourceGenerationRecipes.init(c);
         MachineShapedRecipes.init(c);
         pbfRecipes(c);

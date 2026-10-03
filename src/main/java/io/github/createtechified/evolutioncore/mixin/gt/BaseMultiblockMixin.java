@@ -2,13 +2,17 @@ package io.github.createtechified.evolutioncore.mixin.gt;
 
 import com.gregtechceu.gtceu.api.machine.MachineInstanceFactory;
 import com.gregtechceu.gtceu.api.machine.MultiblockMachineDefinition;
+import com.gregtechceu.gtceu.api.machine.multiblock.PartAbility;
 import com.gregtechceu.gtceu.api.multiblock.Predicates;
 import com.gregtechceu.gtceu.api.multiblock.pattern.MultiblockPatternBuilder;
+import com.gregtechceu.gtceu.api.multiblock.util.RelativeDirection;
 import com.gregtechceu.gtceu.api.registry.registrate.GTRegistrate;
 import com.gregtechceu.gtceu.api.registry.registrate.builder.MultiblockMachineBuilder;
 import com.gregtechceu.gtceu.api.registry.registrate.entry.MachineEntry;
+import com.gregtechceu.gtceu.common.data.GCYMBlocks;
 import com.gregtechceu.gtceu.common.data.GTBlocks;
 import com.gregtechceu.gtceu.common.data.GTMachines;
+import com.gregtechceu.gtceu.common.data.GTMaterials;
 import com.gregtechceu.gtceu.common.data.GTRecipeTypes;
 import com.gregtechceu.gtceu.common.data.machines.GTMultiMachines;
 import com.gregtechceu.gtceu.common.machine.multiblock.primitive.CokeOvenMachine;
@@ -22,6 +26,7 @@ import io.github.createtechified.evolutioncore.common.data.machine.primitive.Pri
 import io.github.createtechified.evolutioncore.common.registry.EvoBlocks;
 import io.github.createtechified.evolutioncore.common.registry.recipes.EvoRecipeModifiers;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.level.block.state.properties.Half;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
@@ -88,7 +93,31 @@ public class BaseMultiblockMixin {
     }
     @Redirect(method = "<clinit>", at = @At(value = "INVOKE", target = "Lcom/gregtechceu/gtceu/api/registry/registrate/GTRegistrate;multiblock(Ljava/lang/String;Lcom/gregtechceu/gtceu/api/machine/MachineInstanceFactory;)Lcom/gregtechceu/gtceu/api/registry/registrate/builder/MultiblockMachineBuilder;", ordinal = 2), remap = false, require = 1)
     private static MultiblockMachineBuilder<FixedHeatingCoilElectricMultiblock> ELECTRIC_BLAST_FURNACE(GTRegistrate registrate, String name, MachineInstanceFactory<FixedHeatingCoilElectricMultiblock> blockEntityFactory) {
-        evoc$pending = b -> b.recipeModifiers(EvoRecipeModifiers::ebfOverclock, BATCH_MODE);
+        evoc$pending = b -> b.pattern(definition -> MultiblockPatternBuilder.start(FRONT, UP, RIGHT)
+                .slice("AXXXS", "ZCCCZ", "ZCCCZ", "ZCCCZ", "AIIIS")
+                .slice("XXXXX", "CVCVC", "CVCVC", "CMBMC", "J O L")
+                .slice("XXXXX", "CCCCC", "CCCCC", "CBBBC", "JOOOL")
+                .slice("XXXXX", "CVCVC", "CVCVC", "CMBMC", "J O L")
+                .slice("FXYXD", "ZCCCZ", "ZCCCZ", "ZCCCZ", "FKKKD")
+                .where('Y', Predicates.controller(definition))
+                .where('X', Predicates.blocks(GTBlocks.CASING_INVAR_HEATPROOF.get())
+                        .and(Predicates.autoAbilities(definition.getRecipeTypes()))
+                        .and(Predicates.autoAbilities(true, false, false)))
+                .where('V', Predicates.blocks(GCYMBlocks.HEAT_VENT.get()))
+                .where('Z', Predicates.blocks(EvoBlocks.CASING_INVAR_HEATPROOF_WALL.get()))
+                .where('O', EvoPredicates.halfBlock(EvoBlocks.CASING_INVAR_HEATPROOF_SLAB.get(), BOTTOM))
+                .where('C', Predicates.heatingCoils())
+                .where('B', Predicates.frames(GTMaterials.Bronze))
+                .where('M', Predicates.abilities(PartAbility.MUFFLER))
+                .where('A', EvoPredicates.directionalBlock(EvoBlocks.CASING_INVAR_HEATPROOF_VERTICAL_STAIRS.get(), LEFT, false))
+                .where('S', EvoPredicates.directionalBlock(EvoBlocks.CASING_INVAR_HEATPROOF_VERTICAL_STAIRS.get(), BACK, false))
+                .where('D', EvoPredicates.directionalBlock(EvoBlocks.CASING_INVAR_HEATPROOF_VERTICAL_STAIRS.get(), RIGHT, false))
+                .where('F', EvoPredicates.directionalBlock(EvoBlocks.CASING_INVAR_HEATPROOF_VERTICAL_STAIRS.get(), FRONT, false))
+                .where('I', EvoPredicates.directionalBlock(EvoBlocks.CASING_INVAR_HEATPROOF_STAIRS.get(), FRONT, BOTTOM, true))
+                .where('L', EvoPredicates.directionalBlock(EvoBlocks.CASING_INVAR_HEATPROOF_STAIRS.get(), LEFT, BOTTOM, true))
+                .where('K', EvoPredicates.directionalBlock(EvoBlocks.CASING_INVAR_HEATPROOF_STAIRS.get(), BACK, BOTTOM, true))
+                .where('J', EvoPredicates.directionalBlock(EvoBlocks.CASING_INVAR_HEATPROOF_STAIRS.get(), RIGHT, BOTTOM, true))
+                .build()).recipeModifiers(EvoRecipeModifiers::ebfOverclock, BATCH_MODE);
         return registrate.multiblock(name, FixedHeatingCoilElectricMultiblock::new);
     }
     @Redirect(method = "<clinit>", at = @At(value = "INVOKE", target = "Lcom/gregtechceu/gtceu/api/registry/registrate/GTRegistrate;multiblock(Ljava/lang/String;Lcom/gregtechceu/gtceu/api/machine/MachineInstanceFactory;)Lcom/gregtechceu/gtceu/api/registry/registrate/builder/MultiblockMachineBuilder;", ordinal = 3), remap = false, require = 1)

@@ -1,6 +1,8 @@
 {
   "values": [
     "evolutioncore:coke_oven_brick_stairs",
-    "evolutioncore:firebrick_stairs"
+    "evolutioncore:firebrick_stairs",
+    "evolutioncore:heatproof_machine_casing_stairs",
+    "evolutioncore:heatproof_machine_casing_vertical_stairs"
   ]
 }
