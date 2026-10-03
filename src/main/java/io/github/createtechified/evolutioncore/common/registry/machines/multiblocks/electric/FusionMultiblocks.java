@@ -104,7 +104,6 @@ public class FusionMultiblocks {
                 .where('O', casing.or(Predicates.abilities(PartAbility.EXPORT_FLUIDS)))
                 .where('#', Predicates.air())
                 .where('I', casing.or(Predicates.abilities(PartAbility.IMPORT_FLUIDS).setMinGlobalLimited(2)))
-                .where(' ', Predicates.any())
                 .build();
     }
 
@@ -144,7 +143,6 @@ public class FusionMultiblocks {
                 .where('g', energyHatch)
                 .where('h', coil)
                 .where('o', flexOutput)
-                .where(' ', Predicates.any())
                 .build();
     }
 

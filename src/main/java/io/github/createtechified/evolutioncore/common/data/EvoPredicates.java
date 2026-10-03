@@ -44,7 +44,8 @@ public class EvoPredicates {
         return new PredicateBuilder("directional_" + block.getDescriptionId())
                 .candidates(List.of(BlockInfo.fromBlockState(previewState)))
                 .predicate(ctx -> {
-                    PatternState pstate = Objects.requireNonNull(((PredicateContextAccessor) ctx).evoc$getPatternState());
+                    PatternState pstate = ((PredicateContextAccessor) ctx).evoc$getPatternState();
+                    if (pstate == null) return false; // No idea why this is null now.
                     MultiblockControllerMachine controller = Objects.requireNonNull(pstate.getController());
                     BlockState state = ctx.state();
                     if (!state.is(block)) return false;
@@ -70,7 +71,8 @@ public class EvoPredicates {
         return new PredicateBuilder("half_" + block.getDescriptionId())
                 .candidates(List.of(BlockInfo.fromBlockState(previewHalfState(block, half))))
                 .predicate(ctx -> {
-                    PatternState pstate = Objects.requireNonNull(((PredicateContextAccessor) ctx).evoc$getPatternState());
+                    PatternState pstate = ((PredicateContextAccessor) ctx).evoc$getPatternState();
+                    if (pstate == null) return false;
                     BlockState state = ctx.state();
                     if (!state.is(block)) return false;
                     if (!state.hasProperty(BlockStateProperties.HALF)) return false;

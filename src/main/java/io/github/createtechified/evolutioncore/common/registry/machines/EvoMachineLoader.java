@@ -1,8 +1,5 @@
 package io.github.createtechified.evolutioncore.common.registry.machines;
 
-import io.github.createtechified.evolutioncore.Reference;
-import io.github.createtechified.evolutioncore.common.registry.EvoModifications;
-import io.github.createtechified.evolutioncore.common.registry.EvoTabs;
 import io.github.createtechified.evolutioncore.common.registry.machines.multiblocks.PrimitiveMultiblocks;
 import io.github.createtechified.evolutioncore.common.registry.machines.multiblocks.SteamMultiblocksHP;
 import io.github.createtechified.evolutioncore.common.registry.machines.multiblocks.SteamMultiblocksLP;
@@ -10,9 +7,7 @@ import io.github.createtechified.evolutioncore.common.registry.machines.multiblo
 
 public class EvoMachineLoader {
     public static void init() {
-        Reference.REGISTRATE.creativeModeTab(() -> EvoTabs.EVOLUTIONCORE_BLOCKS);
         EvoCoilBlocks.init();
-        Reference.REGISTRATE.creativeModeTab(() -> EvoTabs.EVOLUTIONCORE_MACHINES);
         EvoMultiParts.init();
         EvoSingleblocks.init();
         PrimitiveMultiblocks.init();

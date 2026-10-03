@@ -63,7 +63,6 @@ public class GeneratorMultiblocks {
                     .where('G', Predicates.blocks(GTBlocks.CASING_LAMINATED_GLASS.get()))
                     .where('H', Predicates.blocks(GTBlocks.COIL_RTMALLOY.get()))
                     .where('M', Predicates.blocks(GCYMBlocks.CASING_HIGH_TEMPERATURE_SMELTING.get()))
-                    .where(' ', Predicates.any())
                     .where('W', Predicates.blocks(Objects.requireNonNull(GeneralHelpers.getBlockFromNamespaceAndID("create", "cut_deepslate_wall"))))
                     .build()) // ^ We force Create, so this should be fine. If anything breaks it's your fault.
             .workableCasingModel(GTCEu.id("block/casings/gcym/high_temperature_smelting_casing"), EvolutionCoreMod.id("block/machines/simple_fission_reactor"))
