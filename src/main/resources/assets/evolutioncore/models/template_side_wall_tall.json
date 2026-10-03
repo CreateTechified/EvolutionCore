@@ -1,5 +1,5 @@
 {
-	"format_version": "26.3",
+	"format_version": "1.9.0",
 	"credit": "Made with Blockbench",
 	"textures": {
 		"0": "wall_post_full",
@@ -14,7 +14,7 @@
 		{
 			"from": [21, 0, 0],
 			"to": [27, 16, 8],
-			"rotation": {"x": 0, "y": -90, "z": 0, "origin": [16, 0, 0]},
+			"rotation": {"angle": -90, "axis": "y", "origin": [16, 0, 0]},
 			"faces": {
 				"north": {"uv": [0, 0, 6, 16], "texture": "#3", "cullface": "north"},
 				"east": {"uv": [0, 0, 8, 16], "texture": "#4"},
@@ -68,7 +68,7 @@
 		{
 			"from": [21, 0, 16],
 			"to": [27, 16, 24],
-			"rotation": {"x": 0, "y": -180, "z": 0, "origin": [16, 0, 16]},
+			"rotation": {"angle": -180, "axis": "y", "origin": [16, 0, 16]},
 			"faces": {
 				"north": {"uv": [0, 0, 6, 16], "texture": "#3", "cullface": "north"},
 				"east": {"uv": [0, 0, 8, 16], "texture": "#4"},
