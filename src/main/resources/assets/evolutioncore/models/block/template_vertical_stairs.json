@@ -1,132 +1,82 @@
 {
-	"textures": { "particle": "#all" },
+	"format_version": "1.9.0",
+	"credit": "Made with Blockbench",
+	"textures": {
+		"0": "evolutioncore:block/casings/invar/vertical_stairs/stair_full",
+		"1": "evolutioncore:block/casings/invar/vertical_stairs/stair_inner",
+		"2": "evolutioncore:block/casings/invar/vertical_stairs/stair_outer",
+		"particle": "evolutioncore:block/casings/invar/vertical_stairs/stair_full"
+	},
 	"elements": [
 		{
-			"from": [8, 0, 0], "to": [16, 16, 8],
+			"from": [8, 0, 0],
+			"to": [16, 16, 8],
 			"faces": {
-				"north": {"texture": "#all", "cullface": "north"},
-				"east":  {"texture": "#all", "cullface": "east"},
-				"west":  {"texture": "#all"},
-				"up":    {"texture": "#all", "cullface": "up"},
-				"down":  {"texture": "#all", "cullface": "down"}
+				"north": {"uv": [0, 0, 8, 16], "texture": "#1"},
+				"east": {"uv": [8, 0, 16, 16], "texture": "#0"},
+				"south": {"uv": [8, 0, 16, 16], "texture": "#missing"},
+				"west": {"uv": [0, 0, 8, 16], "texture": "#1"},
+				"up": {"uv": [8, 8, 16, 16], "rotation": 270, "texture": "#2"},
+				"down": {"uv": [0, 0, 8, 8], "rotation": 180, "texture": "#2"}
 			}
 		},
 		{
-			"from": [8, 0, 8], "to": [16, 16, 16],
+			"from": [8, 0, 8],
+			"to": [16, 16, 16],
 			"faces": {
-				"east":  {"texture": "#all", "cullface": "east"},
-				"south": {"texture": "#all", "cullface": "south"},
-				"up":    {"texture": "#all", "cullface": "up"},
-				"down":  {"texture": "#all", "cullface": "down"}
+				"north": {"uv": [0, 0, 8, 16], "texture": "#missing"},
+				"east": {"uv": [0, 0, 8, 16], "texture": "#0"},
+				"south": {"uv": [8, 0, 16, 16], "texture": "#0"},
+				"west": {"uv": [8, 0, 16, 16], "texture": "#missing"},
+				"up": {"uv": [0, 8, 8, 16], "rotation": 270, "texture": "#2"},
+				"down": {"uv": [0, 8, 8, 16], "rotation": 180, "texture": "#2"}
 			}
 		},
 		{
-			"from": [0, 0, 8], "to": [8, 16, 16],
+			"from": [0, 0, 8],
+			"to": [8, 16, 16],
 			"faces": {
-				"north": {"texture": "#all"},
-				"west":  {"texture": "#all", "cullface": "west"},
-				"south": {"texture": "#all", "cullface": "south"},
-				"up":    {"texture": "#all", "cullface": "up"},
-				"down":  {"texture": "#all", "cullface": "down"}
+				"north": {"uv": [0, 0, 8, 16], "texture": "#1"},
+				"east": {"uv": [0, 0, 8, 16], "texture": "#missing"},
+				"south": {"uv": [0, 0, 8, 16], "texture": "#0"},
+				"west": {"uv": [0, 0, 8, 16], "texture": "#1"},
+				"up": {"uv": [0, 0, 8, 8], "rotation": 270, "texture": "#2"},
+				"down": {"uv": [8, 8, 16, 16], "rotation": 180, "texture": "#2"}
 			}
 		}
 	],
 	"display": {
 		"thirdperson_righthand": {
-			"rotation": [
-				75,
-				45,
-				0
-			],
-			"translation": [
-				0,
-				2.5,
-				0
-			],
-			"scale": [
-				0.375,
-				0.375,
-				0.375
-			]
+			"rotation": [75, 45, 0],
+			"translation": [0, 2.5, 0],
+			"scale": [0.375, 0.375, 0.375]
 		},
 		"thirdperson_lefthand": {
-			"rotation": [
-				75,
-				45,
-				0
-			],
-			"translation": [
-				0,
-				2.5,
-				0
-			],
-			"scale": [
-				0.375,
-				0.375,
-				0.375
-			]
+			"rotation": [75, 45, 0],
+			"translation": [0, 2.5, 0],
+			"scale": [0.375, 0.375, 0.375]
 		},
 		"firstperson_righthand": {
-			"rotation": [
-				0,
-				45,
-				0
-			],
-			"scale": [
-				0.4,
-				0.4,
-				0.4
-			]
+			"rotation": [0, 45, 0],
+			"scale": [0.4, 0.4, 0.4]
 		},
 		"firstperson_lefthand": {
-			"rotation": [
-				0,
-				-135,
-				0
-			],
-			"scale": [
-				0.4,
-				0.4,
-				0.4
-			]
+			"rotation": [0, -135, 0],
+			"scale": [0.4, 0.4, 0.4]
 		},
 		"ground": {
-			"translation": [
-				0,
-				3,
-				0
-			],
-			"scale": [
-				0.25,
-				0.25,
-				0.25
-			]
+			"translation": [0, 3, 0],
+			"scale": [0.25, 0.25, 0.25]
 		},
 		"gui": {
-			"rotation": [
-				30,
-				-135,
-				0
-			],
-			"scale": [
-				0.625,
-				0.625,
-				0.625
-			]
+			"rotation": [30, -135, 0],
+			"scale": [0.625, 0.625, 0.625]
 		},
 		"fixed": {
-			"scale": [
-				0.5,
-				0.5,
-				0.5
-			]
+			"scale": [0.5, 0.5, 0.5]
 		},
 		"on_shelf": {
-			"rotation": [
-				0,
-				-180,
-				0
-			]
+			"rotation": [0, -180, 0]
 		}
 	}
 }

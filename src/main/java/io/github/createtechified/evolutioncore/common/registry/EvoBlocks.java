@@ -2,7 +2,6 @@ package io.github.createtechified.evolutioncore.common.registry;
 
 import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.block.ActiveBlock;
-import com.gregtechceu.gtceu.common.block.CoilBlock;
 import com.gregtechceu.gtceu.common.data.GTBlocks;
 import com.gregtechceu.gtceu.data.recipe.CustomTags;
 import com.tterrag.registrate.util.entry.BlockEntry;
@@ -110,9 +109,11 @@ public class EvoBlocks {
             .initialProperties(() -> Blocks.IRON_BLOCK)
             .lang("Heat Proof Invar Machine Casing Vertical Stairs")
             .tag(BlockTags.STAIRS, CustomTags.MINEABLE_WITH_CONFIG_VALID_PICKAXE_WRENCH)
-            .blockstate((ctx, prov) -> prov.horizontalBlock(ctx.getEntry(), prov.models().singleTexture(ctx.getName(), EvolutionCoreMod.id("template_vertical_stairs"), "all", GTCEu.id("block/casings/solid/machine_casing_heatproof"))))
+            .blockstate((ctx, prov) -> prov.horizontalBlock(ctx.getEntry(),
+                    prov.models().getExistingFile(EvolutionCoreMod.id("block/template_vertical_stairs"))))
             .item()
-            .model((ctx, prov) -> prov.withExistingParent(ctx.getName(), prov.modLoc("block/" + ctx.getName())))
+            .model((ctx, prov) -> prov.withExistingParent(ctx.getName(),
+                    prov.modLoc("block/template_vertical_stairs")))
             .tag(ItemTags.STAIRS)
             .build()
             .register();
