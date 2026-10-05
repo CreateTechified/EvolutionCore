@@ -8,6 +8,7 @@ import com.gregtechceu.gtceu.api.block.property.GTBlockStateProperties;
 import com.gregtechceu.gtceu.common.block.CoilBlock;
 import com.gregtechceu.gtceu.common.data.models.GTModels;
 import com.gregtechceu.gtceu.data.recipe.CustomTags;
+import com.tterrag.registrate.providers.RegistrateLangProvider;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import io.github.createtechified.evolutioncore.EvolutionCoreMod;
 import io.github.createtechified.evolutioncore.Reference;
@@ -58,7 +59,7 @@ public class ActiveBlockConstructors {
         if (coilType.getName().equals("wrldapple_alloy")) {
             n = "Wrld-Apple Alloy Coil Block";
         } else {
-            n = FormattingUtil.toEnglishName(coilType.getName() + "_coil_block");
+            n = RegistrateLangProvider.toEnglishName(coilType.getName() + "_coil_block");
         }
 
         BlockEntry<CoilBlock> coilBlock = Reference.REGISTRATE
