@@ -146,6 +146,31 @@ public class EvoMaterials {
             )
             .buildAndRegister();
 
+    // Chemicals
+    public static Material Helicopter = new Material.Builder( // the funny
+            EvolutionCoreMod.id("helicopter"))
+            //.langValue("Helio-Lithic Platinide")
+            .ingot()
+            .liquid()
+            .components(Helium, 1, Lithium, 1, Cobalt, 1, Platinum, 1, Erbium, 1)
+            .color(0xD9857C)
+            .iconSet(MaterialIconSet.DULL)
+            .flags(
+                    MaterialFlags.GENERATE_PLATE,
+                    MaterialFlags.GENERATE_DENSE,
+                    MaterialFlags.GENERATE_ROD,
+                    MaterialFlags.GENERATE_LONG_ROD,
+                    MaterialFlags.GENERATE_BOLT_SCREW,
+                    MaterialFlags.GENERATE_FRAME,
+                    MaterialFlags.GENERATE_GEAR,
+                    MaterialFlags.GENERATE_SMALL_GEAR,
+                    MaterialFlags.GENERATE_FOIL,
+                    MaterialFlags.GENERATE_RING,
+                    MaterialFlags.GENERATE_FINE_WIRE,
+                    MaterialFlags.GENERATE_ROTOR
+            )
+            .buildAndRegister();
+
     // Fluids
     public static Material QuantumInfusion = new Material.Builder(
             EvolutionCoreMod.id("quantum_infusion"))
