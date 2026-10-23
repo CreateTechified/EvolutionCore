@@ -29,8 +29,8 @@ public class FixedHeatingCoilElectricMultiblock extends WorkableElectricMultiblo
     private ICoilType coilType = CoilBlock.CoilType.CUPRONICKEL;
 
     @SyncToClient
-    @Getter // String for syncing reasons. Use ``ResourceLocation.parse(coilTexture)`` to find the actual value.
-    private String coilTexture = CoilBlock.CoilType.CUPRONICKEL.getTexture().toString();
+    @Getter
+    private ResourceLocation coilTexture = CoilBlock.CoilType.CUPRONICKEL.getTexture();
 
     public FixedHeatingCoilElectricMultiblock(BlockEntityCreationInfo info, RecipeLogic recipeLogic) {
         super(info, recipeLogic);
@@ -48,13 +48,13 @@ public class FixedHeatingCoilElectricMultiblock extends WorkableElectricMultiblo
         super.formStructure(substructureName);
         var cache = patternStates.get(substructureName).getCache();
         ICoilType coilType = null;
-        String coilTexture = null;
+        ResourceLocation coilTexture = null;
         for (var entry : cache.long2ObjectEntrySet()) {
             var state = entry.getValue().getBlockState();
             if (state.getBlock() instanceof CoilBlock coil) {
                 if (GTCEuAPI.HEATING_COILS.containsKey(coil.coilType)) {
                     if (coilType == null) coilType = coil.coilType;
-                    if (coilTexture == null) coilTexture = coil.coilType.getTexture().toString();
+                    if (coilTexture == null) coilTexture = coil.coilType.getTexture();
                     else {
                         if (coilType != coil.coilType) {
                             patternStates.get(substructureName).setError(
@@ -76,16 +76,14 @@ public class FixedHeatingCoilElectricMultiblock extends WorkableElectricMultiblo
     @Override
     public void buildMainUI(ParentWidget<?> mainWidget, PosGuiData guiData, PanelSyncManager syncManager,
                             UISettings settings) {
-        ResourceLocation tex = ResourceLocation.parse(coilTexture);
-
         IDrawable leftTop = new UITexture.Builder()
-                .location(tex)
+                .location(coilTexture)
                 .subAreaUV(0f, 0f, 7f / 16f, 4f / 16f)
                 .colorType(ColorType.DEFAULT)
                 .build();
 
         IDrawable leftMiddle = new UITexture.Builder()
-                .location(tex)
+                .location(coilTexture)
                 .imageSize(16, 16)
                 .subAreaUV(0f, 4f / 16f, 7f / 16f, 12f / 16f)
                 .colorType(ColorType.DEFAULT)
@@ -93,19 +91,19 @@ public class FixedHeatingCoilElectricMultiblock extends WorkableElectricMultiblo
                 .build();
 
         IDrawable leftBottom = new UITexture.Builder()
-                .location(tex)
+                .location(coilTexture)
                 .subAreaUV(0f, 12f / 16f, 7f / 16f, 16f / 16f)
                 .colorType(ColorType.DEFAULT)
                 .build();
 
         IDrawable rightBottom = new UITexture.Builder()
-                .location(tex)
+                .location(coilTexture)
                 .subAreaUV(7f / 16f, 4f / 16f, 0f, 0f / 16f)
                 .colorType(ColorType.DEFAULT)
                 .build();
 
         IDrawable rightMiddle = new UITexture.Builder()
-                .location(tex)
+                .location(coilTexture)
                 .imageSize(16, 16)
                 .subAreaUV(7f / 16f, 12f / 16f, 0f, 4f / 16f)
                 .colorType(ColorType.DEFAULT)
@@ -113,7 +111,7 @@ public class FixedHeatingCoilElectricMultiblock extends WorkableElectricMultiblo
                 .build();
 
         IDrawable rightTop = new UITexture.Builder()
-                .location(tex)
+                .location(coilTexture)
                 .subAreaUV(7f / 16f, 16f / 16f, 0f, 12f / 16f)
                 .colorType(ColorType.DEFAULT)
                 .build();

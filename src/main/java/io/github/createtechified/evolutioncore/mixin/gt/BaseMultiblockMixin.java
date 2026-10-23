@@ -1,5 +1,9 @@
 package io.github.createtechified.evolutioncore.mixin.gt;
 
+import brachy.modularui.api.drawable.Text;
+import brachy.modularui.value.sync.BooleanSyncValue;
+import brachy.modularui.value.sync.IntSyncValue;
+import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.machine.MachineInstanceFactory;
 import com.gregtechceu.gtceu.api.machine.MultiblockMachineDefinition;
 import com.gregtechceu.gtceu.api.machine.multiblock.PartAbility;
@@ -17,6 +21,7 @@ import com.gregtechceu.gtceu.common.data.GTRecipeTypes;
 import com.gregtechceu.gtceu.common.data.machines.GTMultiMachines;
 import com.gregtechceu.gtceu.common.machine.multiblock.primitive.CokeOvenMachine;
 import com.gregtechceu.gtceu.common.machine.multiblock.steam.SteamParallelMultiblockMachine;
+import com.gregtechceu.gtceu.utils.FormattingUtil;
 import com.gregtechceu.gtceu.utils.GTUtil;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
@@ -25,13 +30,16 @@ import io.github.createtechified.evolutioncore.common.data.machine.electric.Fixe
 import io.github.createtechified.evolutioncore.common.data.machine.primitive.PrimitiveBlastFurnace;
 import io.github.createtechified.evolutioncore.common.registry.EvoBlocks;
 import io.github.createtechified.evolutioncore.common.registry.recipes.EvoRecipeModifiers;
+import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.Style;
 import net.minecraft.world.level.block.state.properties.Half;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
+import java.util.Collections;
 import java.util.function.Consumer;
 
 import static com.gregtechceu.gtceu.api.multiblock.util.RelativeDirection.*;
@@ -117,7 +125,26 @@ public class BaseMultiblockMixin {
                 .where('L', EvoPredicates.directionalBlock(EvoBlocks.CASING_INVAR_HEATPROOF_STAIRS.get(), LEFT, BOTTOM, true))
                 .where('K', EvoPredicates.directionalBlock(EvoBlocks.CASING_INVAR_HEATPROOF_STAIRS.get(), BACK, BOTTOM, true))
                 .where('J', EvoPredicates.directionalBlock(EvoBlocks.CASING_INVAR_HEATPROOF_STAIRS.get(), RIGHT, BOTTOM, true))
-                .build()).recipeModifiers(EvoRecipeModifiers::ebfOverclock, BATCH_MODE);
+                .build())
+                .recipeModifiers(EvoRecipeModifiers::ebfOverclock, BATCH_MODE)
+                .additionalDisplay((controller, syncManager) -> {
+                    if (!(controller instanceof FixedHeatingCoilElectricMultiblock coilMachine))
+                        return Collections.emptyList();
+                    BooleanSyncValue isFormed = syncManager.getOrCreateSyncHandler("isFormed", BooleanSyncValue.class,
+                            () -> new BooleanSyncValue(controller::isFormed));
+                    IntSyncValue coilTemperature = syncManager.getOrCreateSyncHandler("coilTemperature", IntSyncValue.class,
+                            () -> new IntSyncValue(() -> coilMachine.getCoilType().getCoilTemperature()));
+                    IntSyncValue machineTier = syncManager.getOrCreateSyncHandler("machineTier", IntSyncValue.class,
+                            () -> new IntSyncValue(() -> coilMachine.getTier()));
+
+                    return Collections.singletonList(Text
+                            .dynamic(() -> Component.translatable("gtceu.multiblock.blast_furnace.max_temperature",
+                                    Component.literal(
+                                                    FormattingUtil.formatNumbers(coilTemperature.getIntValue() +
+                                                            100L * Math.max(0, machineTier.getIntValue() - GTValues.MV)) + "K")
+                                            .setStyle(Style.EMPTY.withColor(ChatFormatting.RED))))
+                            .asWidget().setEnabledIf(w -> isFormed.getBoolValue()));
+                });
         return registrate.multiblock(name, FixedHeatingCoilElectricMultiblock::new);
     }
     @Redirect(method = "<clinit>", at = @At(value = "INVOKE", target = "Lcom/gregtechceu/gtceu/api/registry/registrate/GTRegistrate;multiblock(Ljava/lang/String;Lcom/gregtechceu/gtceu/api/machine/MachineInstanceFactory;)Lcom/gregtechceu/gtceu/api/registry/registrate/builder/MultiblockMachineBuilder;", ordinal = 3), remap = false, require = 1)
