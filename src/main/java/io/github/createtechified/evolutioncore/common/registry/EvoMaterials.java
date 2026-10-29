@@ -146,6 +146,32 @@ public class EvoMaterials {
             )
             .buildAndRegister();
 
+    // Salts
+    public static Material NeuraliumHexachloroplatinate = new Material.Builder(
+            EvolutionCoreMod.id("neuralium_hexachloroplatinate"))
+            //.langValue("Neuralium Hexachloroplatinate")
+            .gem(1).ore(2, 1)
+            .components(Neuralium, 1, Platinum, 1, Chlorine, 6)
+            .color(0xEEC7F2)
+            .iconSet(MaterialIconSet.FINE)
+            .flags(
+                    MaterialFlags.NO_SMASHING
+            )
+            .buildAndRegister();
+
+    public static Material FondorsSalt = new Material.Builder(
+            EvolutionCoreMod.id("nickel_neuralium_hexacyanoferrate"))
+            //.langValue("Fondor's Salt")
+            .gem(1).ore(2, 1)
+            .components(Nickel, 1, Nitrogen, 12, Hydrogen, 18, Neuralium, 1, Iron, 1, Carbon, 6)
+            .color(0x82C2E8)
+            .secondaryColor(0x4285B3)
+            .iconSet(MaterialIconSet.FINE)
+            .flags(
+                    MaterialFlags.NO_SMASHING
+            )
+            .buildAndRegister();
+
     // Chemicals
     public static Material Helicopter = new Material.Builder( // the funny
             EvolutionCoreMod.id("helicopter"))

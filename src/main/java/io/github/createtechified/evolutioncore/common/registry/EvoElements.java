@@ -1,6 +1,8 @@
 package io.github.createtechified.evolutioncore.common.registry;
 
 import com.gregtechceu.gtceu.api.data.chemical.Element;
+import com.gregtechceu.gtceu.api.registry.registrate.GTRegistrate;
+import com.tterrag.registrate.util.entry.RegistryEntry;
 import io.github.createtechified.evolutioncore.EvolutionCoreMod;
 
 import static com.gregtechceu.gtceu.common.data.GTElements.createAndRegister;
@@ -8,6 +10,7 @@ import static com.gregtechceu.gtceu.common.data.GTElements.createAndRegister;
 public class EvoElements {
     public static void init() {}
 
+    //public static final RegistryEntry<Element, Element> TEST2 = GTRegistrate.element("test", 27, 177, "Test", "T");
     public static final Element Nu = createAndRegister(
             EvolutionCoreMod.id("neuralium"),
             119, 126, -1, null,
