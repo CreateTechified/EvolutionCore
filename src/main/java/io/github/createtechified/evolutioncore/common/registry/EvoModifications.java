@@ -14,7 +14,7 @@ public class EvoModifications {
                 new FluidPipeProperties(7200, 15780, true, true, false, false)
         );
 
-        GTMaterials.Netherite.addFlags(
+        GTMaterials.Netherite.get().addFlags(
                 MaterialFlags.GENERATE_PLATE,
                 MaterialFlags.GENERATE_DENSE,
                 MaterialFlags.GENERATE_ROD,
@@ -29,8 +29,8 @@ public class EvoModifications {
         );
 
         GTMaterials.Polonium.setProperty(PropertyKey.INGOT, new IngotProperty());
-        GTMaterials.Polonium.setMaterialARGB(0x00B389);
-        GTMaterials.Polonium.addFlags(
+        GTMaterials.Polonium.get().setMaterialARGB(0x00B389);
+        GTMaterials.Polonium.get().addFlags(
                 MaterialFlags.GENERATE_PLATE,
                 MaterialFlags.GENERATE_ROD,
                 MaterialFlags.GENERATE_LONG_ROD,
@@ -38,8 +38,8 @@ public class EvoModifications {
         );
 
         GTMaterials.Technetium.setProperty(PropertyKey.INGOT, new IngotProperty());
-        GTMaterials.Technetium.setMaterialARGB(0x003461);
-        GTMaterials.Technetium.addFlags(
+        GTMaterials.Technetium.get().setMaterialARGB(0x003461);
+        GTMaterials.Technetium.get().addFlags(
                 MaterialFlags.GENERATE_PLATE,
                 MaterialFlags.GENERATE_ROD,
                 MaterialFlags.GENERATE_LONG_ROD,
@@ -49,7 +49,7 @@ public class EvoModifications {
                 MaterialFlags.GENERATE_FOIL
         );
 
-        GTMaterials.Netherite.setFormula("Nr");
-        EvoMaterials.QuantumInfusion.setFormula("⚛");
+        GTMaterials.Netherite.get().setFormula("Nr");
+        EvoMaterials.QuantumInfusion.get().setFormula("⚛");
     }
 }

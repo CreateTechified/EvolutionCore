@@ -6,7 +6,9 @@ import com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlags;
 import com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialIconSet;
 import com.gregtechceu.gtceu.api.data.chemical.material.properties.BlastProperty;
 import com.gregtechceu.gtceu.api.fluids.FluidBuilder;
+import com.gregtechceu.gtceu.api.registry.registrate.entry.MaterialRegistryEntry;
 import io.github.createtechified.evolutioncore.EvolutionCoreMod;
+import io.github.createtechified.evolutioncore.Reference;
 
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 import static io.github.createtechified.evolutioncore.common.registry.EvoElements.*;
@@ -15,8 +17,7 @@ public class EvoMaterials {
     public static void init() {}
 
     // Materials
-    public static Material Neuralium = new Material.Builder(
-            EvolutionCoreMod.id("neuralium"))
+    public static MaterialRegistryEntry Neuralium = Reference.REGISTRATE.material("neuralium",builder -> builder
             //.langValue("Neuralium")
             .ingot()
             .fluid()
@@ -39,11 +40,9 @@ public class EvoMaterials {
                     MaterialFlags.GENERATE_SPRING_SMALL,
                     MaterialFlags.GENERATE_FINE_WIRE,
                     MaterialFlags.GENERATE_ROTOR
-            )
-            .buildAndRegister();
+            ));
 
-    public static Material NeuraliumInfused = new Material.Builder(
-            EvolutionCoreMod.id("quantum_infused_neuralium"))
+    public static MaterialRegistryEntry NeuraliumInfused = Reference.REGISTRATE.material("quantum_infused_neuralium",builder -> builder
             //.langValue("Quantum-Infused Neuralium")
             .gem()
             .element(Nu2)
@@ -51,11 +50,9 @@ public class EvoMaterials {
             .iconSet(MaterialIconSet.RUBY)
             .flags(
                     MaterialFlags.GENERATE_LENS
-            )
-            .buildAndRegister();
+            ));
 
-    public static Material AncientNetherite = new Material.Builder(
-            EvolutionCoreMod.id("ancient_netherite"))
+    public static MaterialRegistryEntry AncientNetherite = Reference.REGISTRATE.material("ancient_netherite",builder -> builder
             //.langValue("Ancient Netherite")
             .ingot()
             .element(Nr2)
@@ -73,12 +70,10 @@ public class EvoMaterials {
                     MaterialFlags.GENERATE_FOIL,
                     MaterialFlags.GENERATE_RING,
                     MaterialFlags.GENERATE_ROTOR
-            )
-            .buildAndRegister();
+            ));
 
     // Alloys
-    public static Material NeuralicAlloy7 = new Material.Builder(
-            EvolutionCoreMod.id("neuralic_alloy_7"))
+    public static MaterialRegistryEntry NeuralicAlloy7 = Reference.REGISTRATE.material("neuralic_alloy_7",builder -> builder
             //.langValue("Neuralic Alloy 7")
             .ingot()
             .fluid()
@@ -103,21 +98,17 @@ public class EvoMaterials {
                     MaterialFlags.GENERATE_FINE_WIRE,
                     MaterialFlags.GENERATE_ROTOR,
                     MaterialFlags.GENERATE_ROUND
-            )
-            .buildAndRegister();
+            ));
 
-    public static Material ThaumiumAlloy = new Material.Builder( // Not sure if we'll keep this though, I think we will
-            EvolutionCoreMod.id("thaumium_alloy"))
+    public static MaterialRegistryEntry ThaumiumAlloy = Reference.REGISTRATE.material("thaumium_alloy",builder -> builder // Not sure if we'll keep this though, I think we will
             //.langValue("Thaumium Alloy")
             .ingot()
             .components(Iron, 1, Copper, 2, Tin, 3, Nickel, 4)
             .color(0x000000)
             .iconSet(MaterialIconSet.DULL)
-            .flags(MaterialFlags.GENERATE_PLATE)
-            .buildAndRegister();
+            .flags(MaterialFlags.GENERATE_PLATE));
 
-    public static Material WrldappleAlloy = new Material.Builder(
-            EvolutionCoreMod.id("wrldapple_alloy"))
+    public static MaterialRegistryEntry WrldappleAlloy = Reference.REGISTRATE.material("wrld_apple_alloy",builder -> builder
             //.langValue("Wrld-Apple Alloy")
             .ingot()
             .fluid()
@@ -143,12 +134,10 @@ public class EvoMaterials {
                     MaterialFlags.GENERATE_FINE_WIRE,
                     MaterialFlags.GENERATE_ROTOR,
                     MaterialFlags.GENERATE_ROUND
-            )
-            .buildAndRegister();
+            ));
 
     // Salts
-    public static Material NeuraliumHexachloroplatinate = new Material.Builder(
-            EvolutionCoreMod.id("neuralium_hexachloroplatinate"))
+    public static MaterialRegistryEntry NeuraliumHexachloroplatinate = Reference.REGISTRATE.material("neuralium_hexachloroplatinate",builder -> builder
             //.langValue("Neuralium Hexachloroplatinate")
             .gem(1).ore(2, 1)
             .components(Neuralium, 1, Platinum, 1, Chlorine, 6)
@@ -156,11 +145,9 @@ public class EvoMaterials {
             .iconSet(MaterialIconSet.FINE)
             .flags(
                     MaterialFlags.NO_SMASHING
-            )
-            .buildAndRegister();
+            ));
 
-    public static Material FondorsSalt = new Material.Builder(
-            EvolutionCoreMod.id("nickel_neuralium_hexacyanoferrate"))
+    public static MaterialRegistryEntry FondorsSalt = Reference.REGISTRATE.material("nickel_neuralium_hexacyanoferrate",builder -> builder
             //.langValue("Fondor's Salt")
             .gem(1).ore(2, 1)
             .components(Nickel, 1, Nitrogen, 12, Hydrogen, 18, Neuralium, 1, Iron, 1, Carbon, 6)
@@ -169,12 +156,10 @@ public class EvoMaterials {
             .iconSet(MaterialIconSet.FINE)
             .flags(
                     MaterialFlags.NO_SMASHING
-            )
-            .buildAndRegister();
+            ));
 
     // Chemicals
-    public static Material Helicopter = new Material.Builder( // the funny
-            EvolutionCoreMod.id("helicopter"))
+    public static MaterialRegistryEntry Helicopter = Reference.REGISTRATE.material("helio_lithic_platinide",builder -> builder // the funny
             //.langValue("Helio-Lithic Platinide")
             .ingot()
             .liquid()
@@ -194,37 +179,29 @@ public class EvoMaterials {
                     MaterialFlags.GENERATE_RING,
                     MaterialFlags.GENERATE_FINE_WIRE,
                     MaterialFlags.GENERATE_ROTOR
-            )
-            .buildAndRegister();
+            ));
 
     // Fluids
-    public static Material QuantumInfusion = new Material.Builder(
-            EvolutionCoreMod.id("quantum_infusion"))
+    public static MaterialRegistryEntry QuantumInfusion = Reference.REGISTRATE.material("quantum_infusion",builder -> builder
             //.langValue("Quantum Infusion")
             .liquid(new FluidBuilder().block().temperature(293))
-            .color(0x372f65)
-            .buildAndRegister();
+            .color(0x372f65));
 
-    public static Material PotassiumNitrate = new Material.Builder( // subjected to change, very easy to craft. yes that's a problem
-            EvolutionCoreMod.id("potassium_nitrate"))
+    public static MaterialRegistryEntry PotassiumNitrate = Reference.REGISTRATE.material("potassium_nitrate",builder -> builder // subjected to change, very easy to craft. yes that's a problem
             //.langValue("Potassium Nitrate")
             .liquid()
             .components(Potassium, 1, Nitrogen, 1, Oxygen, 3)
-            .color(0x93AC72)
-            .buildAndRegister();
+            .color(0x93AC72));
 
     // Hidden Materials
-    public static Material Energy = new Material.Builder(
-            EvolutionCoreMod.id("energy"))
+    public static MaterialRegistryEntry Energy = Reference.REGISTRATE.material("energy",builder -> builder
             //.langValue("Energy")
             .gas()
             .element(ENERGY)
             .color(0xFAFF00)
-            .iconSet(MaterialIconSet.BRIGHT)
-            .buildAndRegister();
+            .iconSet(MaterialIconSet.BRIGHT));
 
-    public static Material Test = new Material.Builder(
-            EvolutionCoreMod.id("test"))
+    public static MaterialRegistryEntry Test = Reference.REGISTRATE.material("test",builder -> builder
             //.langValue("Test")
             .ingot()
             .fluid()
@@ -252,6 +229,5 @@ public class EvoMaterials {
                     MaterialFlags.GENERATE_ROUND,
                     MaterialFlags.IS_MAGNETIC,
                     MaterialFlags.GENERATE_LENS
-            )
-            .buildAndRegister();
+            ));
 }
