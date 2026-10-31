@@ -30,6 +30,7 @@ import io.github.createtechified.evolutioncore.common.data.machine.electric.Fixe
 import io.github.createtechified.evolutioncore.common.data.machine.primitive.PrimitiveBlastFurnace;
 import io.github.createtechified.evolutioncore.common.registry.EvoBlocks;
 import io.github.createtechified.evolutioncore.common.registry.recipes.EvoRecipeModifiers;
+import io.github.createtechified.evolutioncore.common.registry.recipes.EvoRecipeTypes;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Style;
@@ -96,7 +97,8 @@ public class BaseMultiblockMixin {
                                 .predicate(ctx -> GTUtil.isBlockSnow(ctx.state()))
                                 .toMultiPredicate()
                                 .addTooltips(Component.literal("Can be snow"))))
-                .build());
+                .build())
+                .recipeType(EvoRecipeTypes.PRIMITIVE_BLAST_FURNACE);
         return registrate.multiblock(name, PrimitiveBlastFurnace::new);
     }
     @Redirect(method = "<clinit>", at = @At(value = "INVOKE", target = "Lcom/gregtechceu/gtceu/api/registry/registrate/GTRegistrate;multiblock(Ljava/lang/String;Lcom/gregtechceu/gtceu/api/machine/MachineInstanceFactory;)Lcom/gregtechceu/gtceu/api/registry/registrate/builder/MultiblockMachineBuilder;", ordinal = 2), remap = false, require = 1)
