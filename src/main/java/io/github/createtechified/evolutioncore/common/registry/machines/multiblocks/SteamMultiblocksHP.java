@@ -3,6 +3,7 @@ package io.github.createtechified.evolutioncore.common.registry.machines.multibl
 import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.capability.recipe.ItemRecipeCapability;
 import com.gregtechceu.gtceu.api.data.RotationState;
+import com.gregtechceu.gtceu.api.data.chemical.ChemicalHelper;
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
 import com.gregtechceu.gtceu.api.machine.MultiblockMachineDefinition;
 import com.gregtechceu.gtceu.api.machine.multiblock.PartAbility;
@@ -10,7 +11,6 @@ import com.gregtechceu.gtceu.api.multiblock.Predicates;
 import com.gregtechceu.gtceu.api.multiblock.pattern.MultiblockPatternBuilder;
 import com.gregtechceu.gtceu.api.registry.registrate.entry.MachineEntry;
 import com.gregtechceu.gtceu.common.data.GTBlocks;
-import com.gregtechceu.gtceu.common.data.GTMaterialBlocks;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
 import com.gregtechceu.gtceu.common.data.GTRecipeTypes;
 import com.gregtechceu.gtceu.common.mui.GTGuiTheme;
@@ -219,7 +219,7 @@ public class SteamMultiblocksHP {
                     .where('P', Predicates.blocks(GTBlocks.CASING_STEEL_PIPE.get()))
                     .where('F', Predicates.blocks(EvoBlocks.HP_STEAM_FIREBOX_CASING.get()))
                     .where('S', Predicates.frames(GTMaterials.Steel))
-                    .where('X', Predicates.blocks(Objects.requireNonNull(GTMaterialBlocks.MATERIAL_BLOCKS.get(TagPrefix.block, GTMaterials.Steel)).get()))
+                    .where('X', Predicates.blocks(Objects.requireNonNull(ChemicalHelper.getBlock(TagPrefix.block, GTMaterials.Steel))))
                     .where('V', Predicates.abilities(EvoMultiParts.STEAM_VENT).setExactLimit(1))
                     .where('G', Predicates.blocks(Objects.requireNonNull(GeneralHelpers.getBlockFromNamespaceAndID("create", "metal_girder"))))
                     .build())
