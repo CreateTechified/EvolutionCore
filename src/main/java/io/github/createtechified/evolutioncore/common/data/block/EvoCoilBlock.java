@@ -3,20 +3,12 @@ package io.github.createtechified.evolutioncore.common.data.block;
 import com.gregtechceu.gtceu.api.block.ICoilType;
 import com.gregtechceu.gtceu.api.data.chemical.material.Material;
 import com.gregtechceu.gtceu.common.block.CoilBlock;
-import com.gregtechceu.gtceu.utils.GTUtil;
 import io.github.createtechified.evolutioncore.EvolutionCoreMod;
 import io.github.createtechified.evolutioncore.common.registry.EvoMaterials;
-import net.minecraft.ChatFormatting;
-import net.minecraft.network.chat.Component;
+import net.minecraft.core.Holder;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.StringRepresentable;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.TooltipFlag;
-import net.minecraft.world.level.BlockGetter;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
-
-import java.util.List;
 
 public class EvoCoilBlock extends CoilBlock {
     public EvoCoilBlock(Properties properties, ICoilType coilType) {
@@ -51,11 +43,11 @@ public class EvoCoilBlock extends CoilBlock {
         // tier num (ordered pls!)
         private final int tier;
         @NotNull
-        private final Material material;
+        private final Holder<Material> material;
         @NotNull
         private final ResourceLocation texture;
 
-        CoilType(@NotNull String name, int coilTemperature, int level, int energyDiscount, int tier, @NotNull Material material,
+        CoilType(@NotNull String name, int coilTemperature, int level, int energyDiscount, int tier, @NotNull Holder<Material> material,
                     @NotNull ResourceLocation texture) {
             this.name = name;
             this.coilTemperature = coilTemperature;
@@ -93,7 +85,7 @@ public class EvoCoilBlock extends CoilBlock {
         }
 
         @Override
-        public @NotNull Material getMaterial() {
+        public @NotNull Holder<Material> getMaterial() {
             return material;
         }
 
