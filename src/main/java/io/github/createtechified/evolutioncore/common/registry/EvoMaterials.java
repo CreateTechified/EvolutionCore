@@ -18,7 +18,7 @@ public class EvoMaterials {
 
     // Materials
     public static MaterialRegistryEntry Neuralium = Reference.REGISTRATE.material("neuralium",builder -> builder
-            //.langValue("Neuralium")
+            .lang("Neuralium")
             .ingot()
             .fluid()
             .plasma()
@@ -43,7 +43,7 @@ public class EvoMaterials {
             ));
 
     public static MaterialRegistryEntry NeuraliumInfused = Reference.REGISTRATE.material("quantum_infused_neuralium",builder -> builder
-            //.langValue("Quantum-Infused Neuralium")
+            .lang("Quantum-Infused Neuralium")
             .gem()
             .element(Nu2)
             .color(0x756587)
@@ -53,7 +53,7 @@ public class EvoMaterials {
             ));
 
     public static MaterialRegistryEntry AncientNetherite = Reference.REGISTRATE.material("ancient_netherite",builder -> builder
-            //.langValue("Ancient Netherite")
+            .lang("Ancient Netherite")
             .ingot()
             .element(Nr2)
             .color(0x292222)
@@ -74,7 +74,7 @@ public class EvoMaterials {
 
     // Alloys
     public static MaterialRegistryEntry NeuralicAlloy7 = Reference.REGISTRATE.material("neuralic_alloy_7",builder -> builder
-            //.langValue("Neuralic Alloy 7")
+            .lang("Neuralic Alloy 7")
             .ingot()
             .fluid()
             .blastTemp(9780, BlastProperty.GasTier.HIGHER, GTValues.VA[GTValues.ZPM], 6000)
@@ -101,15 +101,15 @@ public class EvoMaterials {
             ));
 
     public static MaterialRegistryEntry ThaumiumAlloy = Reference.REGISTRATE.material("thaumium_alloy",builder -> builder // Not sure if we'll keep this though, I think we will
-            //.langValue("Thaumium Alloy")
+            .lang("Thaumium Alloy")
             .ingot()
             .components(Iron, 1, Copper, 2, Tin, 3, Nickel, 4)
             .color(0x000000)
             .iconSet(MaterialIconSet.DULL)
             .flags(MaterialFlags.GENERATE_PLATE));
 
-    public static MaterialRegistryEntry WrldappleAlloy = Reference.REGISTRATE.material("wrld_apple_alloy",builder -> builder
-            //.langValue("Wrld-Apple Alloy")
+    public static MaterialRegistryEntry WrldappleAlloy = Reference.REGISTRATE.material("wrldapple_alloy",builder -> builder
+            .lang("Wrld-Apple Alloy")
             .ingot()
             .fluid()
             .blastTemp(12980, BlastProperty.GasTier.HIGHEST, GTValues.VA[GTValues.OpV], 9000)
@@ -138,7 +138,7 @@ public class EvoMaterials {
 
     // Salts
     public static MaterialRegistryEntry NeuraliumHexachloroplatinate = Reference.REGISTRATE.material("neuralium_hexachloroplatinate",builder -> builder
-            //.langValue("Neuralium Hexachloroplatinate")
+            .lang("Neuralium Hexachloroplatinate")
             .gem(1).ore(2, 1)
             .components(Neuralium, 1, Platinum, 1, Chlorine, 6)
             .color(0xEEC7F2)
@@ -148,7 +148,7 @@ public class EvoMaterials {
             ));
 
     public static MaterialRegistryEntry FondorsSalt = Reference.REGISTRATE.material("nickel_neuralium_hexacyanoferrate",builder -> builder
-            //.langValue("Fondor's Salt")
+            .lang("Fondor's Salt")
             .gem(1).ore(2, 1)
             .components(Nickel, 1, Nitrogen, 12, Hydrogen, 18, Neuralium, 1, Iron, 1, Carbon, 6)
             .color(0x82C2E8)
@@ -159,8 +159,8 @@ public class EvoMaterials {
             ));
 
     // Chemicals
-    public static MaterialRegistryEntry Helicopter = Reference.REGISTRATE.material("helio_lithic_platinide",builder -> builder // the funny
-            //.langValue("Helio-Lithic Platinide")
+    public static MaterialRegistryEntry Helicopter = Reference.REGISTRATE.material("helicopter",builder -> builder // the funny
+            .lang("Helio-Lithic Platinide")
             .ingot()
             .liquid()
             .components(Helium, 1, Lithium, 1, Cobalt, 1, Platinum, 1, Erbium, 1)
@@ -183,26 +183,26 @@ public class EvoMaterials {
 
     // Fluids
     public static MaterialRegistryEntry QuantumInfusion = Reference.REGISTRATE.material("quantum_infusion",builder -> builder
-            //.langValue("Quantum Infusion")
+            .lang("Quantum Infusion")
             .liquid(new FluidBuilder().block().temperature(293))
             .color(0x372f65));
 
     public static MaterialRegistryEntry PotassiumNitrate = Reference.REGISTRATE.material("potassium_nitrate",builder -> builder // subjected to change, very easy to craft. yes that's a problem
-            //.langValue("Potassium Nitrate")
+            .lang("Potassium Nitrate")
             .liquid()
             .components(Potassium, 1, Nitrogen, 1, Oxygen, 3)
             .color(0x93AC72));
 
     // Hidden Materials
     public static MaterialRegistryEntry Energy = Reference.REGISTRATE.material("energy",builder -> builder
-            //.langValue("Energy")
+            .lang("Energy")
             .gas()
             .element(ENERGY)
             .color(0xFAFF00)
             .iconSet(MaterialIconSet.BRIGHT));
 
     public static MaterialRegistryEntry Test = Reference.REGISTRATE.material("test",builder -> builder
-            //.langValue("Test")
+            .lang("Test")
             .ingot()
             .fluid()
             .gas()
