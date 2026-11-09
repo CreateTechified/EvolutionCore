@@ -179,7 +179,7 @@ dependencies {
     implementation "brachy.modularui:modularui-mc${minecraft_version}:${mui_version}"
     implementation "com.tterrag.registrate:Registrate:${registrate_version}"
     implementation("com.simibubi.create:create-${minecraft_version}:${create_version}:slim") { transitive = false }
-    implementation "curse.maven:continuum-space-1760263:${phoenixcontinuum_id}"
+    //implementation "curse.maven:continuum-space-1760263:${phoenixcontinuum_id}"
     implementation "curse.maven:phoenixwiki-1647798:${phoenixwiki_id}"
     localRuntime "org.appliedenergistics:guideme:${guideme_version}"
     localRuntime "net.createmod.ponder:ponder-neoforge:${ponder_version}+mc${minecraft_version}"
@@ -208,7 +208,8 @@ var generateModMetadata = tasks.register("generateModMetadata", ProcessResources
             mod_description        : mod_description,
             gtm_version_range      : gtm_version_range,
             create_version_range   : create_version_range,
-            ae2_version_range      : ae2_version_range
+            ae2_version_range      : ae2_version_range,
+            pwiki_version_range    : pwiki_version_range
     ]
     inputs.properties replaceProperties
     expand replaceProperties
