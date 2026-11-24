@@ -32,9 +32,11 @@ import com.gregtechceu.gtceu.api.recipe.modifier.ParallelLogic;
 import com.gregtechceu.gtceu.api.recipe.modifier.RecipeModifier;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
 import com.gregtechceu.gtceu.common.mui.GTGuiTextures;
+import com.gregtechceu.gtceu.common.mui.GTMuiMachineUtil;
 import com.gregtechceu.gtceu.common.mui.GTMultiblockTextUtil;
 import com.gregtechceu.gtceu.common.mui.widgets.SteamDialWidget;
 import com.gregtechceu.gtceu.config.ConfigHolder;
+import io.github.createtechified.evolutioncore.common.data.utils.EvoMultiblockTextUtil;
 import lombok.Getter;
 import lombok.Setter;
 import net.minecraft.ChatFormatting;
@@ -49,6 +51,8 @@ public class LPSteamParallelMultiblockMachine extends WorkableMultiblockMachine 
     @Getter
     @Setter
     private int maxParallels;
+
+    private int recipeTier = GTValues.LV;
 
     @Getter
     private final List<SteamEnergyRecipeHandler> steamEnergyHandlers = new ArrayList<>();
@@ -105,7 +109,7 @@ public class LPSteamParallelMultiblockMachine extends WorkableMultiblockMachine 
         if (!(machine instanceof LPSteamParallelMultiblockMachine steamMachine)) {
             return RecipeModifier.nullWrongType(LPSteamParallelMultiblockMachine.class, machine);
         }
-        if (RecipeHelper.getRecipeEUtTier(recipe) > GTValues.LV) return ModifierFunction.NULL;
+        if (RecipeHelper.getRecipeEUtTier(recipe) > steamMachine.recipeTier) return ModifierFunction.NULL;
 
         long eut = recipe.getInputEUt().getTotalEU();
         int parallelAmount = ParallelLogic.getParallelAmount(machine, recipe, steamMachine.maxParallels);
@@ -135,9 +139,17 @@ public class LPSteamParallelMultiblockMachine extends WorkableMultiblockMachine 
         return total;
     }
 
+    public int getRecipeTier() {return recipeTier;}
+
+    public long getRecipeEUt() {
+        if (!isActive()) return 0L;
+        GTRecipe lastRecipe = recipeLogic.getLastUnrolledRecipe();
+        if (lastRecipe == null) return 0L;
+        return lastRecipe.getInputEUt().getTotalEU();
+    }
+
     @Override
-    public void buildMainUI(ParentWidget<?> mainWidget, PosGuiData guiData, PanelSyncManager syncManager,
-                            UISettings settings) {
+    public void buildMainUI(ParentWidget<?> mainWidget, PosGuiData guiData, PanelSyncManager syncManager, UISettings settings) {
         mainWidget.size(170, 76).background(GTGuiTextures.DISPLAY_STEEL);
         IntSyncValue steamAmount = syncManager.getOrCreateSyncHandler("steamAmount", IntSyncValue.class,
                 () -> new IntSyncValue(this::getTotalSteamAmount));
@@ -156,13 +168,18 @@ public class LPSteamParallelMultiblockMachine extends WorkableMultiblockMachine 
                 .posRel(Alignment.CenterLeft);
 
         listWidget
+                .child(EvoMultiblockTextUtil.addEnergyTierLine(this, syncManager))
+                .child(EvoMultiblockTextUtil.addEnergyUsageLine(this, syncManager))
+                .child(EvoMultiblockTextUtil.addEnergyUsageExactLine(this, syncManager))
                 .child(GTMultiblockTextUtil.addUnformedWarning(this, syncManager))
                 .child(Text.dynamic(() -> Component.translatable("gtceu.multiblock.steam.steam_stored", FormattingUtil.formatNumbers(steamAmount.getIntValue()), FormattingUtil.formatNumbers(steamCapacity.getIntValue())).withStyle(ChatFormatting.WHITE)).asWidget().setEnabledIf((w) -> isFormed))
-                .child(GTMultiblockTextUtil.addWorkingStatusLine(this, syncManager))
+                .child(GTMultiblockTextUtil.addWorkingStatusLine(this, syncManager));
+        for (var child : GTMultiblockTextUtil.addRecipeFailReasonLines(this, syncManager))
+            listWidget.child(child);
+        listWidget
                 .child(GTMultiblockTextUtil.addProgressLine(this, syncManager))
                 .child(GTMultiblockTextUtil.addParallelLine(this, syncManager))
                 .child(GTMultiblockTextUtil.addOutputLines(this, syncManager));
-
         mainWidget.child(new ParentWidget<>()
                 .size(0, 0)
                 .child(GTGuiTextures.STEAM_DIAL_STEEL.asWidget()

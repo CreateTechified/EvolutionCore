@@ -1,4 +1,4 @@
-package io.github.createtechified.evolutioncore.common.data;
+package io.github.createtechified.evolutioncore.common.data.utils;
 
 import com.gregtechceu.gtceu.api.machine.multiblock.MultiblockControllerMachine;
 import com.gregtechceu.gtceu.api.multiblock.MultiPredicate;
@@ -6,9 +6,7 @@ import com.gregtechceu.gtceu.api.multiblock.pattern.PatternState;
 import com.gregtechceu.gtceu.api.multiblock.predicates.PredicateBuilder;
 import com.gregtechceu.gtceu.api.multiblock.util.BlockInfo;
 import com.gregtechceu.gtceu.api.multiblock.util.RelativeDirection;
-import io.github.createtechified.evolutioncore.common.registry.EvoBlocks;
 import io.github.createtechified.evolutioncore.mixin.gt.PredicateContextAccessor;
-import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;

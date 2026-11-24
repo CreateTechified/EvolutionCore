@@ -5,21 +5,16 @@ import com.gregtechceu.gtceu.api.data.RotationState;
 import com.gregtechceu.gtceu.api.machine.MultiblockMachineDefinition;
 import com.gregtechceu.gtceu.api.multiblock.Predicates;
 import com.gregtechceu.gtceu.api.multiblock.pattern.MultiblockPatternBuilder;
-import com.gregtechceu.gtceu.api.multiblock.util.RelativeDirection;
 import com.gregtechceu.gtceu.api.registry.registrate.entry.MachineEntry;
 import com.gregtechceu.gtceu.client.renderer.machine.DynamicRenderHelper;
 import com.gregtechceu.gtceu.common.data.GTBlocks;
-import com.gregtechceu.gtceu.common.data.GTMachines;
-import com.gregtechceu.gtceu.common.data.machines.GTMultiMachines;
 import com.gregtechceu.gtceu.common.data.models.GTMachineModels;
 import com.gregtechceu.gtceu.common.mui.GTGuiTheme;
 import com.gregtechceu.gtceu.utils.GTUtil;
 import io.github.createtechified.evolutioncore.EvolutionCoreMod;
 import io.github.createtechified.evolutioncore.Reference;
-import io.github.createtechified.evolutioncore.common.data.EvoPredicates;
 import io.github.createtechified.evolutioncore.common.data.machine.primitive.PrimitiveAlloyKiln;
 import io.github.createtechified.evolutioncore.common.data.machine.primitive.PrimitiveOreFactory;
-import io.github.createtechified.evolutioncore.common.registry.EvoBlocks;
 import io.github.createtechified.evolutioncore.common.registry.recipes.EvoRecipeModifiers;
 import io.github.createtechified.evolutioncore.common.registry.recipes.EvoRecipeTypes;
 import net.minecraft.ChatFormatting;
@@ -27,7 +22,6 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.world.level.block.Blocks;
 
 import static com.gregtechceu.gtceu.api.multiblock.util.RelativeDirection.*;
-import static net.minecraft.world.level.block.state.properties.Half.*;
 
 @SuppressWarnings("unused")
 public class PrimitiveMultiblocks {

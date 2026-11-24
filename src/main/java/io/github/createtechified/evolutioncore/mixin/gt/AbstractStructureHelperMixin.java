@@ -1,11 +1,12 @@
 package io.github.createtechified.evolutioncore.mixin.gt;
 
 import com.gregtechceu.gtceu.api.block.MetaMachineBlock;
+import com.gregtechceu.gtceu.api.mui.MultiblockSchemaInfo;
 import com.gregtechceu.gtceu.api.multiblock.pattern.IBlockPattern;
 import com.gregtechceu.gtceu.api.multiblock.util.AbstractStructureHelper;
 import com.gregtechceu.gtceu.api.multiblock.util.BlockInfo;
-import io.github.createtechified.evolutioncore.common.data.EvoPredicates;
-import it.unimi.dsi.fastutil.longs.Long2ObjectMap;
+import io.github.createtechified.evolutioncore.common.data.utils.EvoPredicates;
+import it.unimi.dsi.fastutil.objects.Object2ObjectMap;
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -27,8 +28,8 @@ import java.util.Map;
 public class AbstractStructureHelperMixin {
     @Inject(method = "populate", at = @At("TAIL"))
     @SuppressWarnings("deprecation")
-    private void evoc$fixDirectionalStates(Map<BlockPos, BlockInfo> resultStructure, IBlockPattern pattern,
-                                           @Nullable Long2ObjectMap<BlockInfo> userBlockPreferences,
+    private void evoc$fixDirectionalStates(MultiblockSchemaInfo info, Map<BlockPos, BlockInfo> resultStructure, IBlockPattern pattern,
+                                           @Nullable Object2ObjectMap<BlockPos, BlockInfo> userBlockPreferences,
                                            Direction frontFacing, Direction upFacing, boolean isFlipped,
                                            CallbackInfo ci) {
         Rotation rotation = evoc$rotationFromNorth(frontFacing);
